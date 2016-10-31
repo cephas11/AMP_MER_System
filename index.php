@@ -37,7 +37,7 @@
         </a>
         <h3 class="login-heading">Sign in</h3>
         <div class="login-form">
-          <form data-toggle="md-validator">
+            <form data-toggle="md-validator" action="beneficiary_form">
             <div class="md-form-group md-label-floating">
               <input class="md-form-control" type="email" name="email" spellcheck="false" autocomplete="off" data-msg-required="Please enter your email address." required>
               <label class="md-control-label">Email</label>
@@ -67,3 +67,4 @@
   </body>
 </html>
 <!-- Localized -->
+
