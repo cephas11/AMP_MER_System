@@ -76,7 +76,23 @@ if (isset($_POST['type'])) {
                 $response[] = $row;
             }
             echo json_encode($response);
-        }
+        } else if ($type == 'saveDescription') {
+            if (isset($_POST['description'])) {
+
+                $description = $_POST['description'];
+               
+                $save_new = new ConfigurationClass();
+                echo $save_new->setDescription($description);
+            }
+        }else if ($type == 'retreiveDescription') {
+
+            $getdescription = new ConfigurationClass();
+            $description = $getdescription->getDescription();
+            while ($row = mysql_fetch_assoc($description)) {
+                $response[] = $row;
+            }
+            echo json_encode($response);
+        } 
     } else {
         echo 'provide type';
     }
