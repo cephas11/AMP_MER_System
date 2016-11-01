@@ -5,18 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Log In -USAD Portal</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <meta name="description" content="Elephant is a front-end template created to help you build modern web applications, fast and in a professional manner.">
-    <meta property="og:url" content="http://demo.naksoid.com/elephant">
+    <meta name="description" content="Mer System is a web protal to track farmers activities">
+    
     <meta property="og:type" content="website">
-    <meta property="og:title" content="The fastest way to build modern admin site for any platform, browser, or device">
-    <meta property="og:description" content="Elephant is a front-end template created to help you build modern web applications, fast and in a professional manner.">
-    <meta property="og:image" content="http://demo.naksoid.com/elephant/img/ae165ef33d137d3f18b7707466aa774d.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@naksoid">
     <meta name="twitter:creator" content="@naksoid">
-    <meta name="twitter:title" content="The fastest way to build modern admin site for any platform, browser, or device">
-    <meta name="twitter:description" content="Elephant is a front-end template created to help you build modern web applications, fast and in a professional manner.">
-    <meta name="twitter:image" content="http://demo.naksoid.com/elephant/img/ae165ef33d137d3f18b7707466aa774d.jpg">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
@@ -31,13 +25,13 @@
   <body>
     <div class="login">
       <div class="login-body">
-        <a class="login-brand" href="index.html">
+        <a class="login-brand" href="#">
             <img class="img-responsive" src="img/logo.png" height="30" width="60" alt="USAD">
                <img class="img-responsive" src="img/logo2.png" height="30" width="70" alt="USAD">
         </a>
         <h3 class="login-heading">Sign in</h3>
         <div class="login-form">
-            <form data-toggle="md-validator" action="beneficiary_form">
+            <form data-toggle="md-validator" action="beneficiary_view">
             <div class="md-form-group md-label-floating">
               <input class="md-form-control" type="email" name="email" spellcheck="false" autocomplete="off" data-msg-required="Please enter your email address." required>
               <label class="md-control-label">Email</label>

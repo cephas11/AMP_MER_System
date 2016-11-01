@@ -49,7 +49,7 @@
                                         </div> 
                                         <div class="form-group">
                                             <label for="demo-select2-1" class="form-label">Gender</label>
-                                            <select id="demo-select2-2"  class="form-control">
+                                            <select id="gender"  class="form-control select2">
 
                                                 <option value="">Choose...</option>
                                                 <option value="male">Male</option>
@@ -131,7 +131,7 @@
         <script src="js/elephant.min.js"></script>
         <script src="js/application.min.js"></script>
         <script src="js/demo.min.js"></script>
-
+        <script src="js/select2.js"></script>
     </body>
 </html>
 <!-- Localized -->
