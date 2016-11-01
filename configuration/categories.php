@@ -37,7 +37,7 @@
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add New Category</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" data-whatever="@mdo">Add New Category</button>
                             </div>
                         </div>
                     </div>
@@ -49,19 +49,14 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="demo-dynamic-tables-2" class="table table-middle nowrap">
+                                        <table id="categoryTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>
-                                                        <label class="custom-control custom-control-primary custom-checkbox">
-                                                            <input class="custom-control-input" type="checkbox">
-                                                            <span class="custom-control-indicator"></span>
-                                                        </label>
-                                                    </th>
+                                                  
                                                     <th>Name</th>
 
                                                     <th>Action </th>
-                                                    <th></th>
+                                                   
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -73,12 +68,12 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">New Category</h4>
+                                <h4 class="modal-title" >New Category</h4>
                             </div>
                             <form id="saveCategoryForm">
                                 <div class="modal-body">
@@ -87,12 +82,12 @@
                                         <label for="region" class="control-label">Name:</label>
                                         <input type="text" class="form-control" name="category" id="category" required>
                                     </div>
-
+                                    <input type="hidden" name="type" value="saveCategory">
 
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -109,6 +104,7 @@
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
+        <script src="../js/categories.js"></script>
 
 
 

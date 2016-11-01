@@ -46,17 +46,33 @@ if (isset($_POST['type'])) {
         } else if ($type == 'saveRegionDistricts') {
 
             if (isset($_POST['regiondistrict'])) {
-               
+
                 $region = $_POST['region'];
                 $districts = $_POST['districts'];
                 $save_new = new ConfigurationClass();
-              echo $save_new->setRegionDistricts($region, $districts);
+                echo $save_new->setRegionDistricts($region, $districts);
             }
-        }else if ($type == 'retreiveRegionDistricts') {
+        } else if ($type == 'retreiveRegionDistricts') {
 
             $getregiondistricts = new ConfigurationClass();
             $allregiondistricts = $getregiondistricts->getRegionDistricts();
             while ($row = mysql_fetch_assoc($allregiondistricts)) {
+                $response[] = $row;
+            }
+            echo json_encode($response);
+        } else if ($type == 'saveCategory') {
+            if (isset($_POST['category'])) {
+
+                $category = $_POST['category'];
+               
+                $save_new = new ConfigurationClass();
+                echo $save_new->setCategory($category);
+            }
+        } else if ($type == 'retreiveCategories') {
+
+            $getcategories = new ConfigurationClass();
+            $categories = $getcategories->getCategories();
+            while ($row = mysql_fetch_assoc($categories)) {
                 $response[] = $row;
             }
             echo json_encode($response);

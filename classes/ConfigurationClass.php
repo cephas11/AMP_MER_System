@@ -155,6 +155,42 @@ class ConfigurationClass {
         return $feedback;
     }
     
+    public function setCategory($name) {
+        $connection = new databaseConnection(); //i created a new object
+        $connection->connectToDatabase(); // connected to the database
+        $connection->selectDatabase();
+        $code =  $this->generateuniqueCode(6) . time();
+        $query = mysql_query("INSERT INTO categories(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Category saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysql_error();
+            echo json_encode($this->response);
+        }
+    }
+    
+    
+      public function getCategories() {
+        $connection = new databaseConnection(); //i created a new object
+        $connection->connectToDatabase(); // connected to the database
+        $connection->selectDatabase();
+
+        $query = mysql_query("SELECT * FROM categories");
+        if ($query) {
+            if (mysql_num_rows($query) > 0) {
+                $feedback = $query;
+            }
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
+            echo json_encode($this->response);
+        }
+
+        return $feedback;
+    }
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
