@@ -9,6 +9,7 @@
 //save region
 
 
+
 $('#saveRegionForm').on('submit', function (e) {
     e.preventDefault();
     // var validator = $("#saveRegionForm").validate();
@@ -94,8 +95,8 @@ function getRegions()
         type: "POST",
         data: info,
         success: function (data) {
-
-            console.log(data);
+	   // alert(data);
+	    console.log(data);
             datatable.clear().draw();
 
             var obj = jQuery.parseJSON(data);
@@ -121,10 +122,11 @@ function getRegions()
 
         },
         error: function (jXHR, textStatus, errorThrown) {
-            alert(errorThrown);
+            alert(errorThrown +" "+textStatus+" New Error: "+jXHR );
         }
     });
 }
+
 
 
 
