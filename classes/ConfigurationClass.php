@@ -27,10 +27,10 @@ class ConfigurationClass {
     public function getRegion() {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
-        $connection->selectDatabase();
+       // $connection->selectDatabase();
 
-        $query = mysql_query("SELECT * FROM region");
-        if ($query) {
+       // $query = mysql_query("SELECT * FROM region");
+        /*if ($query) {
             if (mysql_num_rows($query) > 0) {
                 $feedback = $query;
             }
@@ -38,12 +38,11 @@ class ConfigurationClass {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt retreive regions' . mysql_error();
             echo json_encode($this->response);
-        }
+        }*/
 
-        return $feedback;
-        }
-
-
+        //return $feedback ;
+	return "MAx";
+     }
        
     
 
@@ -231,3 +230,5 @@ class ConfigurationClass {
     }
 
 }
+
+?>
