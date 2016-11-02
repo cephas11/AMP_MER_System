@@ -1,7 +1,8 @@
 <?php
-
+echo $_POST['type']." Conff";
 require_once '../classes/ConfigurationClass.php';
 $response = array();
+
 if (isset($_POST['type'])) {
     $type = $_POST['type'];
 
@@ -13,14 +14,14 @@ if (isset($_POST['type'])) {
                 echo $new_region->setRegion($name);
             }
         } else if ($type == 'retreiveRegion') {
-
-            $getregion = new ConfigurationClass();
-            $allregions = $getregion->getRegion();
-            while ($row = mysql_fetch_assoc($allregions)) {
-                $response[] = $row;
-            }
-            echo json_encode($response);
-        } else if ($type == 'saveDistrict') {
+	echo "LOVE LOVE";
+           $getMyregion = new ConfigurationClass();
+           $allregions = $getMyregion->getRegion();
+        //   while ($row = mysql_fetch_assoc($allregions)) {
+         //      $response[] = $row;
+         //  }
+         //  echo json_encode($response);
+        }/* else if ($type == 'saveDistrict') {
 
             if (isset($_POST['district'])) {
                 $name = $_POST['district'];
@@ -92,10 +93,10 @@ if (isset($_POST['type'])) {
                 $response[] = $row;
             }
             echo json_encode($response);
-        } 
+        }
+	*/ 
     } else {
         echo 'provide type';
     }
 }
 
-    
