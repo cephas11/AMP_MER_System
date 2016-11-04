@@ -94,11 +94,12 @@ function getRegions()
         url: '../controllers/ConfigurationController.php',
         type: "POST",
         data: info,
+         dataType: "json",
         success: function (data) {
 	   // alert(data);
 	    console.log(data);
             datatable.clear().draw();
-
+console.log('new code here');
             var obj = jQuery.parseJSON(data);
             console.log('size' + obj.length);
             if (obj.length == 0) {
