@@ -29,6 +29,7 @@ $('#saveRegionForm').on('submit', function (e) {
             data: formData,
             dataType: "json",
             success: function (data) {
+                console.log(data);
                 // $("#loader").hide();
                 $('#regionModal').modal('hide');
                 var successStatus = data.success;
