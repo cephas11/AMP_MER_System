@@ -1,8 +1,8 @@
 <?php
 
-$path = $_SERVER['DOCUMENT_ROOT'] . "/MER_System";
-require_once $path . '/databaseConnectionClass.php';
-
+$path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
+require_once $path .'/databaseConnectionClass.php';
+///echo "HERE";
 class ConfigurationClass {
 
     public $db;
@@ -32,18 +32,17 @@ class ConfigurationClass {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-
-        $query = mysqli_query($conn, "SELECT * FROM region");
-
-        if (mysqli_num_rows($query) > 0) {
-
-            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+        $query = mysqli_query($conn, " SELECT * FROM region ");
+	//print_r($query);
+	if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
             $feedback = json_encode($results);
         } else {
-            
-            $feedback= json_encode($this->response);
+		$this->response['success'] = '0';
+   	        $this->response['message'] = 'couldnt retreive regions' . mysqli_error($conn);
+        	$feedback= json_encode($this->response);
         }
 
         echo $feedback;
