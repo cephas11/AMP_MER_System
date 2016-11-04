@@ -21,8 +21,7 @@ class MysqliDb
      * @var mysqli
      */
     protected $_mysqli;
-
-    /**
+   /**
      * The SQL query to be prepared and executed
      * @var string
      */
@@ -426,6 +425,7 @@ class MysqliDb
             call_user_func_array(array($stmt, 'bind_param'), $this->refValues($params));
         }
 
+      
         $stmt->execute();
         $this->count = $stmt->affected_rows;
         $this->_stmtError = $stmt->error;
