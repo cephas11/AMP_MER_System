@@ -25,7 +25,7 @@ $('#saveRegionForm').on('submit', function (e) {
         };
         $.ajax({
             url: '../controllers/ConfigurationController.php',
-            type: "POST",
+            type: "GET",
             data: formData,
             dataType: "json",
             success: function (data) {
@@ -93,12 +93,12 @@ function getRegions()
 
     $.ajax({
         url: '../controllers/ConfigurationController.php',
-        type: "POST",
+        type: "GET",
         data: info,
       
         success: function (data) {
 	   // alert(data);
-            console.log('new code here');
+            console.log('new code here 2');
 	    console.log(data);
             datatable.clear().draw();
          
