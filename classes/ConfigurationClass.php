@@ -1,50 +1,42 @@
 <?php
 
-require_once '../databaseConnection.php';
+require_once '../MysqliDb.php';
+require_once '../config.php';
 
 class ConfigurationClass {
 
+    public $db;
     //put your code here
     var $response = array();
 
     public function setRegion($name) {
-        $connection = new databaseConnection(); //i created a new object
-        $connection->connectToDatabase(); // connected to the database
-        $connection->selectDatabase();
+        $this->db = $GLOBALS['db'];
+
         $code = 'REG' . $this->generateuniqueCode() . time();
-        $query = mysql_query("INSERT INTO region(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
-        if ($query) {
+        $data = Array(
+            'code' => $code,
+            'name' => $name
+        );
+
+        $id = $this->db->insert('region', $data);
+        if ($id) {
             $this->response['success'] = '1';
-            $this->response['message'] = 'Region saved successfully';
+            $this->response['message'] = 'region saved successfully';
             echo json_encode($this->response);
         } else {
             $this->response['success'] = '0';
-            $this->response['message'] = 'couldnt save' . mysql_error();
-            echo json_encode($this->response);
+            $this->response['message'] = 'insert failed:' .$this->db->getLastError();
+               echo json_encode($this->response);
         }
     }
 
     public function getRegion() {
-        $connection = new databaseConnection(); //i created a new object
-        $connection->connectToDatabase(); // connected to the database
-       // $connection->selectDatabase();
 
-       // $query = mysql_query("SELECT * FROM region");
-        /*if ($query) {
-            if (mysql_num_rows($query) > 0) {
-                $feedback = $query;
-            }
-        } else {
-            $this->response['success'] = '0';
-            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
-            echo json_encode($this->response);
-        }*/
+        $this->db = $GLOBALS['db'];
 
-        //return $feedback ;
-	return "MAx";
-     }
-       
-    
+        $regions = $this->db->JsonBuilder()->get('region');
+        return $regions;
+    }
 
     public function setDistrict($name) {
         $connection = new databaseConnection(); //i created a new object
@@ -64,22 +56,7 @@ class ConfigurationClass {
     }
 
     public function getDistricts() {
-        $connection = new databaseConnection(); //i created a new object
-        $connection->connectToDatabase(); // connected to the database
-        $connection->selectDatabase();
-
-        $query = mysql_query("SELECT * FROM districts");
-        if ($query) {
-            if (mysql_num_rows($query) > 0) {
-                $feedback = $query;
-            }
-        } else {
-            $this->response['success'] = '0';
-            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
-            echo json_encode($this->response);
-        }
-
-        return $feedback;
+        
     }
 
     public function getUnAssignedDistricts() {
@@ -105,7 +82,7 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
         $connection->selectDatabase();
-        $code = $this->generateuniqueCode(8).time();
+        $code = $this->generateuniqueCode(8) . time();
         if (sizeof($districts) > 0) {
             foreach ($districts as $district) {
                 $query = mysql_query("INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($district) . "','" . mysql_real_escape_string($region) . "')");
@@ -123,8 +100,7 @@ class ConfigurationClass {
         }
     }
 
-    
-     public function getRegionDistricts() {
+    public function getRegionDistricts() {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
         $connection->selectDatabase();
@@ -142,12 +118,12 @@ class ConfigurationClass {
 
         return $feedback;
     }
-    
+
     public function setCategory($name) {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
         $connection->selectDatabase();
-        $code =  $this->generateuniqueCode(6) . time();
+        $code = $this->generateuniqueCode(6) . time();
         $query = mysql_query("INSERT INTO categories(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
         if ($query) {
             $this->response['success'] = '1';
@@ -159,9 +135,8 @@ class ConfigurationClass {
             echo json_encode($this->response);
         }
     }
-    
-    
-      public function getCategories() {
+
+    public function getCategories() {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
         $connection->selectDatabase();
@@ -179,13 +154,12 @@ class ConfigurationClass {
 
         return $feedback;
     }
-    
-    
-     public function setDescription($name) {
+
+    public function setDescription($name) {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
         $connection->selectDatabase();
-        $code =  $this->generateuniqueCode(6) . time();
+        $code = $this->generateuniqueCode(6) . time();
         $query = mysql_query("INSERT INTO description(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
         if ($query) {
             $this->response['success'] = '1';
@@ -197,10 +171,8 @@ class ConfigurationClass {
             echo json_encode($this->response);
         }
     }
-    
-    
-      
-      public function getDescription() {
+
+    public function getDescription() {
         $connection = new databaseConnection(); //i created a new object
         $connection->connectToDatabase(); // connected to the database
         $connection->selectDatabase();
@@ -218,7 +190,7 @@ class ConfigurationClass {
 
         return $feedback;
     }
-    
+
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
