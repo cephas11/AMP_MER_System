@@ -54,7 +54,7 @@ $('#saveRegionForm').on('submit', function (e) {
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                    getRegions();
+                  getRegions();
                 }
             },
             error: function (jXHR, textStatus, errorThrown) {
@@ -88,18 +88,19 @@ function getRegions()
     var info = {
         type: "retreiveRegion"
     };
-
+       console.log('new code here');
 
     $.ajax({
         url: '../controllers/ConfigurationController.php',
         type: "POST",
         data: info,
-         dataType: "json",
+      
         success: function (data) {
 	   // alert(data);
+            console.log('new code here');
 	    console.log(data);
             datatable.clear().draw();
-console.log('new code here');
+         
             var obj = jQuery.parseJSON(data);
             console.log('size' + obj.length);
             if (obj.length == 0) {

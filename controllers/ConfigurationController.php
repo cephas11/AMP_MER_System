@@ -13,6 +13,8 @@ if (isset($_POST['type'])) {
                 $name = $_POST['region'];
                 $new_region = new ConfigurationClass();
                 echo $new_region->setRegion($name);
+            
+                
             }
         } else if ($type == 'retreiveRegion') {
 
