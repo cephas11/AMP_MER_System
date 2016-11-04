@@ -3,22 +3,20 @@
 require_once '../classes/ConfigurationClass.php';
 $response = array();
 
-if (isset($_POST['type'])) {
-    $type = $_POST['type'];
-
+if (isset($_GET['type'])) {
+//echo "Check here";
+    $type = $_GET['type'];
     if (!empty($type)) {
         if ($type == 'saveRegion') {
-            if (isset($_POST['region'])) {
-
-                $name = $_POST['region'];
+            if (isset($_GET['region'])) {
+                $name = $_GET['region'];
                 $new_region = new ConfigurationClass();
                  $new_region->setRegion($name);
-   
-                 }
+            }
         } else if ($type == 'retreiveRegion') {
-
-            $getMyregion = new ConfigurationClass();
-            $allregions = $getMyregion->getRegion();
+	     $getMyregion = new ConfigurationClass();
+             $allregions = $getMyregion->getRegion();
+	   
         }/* else if ($type == 'saveDistrict') {
 
           if (isset($_POST['district'])) {
