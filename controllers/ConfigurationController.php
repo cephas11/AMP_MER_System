@@ -9,15 +9,16 @@ if (isset($_POST['type'])) {
     if (!empty($type)) {
         if ($type == 'saveRegion') {
             if (isset($_POST['region'])) {
-               
+
                 $name = $_POST['region'];
                 $new_region = new ConfigurationClass();
-                echo $new_region->setRegion($name);
-            }
+                 $new_region->setRegion($name);
+   
+                 }
         } else if ($type == 'retreiveRegion') {
 
             $getMyregion = new ConfigurationClass();
-            echo $allregions = $getMyregion->getRegion();
+            $allregions = $getMyregion->getRegion();
         }/* else if ($type == 'saveDistrict') {
 
           if (isset($_POST['district'])) {
