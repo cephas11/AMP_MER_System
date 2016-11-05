@@ -4,7 +4,7 @@ $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path .'/databaseConnectionClass.php';
 //require_once '../databaseConnectionClass.php';
 
-///echo "HERE";
+//echo "HERE";
 class ConfigurationClass {
 
     public $db;
@@ -23,6 +23,7 @@ class ConfigurationClass {
             $this->response['success'] = '1';
             $this->response['message'] = 'Region saved successfully';
             echo json_encode($this->response);
+ 	    $query->close();
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt save' . mysqli_error($conn);
@@ -32,21 +33,21 @@ class ConfigurationClass {
     }
 
     public function getRegion() {
-
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, " SELECT * FROM region ");
-        //print_r($query);
+	$query = mysqli_query($conn, "SELECT * FROM region");
+        //print("Hello here");
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
             $feedback = json_encode($results);
+	   $query->close();
         } else {
 
             $feedback = json_encode($this->response);
         }
-
+	
         echo $feedback;
         $connection->closeConnection($conn);
     }
