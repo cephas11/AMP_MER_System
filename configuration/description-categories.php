@@ -37,7 +37,7 @@
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add New </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#descriptionCategoryModal" data-whatever="@mdo">Add New </button>
                             </div>
                         </div>
                     </div>
@@ -49,15 +49,10 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="demo-dynamic-tables-2" class="table table-middle nowrap">
+                                        <table id="categoryDescriptionsTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>
-                                                        <label class="custom-control custom-control-primary custom-checkbox">
-                                                            <input class="custom-control-input" type="checkbox">
-                                                            <span class="custom-control-indicator"></span>
-                                                        </label>
-                                                    </th>
+                                                  
                                                     <th>Category</th>
 
                                                     <th>Description</th>
@@ -73,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="descriptionCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -85,21 +80,22 @@
 
                                     <div class="form-group">
                                         <label for="region" class="control-label">Category:</label>
-                                        <select id="region" class="form-control select2">
-
+                                        <select id="categories" name="category" class="form-control select2">
+                                            <option value="">Choose...</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="region" class="control-label">Descriptions:</label>
 
-                                        <select id="district"  class="form-control select2" multiple="multiple">
+                                        <select id="descriptions" name="descriptions[]" class="form-control select2" multiple="multiple">
                                            
                                         </select>
                                     </div>
+                                    <input type="hidden" name="type" value="saveCategoryDescriptions"/>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -117,7 +113,7 @@
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
         <script src="../js/select2.js"></script>
-
+        <script src="../js/description-categories.js"></script>
 
     </body>
 </html>

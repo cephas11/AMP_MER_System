@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 
 //save region
@@ -12,9 +6,10 @@
 
 $('#saveRegionForm').on('submit', function (e) {
     e.preventDefault();
+   
     // var validator = $("#saveRegionForm").validate();
     var region = $('#region').val();
-    var formData = $(this).serialize();
+   var formData = $(this).serialize();
     console.log(formData);
     if (region == "") {
 
@@ -23,12 +18,15 @@ $('#saveRegionForm').on('submit', function (e) {
         var info = {
             region: region
         };
+        $('input:submit').attr("disabled", true);
+        
         $.ajax({
             url: '../controllers/ConfigurationController.php',
             type: "GET",
             data: formData,
             dataType: "json",
             success: function (data) {
+                 $('input:submit').attr("disabled", false);
                 console.log(data);
                 // $("#loader").hide();
                 $('#regionModal').modal('hide');
@@ -36,6 +34,7 @@ $('#saveRegionForm').on('submit', function (e) {
                 document.getElementById("saveRegionForm").reset();
 
                 if (successStatus == 1) {
+                     $('input:submit').attr("disabled", false);
                     Command: toastr["success"](data.message, "Success");
 
                     toastr.options = {

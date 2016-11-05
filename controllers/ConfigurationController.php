@@ -11,86 +11,82 @@ if (isset($_GET['type'])) {
             if (isset($_GET['region'])) {
                 $name = $_GET['region'];
                 $new_region = new ConfigurationClass();
-                 $new_region->setRegion($name);
+                $new_region->setRegion($name);
             }
         } else if ($type == 'retreiveRegion') {
-	     $getMyregion = new ConfigurationClass();
-             $allregions = $getMyregion->getRegion();
-	   
-        }/* else if ($type == 'saveDistrict') {
+            $getAllregions = new ConfigurationClass();
+            $getAllregions->getRegion();
+        } else if ($type == 'saveDistrict') {
 
-          if (isset($_POST['district'])) {
-          $name = $_POST['district'];
-          $new_district = new ConfigurationClass();
-          echo $new_district->setDistrict($name);
-          }
-          } else if ($type == 'retreiveDistrict') {
+            if (isset($_GET['district'])) {
+                $name = $_GET['district'];
 
-          $getdistricts = new ConfigurationClass();
-          $alldistricts = $getdistricts->getDistricts();
-          while ($row = mysql_fetch_assoc($alldistricts)) {
-          $response[] = $row;
-          }
-          echo json_encode($response);
-          } else if ($type == 'retreiveUnAssignedDistricts') {
+                $new_district = new ConfigurationClass();
+                $new_district->setDistrict($name);
+            }
+        } else if ($type == 'retreiveDistrict') {
 
-          $getdistricts = new ConfigurationClass();
-          $alldistricts = $getdistricts->getUnAssignedDistricts();
-          while ($row = mysql_fetch_assoc($alldistricts)) {
-          $response[] = $row;
-          }
-          echo json_encode($response);
-          } else if ($type == 'saveRegionDistricts') {
+            $getdistricts = new ConfigurationClass();
+            $alldistricts = $getdistricts->getDistricts();
+        } else if ($type == 'retreiveUnAssignedDistricts') {
 
-          if (isset($_POST['regiondistrict'])) {
+            $getUnassigneddistricts = new ConfigurationClass();
+            $getUnassigneddistricts->getUnAssignedDistricts();
+        } else if ($type == 'saveRegionDistricts') {
 
-          $region = $_POST['region'];
-          $districts = $_POST['districts'];
-          $save_new = new ConfigurationClass();
-          echo $save_new->setRegionDistricts($region, $districts);
-          }
-          } else if ($type == 'retreiveRegionDistricts') {
+            if (isset($_GET['regiondistrict'])) {
 
-          $getregiondistricts = new ConfigurationClass();
-          $allregiondistricts = $getregiondistricts->getRegionDistricts();
-          while ($row = mysql_fetch_assoc($allregiondistricts)) {
-          $response[] = $row;
-          }
-          echo json_encode($response);
-          } else if ($type == 'saveCategory') {
-          if (isset($_POST['category'])) {
+                $region = $_GET['region'];
+                $districts = $_GET['districts'];
+                $save_new = new ConfigurationClass();
+                $save_new->setRegionDistricts($region, $districts);
+            }
+        } else if ($type == 'retreiveRegionDistricts') {
 
-          $category = $_POST['category'];
+            $getregiondistricts = new ConfigurationClass();
+            $getregiondistricts->getRegionDistricts();
+        } else if ($type == 'saveCategory') {
+            if (isset($_GET['category'])) {
 
-          $save_new = new ConfigurationClass();
-          echo $save_new->setCategory($category);
-          }
-          } else if ($type == 'retreiveCategories') {
+                $category = $_GET['category'];
 
-          $getcategories = new ConfigurationClass();
-          $categories = $getcategories->getCategories();
-          while ($row = mysql_fetch_assoc($categories)) {
-          $response[] = $row;
-          }
-          echo json_encode($response);
-          } else if ($type == 'saveDescription') {
-          if (isset($_POST['description'])) {
+                $save_new = new ConfigurationClass();
+                $save_new->setCategory($category);
+            }
+        } else if ($type == 'retreiveCategories') {
 
-          $description = $_POST['description'];
+            $getcategories = new ConfigurationClass();
+            $getcategories->getCategories();
+        } else if ($type == 'saveDescription') {
+            if (isset($_GET['description'])) {
 
-          $save_new = new ConfigurationClass();
-          echo $save_new->setDescription($description);
-          }
-          }else if ($type == 'retreiveDescription') {
+                $description = $_GET['description'];
 
-          $getdescription = new ConfigurationClass();
-          $description = $getdescription->getDescription();
-          while ($row = mysql_fetch_assoc($description)) {
-          $response[] = $row;
-          }
-          echo json_encode($response);
-          }
-         */
+                $save_new = new ConfigurationClass();
+                $save_new->setDescription($description);
+            }
+        } else if ($type == 'retreiveDescription') {
+
+            $getdescription = new ConfigurationClass();
+            $getdescription->getDescription();
+        } else if ($type == 'retreiveUnAssignedDescription') {
+
+            $getUnassigneddescription = new ConfigurationClass();
+            $getUnassigneddescription->getUnAssignedDescription();
+        }//
+        else if ($type == 'saveCategoryDescriptions') {
+            if (isset($_GET['category'])) {
+
+                $category = $_GET['category'];
+                $descriptions = $_GET['descriptions'];
+
+                $save_new = new ConfigurationClass();
+                $save_new->setCategoryDescription($category, $descriptions);
+            }
+        } else if ($type == 'retreiveCategoryDescriptions') {
+            $getCategoryDescription = new ConfigurationClass();
+            $getCategoryDescription->getCategoryDescriptions();
+        }
     } else {
         echo 'provide type';
     }

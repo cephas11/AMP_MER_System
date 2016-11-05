@@ -6,7 +6,8 @@ class databaseConnection {
  
   var $host = "localhost";
   var $username = "root"; // specify the sever details for mysql
-  var $password = 'p@$$w0rd';
+  //var $password = 'p@$$w0rd';
+   var $password = '';
   var $database = "mer_system";
   var $myconn;
   

@@ -2,6 +2,8 @@
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path .'/databaseConnectionClass.php';
+//require_once '../databaseConnectionClass.php';
+
 ///echo "HERE";
 class ConfigurationClass {
 
@@ -10,13 +12,13 @@ class ConfigurationClass {
     var $response = array();
 
     public function setRegion($name) {
-        
-        
+
+
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
         $code = 'REG' . $this->generateuniqueCode(8) . time();
-        $query = mysqli_query($conn,"INSERT INTO region(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn,$name) . "')");
+        $query = mysqli_query($conn, "INSERT INTO region(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Region saved successfully';
@@ -26,6 +28,7 @@ class ConfigurationClass {
             $this->response['message'] = 'couldnt save' . mysqli_error($conn);
             echo json_encode($this->response);
         }
+        $connection->closeConnection($conn);
     }
 
     public function getRegion() {
@@ -33,174 +36,262 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, " SELECT * FROM region ");
-	//print_r($query);
-	if (mysqli_num_rows($query) > 0) {
-            while ($row = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+        //print_r($query);
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
             $feedback = json_encode($results);
         } else {
-		$this->response['success'] = '0';
-   	        $this->response['message'] = 'couldnt retreive regions' . mysqli_error($conn);
-        	$feedback= json_encode($this->response);
+
+            $feedback = json_encode($this->response);
         }
 
         echo $feedback;
+        $connection->closeConnection($conn);
     }
 
-//    public function setDistrict($name) {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//        $code = 'DST' . $this->generateuniqueCode() . time();
-//        $query = mysql_query("INSERT INTO districts(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
-//        if ($query) {
-//            $this->response['success'] = '1';
-//            $this->response['message'] = 'District saved successfully';
-//            echo json_encode($this->response);
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt save' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//    }
+    public function setDistrict($name) {
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = 'DST' . $this->generateuniqueCode(8);
+        $query = mysqli_query($conn, "INSERT INTO districts(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'District saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
 //
-//    public function getDistricts() {
-//        
-//    }
+    public function getDistricts() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, " SELECT * FROM districts ");
+        //print_r($query);
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
 //
-//    public function getUnAssignedDistricts() {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
+    public function getUnAssignedDistricts() {
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM unassigned_districts_view");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
 //
-//        $query = mysql_query("SELECT * FROM unassigned_districts_view");
-//        if ($query) {
-//            if (mysql_num_rows($query) > 0) {
-//                $feedback = $query;
-//            }
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
-//            echo json_encode($this->response);
-//        }
+    public function setRegionDistricts($region, $districts) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+       
+        if (sizeof($districts) > 0) {
+            foreach ($districts as $district) {
+                 $code = $this->generateuniqueCode(8);
+                $query = mysqli_query($conn, "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')");
+            }
+        }
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Districts Assigned to region  successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt assign' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
 //
-//        return $feedback;
-//    }
+
+    public function getRegionDistricts() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM region_districts_view");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function setCategory($name) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = $this->generateuniqueCode(8);
+        $query = mysqli_query($conn, "INSERT INTO categories(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Category saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+    }
+
 //
-//    public function setRegionDistricts($region, $districts) {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//        $code = $this->generateuniqueCode(8) . time();
-//        if (sizeof($districts) > 0) {
-//            foreach ($districts as $district) {
-//                $query = mysql_query("INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($district) . "','" . mysql_real_escape_string($region) . "')");
-//            }
-//        }
-//
-//        if ($query) {
-//            $this->response['success'] = '1';
-//            $this->response['message'] = 'Districts Assigned to region  successfully';
-//            echo json_encode($this->response);
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt assign' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//    }
-//
-//    public function getRegionDistricts() {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//
-//        $query = mysql_query("SELECT * FROM region_districts_view");
-//        if ($query) {
-//            if (mysql_num_rows($query) > 0) {
-//                $feedback = $query;
-//            }
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//
-//        return $feedback;
-//    }
-//
-//    public function setCategory($name) {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//        $code = $this->generateuniqueCode(6) . time();
-//        $query = mysql_query("INSERT INTO categories(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
-//        if ($query) {
-//            $this->response['success'] = '1';
-//            $this->response['message'] = 'Category saved successfully';
-//            echo json_encode($this->response);
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt save' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//    }
-//
-//    public function getCategories() {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//
-//        $query = mysql_query("SELECT * FROM categories");
-//        if ($query) {
-//            if (mysql_num_rows($query) > 0) {
-//                $feedback = $query;
-//            }
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//
-//        return $feedback;
-//    }
-//
-//    public function setDescription($name) {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//        $code = $this->generateuniqueCode(6) . time();
-//        $query = mysql_query("INSERT INTO description(code,name) VALUES ('" . trim($code) . "','" . mysql_real_escape_string($name) . "')");
-//        if ($query) {
-//            $this->response['success'] = '1';
-//            $this->response['message'] = 'Description saved successfully';
-//            echo json_encode($this->response);
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt save' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//    }
-//
-//    public function getDescription() {
-//        $connection = new databaseConnection(); //i created a new object
-//        $connection->connectToDatabase(); // connected to the database
-//        $connection->selectDatabase();
-//
-//        $query = mysql_query("SELECT * FROM description");
-//        if ($query) {
-//            if (mysql_num_rows($query) > 0) {
-//                $feedback = $query;
-//            }
-//        } else {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'couldnt retreive regions' . mysql_error();
-//            echo json_encode($this->response);
-//        }
-//
-//        return $feedback;
-//    }
-//
+    public function getCategories() {
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM categories");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function setDescription($name) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = $this->generateuniqueCode(8);
+        $query = mysqli_query($conn, "INSERT INTO description(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Description saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+    }
+
+    public function getDescription() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM description");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function getUnAssignedDescription() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM unassigned_descriptions_view");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function setCategoryDescription($category,$descriptions) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+       
+        if (sizeof($descriptions) > 0) {
+            foreach ($descriptions as $desc) {
+                 $code = $this->generateuniqueCode(8).time();
+                $query = mysqli_query($conn, "INSERT INTO description_categories(code,description_code,category_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $desc) . "','" . mysqli_real_escape_string($conn, $category) . "')");
+            }
+        }
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Descriptions Assigned to category successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt assign' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    public function getCategoryDescriptions() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM description_categories_view");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -210,6 +301,7 @@ class ConfigurationClass {
         }
         return $randomString;
     }
+
 }
 
 ?>

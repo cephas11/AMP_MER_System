@@ -16,15 +16,16 @@ $('#saveDescriptionForm').on('submit', function (e) {
    
     var formData = $(this).serialize();
     console.log(formData);
-   
+         $('input:submit').attr("disabled", true);
        
         $.ajax({
             url: '../controllers/ConfigurationController.php',
-            type: "POST",
+            type: "GET",
             data: formData,
             dataType: "json",
             success: function (data) {
                 // $("#loader").hide();
+                      $('input:submit').attr("disabled", false);
                 $('#descriptionModal').modal('hide');
                 var successStatus = data.success;
                 document.getElementById("saveDescriptionForm").reset();
@@ -72,7 +73,7 @@ function getDescription()
 
     $.ajax({
         url: '../controllers/ConfigurationController.php',
-        type: "POST",
+        type: "GET",
         data: info,
         success: function (data) {
 

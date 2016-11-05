@@ -2,7 +2,7 @@
 
 
 var info = {
-    type: "retreiveRegion"
+    type: "retreiveCategories"
 };
 
 $.ajax({
@@ -15,7 +15,7 @@ $.ajax({
       
         $.each(data, function (i, item) {
 
-            $('#region').append($('<option>', {
+            $('#categories').append($('<option>', {
                 value: item.code,
                 text: item.name
             }));
@@ -24,11 +24,13 @@ $.ajax({
     }
 });
 
-getUnAssignedDistricts();
 
-function getUnAssignedDistricts() {
+
+getUnAssignedDescription();
+
+function getUnAssignedDescription() {
     var infotype = {
-        type: 'retreiveUnAssignedDistricts'
+        type: 'retreiveUnAssignedDescription'
     };
     $.ajax({
         url: '../controllers/ConfigurationController.php',
@@ -40,7 +42,7 @@ function getUnAssignedDistricts() {
            
             $.each(data, function (i, item) {
 
-                $('#districts').append($('<option>', {
+                $('#descriptions').append($('<option>', {
                     value: item.code,
                     text: item.name
                 }));
@@ -53,12 +55,13 @@ function getUnAssignedDistricts() {
 
 
 
-$('#saveRegionDistrictsForm').on('submit', function (e) {
+$('#saveCategoryDescriptionForm').on('submit', function (e) {
     e.preventDefault();
 
 
     var formData = $(this).serialize();
     console.log(formData);
+        $('input:submit').attr("disabled", true);
 
     $.ajax({
         url: '../controllers/ConfigurationController.php',
@@ -67,12 +70,12 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
         dataType: 'json',
         success: function (data) {
             console.log(data);
+        $('input:submit').attr("disabled", false);
 
-            $('#regionDistrictsModal').modal('hide');
+            $('#descriptionCategoryModal').modal('hide');
             var successStatus = data.success;
 
-
-            document.getElementById("saveRegionDistrictsForm").reset();
+            document.getElementById("saveCategoryDescriptionForm").reset();
 
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
@@ -94,13 +97,14 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                $('#districts').select2("destroy");
-                $('#districts').select2("");
+                $('#categories').select2("destroy");
+                $('#categories').select2("");
 
-                $('#region').select2("destroy");
-                $('#region').select2("");
-                getRegionDistricts();
+                $('#descriptions').select2("destroy");
+                $('#descriptions').select2("");
+                getCategoryDescriptions();
             }
+//            
         },
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -115,7 +119,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
 
 //regionDistrictTbl
 
-var datatable = $('#regionDistrictTbl').DataTable({
+var datatable = $('#categoryDescriptionsTbl').DataTable({
     responsive: true,
     language: {
         paginate:
@@ -126,13 +130,13 @@ var datatable = $('#regionDistrictTbl').DataTable({
     order: [[0, "asc"]]
 });
 
-getRegionDistricts();
+getCategoryDescriptions();
 
-function getRegionDistricts()
+function getCategoryDescriptions()
 {
 
     var info = {
-        type: "retreiveRegionDistricts"
+        type: "retreiveCategoryDescriptions"
     };
 
 
@@ -156,8 +160,8 @@ function getRegionDistricts()
                     var j = -1;
                     var r = new Array();
                     // represent columns as array
-                    r[++j] = '<td>' + value.region_name + '</td>';
-                    r[++j] = '<td>' + value.district_name + '</td>';
+                    r[++j] = '<td>' + value.category_name + '</td>';
+                    r[++j] = '<td>' + value.description_name + '</td>';
                     r[++j] = '<td><button onclick="deleteRegion(\'' + value.code + '\',\'' + value.title + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);

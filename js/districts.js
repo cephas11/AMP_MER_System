@@ -17,21 +17,23 @@ $('#saveDistrictForm').on('submit', function (e) {
     console.log(formData);
     if (district == "") {
 
-        alert('empty');
+        alert('field is required');
     } else {
-       
+        $('input:submit').attr("disabled", true);
         $.ajax({
             url: '../controllers/ConfigurationController.php',
-            type: "POST",
+            type: "GET",
             data: formData,
             dataType: "json",
             success: function (data) {
-                // $("#loader").hide();
+                console.log(data);
                 $('#districtModal').modal('hide');
                 var successStatus = data.success;
+
                 document.getElementById("saveDistrictForm").reset();
 
                 if (successStatus == 1) {
+                    $('input:submit').attr("disabled", false);
                     Command: toastr["success"](data.message, "Success");
 
                     toastr.options = {
@@ -89,7 +91,7 @@ function getDistricts()
 
     $.ajax({
         url: '../controllers/ConfigurationController.php',
-        type: "POST",
+        type: "GET",
         data: info,
         success: function (data) {
 
@@ -109,7 +111,7 @@ function getDistricts()
                     // represent columns as array
                     r[++j] = '<td class="subject">' + value.name + '</td>';
                     r[++j] = '<td><button onclick="editDistrict(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name +'\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                              <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
