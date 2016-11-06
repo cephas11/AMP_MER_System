@@ -21,7 +21,7 @@ $('#saveDistrictForm').on('submit', function (e) {
     } else {
         $('input:submit').attr("disabled", true);
         $.ajax({
-            url: '../controllers/ConfigurationController.php',
+            url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
             type: "GET",
             data: formData,
             dataType: "json",
@@ -90,7 +90,7 @@ function getDistricts()
 
 
     $.ajax({
-        url: '../controllers/ConfigurationController.php',
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
         data: info,
         success: function (data) {

@@ -19,7 +19,7 @@ $('#saveRegionForm').on('submit', function (e) {
         $('input:submit').attr("disabled", true);
         
         $.ajax({
-            url: '../controllers/ConfigurationController.php',
+            url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
             type: "GET",
             data: formData,
             dataType: "json",
@@ -30,7 +30,7 @@ $('#saveRegionForm').on('submit', function (e) {
                 $('#regionModal').modal('hide');
                 var successStatus = data.success;
                 document.getElementById("saveRegionForm").reset();
-
+                
                 if (successStatus == 1) {
                      $('input:submit').attr("disabled", false);
                     Command: toastr["success"](data.message, "Success");
@@ -89,7 +89,7 @@ function getRegions()
        console.log('new code here');
 
     $.ajax({
-        url: '../controllers/ConfigurationController.php',
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
         data: info,
       

@@ -87,6 +87,10 @@ if (isset($_GET['type'])) {
         } else if ($type == 'retreiveCategoryDescriptions') {
             $getCategoryDescription = new ConfigurationClass();
             $getCategoryDescription->getCategoryDescriptions();
+            
+        }else if ($type == 'retreiveDescriptionBasedOnCategory') {
+            $getDescriptionBasedOnCategory = new ConfigurationClass();
+          //  $getDescriptionBasedOnCategory->getCategoryDescriptions();
         }
     } else {
         echo 'provide type';

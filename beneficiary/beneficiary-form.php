@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Description Categories</title>
+        <title>Beneficiary Form</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -129,7 +129,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Region</label>
-                                                <select id="descriptions" name="descriptions[]" class="form-control select2" multiple="multiple">
+                                                <select id="region" name="region" class="form-control select2" >
+                                                    <option value="">Choose...</option>
 
                                                 </select>
                                                 <span class="help-block"></span>

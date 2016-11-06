@@ -6,7 +6,7 @@ var info = {
 };
 
 $.ajax({
-    url: '../controllers/ConfigurationController.php',
+    url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
     type: "GET",
     data: info,
     dataType: 'json',
@@ -33,7 +33,7 @@ function getUnAssignedDescription() {
         type: 'retreiveUnAssignedDescription'
     };
     $.ajax({
-        url: '../controllers/ConfigurationController.php',
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
         data: infotype,
         dataType: 'json',

@@ -31,14 +31,14 @@ $('#saveRegionForm').on('submit', function (e) {
                 var successStatus = data.success;
                 document.getElementById("saveRegionForm").reset();
                 //$("#regionTbl ").removeData();
-                  
+
                 $("#regionstb").find("tr:not(:first)").remove();
-        
+
 
                 if (successStatus == 1) {
 
                     alert('saved');
-                getRegions();
+                    getRegions();
                 }
             },
             error: function (jXHR, textStatus, errorThrown) {

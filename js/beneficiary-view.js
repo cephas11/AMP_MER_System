@@ -16,7 +16,7 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
 
-      
+
         $.each(data, function (i, item) {
 
             $('#category').append($('<option>', {
@@ -27,4 +27,54 @@ $.ajax({
 
     }
 });
+
+var reginfo = {
+    type: "retreiveRegion"
+};
+
+$.ajax({
+    url: '../controllers/ConfigurationController.php',
+    type: "GET",
+    data: reginfo,
+    dataType: 'json',
+    success: function (data) {
+
+
+        $.each(data, function (i, item) {
+
+            $('#region').append($('<option>', {
+                value: item.code,
+                text: item.name
+            }));
+        });
+
+    }
+});
+
+function getDescriptionBasedOnCategory(category_code) {
+
+    var infotype = {
+        type: 'retreiveDescriptionBasedOnCategory',
+        category_code: category_code
+    };
+    
+    $.ajax({
+        url: '../controllers/ConfigurationController.php',
+        type: "GET",
+        data: infotype,
+        dataType: 'json',
+        success: function (data) {
+
+
+            $.each(data, function (i, item) {
+
+                $('#description').append($('<option>', {
+                    value: item.code,
+                    text: item.name
+                }));
+            });
+
+        }
+    });
+}
 
