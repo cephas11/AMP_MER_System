@@ -61,7 +61,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
     console.log(formData);
 
     $.ajax({
-        url: '../controllers/ConfigurationController.php',
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
         data: formData,
         dataType: 'json',
@@ -137,7 +137,7 @@ function getRegionDistricts()
 
 
     $.ajax({
-        url: '../controllers/ConfigurationController.php',
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
         data: info,
         success: function (data) {

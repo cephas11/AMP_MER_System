@@ -57,20 +57,21 @@ function getDescriptionBasedOnCategory(category_code) {
         type: 'retreiveDescriptionBasedOnCategory',
         category_code: category_code
     };
-    
+
     $.ajax({
-        url: '../controllers/ConfigurationController.php',
+        url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
         type: "GET",
         data: infotype,
         dataType: 'json',
         success: function (data) {
 
-
+            console.log(data);
             $.each(data, function (i, item) {
-
+                $('#description').select2("destroy");
+                $('#description').select2("");
                 $('#description').append($('<option>', {
-                    value: item.code,
-                    text: item.name
+                    value: item.description_code,
+                    text: item.description_name
                 }));
             });
 
@@ -78,3 +79,9 @@ function getDescriptionBasedOnCategory(category_code) {
     });
 }
 
+$("#category").change(function () {
+    var category_code = this.value;
+    console.log(category_code);
+
+    getDescriptionBasedOnCategory(category_code);
+});
