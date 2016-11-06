@@ -17,7 +17,7 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-        $code = 'REG' . $this->generateuniqueCode(8) . time();
+        $code = 'REG' . $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO region(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
         if ($query) {
             $this->response['success'] = '1';
@@ -258,7 +258,7 @@ class ConfigurationClass {
        
         if (sizeof($descriptions) > 0) {
             foreach ($descriptions as $desc) {
-                 $code = $this->generateuniqueCode(8).time();
+                 $code = $this->generateuniqueCode(8);
                 $query = mysqli_query($conn, "INSERT INTO description_categories(code,description_code,category_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $desc) . "','" . mysqli_real_escape_string($conn, $category) . "')");
             }
         }
