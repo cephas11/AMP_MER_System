@@ -15,7 +15,7 @@ $.ajax({
       console.log('data'+data);
         $.each(data, function (i, item) {
 
-            $('#category').append($('<option>', {
+            $('#categories').append($('<option>', {
                 value: item.code,
                 text: item.name
             }));
