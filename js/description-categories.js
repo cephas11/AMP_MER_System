@@ -12,10 +12,10 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
 
-      
+      console.log('data'+data);
         $.each(data, function (i, item) {
 
-            $('#categories').append($('<option>', {
+            $('#category').append($('<option>', {
                 value: item.code,
                 text: item.name
             }));

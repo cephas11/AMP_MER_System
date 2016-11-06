@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>  Beneficiary Form</title>
+        <title>Description Categories</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -12,13 +12,12 @@
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-        <link rel="stylesheet" href="css/vendor.min.css">
-        <link rel="stylesheet" href="css/elephant.min.css">
-        <link rel="stylesheet" href="css/application.min.css">
-        <link rel="stylesheet" href="css/demo.min.css">
+        <link rel="stylesheet" href="../css/vendor.min.css">
+        <link rel="stylesheet" href="../css/elephant.min.css">
+        <link rel="stylesheet" href="../css/application.min.css">
+        <link rel="stylesheet" href="../css/demo.min.css">
     </head>
     <body class="layout layout-header-fixed">
-
         <?php
         require_once 'header.php';
         ?>
@@ -115,7 +114,7 @@
                                                 <select name="category" id="category" class="form-control select2">
 
                                                     <option value="">Choose...</option>
-                                                  
+
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
@@ -123,17 +122,15 @@
                                                 <label  class="form-label">Description</label>
                                                 <select id="description" name="description" class="form-control select2">
 
-                                                   
-                                                 
+
+
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Region</label>
-                                                <select id="region" name="region" class="form-control select2" required>
+                                                <select id="descriptions" name="descriptions[]" class="form-control select2" multiple="multiple">
 
-                                                    <option value="">Choose...</option>
-                                                    
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
@@ -141,7 +138,7 @@
                                                 <label  class="form-label">District</label>
                                                 <select id="district" name="district" class="form-control select2" required>
 
-                                                   
+
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div> 
@@ -180,18 +177,21 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
             <?php
-            require_once './footer.php';
+            require_once '../footer.php';
             ?>
         </div>
-        <script src="js/vendor.min.js"></script>
-        <script src="js/elephant.min.js"></script>
-        <script src="js/application.min.js"></script>
-        <script src="js/demo.min.js"></script>
-        <script src="js/select2.js"></script>
-        <script src="js/beneficiary-view.js"></script>
+
+        <script src="../js/vendor.min.js"></script>
+        <script src="../js/elephant.min.js"></script>
+        <script src="../js/application.min.js"></script>
+        <script src="../js/demo.min.js"></script>
+        <script src="../js/select2.js"></script>
+        <script src="../js/beneficiary-view.js"></script>
 
     </body>
 </html>

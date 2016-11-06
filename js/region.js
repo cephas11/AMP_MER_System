@@ -2,8 +2,6 @@
 
 //save region
 
-
-
 $('#saveRegionForm').on('submit', function (e) {
     e.preventDefault();
    

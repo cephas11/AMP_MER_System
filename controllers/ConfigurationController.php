@@ -9,6 +9,7 @@ if (isset($_GET['type'])) {
     if (!empty($type)) {
         if ($type == 'saveRegion') {
             if (isset($_GET['region'])) {
+                
                 $name = $_GET['region'];
                 $new_region = new ConfigurationClass();
                 $new_region->setRegion($name);

@@ -5,26 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Regions</title>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="manifest.json">
-        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
-        <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-        <link rel="stylesheet" href="../css/vendor.min.css">
-        <link rel="stylesheet" href="../css/elephant.min.css">
-        <link rel="stylesheet" href="../css/application.min.css">
-        <link rel="stylesheet" href="../css/demo.min.css">
     </head>
     <body class="layout layout-header-fixed">
-        <?php
-        require_once 'header.php';
-        ?>
+      
         <div class="layout-main">
-            <?php
-            require_once 'sidebar.php';
-            ?>
+           
             <div class="layout-content">
                 <div class="layout-content-body">
 
@@ -46,10 +31,9 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="panel">
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table id="regionTbl" class="table table-middle nowrap">
+                            
+                                    <div>
+                                        <table  id="regionstb">
                                             <thead>
                                                 <tr>
                                                     
@@ -59,10 +43,11 @@
                                                  
                                                 </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody id="dataset">
+                                                
+                                            </tbody>
                                         </table>
-                                    </div>
-                                </div>
+                            
                             </div>
                         </div>
                     </div>
@@ -97,18 +82,21 @@
 
             </div>
             <?php
-            require_once '../footer.php';
+            require_once 'footer.php';
             ?>
         </div>
 
-        <script src="../js/vendor.min.js"></script>
+<!--        <script src="../js/vendor.min.js"></script>
       
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
-        <script src="../js/demo.min.js"></script>
-        <script src="../js/region.js"></script>
+        <script src="../js/demo.min.js"></script>-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.form.js"></script>
+        
+        <script src="js/test-region.js"></script>
 
-        <script src="../js/jquery.validate.js"></script>
+<!--        <script src="../js/jquery.validate.js"></script>-->
 
     </body>
 </html>

@@ -23,7 +23,7 @@ class ConfigurationClass {
             $this->response['success'] = '1';
             $this->response['message'] = 'Region saved successfully';
             echo json_encode($this->response);
- 	    $query->close();
+ 	 //   $query->close();
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt save' . mysqli_error($conn);
@@ -42,7 +42,7 @@ class ConfigurationClass {
                 $results[] = $row;
             }
             $feedback = json_encode($results);
-	   $query->close();
+	 //  $query->close();
         } else {
 
             $feedback = json_encode($this->response);
