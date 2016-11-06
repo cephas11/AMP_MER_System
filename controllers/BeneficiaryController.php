@@ -13,6 +13,12 @@ if (isset($_GET['type'])) {
                 $getDescriptionBasedOnCategory = new BeneficiaryClass();
                 $getDescriptionBasedOnCategory->getDescriptionBasedOnCategory($category_code);
             }
+        }else if ($type == 'retreiveDistrictsBasedOnRegion') {
+            if (isset($_GET['district_code'])) {
+                $district_code = $_GET['district_code'];
+                $getDistrictsBasedOnRegion = new BeneficiaryClass();
+                $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($district_code);
+            }
         }
     } else {
         echo 'provide type';

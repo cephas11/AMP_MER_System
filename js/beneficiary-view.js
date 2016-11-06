@@ -66,18 +66,59 @@ function getDescriptionBasedOnCategory(category_code) {
         success: function (data) {
 
             console.log(data);
+            $('#description').select2("destroy");
+            $('#description').empty();
+
+            $('#description').select2();
+
             $.each(data, function (i, item) {
-                $('#description').select2("destroy");
-                $('#description').select2("");
+
                 $('#description').append($('<option>', {
                     value: item.description_code,
                     text: item.description_name
                 }));
             });
+            $('#description').trigger("chosen:updated");
+
 
         }
     });
 }
+
+function getDistrictsBasedOnRegion(district_code) {
+
+    var infotype = {
+        type: 'retreiveDistrictsBasedOnRegion',
+        district_code: district_code
+    };
+
+    $.ajax({
+        url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: infotype,
+        dataType: 'json',
+        success: function (data) {
+
+            console.log(data);
+            $('#description').select2("destroy");
+            $('#description').empty();
+
+            $('#description').select2();
+
+            $.each(data, function (i, item) {
+
+                $('#description').append($('<option>', {
+                    value: item.description_code,
+                    text: item.description_name
+                }));
+            });
+            $('#description').trigger("chosen:updated");
+
+
+        }
+    });
+}
+
 
 $("#category").change(function () {
     var category_code = this.value;
