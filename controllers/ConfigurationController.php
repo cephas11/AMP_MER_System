@@ -35,10 +35,10 @@ if (isset($_GET['type'])) {
             $getUnassigneddistricts->getUnAssignedDistricts();
         } else if ($type == 'saveRegionDistricts') {
 
-            if (isset($_GET['regiondistrict'])) {
+            if (isset($_POST['regiondistrict'])) {
 
-                $region = $_GET['region'];
-                $districts = $_GET['districts'];
+                $region =  $_POST['region'];
+                $districts = $_POST['districts'];
                 $save_new = new ConfigurationClass();
                 $save_new->setRegionDistricts($region, $districts);
             }

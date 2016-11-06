@@ -123,7 +123,7 @@ class ConfigurationClass {
                  $code = $this->generateuniqueCode(8);
                 $query = mysqli_query($conn, "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')");
           
-                echo  "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')";
+              //  echo  "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')";
                 
             }
         }

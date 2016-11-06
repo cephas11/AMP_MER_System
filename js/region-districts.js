@@ -61,8 +61,8 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
     console.log(formData);
 
     $.ajax({
-        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
-        type: "GET",
+        url: '../controllers/test.php?_=' + new Date().getTime(),
+        type: "POST",
         data: formData,
         dataType: 'json',
         success: function (data) {
@@ -99,7 +99,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
 
                 $('#region').select2("destroy");
                 $('#region').select2("");
-                getRegionDistricts();
+             getRegionDistricts();
             }
         },
         error: function (jXHR, textStatus, errorThrown) {

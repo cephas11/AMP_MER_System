@@ -91,7 +91,7 @@
                                            
                                         </select>
                                     </div>
-                                        <input type="hidden" name="regiondistrict" >
+                                        
                                     <input type="hidden" name="type" value="saveRegionDistricts">
                                 </div>
                                 <div class="modal-footer">
