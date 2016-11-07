@@ -69,7 +69,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
         contentType: false,
         cache: false,
         success: function (data) {
-            console.log(data);
+            console.log('response from server:'+data);
 
             $('#regionDistrictsModal').modal('hide');
             var successStatus = data.success;
