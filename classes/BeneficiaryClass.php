@@ -1,8 +1,8 @@
 <?php
 
-//$path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
-//require_once $path .'/databaseConnectionClass.php';
-require_once '../databaseConnectionClass.php';
+$path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
+require_once $path .'/databaseConnectionClass.php';
+//require_once '../databaseConnectionClass.php';
 
 class BeneficiaryClass {
     //put your code here
