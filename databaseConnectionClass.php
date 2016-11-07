@@ -7,9 +7,9 @@ class databaseConnection {
 
     var $host = "localhost";
     var $username = "root"; //  
-    var $password = 'JM{Pmkt[I?6z';
-    //var $password = '';
-    // var $database = "bmtadvan_mersystem";
+    // var $password = 'JM{Pmkt[I?6z';
+    var $password = '';
+   
     var $database = "mer_system";
     var $myconn;
 
