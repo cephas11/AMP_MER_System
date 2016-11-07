@@ -12,7 +12,7 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
 
-      
+
         $.each(data, function (i, item) {
 
             $('#region').append($('<option>', {
@@ -37,7 +37,7 @@ function getUnAssignedDistricts() {
         dataType: 'json',
         success: function (data) {
 
-           
+
             $.each(data, function (i, item) {
 
                 $('#districts').append($('<option>', {
@@ -58,7 +58,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
 
 
     var formData = $(this).serialize();
-    console.log(formData);
+    console.log(JSON.stringify(formData));
 
     $.ajax({
         url: '../controllers/test.php?_=' + new Date().getTime(),
@@ -66,6 +66,8 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
         data: formData,
         dataType: 'json',
         processData: false,
+        contentType: false,
+        cache: false,
         success: function (data) {
             console.log(data);
 
@@ -100,7 +102,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
 
                 $('#region').select2("destroy");
                 $('#region').select2("");
-             getRegionDistricts();
+                getRegionDistricts();
             }
         },
         error: function (jXHR, textStatus, errorThrown) {
