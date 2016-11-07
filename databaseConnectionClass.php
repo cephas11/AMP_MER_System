@@ -9,7 +9,6 @@ class databaseConnection {
     var $username = "root"; //  
     var $password = 'p@$$w0rd';
     //var $password = '';
-    // var $database = "bmtadvan_mersystem";
     var $database = "mer_system";
     var $myconn;
 
