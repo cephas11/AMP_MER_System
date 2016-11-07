@@ -65,6 +65,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
         type: "POST",
         data: formData,
         dataType: 'json',
+        processData: false,
         success: function (data) {
             console.log(data);
 
