@@ -5,6 +5,7 @@ class databaseConnection {
     //put your code here
 
 
+
     var $host = "localhost";
     var $username = "root"; //  
     var $password = 'p@$$w0rd';
