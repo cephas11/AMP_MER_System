@@ -57,8 +57,12 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
     e.preventDefault();
 
 
-    var formData = $(this).serialize();
-    console.log(JSON.stringify(formData));
+
+      var formData = $(this).serialize();
+     var stringData = JSON.stringify(formData);
+    console.log('raw form data');
+    console.log(formData);
+    console.log(stringData);
 
     $.ajax({
         url: '../controllers/test.php?_=' + new Date().getTime(),
