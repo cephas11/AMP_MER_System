@@ -67,7 +67,7 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
     $.ajax({
         url: '../controllers/test.php?_=' + new Date().getTime(),
         type: "POST",
-        data: stringData,
+        data: formData,
         dataType: 'json',
         success: function (data) {
             console.log(data);
