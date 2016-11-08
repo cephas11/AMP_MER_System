@@ -3,12 +3,11 @@
 require_once '../classes/ConfigurationClass.php';
 $response = array();
 
-if (isset($_POST['type'])) {
+if (isset($_POST['region'])) {
 //echo "Check here";
     $type = $_POST['type'];
-    if (!empty($type)) {
+     if (!empty($type)) {
         if ($type == 'saveRegionDistricts') {
-
                 $region =  $_POST['region'];
                 $districts = $_POST['districts'];
                 $save_new = new ConfigurationClass();
@@ -16,7 +15,10 @@ if (isset($_POST['type'])) {
             }
         
     } else {
-        echo 'provide type';
+       echo 'provide type';
+       array_push($response,'provide type');
     }
 }
 
+
+//echo json_encode($response);
