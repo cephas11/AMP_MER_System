@@ -13,10 +13,10 @@ var datatable = $('#descriptionTbl').DataTable({
 $('#saveDescriptionForm').on('submit', function (e) {
     e.preventDefault();
     // var validator = $("#saveRegionForm").validate();
-   
+   $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();
     console.log(formData);
-         $('input:submit').attr("disabled", true);
+         
        
         $.ajax({
             url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
