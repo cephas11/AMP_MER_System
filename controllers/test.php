@@ -1,5 +1,4 @@
 <?php
-
 require_once '../classes/ConfigurationClass.php';
 $response = array();
 
@@ -19,6 +18,4 @@ if (isset($_POST['region'])) {
        array_push($response,'provide type');
     }
 }
-
-
 //echo json_encode($response);
