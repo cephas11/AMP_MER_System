@@ -60,15 +60,17 @@ $('#saveCategoryDescriptionForm').on('submit', function (e) {
 
 
     var formData = $(this).serialize();
-    console.log(formData);
-        $('input:submit').attr("disabled", true);
+       console.log(formData);
+   
+    $('input:submit').attr("disabled", true);
 
     $.ajax({
-        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
-        type: "GET",
+        url: '../controllers/pairCategoryDescriptionsController.php?_=' + new Date().getTime(),
+        type: "POST",
         data: formData,
         dataType: 'json',
         success: function (data) {
+            
             console.log(data);
         $('input:submit').attr("disabled", false);
 

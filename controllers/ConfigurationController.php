@@ -33,16 +33,7 @@ if (isset($_GET['type'])) {
 
             $getUnassigneddistricts = new ConfigurationClass();
             $getUnassigneddistricts->getUnAssignedDistricts();
-        } else if ($type == 'saveRegionDistricts') {
-
-            if (isset($_POST['regiondistrict'])) {
-
-                $region =  $_POST['region'];
-                $districts = $_POST['districts'];
-                $save_new = new ConfigurationClass();
-                $save_new->setRegionDistricts($region, $districts);
-            }
-        } else if ($type == 'retreiveRegionDistricts') {
+        }  else if ($type == 'retreiveRegionDistricts') {
 
             $getregiondistricts = new ConfigurationClass();
             $getregiondistricts->getRegionDistricts();
@@ -74,17 +65,7 @@ if (isset($_GET['type'])) {
 
             $getUnassigneddescription = new ConfigurationClass();
             $getUnassigneddescription->getUnAssignedDescription();
-        }//
-        else if ($type == 'saveCategoryDescriptions') {
-            if (isset($_GET['category'])) {
-
-                $category = $_GET['category'];
-                $descriptions = $_GET['descriptions'];
-
-                $save_new = new ConfigurationClass();
-                $save_new->setCategoryDescription($category, $descriptions);
-            }
-        } else if ($type == 'retreiveCategoryDescriptions') {
+        }else if ($type == 'retreiveCategoryDescriptions') {
             $getCategoryDescription = new ConfigurationClass();
             $getCategoryDescription->getCategoryDescriptions();
             
