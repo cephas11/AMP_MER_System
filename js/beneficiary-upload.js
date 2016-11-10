@@ -3,7 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var datatable = $('#beneficiaryTbl').DataTable({
+    responsive: true,
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    },
+    order: [[0, "asc"]]
+});
 
 getBneficiaryTempData();
 function getBneficiaryTempData()
@@ -18,49 +27,47 @@ function getBneficiaryTempData()
         data: info,
         success: function (data) {
 
-            console.log('' + data);
+            console.log('server response' + data);
+             datatable.clear().draw();
             var obj = jQuery.parseJSON(data);
             if (obj.length == 0) {
                 console.log("NO DATA!");
             } else {
 
                 $.each(obj, function (key, value) {
-                    var trd = "";
-                    trd += "<tr>";
+                    var j = -1;
+                    var r = new Array();
+                   
+                     
 
-                    trd += '<td>' + value.fiscalyear + '</td>';
-                    trd += '<td>' + value.dateregistered + '</td>';
-                    trd += '<td>' + value.name + '</td>';
-                    trd += '<td>' + value.business_name + '</td>';
-                    trd += '<td>' + value.gender + '</td>';
-                    trd += '<td>' + value.email + '</td>';
-                    trd += '<td>' + value.contactno + '</td>';
-                    trd += "<td>";
-                    trd += "<select class='form-control region select2'></select>";
-                    trd += "</td>";
-                    trd += "<td>";
-                    trd += "<select class='form-control districts  select2'></select>";
-                    trd += "</td>";
-                    trd += "<td>";
-                    trd += "<select class='form-control categories   select2'></select>";
-                    trd += "</td>";
-                    trd += "<td>";
-                    trd += "<select class='form-control  description select2'></select>";
-                    trd += "</td>";
-
-                    trd += '<td>' + value.community + '</td>';
-                    trd += '<td>' + value.longitude + '</td>';
-                    trd += '<td>' + value.latitude + '</td>';
-                    trd += '<td>' + value.registeredby + '</td>';
-                    trd += "</tr>";
+                     r[++j]= '<td>' + value.fiscalyear + '</td>';
+                     r[++j]= '<td>' + value.dateregistered + '</td>';
+                     r[++j]= '<td>' + value.name + '</td>';
+                     r[++j]= '<td>' + value.business_name + '</td>';
+                     r[++j]= '<td>' + value.gender + '</td>';
+                     r[++j]= '<td>' + value.email + '</td>';
+                     r[++j]= '<td>' + value.contactno + '</td>';
+                
+                     r[++j]= "<td><select class='form-control region select2'></select></td>";
+               
+                     r[++j]= "<td><select class='form-control districts  select2'></select></td>";
+               
+                     r[++j]= "<td><select class='form-control categories   select2'></select></td>";
+                 
+                     r[++j]= "<td><select class='form-control  description select2'></select></td>";
+                    
+                     r[++j]= '<td>' + value.community + '</td>';
+                     r[++j]= '<td>' + value.longitude + '</td>';
+                     r[++j]= '<td>' + value.latitude + '</td>';
+                     r[++j]= '<td>' + value.registeredby + '</td>';
+                    
 
 
 
-                    $('table#beneficiaryTbl TBODY').append(trd);
-
-
-
+                     rowNode = datatable.row.add(r);
                 });
+
+                rowNode.draw().node();
             }
 
         },
@@ -109,7 +116,6 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
 
-      console.log('data'+data);
         $.each(data, function (i, item) {
 
             $('.categories').append($('<option>', {
