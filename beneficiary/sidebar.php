@@ -40,7 +40,7 @@
                         <ul class="sidenav-subnav collapse">
 
                             <li><a href="beneficiary-form">Create</a></li>
-                            <li><a href="#">View</a></li>
+                                      <li><a href="bulk-beneficiary-upload">Bulk Upload</a></li>
 
                         </ul>
                     </li>
