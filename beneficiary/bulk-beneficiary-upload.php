@@ -12,7 +12,7 @@
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-        <link rel="stylesheet" href="../css/vendor.min.css">
+     <link rel="stylesheet" href="../css/vendor.min.css">
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
         <link rel="stylesheet" href="../css/demo.min.css">
@@ -72,6 +72,10 @@
                                                             <th>Gender</th>
                                                             <th>Email</th>
                                                             <th>ContactNo</th>
+                                                            <th>Region</th>
+                                                            <th>District</th>
+                                                            <th>Category</th>
+                                                            <th>Description</th>
                                                             <th>Community</th>
                                                             <th>Longitude</th>
                                                             <th>Latitude</th>
@@ -97,8 +101,7 @@
             require_once '../footer.php';
             ?>
         </div>
-
-        <script src="../js/vendor.min.js"></script>
+    <script src="../js/vendor.min.js"></script>
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>

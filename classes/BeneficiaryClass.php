@@ -56,11 +56,14 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $contents = fopen($filecontents, "r");
+        
+        $createdBy='aba';
+        
         while (($emapData = fgetcsv($contents, 10000, ",")) !== FALSE) {
 
             //It wiil insert a row to our beneficiary table from our csv file`
-//echo $emapData[0];
-            $sql = "INSERT INTO temp_beneficiaries (fiscalyear,dateregistered,name,business_name,gender,email,contactno,community,longitude,latitude,registeredby) VALUES ('" . mysql_real_escape_string($emapData[0]) . "','" . mysql_real_escape_string($emapData[1]) . "','" . mysql_real_escape_string($emapData[2]) . "','" . mysql_real_escape_string($emapData[3]) . "','" . mysql_real_escape_string($emapData[4]) . "','" . mysql_real_escape_string($emapData[5]) . "','" . mysql_real_escape_string($emapData[6]) . "','" . mysql_real_escape_string($emapData[7]) . "','" . mysql_real_escape_string($emapData[8]) . "','" . mysql_real_escape_string($emapData[9]) . "','" . mysql_real_escape_string($emapData[10]) . "','" . mysql_real_escape_string($emapData[11]) . "')";
+//echo $emapData[11];
+            $sql = "INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) VALUES ('" . mysql_real_escape_string($emapData[0]) . "','" . mysql_real_escape_string($emapData[1]) . "','" . mysql_real_escape_string($emapData[2]) . "','" . mysql_real_escape_string($emapData[3]) . "','" . mysql_real_escape_string($emapData[4]) . "','" . mysql_real_escape_string($emapData[5]) . "','" . mysql_real_escape_string($emapData[6]) . "','" . mysql_real_escape_string($emapData[7]) . "','" . mysql_real_escape_string($emapData[8]) . "','" . mysql_real_escape_string($emapData[9]) . "','" . mysql_real_escape_string($emapData[10]) . "','".$createdBy."')";
             $result = mysqli_query($conn, $sql);
             if (!$result) {
                 echo "<script type=\"text/javascript\">
