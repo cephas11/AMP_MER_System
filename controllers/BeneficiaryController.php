@@ -13,12 +13,16 @@ if (isset($_GET['type'])) {
                 $getDescriptionBasedOnCategory = new BeneficiaryClass();
                 $getDescriptionBasedOnCategory->getDescriptionBasedOnCategory($category_code);
             }
-        }else if ($type == 'retreiveDistrictsBasedOnRegion') {
+        } else if ($type == 'retreiveDistrictsBasedOnRegion') {
             if (isset($_GET['district_code'])) {
                 $district_code = $_GET['district_code'];
                 $getDistrictsBasedOnRegion = new BeneficiaryClass();
                 $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($district_code);
             }
+        } else if ($type == 'retreiveBeneficiaryTempData') {
+
+            $getTempData = new BeneficiaryClass();
+            $getTempData->getBeneficiaryFileContents();
         }
     } else {
         echo 'provide type';
