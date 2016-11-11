@@ -296,6 +296,27 @@ class ConfigurationClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+    
+    
+    public function getDistrictsBasedOnRegion($regionCode) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='".$regionCode."'");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

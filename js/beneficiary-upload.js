@@ -27,44 +27,40 @@ function getBneficiaryTempData()
         data: info,
         success: function (data) {
 
-            console.log('server response' + data);
-             datatable.clear().draw();
+           
+            datatable.clear().draw();
             var obj = jQuery.parseJSON(data);
             if (obj.length == 0) {
                 console.log("NO DATA!");
             } else {
 
+     var rowNum=0;
                 $.each(obj, function (key, value) {
                     var j = -1;
                     var r = new Array();
-                   
-                     
-
-                     r[++j]= '<td>' + value.fiscalyear + '</td>';
-                     r[++j]= '<td>' + value.dateregistered + '</td>';
-                     r[++j]= '<td>' + value.name + '</td>';
-                     r[++j]= '<td>' + value.business_name + '</td>';
-                     r[++j]= '<td>' + value.gender + '</td>';
-                     r[++j]= '<td>' + value.email + '</td>';
-                     r[++j]= '<td>' + value.contactno + '</td>';
-                
-                     r[++j]= "<td><select class='form-control region select2'></select></td>";
-               
-                     r[++j]= "<td><select class='form-control districts  select2'></select></td>";
-               
-                     r[++j]= "<td><select class='form-control categories   select2'></select></td>";
-                 
-                     r[++j]= "<td><select class='form-control  description select2'></select></td>";
-                    
-                     r[++j]= '<td>' + value.community + '</td>';
-                     r[++j]= '<td>' + value.longitude + '</td>';
-                     r[++j]= '<td>' + value.latitude + '</td>';
-                     r[++j]= '<td>' + value.registeredby + '</td>';
-                    
 
 
 
-                     rowNode = datatable.row.add(r);
+                    r[++j] = '<td>' + value.fiscalyear + '</td>';
+                    r[++j] = '<td>' + value.dateregistered + '</td>';
+                    r[++j] = '<td>' + value.name + '</td>';
+                    r[++j] = '<td>' + value.business_name + '</td>';
+                    r[++j] = '<td>' + value.gender + '</td>';
+                    r[++j] = '<td>' + value.email + '</td>';
+                    r[++j] = '<td>' + value.contactno + '</td>';
+                    r[++j] = "<td><select class='form-control region select2' id='region_"+rowNum+"' ></select></td>";
+                    r[++j] = "<td><select class='form-control districts  select2' id='districts_"+rowNum+"'></select></td>";
+                    r[++j] = "<td><select class='form-control categories select2' id='categories_"+rowNum+"'></select></td>";
+                    r[++j] = "<td><select class='form-control description select2' id='description_"+rowNum+"'></select></td>";
+                    r[++j] = '<td>' + value.community + '</td>';
+                    r[++j] = '<td>' + value.longitude + '</td>';
+                    r[++j] = '<td>' + value.latitude + '</td>';
+                    r[++j] = '<td>' + value.registeredby + '</td>';
+
+                    rowNum = rowNum + 1;
+
+
+                    rowNode = datatable.row.add(r);
                 });
 
                 rowNode.draw().node();
@@ -92,7 +88,7 @@ function getRegions() {
         dataType: 'json',
         success: function (data) {
 
-
+ console.log('server response' + data);
             $.each(data, function (i, item) {
 
                 $('.region').append("<option value=" + item.code + ">" + item.name + "</option>"
@@ -102,29 +98,32 @@ function getRegions() {
         }
     });
 }
+
 getCategories();
-
-function getCategories(){
+function getCategories() {
     var info = {
-    type: "retreiveCategories"
-};
+        type: "retreiveCategories"
+    };
 
-$.ajax({
-    url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
-    type: "GET",
-    data: info,
-    dataType: 'json',
-    success: function (data) {
+    $.ajax({
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: info,
+        dataType: 'json',
+        success: function (data) {
 
-        $.each(data, function (i, item) {
+            $.each(data, function (i, item) {
 
-            $('.categories').append($('<option>', {
-                value: item.code,
-                text: item.name
-            }));
-        });
+                $('.categories').append($('<option>', {
+                    value: item.code,
+                    text: item.name
+                }));
+            });
 
-    }
-});
+        }
+    });
 
 }
+
+
+

@@ -2,7 +2,7 @@
 
 require_once '../classes/ConfigurationClass.php';
 $response = array();
-
+//echo "Check here";
 if (isset($_GET['type'])) {
 //echo "Check here";
     $type = $_GET['type'];
@@ -68,6 +68,11 @@ if (isset($_GET['type'])) {
         }else if ($type == 'retreiveCategoryDescriptions') {
             $getCategoryDescription = new ConfigurationClass();
             $getCategoryDescription->getCategoryDescriptions();
+            
+        }else if ($type == 'retreiveDistrictsBasedOnRegion') {
+            echo 'region is'.   $region_code = $_GET['region_code'];
+            $getDistrictsBasedOnRegion = new ConfigurationClass();
+          //  $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($region_code);
             
         }
     } else {
