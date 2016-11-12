@@ -41,6 +41,7 @@
 
                             <li><a href="beneficiary/beneficiary-form">Create</a></li>
                             <li><a href="beneficiary/bulk-beneficiary-upload">Bulk Upload</a></li>
+                            <li><a href="beneficiary/beneficiaries-list">List</a></li>
 
                         </ul>
                     </li>

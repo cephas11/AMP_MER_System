@@ -2,9 +2,7 @@
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path .'/databaseConnectionClass.php';
-//require_once '../databaseConnectionClass.php';
 
-//echo "HERE";
 class ConfigurationClass {
 
     public $db;
@@ -36,7 +34,7 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 	$query = mysqli_query($conn, "SELECT * FROM region");
-        //print("Hello here");
+        
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
@@ -71,7 +69,6 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-//
     public function getDistricts() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -91,7 +88,6 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-//
     public function getUnAssignedDistricts() {
 
         $connection = new databaseConnection(); //i created a new object
@@ -112,7 +108,6 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-//
     public function setRegionDistricts($region, $districts) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -139,8 +134,6 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
-
-//
 
     public function getRegionDistricts() {
         $connection = new databaseConnection(); //i created a new object
@@ -178,7 +171,7 @@ class ConfigurationClass {
         }
     }
 
-//
+
     public function getCategories() {
 
         $connection = new databaseConnection(); //i created a new object
@@ -302,6 +295,26 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='".$regionCode."'");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
+    
+      public function getDescriptionsBasedOnCategory($categoryCode) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM description_categories_view WHERE category_code='".$categoryCode."'");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {

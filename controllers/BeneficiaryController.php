@@ -23,6 +23,14 @@ if (isset($_GET['type'])) {
 
             $getTempData = new BeneficiaryClass();
             $getTempData->getBeneficiaryFileContents();
+        } else if ($type == 'retreiveBeneficiariesList') {
+
+            $getTempData = new BeneficiaryClass();
+            $getTempData->getBeneficiaresList();
+        } else if ($type == 'clearTempData') {
+            $clearData = new BeneficiaryClass();
+           $clearData->emptyBenficiaryTempTable();
+           echo '1';
         }
     } else {
         echo 'provide type';

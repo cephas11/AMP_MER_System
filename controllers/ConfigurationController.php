@@ -70,9 +70,14 @@ if (isset($_GET['type'])) {
             $getCategoryDescription->getCategoryDescriptions();
             
         }else if ($type == 'retreiveDistrictsBasedOnRegion') {
-            echo 'region is'.   $region_code = $_GET['region_code'];
+              $region_code = $_GET['region_code'];
             $getDistrictsBasedOnRegion = new ConfigurationClass();
-          //  $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($region_code);
+            $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($region_code);
+            
+        }else if ($type == 'retreiveDescriptionBasedOnCategory') {
+              $category_code = $_GET['category_code'];
+            $getDescriptionBasedOnCategory = new ConfigurationClass();
+            $getDescriptionBasedOnCategory->getDescriptionsBasedOnCategory($category_code);
             
         }
     } else {
