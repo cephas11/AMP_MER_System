@@ -85,11 +85,11 @@ function getDescriptionBasedOnCategory(category_code) {
     });
 }
 
-function getDistrictsBasedOnRegion(district_code) {
+function getDistrictsBasedOnRegion(region_code) {
 
     var infotype = {
         type: 'retreiveDistrictsBasedOnRegion',
-        district_code: district_code
+        region_code: region_code
     };
 
     $.ajax({
