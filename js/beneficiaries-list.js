@@ -42,18 +42,7 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.business_name + '</td>';
                     r[++j] = '<td>' + value.gender + '</td>';
                     r[++j] = '<td>' + value.email + '</td>';
-                    r[++j] = '<td>' + value.contactno + '</td>';
-                    r[++j] = '<td>' + value.gender + '</td>';
-                    r[++j] = '<td>' + +'</td>';
-                    r[++j] = '<td>' + +'</td>';
-                    r[++j] = '<td>' + value.community + '</td>';
-                    r[++j] = '<td>' + +'</td>';
-                    r[++j] = '<td>' + +'</td>';
-                    r[++j] = '<td>' + value.longitude + '</td>';
-                    r[++j] = '<td>' + value.latitude + '</td>';
-                    r[++j] = '<td>' + value.registeredby + '</td>';
-                    r[++j] = '<td>' + +'</td>';
-
+                    
                     rowNum = rowNum + 1;
 
 
