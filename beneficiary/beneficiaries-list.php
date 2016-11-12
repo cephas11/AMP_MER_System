@@ -47,13 +47,29 @@
                                                 <table class="table table-middle" id="beneficiaresListTbl">
                                                     <thead>
                                                         <tr>
-
+                                                            <th>Code</th>
 
                                                             <th>Beneficiary Name</th>
                                                             <th>Business Name</th>
                                                             <th>Gender</th>
                                                             <th>Email</th>
-                                                           
+                                                            <th>ContactNo</th>
+                                                            <th>Fiscal Year</th>
+                                                            <th>Category</th>
+                                                            <th>Description</th>
+                                                            <th>Region</th>
+                                                            <th>District</th>
+                                                            <th>Community</th>
+                                                            <th>Longitude</th>
+                                                            <th>Latitude</th>
+                                                            <th>Date Registered</th>
+                                                            <th>Registered By</th>         
+                                                            <th>Created By</th>
+                                                            <th>Date Created</th>
+                                                            <th>Date Modified</th>
+                                                            <th>Modified By</th>
+                                                            <th>Action</th>
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>

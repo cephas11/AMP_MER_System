@@ -3,16 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var datatable = $('#beneficiaresListTbl').DataTable({
-    responsive: true,
-    language: {
-        paginate:
-                {previous: "&laquo;", next: "&raquo;"},
-        search: "_INPUT_",
-        searchPlaceholder: "Search…"
-    },
-    order: [[0, "asc"]]
-});
+//var datatable = $('#beneficiaresListTbl').DataTable({
+//    responsive: true,
+//    language: {
+//        paginate:
+//                {previous: "&laquo;", next: "&raquo;"},
+//        search: "_INPUT_",
+//        searchPlaceholder: "Search…"
+//    },
+//    order: [[0, "asc"]],
+//    "columnDefs": [
+//            {
+//                "targets": [2],
+//                "visible": false,
+//                "searchable": false
+//            },
+//            {
+//                "targets": [3],
+//                "visible": false
+//            }
+//        ]
+//});
+
+var datatable = $('#beneficiaresListTbl').DataTable();
+
+datatable.columns([0, 11, 12, 13, 14, 15, 16, 17, 18, 19]).visible(false, false);
+datatable.columns.adjust().draw(false); // adjust column sizing and redraw
 
 getAllBeneficiaries();
 function getAllBeneficiaries()
@@ -38,11 +54,29 @@ function getAllBeneficiaries()
                 $.each(obj, function (key, value) {
                     var j = -1;
                     var r = new Array();
+                    r[++j] = '<td>' + value.code + '</td>';
                     r[++j] = '<td>' + value.name + '</td>';
                     r[++j] = '<td>' + value.business_name + '</td>';
                     r[++j] = '<td>' + value.gender + '</td>';
                     r[++j] = '<td>' + value.email + '</td>';
-                    
+                    r[++j] = '<td>' + value.contactno + '</td>';
+                    r[++j] = '<td>' + value.fiscalyear + '</td>';
+                    r[++j] = '<td>' + value.category_name + '</td>';
+                    r[++j] = '<td>' + value.description_name + '</td>';
+                    r[++j] = '<td>' + value.region_name + '</td>';
+                    r[++j] = '<td>' + value.district_name + '</td>';
+                    r[++j] = '<td>' + value.community + '</td>';
+                    r[++j] = '<td>' + value.longitude + '</td>';
+                    r[++j] = '<td>' + value.latitude + '</td>';
+                    r[++j] = '<td>' + value.dateregistered + '</td>';
+                    r[++j] = '<td>' + value.registeredby + '</td>';
+                    r[++j] = '<td>' + value.createdby + '</td>';
+                    r[++j] = '<td>' + value.datecreated + '</td>';
+                    r[++j] = '<td>' + value.modon + '</td>';
+                    r[++j] = '<td>' + value.modby + '</td>';
+                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
+                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.title + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+
                     rowNum = rowNum + 1;
 
 

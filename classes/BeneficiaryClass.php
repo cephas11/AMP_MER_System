@@ -62,10 +62,19 @@ class BeneficiaryClass {
         while (($emapData = fgetcsv($contents, 10000, ",")) !== FALSE) {
 
             //It wiil insert a row to our beneficiary table from our csv file`
-//echo $emapData[11];
-            $sql = "INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) VALUES ('" . mysql_real_escape_string($emapData[0]) . "','" . mysql_real_escape_string($emapData[1]) . "','" . mysql_real_escape_string($emapData[2]) . "','" . mysql_real_escape_string($emapData[3]) . "','" . mysql_real_escape_string($emapData[4]) . "','" . mysql_real_escape_string($emapData[5]) . "','" . mysql_real_escape_string($emapData[6]) . "','" . mysql_real_escape_string($emapData[7]) . "','" . mysql_real_escape_string($emapData[8]) . "','" . mysql_real_escape_string($emapData[9]) . "','" . mysql_real_escape_string($emapData[10]) . "','" . $createdBy . "')";
+//           echo  'name is : '. $emapData[0].'<br>';
+//            echo "INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) "
+//            . "VALUES ('" . mysqli_real_escape_string($conn,$emapData[0]) . "','" . mysqli_real_escape_string($conn,$emapData[1]) . "','" . mysqli_real_escape_string($conn,$emapData[2]) . "','" . mysqli_real_escape_string($conn,$emapData[3]) . "','" . mysqli_real_escape_string($conn,$emapData[4]) . "','" . mysqli_real_escape_string($conn,$emapData[5]) . "','" . mysqli_real_escape_string($conn,$emapData[6]) . "',"
+//                    . "'" . mysqli_real_escape_string($conn,$emapData[7]) . "','" . mysqli_real_escape_string($conn,$emapData[8]) . "','" . mysqli_real_escape_string($conn,$emapData[9]) . "','" . mysqli_real_escape_string($conn,$emapData[10]) . "',"
+//                    . "'" . mysqli_real_escape_string($conn,$createdBy) . "')";
+//           
+            $sql ="INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) "
+            . "VALUES ('" . mysqli_real_escape_string($conn,$emapData[0]) . "','" . mysqli_real_escape_string($conn,$emapData[1]) . "','" . mysqli_real_escape_string($conn,$emapData[2]) . "','" . mysqli_real_escape_string($conn,$emapData[3]) . "','" . mysqli_real_escape_string($conn,$emapData[4]) . "','" . mysqli_real_escape_string($conn,$emapData[5]) . "','" . mysqli_real_escape_string($conn,$emapData[6]) . "',"
+                    . "'" . mysqli_real_escape_string($conn,$emapData[7]) . "','" . mysqli_real_escape_string($conn,$emapData[8]) . "','" . mysqli_real_escape_string($conn,$emapData[9]) . "','" . mysqli_real_escape_string($conn,$emapData[10]) . "',"
+                    . "'" . mysqli_real_escape_string($conn,$createdBy) . "')";
+           
             $result = mysqli_query($conn, $sql);
-            if (!$result) {
+           if (!$result) {
                 echo "<script type=\"text/javascript\">
 							alert(\"Invalid File:Please Upload CSV File.\");
 							window.location = \"bulk-beneficiary-upload\"
@@ -144,7 +153,7 @@ class BeneficiaryClass {
     public function getBeneficiaresList() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM beneficiaries ");
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view ");
         //print("Hello here");
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {

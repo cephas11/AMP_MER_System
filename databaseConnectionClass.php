@@ -8,8 +8,8 @@ class databaseConnection {
 
     var $host = "localhost";
     var $username = "root"; //  
-   var $password = 'p@$$w0rd';
-   // var $password = '';
+    var $password = 'p@$$w0rd';
+    // var $password = '';
     var $database = "mer_system";
     var $myconn;
 
