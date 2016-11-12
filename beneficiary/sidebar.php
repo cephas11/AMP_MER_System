@@ -15,8 +15,8 @@
                             </div>
                         </form>
                     </li>
-                     <li class="sidenav-heading">Portal</li>
-                   <li class="sidenav-item has-subnav">
+                    <li class="sidenav-heading">Portal</li>
+                    <li class="sidenav-item has-subnav">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-home"></span>
                             <span class="sidenav-label">Configuration</span>
@@ -31,7 +31,7 @@
                             <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="sidenav-item has-subnav">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-home"></span>
@@ -40,7 +40,8 @@
                         <ul class="sidenav-subnav collapse">
 
                             <li><a href="beneficiary-form">Create</a></li>
-                            <li><a href="#">View</a></li>
+                            <li><a href="bulk-beneficiary-upload">Bulk Upload</a></li>
+                            <li><a href="beneficiaries-list">List</a></li>
 
                         </ul>
                     </li>

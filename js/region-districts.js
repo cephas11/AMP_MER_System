@@ -56,23 +56,13 @@ function getUnAssignedDistricts() {
 $('#saveRegionDistrictsForm').on('submit', function (e) {
     e.preventDefault();
 
-
-
-      var formData = $(this).serialize();
-     var stringData = JSON.stringify(formData);
-    console.log('raw form data');
-    console.log(formData);
-    console.log(stringData);
-
+    var formData = $(this).serialize();
+    
     $.ajax({
-        url: '../controllers/test.php?_=' + new Date().getTime(),
+         url: '../controllers/pairRegionDistrictsController.php?_=' + new Date().getTime(),
         type: "POST",
         data: formData,
         dataType: 'json',
-        processData: false,
-        contentType: false,
-        cache: false,
-        
         success: function (data) {
             console.log('response from server :'+data);
 
