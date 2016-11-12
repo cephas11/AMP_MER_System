@@ -144,7 +144,7 @@ class BeneficiaryClass {
     public function getBeneficiaresList() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM beneficiaries ");
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view ");
         //print("Hello here");
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
