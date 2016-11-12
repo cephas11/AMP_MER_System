@@ -39,8 +39,9 @@
                             <strong>Bulk Beneficiary Upload</strong>
                             <br>
                             <small style="color:red;">* Upload csv or excel file sheet only.This is the format below</small>
-<!--                              <br>  <small style="color:red;">*Beneficiary Name,Business Name</small>
-                            -->
+                            <br>  <small style="color: #39f;"> name,businessname,gender,email,contactno,community,longitude,latitude,fiscal year,dateregistered,registeredby
+                            </small>
+
                         </div>
 
                         <div class="card-body">

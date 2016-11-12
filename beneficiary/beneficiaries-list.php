@@ -53,17 +53,7 @@
                                                             <th>Business Name</th>
                                                             <th>Gender</th>
                                                             <th>Email</th>
-                                                            <th>ContactNo</th>
-                                                            <th>Fiscal Year</th>
-                                                            <th>Region</th>
-                                                            <th>District</th>
-                                                            <th>Community</th>
-                                                            <th>Category</th>
-                                                            <th>Description</th>
-                                                            <th>Longitude</th>
-                                                            <th>Latitude</th>
-                                                            <th>Registered By</th>
-                                                            <th>Date Registered</th>
+                                                           
                                                         </tr>
                                                     </thead>
                                                     <tbody>
