@@ -268,14 +268,14 @@ $('#clearBeneficiary').click(function () {
     $('#clearModal').modal('hide');
     $('#loaderModal').modal('show');
 
-console.log('data is');
+    console.log('data is');
     $.ajax({
         type: "GET",
         url: "../controllers/BeneficiaryController.php?_=" + new Date().getTime(),
         data: "type=clearTempData",
         success: function (data) {
-            console.log('response server: '+data);
-          
+            console.log('response server: ' + data);
+
             if (data == 1) {
                 $('#loaderModal').modal('hide');
 

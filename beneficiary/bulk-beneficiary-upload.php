@@ -98,7 +98,7 @@
 
                                             <div class="row" id="saveButton">
                                                 <div class="col-xs-12">
-                                                     <div class="col-md-2 ">
+                                                    <div class="col-md-2 ">
                                                         <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#clearModal" data-whatever="@mdo">Clear</button>
                                                     </div>
                                                     <div class="col-md-8 ">
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                          <div class="modal fade" id="clearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="clearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
 
