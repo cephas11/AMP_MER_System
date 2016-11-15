@@ -29,24 +29,18 @@
                             <li><a href="categories">Categories Configuration</a></li>
                             <li><a href="description">Description Configuration</a></li>
                             <li><a href="description-categories">Pair Description and Category Configuration</a></li>
+                            <li><a href="registers">Registers</a></li>
+
                         </ul>
                     </li>
 
-                    <li class="sidenav-item has-subnav">
-                        <a href="#" aria-haspopup="true">
-                            <span class="sidenav-icon icon icon-home"></span>
+                    <li class="sidenav-item">
+                        <a href="../beneficiary/beneficiaries-list">
+                            <span class="sidenav-icon icon icon-columns"></span>
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
-                        <ul class="sidenav-subnav collapse">
-
-                            <li><a href="../beneficiary/beneficiary-form">Create</a></li>
-                            <li><a href="../beneficiary/bulk-beneficiary-upload">Bulk Upload</a></li>
- 
-                            <li><a href="../beneficiary/beneficiaries-list">List</a></li>
-
-
-                        </ul>
                     </li>
+
 
 
                 </ul>

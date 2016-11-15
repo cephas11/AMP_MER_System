@@ -3,6 +3,81 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$('#beneficiaryForm').on('submit', function (e) {
+    e.preventDefault();
+
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('input:submit').attr("disabled", true);
+
+    $.ajax({
+        url: '../controllers/PostController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: 'json',
+        success: function (data) {
+            $('input:submit').attr("disabled", false);
+            console.log(data);
+            // $("#loader").hide();
+
+            var successStatus = data.success;
+            console.log(successStatus);
+            document.getElementById("beneficiaryForm").reset();
+            $('#description').select2("destroy");
+            $('#description').empty();
+            $('#description').select2();
+            $('#description').append('<option value = ""> Loading... </option>');
+
+            $('#district').select2("destroy");
+            $('#district').empty();
+            $('#district').select2();
+            $('#district').append('<option value = ""> Loading... </option>');
+
+            $('#region').select2("destroy");
+            $('#region').select2();
+
+            $('#gender').select2("destroy");
+            $('#gender').select2();
+
+            $('#category').select2("destroy");
+            $('#category').select2();
+
+            $('#registeredBy').select2("destroy");
+            $('#registeredBy').select2();
+
+            $('#fiscalYear').select2("destroy");
+            $('#fiscalYear').select2();
+
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+
+});
 
 
 var info = {
@@ -20,7 +95,7 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#category').append($('<option>', {
-                value: item.code,
+                value: item.name,
                 text: item.name
             }));
         });
@@ -43,6 +118,30 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#region').append($('<option>', {
+                value: item.code,
+                text: item.name
+            }));
+        });
+
+    }
+});
+
+
+var reginfo = {
+    type: "retreiveRegisters"
+};
+
+$.ajax({
+    url: '../controllers/ConfigurationController.php',
+    type: "GET",
+    data: reginfo,
+    dataType: 'json',
+    success: function (data) {
+
+
+        $.each(data, function (i, item) {
+
+            $('#registeredBy').append($('<option>', {
                 value: item.code,
                 text: item.name
             }));

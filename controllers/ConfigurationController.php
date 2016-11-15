@@ -79,6 +79,11 @@ if (isset($_GET['type'])) {
             $getDescriptionBasedOnCategory = new ConfigurationClass();
             $getDescriptionBasedOnCategory->getDescriptionsBasedOnCategory($category_code);
             
+        }else if ($type == 'retreiveRegisters') {
+              
+            $getRegisters = new ConfigurationClass();
+            $getRegisters->getRegisters();
+            
         }
     } else {
         echo 'provide type';

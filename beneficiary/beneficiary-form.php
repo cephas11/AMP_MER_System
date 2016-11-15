@@ -40,7 +40,7 @@
 
                                             <div class="form-group">
                                                 <label  class="form-label">Fiscal Year</label>
-                                                <select  name="fiscalYear" class="form-control select2">
+                                                <select  name="fiscalYear" id="fiscalYear" class="form-control select2">
 
                                                     <option value="">Choose...</option>
                                                     <option value="FY1 5">FY1 5</option>
@@ -55,7 +55,7 @@
                                             <div class="form-group">
                                                 <label for="name-1" class="control-label">Date of  Registration</label>
                                                 <div class="input-group date">
-                                                    <input id="demo-datepicker-2" class="form-control" type="text" readonly required>
+                                                    <input id="demo-datepicker-2" name="dateRegistered" class="form-control" type="text" readonly required>
                                                     <span class="input-group-btn">
                                                         <button id="demo-datepicker-2-btn" class="btn btn-primary" type="button">
                                                             <span class="icon icon-calendar"></span>
@@ -95,7 +95,7 @@
 
                                             <div class="form-group">
                                                 <label  class="form-label">Gender</label>
-                                                <select name="gender"  class="form-control select2">
+                                                <select name="gender" id="gender" class="form-control select2">
 
                                                     <option value="">Choose...</option>
                                                     <option value="male">Male</option>
@@ -144,7 +144,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Tel NO</label>
-                                                    <input class="form-control" type="text" name="conntactNo" required>
+                                                    <input class="form-control" type="text" name="contactno" required>
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
@@ -185,13 +185,14 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Registered By</label>
 
-                                            <select id="region" name="region" class="form-control select2" >
+                                            <select id="registeredBy" name="registeredBy" class="form-control select2" >
                                                 <option value="">Choose...</option>
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
+                                        <input type="hidden" value="saveBeneficiary" name="type"/>
                                         <br><br>
                                     </div>
                                     <div class="col-xs-12 ">
