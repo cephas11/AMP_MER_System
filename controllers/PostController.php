@@ -10,6 +10,10 @@ if (isset($_POST['type'])) {
             
             $saveBeneficiary = new BeneficiaryClass();
             $saveBeneficiary->setBeneficiary($_POST);
+        }else if ($type == 'saveRegistrar') {
+          //  print_r($_POST);
+            $saveRegistrar = new BeneficiaryClass();
+            $saveRegistrar->setRegistrar($_POST);
         }
     } else {
         echo 'provide type';

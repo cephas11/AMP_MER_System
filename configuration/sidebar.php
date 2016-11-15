@@ -29,6 +29,8 @@
                             <li><a href="categories">Categories Configuration</a></li>
                             <li><a href="description">Description Configuration</a></li>
                             <li><a href="description-categories">Pair Description and Category Configuration</a></li>
+                            <li><a href="registers">Registers</a></li>
+                       
                         </ul>
                     </li>
 

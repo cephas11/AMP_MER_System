@@ -42,8 +42,8 @@ $('#beneficiaryForm').on('submit', function (e) {
             $('#category').select2("destroy");
             $('#category').select2();
 
-            $('#category').select2("destroy");
-            $('#category').select2();
+            $('#registeredBy').select2("destroy");
+            $('#registeredBy').select2();
 
             $('#fiscalYear').select2("destroy");
             $('#fiscalYear').select2();
@@ -95,7 +95,7 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#category').append($('<option>', {
-                value: item.code,
+                value: item.name,
                 text: item.name
             }));
         });
@@ -118,6 +118,30 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#region').append($('<option>', {
+                value: item.code,
+                text: item.name
+            }));
+        });
+
+    }
+});
+
+
+var reginfo = {
+    type: "retreiveRegisters"
+};
+
+$.ajax({
+    url: '../controllers/ConfigurationController.php',
+    type: "GET",
+    data: reginfo,
+    dataType: 'json',
+    success: function (data) {
+
+
+        $.each(data, function (i, item) {
+
+            $('#registeredBy').append($('<option>', {
                 value: item.code,
                 text: item.name
             }));

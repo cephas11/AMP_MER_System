@@ -227,10 +227,51 @@ class BeneficiaryClass {
         $connection->closeConnection($conn);
     }
 
+    public function setRegistrar($registrarInfo) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $createdby = 'admin';
+        $datecreated = date("Y-m-d");
+        $exists = $this->checkRegistrarExistence($registrarInfo['email']);
+        if ($exists > 0) {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'Registrar already exist ';
+            echo json_encode($this->response);
+        } else {
+            $code = 'REG' . $this->generateuniqueCode(10);
+            $query = mysqli_query($conn, "INSERT INTO registers(code,name,email,contactno,createdby)"
+                    . " VALUES "
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $registrarInfo['name']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['email']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['contactno']) . "','" . $createdby . "')");
+           
+            if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = 'Data saved successfully';
+                echo json_encode($this->response);
+            } else {
+                $this->response['success'] = '0';
+                $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+                echo json_encode($this->response);
+            }
+        }
+
+        $connection->closeConnection($conn);
+    }
+
     private function checkBeneficiaryExistence($email) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE email='" . mysqli_real_escape_string($conn, $email) . "'");
+
+        return mysqli_num_rows($query);
+
+        $connection->closeConnection($conn);
+    }
+
+    private function checkRegistrarExistence($email) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM registers WHERE email='" . mysqli_real_escape_string($conn, $email) . "'");
 
         return mysqli_num_rows($query);
 
