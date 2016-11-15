@@ -185,13 +185,14 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Registered By</label>
 
-                                            <select id="region" name="region" class="form-control select2" >
+                                            <select id="registeredBy" name="registeredBy" class="form-control select2" >
                                                 <option value="">Choose...</option>
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
+                                        <input type="hidden" value="saveBeneficiary" name="type"/>
                                         <br><br>
                                     </div>
                                     <div class="col-xs-12 ">
