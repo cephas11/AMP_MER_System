@@ -70,6 +70,8 @@ function getDescriptionBasedOnCategory(category_code) {
             $('#description').empty();
 
             $('#description').select2();
+            $('#description').append('<option value = ""> Choose... </option>');
+
 
             $.each(data, function (i, item) {
 
@@ -93,26 +95,26 @@ function getDistrictsBasedOnRegion(region_code) {
     };
 
     $.ajax({
-        url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
         data: infotype,
         dataType: 'json',
         success: function (data) {
-
             console.log(data);
-            $('#description').select2("destroy");
-            $('#description').empty();
+            $('#district').select2("destroy");
+            $('#district').empty();
 
-            $('#description').select2();
+            $('#district').select2();
+            $('#district').append('<option value = ""> Choose... </option>');
+
 
             $.each(data, function (i, item) {
 
-                $('#description').append($('<option>', {
-                    value: item.description_code,
-                    text: item.description_name
+                $('#district').append($('<option>', {
+                    value: item.districts_code,
+                    text: item.district_name
                 }));
             });
-            $('#description').trigger("chosen:updated");
 
 
         }
@@ -125,4 +127,11 @@ $("#category").change(function () {
     console.log(category_code);
 
     getDescriptionBasedOnCategory(category_code);
+});
+$("#region").change(function () {
+
+    var region_code = this.value;
+    console.log(region_code);
+
+    getDistrictsBasedOnRegion(region_code);
 });

@@ -30,54 +30,14 @@
                     <div class="row gutter-xs">
                         <div class="card">
                             <div class="card-header">
-                                <strong>New Beneficiary</strong>
+                                <strong>New Beneficiary Form</strong>
                             </div>
                             <div class="card-body">
+                                <div class="text-center"><h4>New Beneficiary Enrollment Form</h4></div>
                                 <form id="beneficiaryForm">
                                     <div class="col-xs-12">
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Beneficiary Name</label>
-                                                <input  class="form-control" type="text" name="beneficiaryName" required>
-                                                <small class="help-block"></small>
-                                            </div>  
-                                            <div class="form-group">
-                                                <label  class="control-label">Business Name</label>
-                                                <input  class="form-control" type="text" name="businessName" required>
-                                                <small class="help-block"></small>
-                                            </div> 
-                                            <div class="form-group">
-                                                <label  class="form-label">Gender</label>
-                                                <select name="gender"  class="form-control select2">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
 
-                                                    <option value="">Choose...</option>
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
-                                                </select>
-
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Email</label>
-                                                <input class="form-control" type="email" name="email" required>
-                                                <small class="help-block"></small>
-                                            </div> 
-
-                                            <div class="form-group">
-                                                <label  class="control-label">Tel NO</label>
-                                                <input class="form-control" type="text" name="conntactNo" required>
-                                                <small class="help-block"></small>
-                                            </div> 
-                                            <div class="form-group">
-                                                <label  class="control-label">Contact Person</label>
-                                                <input  class="form-control" type="text" name="contactPerson" >
-                                                <small class="help-block"></small>
-                                            </div> 
-                                            <div class="form-group">
-                                                <label  class="control-label">Contact Person No.</label>
-                                                <input  class="form-control" type="text" name="contactPersonNo" >
-                                                <small class="help-block"></small>
-                                            </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Fiscal Year</label>
                                                 <select  name="fiscalYear" class="form-control select2">
@@ -93,7 +53,7 @@
                                                 <span class="help-block"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="name-1" class="control-label">Date Registered</label>
+                                                <label for="name-1" class="control-label">Date of  Registration</label>
                                                 <div class="input-group date">
                                                     <input id="demo-datepicker-2" class="form-control" type="text" readonly required>
                                                     <span class="input-group-btn">
@@ -103,12 +63,6 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-
-
-
                                             <div class="form-group">
                                                 <label  class="form-label">Category</label>
                                                 <select name="category" id="category" class="form-control select2">
@@ -120,58 +74,130 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Description</label>
-                                                <select id="description" name="description" class="form-control select2">
+                                                <select name="description" id="description" class="form-control select2">
 
-
-
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="form-label">Region</label>
-                                                <select id="region" name="region" class="form-control select2" >
-                                                    <option value="">Choose...</option>
+                                                    <option value="">Loading...</option>
 
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
+
                                             <div class="form-group">
-                                                <label  class="form-label">District</label>
-                                                <select id="district" name="district" class="form-control select2" required>
-
-
-                                                </select>
-                                                <span class="help-block"></span>
+                                                <label class="control-label"> Name</label>
+                                                <input  class="form-control" type="text" name="beneficiaryName" required>
+                                                <small class="help-block"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label  class="control-label">Business Name</label>
+                                                <input  class="form-control" type="text" name="businessName" required>
+                                                <small class="help-block"></small>
                                             </div> 
-                                            <div class="form-group">
-                                                <label  class="control-label">Community</label>
-                                                <input  class="form-control" type="text" name="community" required>
-                                                <small class="help-block"></small>
-                                            </div>
-                                            <div class="form-group">
 
-                                                <label  class="control-label">GPS Coordinates (Longitude)</label>
-                                                <input class="form-control" type="text" name="longitude" required>
-                                                <small class="help-block"></small>
-                                            </div>
                                             <div class="form-group">
-                                                <label  class="control-label">GPS Coordinates (Latitude)</label>
-                                                <input  class="form-control" type="text" name="latitude" required>
-                                                <small class="help-block"></small>
+                                                <label  class="form-label">Gender</label>
+                                                <select name="gender"  class="form-control select2">
+
+                                                    <option value="">Choose...</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+
+                                                <span class="help-block"></span>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Registered By</label>
-                                                <input  class="form-control" type="text" name="registeredBy" required>
-                                                <small class="help-block"></small>
+
+                                        </div>
+
+                                        <div>
+
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label">Region</label>
+                                                    <select id="region" name="region" class="form-control select2" >
+                                                        <option value="">Choose...</option>
+
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label">District</label>
+                                                    <select id="district" name="district" class="form-control select2" required>
+                                                        <option value="">Loading...</option>
+
+
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div> 
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Community</label>
+                                                    <input  class="form-control" type="text" name="community" required>
+                                                    <small class="help-block"></small>
+                                                </div>
                                             </div>
                                         </div>
 
+                                        <div>
 
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Tel NO</label>
+                                                    <input class="form-control" type="text" name="conntactNo" required>
+                                                    <small class="help-block"></small>
+                                                </div> 
+                                            </div>
+                                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Email</label>
+                                                    <input class="form-control" type="email" name="email" required>
+                                                    <small class="help-block"></small>
+                                                </div> 
+                                            </div>
+
+                                        </div>
+
+                                        <div>
+
+                                            <div class="col-lg-2 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label ">GPS Coordinates :</label>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                                <div class="form-group">
+
+                                                    <label  class="control-label">Longitude</label>
+                                                    <input class="form-control" type="text" name="longitude" required>
+                                                    <small class="help-block"></small>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Latitude</label>
+                                                    <input  class="form-control" type="text" name="latitude" required>
+                                                    <small class="help-block"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <label  class="control-label">Registered By</label>
+
+                                            <select id="region" name="region" class="form-control select2" >
+                                                <option value="">Choose...</option>
+
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-xs-12">
+                                        <br><br>
+                                    </div>
+                                    <div class="col-xs-12 ">
                                         <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-                                            <button class="btn btn-primary pull-right" type="submit">Save</button>
+                                            <button class="btn btn-primary  btn-block pull-right" type="submit">Save</button>
                                         </div>
                                     </div>
                                 </form>

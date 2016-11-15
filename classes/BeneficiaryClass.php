@@ -56,31 +56,38 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $contents = fopen($filecontents, "r");
-
         $createdBy = 'aba';
 
-        while (($emapData = fgetcsv($contents, 10000, ",")) !== FALSE) {
 
-            //It wiil insert a row to our beneficiary table from our csv file`
+        if ($contents !== FALSE) {
+ // fgets() Gets a line from file pointer and read the first line from $handle and ignore it.   
+            fgets($contents);
+            // created loop here
+            while (($emapData = fgetcsv($contents, 10000, ",")) !== FALSE) {
+
+                //It wiil insert a row to our beneficiary table from our csv file`
 //           echo  'name is : '. $emapData[0].'<br>';
 //            echo "INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) "
 //            . "VALUES ('" . mysqli_real_escape_string($conn,$emapData[0]) . "','" . mysqli_real_escape_string($conn,$emapData[1]) . "','" . mysqli_real_escape_string($conn,$emapData[2]) . "','" . mysqli_real_escape_string($conn,$emapData[3]) . "','" . mysqli_real_escape_string($conn,$emapData[4]) . "','" . mysqli_real_escape_string($conn,$emapData[5]) . "','" . mysqli_real_escape_string($conn,$emapData[6]) . "',"
 //                    . "'" . mysqli_real_escape_string($conn,$emapData[7]) . "','" . mysqli_real_escape_string($conn,$emapData[8]) . "','" . mysqli_real_escape_string($conn,$emapData[9]) . "','" . mysqli_real_escape_string($conn,$emapData[10]) . "',"
 //                    . "'" . mysqli_real_escape_string($conn,$createdBy) . "')";
 //           
-            $sql ="INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) "
-            . "VALUES ('" . mysqli_real_escape_string($conn,$emapData[0]) . "','" . mysqli_real_escape_string($conn,$emapData[1]) . "','" . mysqli_real_escape_string($conn,$emapData[2]) . "','" . mysqli_real_escape_string($conn,$emapData[3]) . "','" . mysqli_real_escape_string($conn,$emapData[4]) . "','" . mysqli_real_escape_string($conn,$emapData[5]) . "','" . mysqli_real_escape_string($conn,$emapData[6]) . "',"
-                    . "'" . mysqli_real_escape_string($conn,$emapData[7]) . "','" . mysqli_real_escape_string($conn,$emapData[8]) . "','" . mysqli_real_escape_string($conn,$emapData[9]) . "','" . mysqli_real_escape_string($conn,$emapData[10]) . "',"
-                    . "'" . mysqli_real_escape_string($conn,$createdBy) . "')";
-           
-            $result = mysqli_query($conn, $sql);
-           if (!$result) {
-                echo "<script type=\"text/javascript\">
+                $sql = "INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) "
+                        . "VALUES ('" . mysqli_real_escape_string($conn, $emapData[0]) . "','" . mysqli_real_escape_string($conn, $emapData[1]) . "','" . mysqli_real_escape_string($conn, $emapData[2]) . "','" . mysqli_real_escape_string($conn, $emapData[3]) . "','" . mysqli_real_escape_string($conn, $emapData[4]) . "','" . mysqli_real_escape_string($conn, $emapData[5]) . "','" . mysqli_real_escape_string($conn, $emapData[6]) . "',"
+                        . "'" . mysqli_real_escape_string($conn, $emapData[7]) . "','" . mysqli_real_escape_string($conn, $emapData[8]) . "','" . mysqli_real_escape_string($conn, $emapData[9]) . "','" . mysqli_real_escape_string($conn, $emapData[10]) . "',"
+                        . "'" . mysqli_real_escape_string($conn, $createdBy) . "')";
+
+                $result = mysqli_query($conn, $sql);
+                if (!$result) {
+                    echo "<script type=\"text/javascript\">
 							alert(\"Invalid File:Please Upload CSV File.\");
 							window.location = \"bulk-beneficiary-upload\"
 						</script>";
+                }
             }
         }
+
+
         fclose($contents);
         echo "<script type=\"text/javascript\">
 					
