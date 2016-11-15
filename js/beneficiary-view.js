@@ -11,16 +11,42 @@ $('#beneficiaryForm').on('submit', function (e) {
     $('input:submit').attr("disabled", true);
 
     $.ajax({
-        url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
+        url: '../controllers/PostController.php?_=' + new Date().getTime(),
         type: "POST",
         data: formData,
+        dataType: 'json',
         success: function (data) {
             $('input:submit').attr("disabled", false);
             console.log(data);
             // $("#loader").hide();
 
             var successStatus = data.success;
+            console.log(successStatus);
             document.getElementById("beneficiaryForm").reset();
+            $('#description').select2("destroy");
+            $('#description').empty();
+            $('#description').select2();
+            $('#description').append('<option value = ""> Loading... </option>');
+
+            $('#district').select2("destroy");
+            $('#district').empty();
+            $('#district').select2();
+            $('#district').append('<option value = ""> Loading... </option>');
+
+            $('#region').select2("destroy");
+            $('#region').select2();
+
+            $('#gender').select2("destroy");
+            $('#gender').select2();
+
+            $('#category').select2("destroy");
+            $('#category').select2();
+
+            $('#category').select2("destroy");
+            $('#category').select2();
+
+            $('#fiscalYear').select2("destroy");
+            $('#fiscalYear').select2();
 
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);

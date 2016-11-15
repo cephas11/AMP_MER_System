@@ -60,7 +60,7 @@ class BeneficiaryClass {
 
 
         if ($contents !== FALSE) {
- // fgets() Gets a line from file pointer and read the first line from $handle and ignore it.   
+            // fgets() Gets a line from file pointer and read the first line from $handle and ignore it.   
             fgets($contents);
             // created loop here
             while (($emapData = fgetcsv($contents, 10000, ",")) !== FALSE) {
@@ -174,6 +174,66 @@ class BeneficiaryClass {
         }
 
         echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function setBeneficiary($info) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        // print_r($info);
+//        $fiscalYear = $info['fiscalYear'];
+//        $category = $info['category'];
+//        $description = $info['description'];
+//        $beneficiaryName = $info['beneficiaryName'];
+//        $businessName = $info['businessName'];
+//        $gender = $info['gender'];
+//        $region = $info['region'];
+//        $district = $info['district'];
+//        $community = $info['community'];
+//        $conntactNo = $info['conntactNo'];
+//        $email = $info['email'];
+//        $longitude = $info['longitude'];
+//        $latitude = $info['latitude'];
+//        $registeredBy = $info['registeredBy'];
+
+        $createdby = 'admin';
+        $datecreated = date("Y-m-d");
+        $exists = $this->checkBeneficiaryExistence($info['email']);
+        if ($exists > 0) {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'Beneficiary already exist ';
+            echo json_encode($this->response);
+        } else {
+            $code = 'BENE' . $this->generateuniqueCode(10);
+            $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
+                    . " VALUES "
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $info['beneficiaryName']) . "','" . mysqli_real_escape_string($conn, $info['businessName']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $info['gender']) . "','" . mysqli_real_escape_string($conn, $info['email']) . "','" . mysqli_real_escape_string($conn, $info['contactno']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $info['category']) . "','" . mysqli_real_escape_string($conn, $info['description']) . "','" . mysqli_real_escape_string($conn, $info['region']) . "','" . mysqli_real_escape_string($conn, $info['district']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $info['community']) . "','" . mysqli_real_escape_string($conn, $info['longitude']) . "','" . mysqli_real_escape_string($conn, $info['latitude']) . "','" . mysqli_real_escape_string($conn, $info['fiscalYear']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
+
+            if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = 'Data saved successfully';
+                echo json_encode($this->response);
+            } else {
+                $this->response['success'] = '0';
+                $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+                echo json_encode($this->response);
+            }
+        }
+
+        $connection->closeConnection($conn);
+    }
+
+    private function checkBeneficiaryExistence($email) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE email='" . mysqli_real_escape_string($conn, $email) . "'");
+
+        return mysqli_num_rows($query);
+
         $connection->closeConnection($conn);
     }
 
