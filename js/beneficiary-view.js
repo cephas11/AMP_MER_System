@@ -95,7 +95,7 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#category').append($('<option>', {
-                value: item.name,
+                value: item.code,
                 text: item.name
             }));
         });
@@ -142,7 +142,7 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#registeredBy').append($('<option>', {
-                value: item.code,
+                value: item.name,
                 text: item.name
             }));
         });
