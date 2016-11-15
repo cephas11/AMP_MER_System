@@ -37,10 +37,21 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong> Beneficiaries List</strong>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary "href="beneficiary-form" >Create Beneficiary</a>
+                                                <a  class="btn btn-primary" href="bulk-beneficiary-upload" >Bulk Upload</a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-12">
+                                <div class="col-lg-12">
                                     <div class="panel">
+
                                         <div class="panel-body">
 
                                             <div class="table-responsive">
