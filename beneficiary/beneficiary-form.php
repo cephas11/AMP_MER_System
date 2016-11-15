@@ -151,7 +151,7 @@
                                             <div class="col-lg-8 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Email</label>
-                                                    <input class="form-control" type="email" name="email" required>
+                                                    <input class="form-control" type="email" name="email" >
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
@@ -170,14 +170,14 @@
                                                 <div class="form-group">
 
                                                     <label  class="control-label">Longitude</label>
-                                                    <input class="form-control" type="text" name="longitude" required>
+                                                    <input class="form-control" type="text" name="longitude" value="0">
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
                                             <div class="col-lg-5 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Latitude</label>
-                                                    <input  class="form-control" type="text" name="latitude" required>
+                                                    <input  class="form-control" type="text" name="latitude" value="0">
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
@@ -185,7 +185,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Registered By</label>
 
-                                            <select id="registeredBy" name="registeredBy" class="form-control select2" >
+                                            <select id="registeredBy" name="registeredBy" class="form-control select2" required >
                                                 <option value="">Choose...</option>
 
                                             </select>
