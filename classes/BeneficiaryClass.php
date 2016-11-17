@@ -198,12 +198,13 @@ class BeneficiaryClass {
 
         $createdby = 'admin';
         $datecreated = date("Y-m-d");
-        $exists = $this->checkBeneficiaryExistence($info['email']);
-        if ($exists > 0) {
-            $this->response['success'] = '0';
-            $this->response['message'] = 'Beneficiary already exist ';
-            echo json_encode($this->response);
-        } else {
+       // $exists = $this->checkBeneficiaryExistence($info['email']);
+//        if ($exists > 0) {
+//            $this->response['success'] = '0';
+//            $this->response['message'] = 'Beneficiary already exist ';
+//            echo json_encode($this->response);
+//        } 
+        
             $code = 'BENE' . $this->generateuniqueCode(10);
             $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
                     . " VALUES "
@@ -222,7 +223,7 @@ class BeneficiaryClass {
                 $this->response['message'] = 'couldnt save' . mysqli_error($conn);
                 echo json_encode($this->response);
             }
-        }
+        
 
         $connection->closeConnection($conn);
     }
@@ -278,6 +279,27 @@ class BeneficiaryClass {
         $connection->closeConnection($conn);
     }
 
+    public function deleteBeneficiary($code){
+        
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "DELETE  FROM beneficiaries WHERE code='" . mysqli_real_escape_string($conn, $code) . "'");
+
+        
+        if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = 'Beneficiary Data deleted successfully';
+                echo json_encode($this->response);
+            } else {
+                $this->response['success'] = '0';
+                $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+                echo json_encode($this->response);
+            }
+        
+        $connection->closeConnection($conn);
+        
+    }
+    
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

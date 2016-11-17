@@ -104,6 +104,42 @@
                     </div>
                 </div>
 
+                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form method="post" id="deleteRegionDistrictForm">
+                                <div class="modal-body">
+                                    <div>
+                                        <p>
+                                            Are you sure you want to delete ? 
+                                        </p>
+                                    </div>
+                                    <input type="hidden" id="code" name="code"/>
+                                    <input type="hidden"  name="type" value="deleteRegionDistrict"/>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    <button type="submit"  class="btn btn-primary">YES</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                    <div class="modal-dialog" role="document">
+
+
+                        <div  id="loader" style="margin-top:30% ">
+                            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                            <span class="loader-text">Wait...</span>
+                        </div>
+
+
+                    </div>
+                </div>
+                
             </div>
             <?php
             require_once '../footer.php';
