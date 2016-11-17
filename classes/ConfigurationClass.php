@@ -1,7 +1,7 @@
 <?php
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
-require_once $path .'/databaseConnectionClass.php';
+require_once $path . '/databaseConnectionClass.php';
 
 class ConfigurationClass {
 
@@ -21,7 +21,7 @@ class ConfigurationClass {
             $this->response['success'] = '1';
             $this->response['message'] = 'Region saved successfully';
             echo json_encode($this->response);
- 	 //   $query->close();
+            //   $query->close();
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt save' . mysqli_error($conn);
@@ -33,33 +33,33 @@ class ConfigurationClass {
     public function getRegion() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-	$query = mysqli_query($conn, "SELECT * FROM region WHERE active=0");
-        
+        $query = mysqli_query($conn, "SELECT * FROM region WHERE active=0");
+
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
             $feedback = json_encode($results);
-	 //  $query->close();
+            //  $query->close();
         } else {
 
             $feedback = json_encode($this->response);
         }
-	
+
         echo $feedback;
         $connection->closeConnection($conn);
     }
 
-       public function deleteRegion($code) {
+    public function deleteRegion($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-	$query = mysqli_query($conn, "UPDATE region SET active = 1 WHERE code='".$code."'");
-        
-      if ($query) {
+        $query = mysqli_query($conn, "UPDATE region SET active = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Region deleted successfully';
             echo json_encode($this->response);
- 	 //   $query->close();
+            //   $query->close();
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
@@ -67,7 +67,7 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
-    
+
     public function setDistrict($name) {
 
         $connection = new databaseConnection(); //i created a new object
@@ -90,7 +90,7 @@ class ConfigurationClass {
     public function getDistricts() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, " SELECT * FROM districts ");
+        $query = mysqli_query($conn, " SELECT * FROM districts WHERE active=0");
         //print_r($query);
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -106,11 +106,29 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
+    public function deleteDistrict($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "UPDATE districts SET active = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'District deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
     public function getUnAssignedDistricts() {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM unassigned_districts_view");
+        $query = mysqli_query($conn, "SELECT * FROM unassigned_districts_view WHERE active=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -130,14 +148,13 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-       
+
         if (sizeof($districts) > 0) {
             foreach ($districts as $district) {
-                 $code = $this->generateuniqueCode(8);
+                $code = $this->generateuniqueCode(8);
                 $query = mysqli_query($conn, "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')");
-          
-              //  echo  "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')";
-                
+
+                //  echo  "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')";
             }
         }
 
@@ -156,7 +173,7 @@ class ConfigurationClass {
     public function getRegionDistricts() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM region_districts_view");
+        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE active=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -169,6 +186,25 @@ class ConfigurationClass {
         }
 
         echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function deleteRegionDistricts($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "DELETE FROM region_districts  WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
         $connection->closeConnection($conn);
     }
 
@@ -189,12 +225,11 @@ class ConfigurationClass {
         }
     }
 
-
     public function getCategories() {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM categories");
+        $query = mysqli_query($conn, "SELECT * FROM categories WHERE active=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -210,6 +245,25 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
+    
+    public function deleteCategory($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "UPDATE categories SET active = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Category deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
     public function setDescription($name) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -230,7 +284,7 @@ class ConfigurationClass {
     public function getDescription() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM description");
+        $query = mysqli_query($conn, "SELECT * FROM description WHERE active=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -246,10 +300,29 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
+    
+        public function deleteDescription($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "UPDATE description SET active = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Description deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
     public function getUnAssignedDescription() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM unassigned_descriptions_view");
+        $query = mysqli_query($conn, "SELECT * FROM unassigned_descriptions_view WHERE active=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -265,14 +338,14 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    public function setCategoryDescription($category,$descriptions) {
+    public function setCategoryDescription($category, $descriptions) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-       
+
         if (sizeof($descriptions) > 0) {
             foreach ($descriptions as $desc) {
-                 $code = $this->generateuniqueCode(8);
+                $code = $this->generateuniqueCode(8);
                 $query = mysqli_query($conn, "INSERT INTO description_categories(code,description_code,category_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $desc) . "','" . mysqli_real_escape_string($conn, $category) . "')");
             }
         }
@@ -309,10 +382,30 @@ class ConfigurationClass {
     }
     
     
+    public function deleteCategoryDescriptions($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE description_categories SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "DELETE FROM description_categories  WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+
     public function getDistrictsBasedOnRegion($regionCode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='".$regionCode."'");
+        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='" . $regionCode . "'");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -327,12 +420,11 @@ class ConfigurationClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
-    
-    
-      public function getDescriptionsBasedOnCategory($categoryCode) {
+
+    public function getDescriptionsBasedOnCategory($categoryCode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM description_categories_view WHERE category_code='".$categoryCode."'");
+        $query = mysqli_query($conn, "SELECT * FROM description_categories_view WHERE category_code='" . $categoryCode . "'");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -347,8 +439,8 @@ class ConfigurationClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
-    
-     public function getRegisters() {
+
+    public function getRegisters() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM registers");
@@ -367,6 +459,26 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
     
+      public function deleteRegistrar($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "DELETE FROM registers  WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Register deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

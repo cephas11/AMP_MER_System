@@ -57,14 +57,14 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
-    
+
     $.ajax({
-         url: '../controllers/pairRegionDistrictsController.php?_=' + new Date().getTime(),
+        url: '../controllers/pairRegionDistrictsController.php?_=' + new Date().getTime(),
         type: "POST",
         data: formData,
         dataType: 'json',
         success: function (data) {
-            console.log('response from server :'+data);
+            console.log('response from server :' + data);
 
 
 
@@ -95,10 +95,10 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                $('#districts').select2("destroy");
-                $('#districts').select2("");
+                $('#districts').select2("val", "");
+                $('#districts').select2();
 
-                $('#region').html("");
+                $('#districts').html("");
 
                 $('#region').select2("destroy");
                 $('#region').select2("");
@@ -163,7 +163,7 @@ function getRegionDistricts()
                     // represent columns as array
                     r[++j] = '<td>' + value.region_name + '</td>';
                     r[++j] = '<td>' + value.district_name + '</td>';
-                    r[++j] = '<td><button onclick="deleteRegion(\'' + value.code + '\',\'' + value.title + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="deleteRegionDistrict(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -177,3 +177,72 @@ function getRegionDistricts()
         }
     });
 }
+
+
+
+function deleteRegionDistrict(code) {
+    console.log(code);
+    $('#code').val(code);
+
+    $('#confirmModal').modal('show');
+}
+
+$('#deleteRegionDistrictForm').on('submit', function (e) {
+    e.preventDefault();
+    $('input:submit').attr("disabled", true);
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('#confirmModal').modal('hide');
+    $('#loaderModal').modal('show');
+
+    $.ajax({
+        url: '../controllers/deleteController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#loaderModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("deleteRegionDistrictForm").reset();
+
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#districts').select2("val", "");
+                $('#districts').select2();
+
+                $('#districts').html("");
+                getUnAssignedDistricts();
+
+                getRegionDistricts();
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+});
+
+
+
+

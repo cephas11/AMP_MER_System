@@ -16,6 +16,30 @@ if (isset($_REQUEST['type'])) {
             $code = $_REQUEST['code'];
            $deleteRegion = new ConfigurationClass();
            $deleteRegion->deleteRegion($code);
+        }else if ($type == 'deleteDistrict') {
+            $code = $_REQUEST['code'];
+           $deleteDistrict = new ConfigurationClass();
+           $deleteDistrict->deleteDistrict($code);
+        }else if ($type == 'deleteRegionDistrict') {
+            $code = $_REQUEST['code'];
+           $deleteDistrict = new ConfigurationClass();
+           $deleteDistrict->deleteRegionDistricts($code);
+        }else if ($type == 'deleteCategory') {
+            $code = $_REQUEST['code'];
+           $deleteCategory = new ConfigurationClass();
+           $deleteCategory->deleteCategory($code);
+        }else if ($type == 'deleteDescription') {
+            $code = $_REQUEST['code'];
+           $deleteDescription = new ConfigurationClass();
+           $deleteDescription->deleteDescription($code);
+        }else if ($type == 'deleteDescriptionCategory') {
+            $code = $_REQUEST['code'];
+           $deleteCategoryDescription = new ConfigurationClass();
+           $deleteCategoryDescription->deleteCategoryDescriptions($code);
+        }else if ($type == 'deleteRegistrar') {
+            $code = $_REQUEST['code'];
+           $deleteRegistrar = new ConfigurationClass();
+           $deleteRegistrar->deleteRegistrar($code);
         }
     } else {
         echo 'provide type';

@@ -12,7 +12,7 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
 
-      console.log('data'+data);
+        console.log('data' + data);
         $.each(data, function (i, item) {
 
             $('#categories').append($('<option>', {
@@ -39,7 +39,7 @@ function getUnAssignedDescription() {
         dataType: 'json',
         success: function (data) {
 
-           
+
             $.each(data, function (i, item) {
 
                 $('#descriptions').append($('<option>', {
@@ -60,8 +60,8 @@ $('#saveCategoryDescriptionForm').on('submit', function (e) {
 
 
     var formData = $(this).serialize();
-       console.log(formData);
-   
+    console.log(formData);
+
     $('input:submit').attr("disabled", true);
 
     $.ajax({
@@ -70,9 +70,9 @@ $('#saveCategoryDescriptionForm').on('submit', function (e) {
         data: formData,
         dataType: 'json',
         success: function (data) {
-            
+
             console.log(data);
-        $('input:submit').attr("disabled", false);
+            $('input:submit').attr("disabled", false);
 
             $('#descriptionCategoryModal').modal('hide');
             var successStatus = data.success;
@@ -100,11 +100,12 @@ $('#saveCategoryDescriptionForm').on('submit', function (e) {
                     "hideMethod": "fadeOut"
                 }
                 $('#categories').select2("destroy");
-                $('#categories').select2("");
-                
+                $('#categories').select2();
+
+                $('#descriptions').select2("val", "destroy");
+                $('#descriptions').select2();
                 $('#descriptions').html("");
-                $('#descriptions').select2("destroy");
-                $('#descriptions').select2("");
+
                 getCategoryDescriptions();
                 getUnAssignedDescription();
 
@@ -167,7 +168,7 @@ function getCategoryDescriptions()
                     // represent columns as array
                     r[++j] = '<td>' + value.category_name + '</td>';
                     r[++j] = '<td>' + value.description_name + '</td>';
-                    r[++j] = '<td><button onclick="deleteRegion(\'' + value.code + '\',\'' + value.title + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="deleteDescriptionCategory(\'' + value.code + '\',\'' + value.title + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -181,3 +182,66 @@ function getCategoryDescriptions()
         }
     });
 }
+
+function deleteDescriptionCategory(code) {
+    console.log(code);
+    $('#code').val(code);
+    $('#confirmModal').modal('show');
+}
+
+$('#deleteDescriptionCategoryForm').on('submit', function (e) {
+    e.preventDefault();
+    $('input:submit').attr("disabled", true);
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('#confirmModal').modal('hide');
+    $('#loaderModal').modal('show');
+
+    $.ajax({
+        url: '../controllers/deleteController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#loaderModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("deleteDescriptionCategoryForm").reset();
+
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#descriptions').select2("val", "");
+                $('#descriptions').select2();
+                $('#descriptions').html("");
+
+                
+                getUnAssignedDescription();
+                getCategoryDescriptions();
+
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+});
