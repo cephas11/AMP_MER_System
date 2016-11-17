@@ -58,10 +58,9 @@ $('#saveDescriptionForm').on('submit', function (e) {
             }
         });
 
-    
-
-
 });
+
+
 getDescription();
 function getDescription()
 {

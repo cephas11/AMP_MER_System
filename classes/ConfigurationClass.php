@@ -33,7 +33,7 @@ class ConfigurationClass {
     public function getRegion() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-	$query = mysqli_query($conn, "SELECT * FROM region");
+	$query = mysqli_query($conn, "SELECT * FROM region WHERE active=0");
         
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -50,6 +50,24 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
+       public function deleteRegion($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+	$query = mysqli_query($conn, "UPDATE region SET active = 1 WHERE code='".$code."'");
+        
+      if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Region deleted successfully';
+            echo json_encode($this->response);
+ 	 //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
     public function setDistrict($name) {
 
         $connection = new databaseConnection(); //i created a new object

@@ -278,6 +278,27 @@ class BeneficiaryClass {
         $connection->closeConnection($conn);
     }
 
+    public function deleteBeneficiary($code){
+        
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "DELETE  FROM beneficiaries WHERE code='" . mysqli_real_escape_string($conn, $code) . "'");
+
+        
+        if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = 'Beneficiary Data deleted successfully';
+                echo json_encode($this->response);
+            } else {
+                $this->response['success'] = '0';
+                $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+                echo json_encode($this->response);
+            }
+        
+        $connection->closeConnection($conn);
+        
+    }
+    
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

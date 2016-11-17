@@ -101,10 +101,13 @@ $('#saveCategoryDescriptionForm').on('submit', function (e) {
                 }
                 $('#categories').select2("destroy");
                 $('#categories').select2("");
-
+                
+                $('#descriptions').html("");
                 $('#descriptions').select2("destroy");
                 $('#descriptions').select2("");
                 getCategoryDescriptions();
+                getUnAssignedDescription();
+
             }
 //            
         },

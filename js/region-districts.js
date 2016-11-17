@@ -98,9 +98,13 @@ $('#saveRegionDistrictsForm').on('submit', function (e) {
                 $('#districts').select2("destroy");
                 $('#districts').select2("");
 
+                $('#region').html("");
+
                 $('#region').select2("destroy");
                 $('#region').select2("");
                 getRegionDistricts();
+                getUnAssignedDistricts();
+
             }
         },
         error: function (jXHR, textStatus, errorThrown) {
