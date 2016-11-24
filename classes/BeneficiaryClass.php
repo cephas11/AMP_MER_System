@@ -180,38 +180,19 @@ class BeneficiaryClass {
     public function setBeneficiary($info) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        // print_r($info);
-//        $fiscalYear = $info['fiscalYear'];
-//        $category = $info['category'];
-//        $description = $info['description'];
-//        $beneficiaryName = $info['beneficiaryName'];
-//        $businessName = $info['businessName'];
-//        $gender = $info['gender'];
-//        $region = $info['region'];
-//        $district = $info['district'];
-//        $community = $info['community'];
-//        $conntactNo = $info['conntactNo'];
-//        $email = $info['email'];
-//        $longitude = $info['longitude'];
-//        $latitude = $info['latitude'];
-//        $registeredBy = $info['registeredBy'];
-
+  
         $createdby = 'admin';
         $datecreated = date("Y-m-d");
-       // $exists = $this->checkBeneficiaryExistence($info['email']);
-//        if ($exists > 0) {
-//            $this->response['success'] = '0';
-//            $this->response['message'] = 'Beneficiary already exist ';
-//            echo json_encode($this->response);
-//        } 
+ 
         
             $code = 'BENE' . $this->generateuniqueCode(10);
-            $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
+            $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,educational_level,address,altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
                     . " VALUES "
                     . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $info['beneficiaryName']) . "','" . mysqli_real_escape_string($conn, $info['businessName']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $info['gender']) . "','" . mysqli_real_escape_string($conn, $info['email']) . "','" . mysqli_real_escape_string($conn, $info['contactno']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $info['category']) . "','" . mysqli_real_escape_string($conn, $info['description']) . "','" . mysqli_real_escape_string($conn, $info['region']) . "','" . mysqli_real_escape_string($conn, $info['district']) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $info['community']) . "','" . mysqli_real_escape_string($conn, $info['longitude']) . "','" . mysqli_real_escape_string($conn, $info['latitude']) . "','" . mysqli_real_escape_string($conn, $info['fiscalYear']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $info['community']) . "','" . mysqli_real_escape_string($conn, $info['educational_level']) . "','" . mysqli_real_escape_string($conn, $info['address']) . "','" . mysqli_real_escape_string($conn, $info['altcontactno']) . "','" . mysqli_real_escape_string($conn, $info['registered_business']) . "','" . mysqli_real_escape_string($conn, $info['ownership_type']) . "','" . mysqli_real_escape_string($conn, $info['establishment_years']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $info['longitude']) . "','" . mysqli_real_escape_string($conn, $info['latitude']) . "','" . mysqli_real_escape_string($conn, $info['fiscalYear']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
 
             if ($query) {
@@ -311,3 +292,18 @@ class BeneficiaryClass {
     }
 
 }
+      // print_r($info);
+//        $fiscalYear = $info['fiscalYear'];
+//        $category = $info['category'];
+//        $description = $info['description'];
+//        $beneficiaryName = $info['beneficiaryName'];
+//        $businessName = $info['businessName'];
+//        $gender = $info['gender'];
+//        $region = $info['region'];
+//        $district = $info['district'];
+//        $community = $info['community'];
+//        $conntactNo = $info['conntactNo'];
+//        $email = $info['email'];
+//        $longitude = $info['longitude'];
+//        $latitude = $info['latitude'];
+//        $registeredBy = $info['registeredBy'];

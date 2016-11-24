@@ -55,7 +55,7 @@ function getAllBeneficiaries()
                     var j = -1;
                     var r = new Array();
                     r[++j] = '<td>' + value.code + '</td>';
-                    r[++j] = '<td>' + value.name + '</td>';
+                    r[++j] = '<td lass="beneficiary-name">' + value.name + '</td>';
                     r[++j] = '<td>' + value.business_name + '</td>';
                     r[++j] = '<td>' + value.gender + '</td>';
                     r[++j] = '<td>' + value.email + '</td>';
@@ -74,7 +74,7 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.datecreated + '</td>';
                     r[++j] = '<td>' + value.modon + '</td>';
                     r[++j] = '<td>' + value.modby + '</td>';
-                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
+                    r[++j] = '<td><button onclick="editBeneficiary()" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
                               <button onclick="deleteBeneficiary(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNum = rowNum + 1;
@@ -101,6 +101,13 @@ function deleteBeneficiary(code, title) {
 }
 
 
+function editBeneficiary() {
+    $('#editModal').modal('show');
+
+    document.getElementById('ecthh').html = this.parentElement.parentElement.getElementsByClassName('beneficiary-name')[0].innerText;
+
+}
+
 $('#deleteBeneficiaryForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
@@ -110,44 +117,44 @@ $('#deleteBeneficiaryForm').on('submit', function (e) {
     $('#loaderModal').modal('show');
 
     $.ajax({
-            url: '../controllers/deleteController.php?_=' + new Date().getTime(),
-            type: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                // $("#loader").hide();
-                 $('input:submit').attr("disabled", false);
-                $('#loaderModal').modal('hide');
-                var successStatus = data.success;
-                document.getElementById("deleteBeneficiaryForm").reset();
+        url: '../controllers/deleteController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#loaderModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("deleteBeneficiaryForm").reset();
 
-                if (successStatus == 1) {
-                    Command: toastr["success"](data.message, "Success");
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                    getAllBeneficiaries();
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 }
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                alert(errorThrown);
+                getAllBeneficiaries();
             }
-        });
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
 
 });
 
