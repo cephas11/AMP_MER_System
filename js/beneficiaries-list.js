@@ -74,7 +74,7 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.datecreated + '</td>';
                     r[++j] = '<td>' + value.modon + '</td>';
                     r[++j] = '<td>' + value.modby + '</td>';
-                    r[++j] = '<td><button onclick="editBeneficiary()" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
+                    r[++j] = '<td><button type="button" class="btn btn-outline-info btn-sm btn-edit" data-toggle="modal" data-target="#editModal" data-whatever="@mdo">Edit</button>\n\
                               <button onclick="deleteBeneficiary(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNum = rowNum + 1;

@@ -54,8 +54,7 @@ $('#beneficiaryForm').on('submit', function (e) {
             $('#registered_business').select2("destroy");
             $('#registered_business').select2();
 
-            $('#ownership_type').select2("destroy");
-            $('#ownership_type').select2();
+            
 
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);

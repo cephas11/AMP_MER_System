@@ -54,14 +54,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="name-1" class="control-label">Date of  Registration</label>
-                                                <div class="input-group date">
-                                                    <input id="demo-datepicker-2" name="dateRegistered" class="form-control" type="text" readonly required>
-                                                    <span class="input-group-btn">
-                                                        <button id="demo-datepicker-2-btn" class="btn btn-primary" type="button">
-                                                            <span class="icon icon-calendar"></span>
-                                                        </button>
-                                                    </span>
+                                                <div class="input-with-icon">
+                                                    <input class="form-control" type="text" name="dateRegistered" data-provide="datepicker">
+                                                    <span class="icon icon-calendar input-icon"></span>
                                                 </div>
+                                                
+                                                
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Category</label>
