@@ -41,7 +41,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="pull-right">
-                                            <a class="btn btn-primary "href="beneficiary-form" >Create Beneficiary</a>
+                                            <a class="btn btn-primary "href="beneficiary-form" >New Beneficiary</a>
                                             <a  class="btn btn-primary" href="bulk-beneficiary-upload" >Bulk Upload</a>
 
                                         </div>
@@ -140,6 +140,31 @@
                     </div>
                 </div>
 
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form method="post" id="deleteBeneficiaryForm">
+                                <div class="modal-body">
+                                    <div>
+                                        <p>
+                                            Are you sure you want to delete this beneficiary?.<span class="holder" id="ecthh"></span> 
+                                        </p>
+                                    </div>
+                                    <input type="hidden" id="code" name="code"/>
+                                    <input type="hidden"  name="type" value="deleteBeneficiary"/>
+
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    <button type="submit" id="deleteBeneficiary" class="btn btn-primary">YES</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                
             </div>
             <?php
             require_once '../footer.php';

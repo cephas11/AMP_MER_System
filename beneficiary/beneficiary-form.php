@@ -54,14 +54,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="name-1" class="control-label">Date of  Registration</label>
-                                                <div class="input-group date">
-                                                    <input id="demo-datepicker-2" name="dateRegistered" class="form-control" type="text" readonly required>
-                                                    <span class="input-group-btn">
-                                                        <button id="demo-datepicker-2-btn" class="btn btn-primary" type="button">
-                                                            <span class="icon icon-calendar"></span>
-                                                        </button>
-                                                    </span>
+                                                <div class="input-with-icon">
+                                                    <input class="form-control" type="text" name="dateRegistered" data-provide="datepicker">
+                                                    <span class="icon icon-calendar input-icon"></span>
                                                 </div>
+                                                
+                                                
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Category</label>
@@ -105,6 +103,25 @@
                                                 <span class="help-block"></span>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label  class="form-label">Educational Level</label>
+                                                <select name="educational_level" id="educational_level" class="form-control select2">
+
+                                                    <option value="">Choose...</option>
+                                                    <option value="Primary">Primary</option>
+                                                    <option value="Secondary">Secondary</option>
+                                                    <option value="Tertiary">Tertiary</option>
+                                                    <option value="None">None</option>
+                                                </select>
+
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label  class="control-label">Address</label>
+                                                <input  class="form-control" type="text" name="address" required>
+                                                <small class="help-block"></small>
+                                            </div>
                                         </div>
 
                                         <div>
@@ -140,7 +157,6 @@
                                         </div>
 
                                         <div>
-
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Tel NO</label>
@@ -148,16 +164,55 @@
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
-                                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Alternate Phone NO</label>
+                                                    <input class="form-control" type="text" name="altcontactno" required>
+                                                    <small class="help-block"></small>
+                                                </div> 
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Email</label>
                                                     <input class="form-control" type="email" name="email" >
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
-
+                                      
                                         </div>
+                                        <div class="col-lg-12 col-sm-12 col-md-12">
+                                                  <div class="form-group">
+                                                <label  class="form-label">Registered Business</label>
+                                                <select name="registered_business" id="registered_business" class="form-control select2">
 
+                                                    <option value="">Choose...</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+
+                                                </select>
+
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label  class="form-label">Ownership Type</label>
+                                                <select name="ownership_type" id="ownership_type" class="form-control select2">
+
+                                                    <option value="">Choose...</option>
+                                                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                                    <option value="Partnership">Partnership</option>
+                                                    <option value="Limited Liability">Limited Liability</option>
+
+                                                </select>
+
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label  class="control-label">Years Of Establishment</label>
+                                                <input  class="form-control" type="text" name="establishment_years" required>
+                                                <small class="help-block"></small>
+                                            </div>
+                                        </div>
                                         <div>
 
                                             <div class="col-lg-2 col-md-12 col-sm-12">

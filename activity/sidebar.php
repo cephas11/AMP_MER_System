@@ -23,13 +23,13 @@
                         </a>
                         <ul class="sidenav-subnav collapse">
 
-                            <li><a href="region">Region Configuration</a></li>
-                            <li><a href="districts">Districts Configuration</a></li>
-                            <li><a href="region-districts">Pair Region and Districts </a></li>
-                            <li><a href="categories">Categories Configuration</a></li>
-                            <li><a href="description">Description Configuration</a></li>
-                            <li><a href="description-categories">Pair Description and Category Configuration</a></li>
-                            <li><a href="registers">Registers</a></li>
+                            <li><a href="../configuration/region">Region Configuration</a></li>
+                            <li><a href="../configuration/districts">Districts Configuration</a></li>
+                            <li><a href="../configuration/region-districts">Pair Region and Districts </a></li>
+                            <li><a href="../configuration/categories">Categories Configuration</a></li>
+                            <li><a href="../configuration/description">Description Configuration</a></li>
+                            <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
+                            <li><a href="../configuration/registers">Registers</a></li>
 
                         </ul>
                     </li>
@@ -40,7 +40,6 @@
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
-
                     <li class="sidenav-item has-subnav">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-home"></span>
@@ -48,7 +47,7 @@
                         </a>
                         <ul class="sidenav-subnav collapse">
 
-                            <li><a href="../activity/completion-tool">Completion Tool </a></li>
+                            <li><a href="completion-tool">Completion Tool </a></li>
 
                         </ul>
                     </li>

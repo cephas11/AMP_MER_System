@@ -48,6 +48,14 @@ $('#beneficiaryForm').on('submit', function (e) {
             $('#fiscalYear').select2("destroy");
             $('#fiscalYear').select2();
 
+            $('#ownership_type').select2("destroy");
+            $('#ownership_type').select2();
+
+            $('#registered_business').select2("destroy");
+            $('#registered_business').select2();
+
+            
+
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);
                 Command: toastr["success"](data.message, "Success");
