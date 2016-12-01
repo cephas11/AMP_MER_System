@@ -150,21 +150,21 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">Male Participants</label>
-                                                    <input  class="form-control" type="text" name="maleParticipants" readonly required>
+                                                    <input  class="form-control" type="text" id="maleParticipants" name="maleParticipants" readonly required>
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">Female Participants</label>
-                                                    <input  class="form-control" type="text" name="femaleParticipants" readonly required>
+                                                    <input  class="form-control" type="text" id="femaleParticipants" name="femaleParticipants" readonly required>
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Total Participants</label>
-                                                    <input  class="form-control" type="text" name="totalParticipants" readonly required>
+                                                    <input  class="form-control" type="text" id="totalParticipants" name="totalParticipants" readonly required>
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
@@ -200,7 +200,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">Participants for <span class="holder">Ahanta west </span> district</h4>
+                                <h4 class="modal-title" id="exampleModalLabel">Participants for <span class="holder"> </span> </h4>
                             </div>
                             <form id="attachParticipantsForm" >
                                 <div class="modal-body">

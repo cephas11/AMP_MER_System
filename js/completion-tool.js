@@ -126,6 +126,8 @@ $("#region").change(function () {
 $("#category").change(function () {
     var region = $('#region').val();
     var category = this.value;
+  var categoryText = $('option:selected', $(this)).text();
+    $('.holder').html(categoryText+'(s)');
     console.log('dnd' + category + ' ' + region);
     $('#participantsTbl').dataTable().fnDestroy();
     getBeneficiaries(region, category);
@@ -193,6 +195,8 @@ $('#attachParticipantsForm').on('submit', function (e) {
     var rows = $('tr.selected');
     var gender = [];
     var ids = [];
+    var males = 0;
+    var females = 0;
     var rowData = datatable.rows(rows).data();
     var rows_selected = datatable.column(0).checkboxes.selected();
 
@@ -208,4 +212,17 @@ $('#attachParticipantsForm').on('submit', function (e) {
     console.log(ids);
     console.log(gender);
     console.log(ids.length);
+    jQuery.each(gender, function (i, val) {
+        if (val === "male") {
+             console.log('male is ' + val); 
+            males = males+1 ;
+        } else {
+              females = females+1 ;
+        }
+      
+    });
+    $('#totalParticipants').val(ids.length);
+    $('#femaleParticipants').val(females);
+    $('#maleParticipants').val(males);
+    $('#participantsModal').modal('hide');
 });
