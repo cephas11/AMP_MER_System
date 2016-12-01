@@ -115,9 +115,9 @@ $("#region").change(function () {
     var region = region_code;
     var category = $('#category').val();
     console.log('dnd' + category + ' ' + region);
-   
+
     $('#participantsTbl').dataTable().fnDestroy();
-    
+
     getBeneficiaries(region, category);
 });
 
@@ -191,7 +191,7 @@ function getBeneficiaries(regcode, catcode)
 $('#attachParticipantsForm').on('submit', function (e) {
     e.preventDefault();
     var rows = $('tr.selected');
-    var names = [];
+    var gender = [];
     var ids = [];
     var rowData = datatable.rows(rows).data();
     var rows_selected = datatable.column(0).checkboxes.selected();
@@ -201,8 +201,11 @@ $('#attachParticipantsForm').on('submit', function (e) {
 
         //  console.log($(this)); //"name" being the value of your first column.
         ids.push($(this)[1]); //"name" being the value of your first column.
+        gender.push($(this)[3]); //"name" being the value of your first column.
 
     });
 //    console.log('names:'+ rows_selected);
     console.log(ids);
+    console.log(gender);
+    console.log(ids.length);
 });

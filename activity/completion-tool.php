@@ -98,7 +98,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">District</label>
-                                                    <select id="district" name="district" class="form-control select2" required>
+                                                    <select id="district" name="district" class="form-control select2" >
                                                         <option value="">Loading...</option>
 
 
@@ -212,8 +212,13 @@
                                                     <th>
                                                         <input type="checkbox">
                                                     </th>
+                                                    <th>Code</th>
                                                     <th>Name</th>
-
+                                                    <th>Gender</th>
+                                                    <th>Email</th>
+                                                    <th>Contact No</th>
+                                                    <th>District</th>
+                                                  
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
