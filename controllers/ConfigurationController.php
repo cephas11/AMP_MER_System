@@ -9,7 +9,7 @@ if (isset($_GET['type'])) {
     if (!empty($type)) {
         if ($type == 'saveRegion') {
             if (isset($_GET['region'])) {
-                
+
                 $name = $_GET['region'];
                 $new_region = new ConfigurationClass();
                 $new_region->setRegion($name);
@@ -33,7 +33,7 @@ if (isset($_GET['type'])) {
 
             $getUnassigneddistricts = new ConfigurationClass();
             $getUnassigneddistricts->getUnAssignedDistricts();
-        }  else if ($type == 'retreiveRegionDistricts') {
+        } else if ($type == 'retreiveRegionDistricts') {
 
             $getregiondistricts = new ConfigurationClass();
             $getregiondistricts->getRegionDistricts();
@@ -65,25 +65,32 @@ if (isset($_GET['type'])) {
 
             $getUnassigneddescription = new ConfigurationClass();
             $getUnassigneddescription->getUnAssignedDescription();
-        }else if ($type == 'retreiveCategoryDescriptions') {
+        } else if ($type == 'retreiveCategoryDescriptions') {
             $getCategoryDescription = new ConfigurationClass();
             $getCategoryDescription->getCategoryDescriptions();
-            
-        }else if ($type == 'retreiveDistrictsBasedOnRegion') {
-              $region_code = $_GET['region_code'];
+        } else if ($type == 'retreiveDistrictsBasedOnRegion') {
+            $region_code = $_GET['region_code'];
             $getDistrictsBasedOnRegion = new ConfigurationClass();
             $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($region_code);
-            
-        }else if ($type == 'retreiveDescriptionBasedOnCategory') {
-              $category_code = $_GET['category_code'];
+        } else if ($type == 'retreiveDescriptionBasedOnCategory') {
+            $category_code = $_GET['category_code'];
             $getDescriptionBasedOnCategory = new ConfigurationClass();
             $getDescriptionBasedOnCategory->getDescriptionsBasedOnCategory($category_code);
-            
-        }else if ($type == 'retreiveRegisters') {
-              
+        } else if ($type == 'retreiveRegisters') {
+
             $getRegisters = new ConfigurationClass();
             $getRegisters->getRegisters();
-            
+        } else if ($type == 'saveActivityType') {
+
+            $category = $_GET['category'];
+
+            $save_new = new ConfigurationClass();
+            $save_new->setCategory($category);
+        }else if ($type == 'getBeneficiaries') {
+            $regcode = $_GET['regcode'];
+            $catcode = $_GET['catcode'];
+            $getBeneficiary = new ActivityClass();
+            $getBeneficiary->getBeneficiaries($regcode,$catcode);
         }
     } else {
         echo 'provide type';

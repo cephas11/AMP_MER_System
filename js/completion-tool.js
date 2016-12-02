@@ -158,7 +158,7 @@ function getBeneficiaries(regcode, catcode)
             "processing": true,
             "serverSide": false,
             "ajax": {
-                url: '../controllers/getController.php?_=' + new Date().getTime(),
+                url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
                 "type": "GET",
                 "data": {
                     "regcode": regcode,
