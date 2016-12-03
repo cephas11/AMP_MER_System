@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-var datatable = $('#activityTbl').DataTable({
+
+var datatable = $('#descriptionTbl').DataTable({
     responsive: true,
     language: {
         paginate:
@@ -17,7 +18,7 @@ var datatable = $('#activityTbl').DataTable({
 
 
 
-$('#saveActivityForm').on('submit', function (e) {
+$('#saveActivityDescriptionForm').on('submit', function (e) {
     e.preventDefault();
 
 
@@ -36,9 +37,9 @@ $('#saveActivityForm').on('submit', function (e) {
 
 
             // $("#loader").hide();
-            $('#activityModal').modal('hide');
+            $('#descriptionModal').modal('hide');
             var successStatus = data.success;
-            document.getElementById("saveActivityForm").reset();
+            document.getElementById("saveActivityDescriptionForm").reset();
 
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);
@@ -80,7 +81,7 @@ function getTypes()
 {
 
     var info = {
-        type: "retreiveActivityTypes"
+        type: "retreiveActivityDesc"
     };
     console.log('new code here');
 
@@ -128,7 +129,7 @@ function deleteActivity(code, title) {
     $('#confirmModal').modal('show');
 }
 
-$('#deleteActivityTypeForm').on('submit', function (e) {
+$('#deleteActivityDescriptionForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();
@@ -147,7 +148,7 @@ $('#deleteActivityTypeForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-            document.getElementById("deleteActivityTypeForm").reset();
+            document.getElementById("deleteActivityDescriptionForm").reset();
 
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");

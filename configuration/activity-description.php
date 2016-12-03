@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Activity Type</title>
+        <title>Activity Descriptions</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -31,7 +31,7 @@
                 <div class="layout-content-body">
 
                     <div class="text m-b">
-                        <h3 class="m-b-0">Activity Type</h3>
+                        <h3 class="m-b-0">Activity Descriptions</h3>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
@@ -39,7 +39,7 @@
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#activityModal" data-whatever="@mdo">Add New Type</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#descriptionModal" data-whatever="@mdo">Add New</button>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="activityTbl" class="table table-middle nowrap">
+                                        <table id="descriptionTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
 
@@ -70,21 +70,21 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="">New Type</h4>
                             </div>
-                            <form id="saveActivityForm" >
+                            <form id="saveActivityDescriptionForm" >
                                 <div class="modal-body">
 
                                     <div class="form-group">
                                         <label for="region" class="control-label">Name:</label>
                                         <input type="text" class="form-control" name="name" id="name" required>
                                     </div>
-                                    <input type="hidden" class="form-control" name="type" value="saveActivityType">
+                                    <input type="hidden" class="form-control" name="type" value="saveActivityDescription">
 
 
                                 </div>
@@ -99,7 +99,7 @@
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteActivityTypeForm">
+                            <form method="post" id="deleteActivityDescriptionForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
@@ -107,7 +107,7 @@
                                         </p>
                                     </div>
                                     <input type="hidden" id="code" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteActivityType"/>
+                                    <input type="hidden"  name="type" value="deleteActivityDescription"/>
 
 
                                 </div>
@@ -142,7 +142,7 @@
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
-        <script src="../js/activity-type.js"></script>
+        <script src="../js/activity-description.js"></script>
 
         <script src="../js/jquery.validate.js"></script>
 

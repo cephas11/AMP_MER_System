@@ -1,6 +1,7 @@
 <?php
 
 require_once '../classes/BeneficiaryClass.php';
+require_once '../classes/ConfigurationClass.php';
 $response = array();
 if (isset($_POST['type'])) {
 //echo "Check here";
@@ -14,6 +15,12 @@ if (isset($_POST['type'])) {
           //  print_r($_POST);
             $saveRegistrar = new BeneficiaryClass();
             $saveRegistrar->setRegistrar($_POST);
+        }else if ($type == 'saveTypeDescriptions') {
+          $type = $_POST['activityType'];
+         $description = $_POST['descriptions'];
+         
+          $save_new = new ConfigurationClass();
+          $save_new->setActivityTpeDescription($type,$description);
         }
     } else {
         echo 'provide type';

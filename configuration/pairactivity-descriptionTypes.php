@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Activity Type</title>
+        <title>Activity Description </title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -16,8 +16,6 @@
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
         <link rel="stylesheet" href="../css/demo.min.css">
-
-        <link rel="stylesheet" href="../css/custom.css">
     </head>
     <body class="layout layout-header-fixed">
         <?php
@@ -31,7 +29,7 @@
                 <div class="layout-content-body">
 
                     <div class="text m-b">
-                        <h3 class="m-b-0">Activity Type</h3>
+                        <h3 class="m-b-0">Activity Description </h3>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
@@ -39,7 +37,7 @@
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#activityModal" data-whatever="@mdo">Add New Type</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#descriptionModal" data-whatever="@mdo">Add New </button>
                             </div>
                         </div>
                     </div>
@@ -51,14 +49,14 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="activityTbl" class="table table-middle nowrap">
+                                        <table id="activityDescriptionsTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
+                                                  
+                                                    <th>Type</th>
 
-                                                    <th>Name</th>
-
-                                                    <th>Action </th>
-
+                                                    <th>Description</th>
+                                                    <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -70,23 +68,30 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="">New Type</h4>
+                                <h4 class="modal-title" id="exampleModalLabel">New </h4>
                             </div>
-                            <form id="saveActivityForm" >
+                            <form id="saveTypeDescriptionForm">
                                 <div class="modal-body">
 
                                     <div class="form-group">
-                                        <label for="region" class="control-label">Name:</label>
-                                        <input type="text" class="form-control" name="name" id="name" required>
+                                        <label for="region" class="control-label">Activity Type:</label>
+                                        <select id="activityType" name="activityType" class="form-control select2">
+                                            <option value="">Choose...</option>
+                                        </select>
                                     </div>
-                                    <input type="hidden" class="form-control" name="type" value="saveActivityType">
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Descriptions:</label>
 
-
+                                        <select id="descriptions" name="descriptions[]" class="form-control select2" multiple="multiple">
+                                           
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="type" value="saveTypeDescriptions"/>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -96,18 +101,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+                
+                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteActivityTypeForm">
+                            <form method="post" id="deleteDescriptionCategoryForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete?<span class="holder" id="activityholder"></span> 
+                                            Are you sure you want to delete ? 
                                         </p>
                                     </div>
                                     <input type="hidden" id="code" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteActivityType"/>
+                                    <input type="hidden"  name="type" value="deleteDescriptionCategory"/>
 
 
                                 </div>
@@ -131,6 +138,8 @@
 
                     </div>
                 </div>
+                
+                
             </div>
             <?php
             require_once '../footer.php';
@@ -138,13 +147,11 @@
         </div>
 
         <script src="../js/vendor.min.js"></script>
-
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
-        <script src="../js/activity-type.js"></script>
-
-        <script src="../js/jquery.validate.js"></script>
+        <script src="../js/select2.js"></script>
+        <script src="../js/pairactivity-descriptionTypes.js"></script>
 
     </body>
 </html>

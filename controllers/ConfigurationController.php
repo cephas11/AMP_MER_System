@@ -82,15 +82,30 @@ if (isset($_GET['type'])) {
             $getRegisters->getRegisters();
         } else if ($type == 'saveActivityType') {
 
-            $category = $_GET['category'];
-
+            $type = $_GET['name'];
             $save_new = new ConfigurationClass();
-            $save_new->setCategory($category);
-        }else if ($type == 'getBeneficiaries') {
-            $regcode = $_GET['regcode'];
-            $catcode = $_GET['catcode'];
-            $getBeneficiary = new ActivityClass();
-            $getBeneficiary->getBeneficiaries($regcode,$catcode);
+            $save_new->setActivityType($type);
+        }else if ($type == 'retreiveActivityTypes') {
+
+            $getActivityTpes = new ConfigurationClass();
+            $getActivityTpes->getActivityTypes();
+        } else if ($type == 'saveActivityDescription') {
+
+            $type = $_GET['name'];
+            $save_new = new ConfigurationClass();
+            $save_new->setActivityDescription($type);
+        }else if ($type == 'retreiveActivityDesc') {
+
+            $getActivityDesc = new ConfigurationClass();
+            $getActivityDesc->getActivityDescriptions();
+        }else if ($type == 'retreivenassignedActivityDescriptions') {
+
+            $getUnassActivityDesc = new ConfigurationClass();
+            $getUnassActivityDesc->getUnAssignedActivityDescriptionType();
+        }else if ($type == 'retreiveActivityDescriptions') {
+
+            $geActivityDesc = new ConfigurationClass();
+            $geActivityDesc->getActivityDescriptionTypes();
         }
     } else {
         echo 'provide type';
