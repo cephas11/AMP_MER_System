@@ -16,7 +16,7 @@
                         </form>
                     </li>
                     <li class="sidenav-heading">Portal</li>
-                    <li class="sidenav-item has-subnav">
+                    <li class="sidenav-item has-subnav active">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-home"></span>
                             <span class="sidenav-label">Configuration</span>
@@ -30,6 +30,9 @@
                             <li><a href="description">Description Configuration</a></li>
                             <li><a href="description-categories">Pair Description and Category Configuration</a></li>
                             <li><a href="registers">Registers</a></li>
+                            <li><a href="activity-types">Activity Types</a></li>
+                            <li><a href="activity-description">Activity Description</a></li>
+                            <li><a href="pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
 
                         </ul>
                     </li>
@@ -40,17 +43,12 @@
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
-
-                    <li class="sidenav-item has-subnav">
-                        <a href="#" aria-haspopup="true">
+                    <li class="sidenav-item ">
+                        <a href="../activity/completion-tool">
                             <span class="sidenav-icon icon icon-home"></span>
-                            <span class="sidenav-label">Activities</span>
+                            <span class="sidenav-label">Activity Completion Tool </span>
                         </a>
-                        <ul class="sidenav-subnav collapse">
 
-                            <li><a href="../activity/completion-tool">Completion Tool </a></li>
-
-                        </ul>
                     </li>
 
                 </ul>

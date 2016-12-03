@@ -29,3 +29,11 @@ i.fa {
 .holder{
     color:red;
 }
+
+
+
+table.dataTable {
+    margin: 0 auto;
+    clear: both;
+    width: 100% !important;
+}

@@ -489,6 +489,188 @@ class ConfigurationClass {
         return $randomString;
     }
 
+    
+    public function setActivityType($type) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = $this->generateuniqueCode(8);
+        $query = mysqli_query($conn, "INSERT INTO activity_types(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $type) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Activity Type saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+    }
+    
+    
+       public function getActivityTypes() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM activity_types WHERE status=0");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
+    
+      public function deleteActivityType($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE activity_types SET status = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Activity Type deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
+    
+    public function setActivityDescription($type) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = $this->generateuniqueCode(8);
+        $query = mysqli_query($conn, "INSERT INTO activity_description(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $type) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Activity Description saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+    }
+    
+    
+       public function getActivityDescriptions() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM activity_description WHERE status=0");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
+    public function deleteActivityDesc($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE activity_description SET status = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Activity Description deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
+      public function getUnAssignedActivityDescriptionType() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM unassigned_activity_descriptions_view WHERE status=0");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
+    
+    public function setActivityTpeDescription($type,$description) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        
+        if (sizeof($description) > 0) {
+            foreach ($description as $desc) {
+                $code = $this->generateuniqueCode(8);
+                $query = mysqli_query($conn, "INSERT INTO activity_description_types(code,description_code,type_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $desc) . "','" . mysqli_real_escape_string($conn, $type) . "')");
+
+                //  echo  "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')";
+            }
+        }
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Activity Types to description  successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt assign' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
+    
+    public function getActivityDescriptionTypes() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM   description_types_activity_view WHERE status=0");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
+    
 }
 
 ?>

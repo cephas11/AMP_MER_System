@@ -30,26 +30,22 @@
                             <li><a href="../configuration/description">Description Configuration</a></li>
                             <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
                             <li><a href="../configuration/registers">Registers</a></li>
-                      
+
                         </ul>
                     </li>
 
-                        <li class="sidenav-item">
+                    <li class="sidenav-item active">
                         <a href="beneficiaries-list">
                             <span class="sidenav-icon icon icon-columns"></span>
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
-<li class="sidenav-item has-subnav">
-                        <a href="#" aria-haspopup="true">
+                    <li class="sidenav-item">
+                        <a href="../activity/completion-tool">
                             <span class="sidenav-icon icon icon-home"></span>
-                            <span class="sidenav-label">Activities</span>
+                            <span class="sidenav-label">Activity Completion Tool </span>
                         </a>
-                        <ul class="sidenav-subnav collapse">
 
-                            <li><a href="../activity/completion-tool">Completion Tool </a></li>
-                         
-                        </ul>
                     </li>
 
                 </ul>

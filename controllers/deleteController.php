@@ -40,6 +40,16 @@ if (isset($_REQUEST['type'])) {
             $code = $_REQUEST['code'];
            $deleteRegistrar = new ConfigurationClass();
            $deleteRegistrar->deleteRegistrar($code);
+        }else if ($type == 'deleteActivityType') {
+            $code = $_REQUEST['code'];
+           
+            $deleteType = new ConfigurationClass();
+           $deleteType->deleteActivityType($code);
+        }else if ($type == 'deleteActivityDescription') {
+            $code = $_REQUEST['code'];
+           
+            $deleteType = new ConfigurationClass();
+           $deleteType->deleteActivityDesc($code);
         }
     } else {
         echo 'provide type';

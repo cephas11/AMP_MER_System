@@ -40,16 +40,12 @@
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
-                    <li class="sidenav-item has-subnav">
-                        <a href="#" aria-haspopup="true">
+                   <li class="sidenav-item active">
+                        <a href="completion-tool">
                             <span class="sidenav-icon icon icon-home"></span>
-                            <span class="sidenav-label">Activities</span>
+                            <span class="sidenav-label">Activity Completion Tool </span>
                         </a>
-                        <ul class="sidenav-subnav collapse">
-
-                            <li><a href="completion-tool">Completion Tool </a></li>
-
-                        </ul>
+                       
                     </li>
 
                 </ul>
