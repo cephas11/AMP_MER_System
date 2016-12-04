@@ -48,8 +48,13 @@ if (isset($_REQUEST['type'])) {
         }else if ($type == 'deleteActivityDescription') {
             $code = $_REQUEST['code'];
            
-            $deleteType = new ConfigurationClass();
-           $deleteType->deleteActivityDesc($code);
+            $delete = new ConfigurationClass();
+           $delete->deleteActivityDesc($code);
+        }else if ($type == 'deleteActivityTypeDescription') {
+            $code = $_REQUEST['code'];
+           
+            $delete = new ConfigurationClass();
+           $delete->deleteActivityTypeDescription($code);
         }
     } else {
         echo 'provide type';

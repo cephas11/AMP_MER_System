@@ -19,7 +19,6 @@ var datatable = $('#activityDescriptionsTbl').DataTable({
 var info = {
     type: "retreiveActivityTypes"
 };
-console.log('fff');
 
 $.ajax({
     url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
@@ -27,7 +26,7 @@ $.ajax({
     data: info,
     dataType: 'json',
     success: function (data) {
-console.log('fff'+data);
+        console.log('fff' + data);
 
         $.each(data, function (i, item) {
 
@@ -84,37 +83,47 @@ $('#saveTypeDescriptionForm').on('submit', function (e) {
         success: function (data) {
 
             console.log(data);
-            
-              $('#descriptionModal').modal('hide');
-                var successStatus = data.success;
-                document.getElementById("saveTypeDescriptionForm").reset();
 
-                if (successStatus == 1) {
-                    $('input:submit').attr("disabled", false);
-                    Command: toastr["success"](data.message, "Success");
+            $('#descriptionModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("saveTypeDescriptionForm").reset();
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                 getActivityDescriptions();
-    
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 }
-               
-             
+
+                $('#descriptions').select2("val", "");
+                $('#descriptions').select2();
+
+                $('#descriptions').html("");
+
+                $('#activityType').select2("destroy");
+                $('#activityType').select2("");
+                
+                getUnAssignedDescription();
+                getActivityDescriptions();
+
+            }
+
+
         },
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -158,8 +167,8 @@ function getActivityDescriptions()
                     // represent columns as array
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.type_name + '</td>';
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.description_name + '</td>';
-                   
-                    r[++j] = '<td> <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+
+                    r[++j] = '<td> <button onclick="deleteActivityDescription(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -168,9 +177,74 @@ function getActivityDescriptions()
             }
 
         },
-        
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
         }
     });
 }
+
+
+function deleteActivityDescription(code) {
+    console.log(code);
+    $('#code').val(code);
+
+    $('#confirmModal').modal('show');
+}
+
+$('#deleteTypeDescriptionForm').on('submit', function (e) {
+    e.preventDefault();
+    $('input:submit').attr("disabled", true);
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('#confirmModal').modal('hide');
+    $('#loaderModal').modal('show');
+
+    $.ajax({
+        url: '../controllers/deleteController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#loaderModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("deleteTypeDescriptionForm").reset();
+
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                 $('#descriptions').select2("val", "");
+                $('#descriptions').select2();
+
+                $('#descriptions').html("");
+               getUnAssignedDescription();
+                getActivityDescriptions();
+
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+});
+
+

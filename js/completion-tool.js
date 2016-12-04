@@ -21,6 +21,29 @@ var datatable;
 
 
 var info = {
+    type: "retreiveActivityTypes"
+};
+
+$.ajax({
+    url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
+    type: "GET",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+        console.log('fff' + data);
+
+        $.each(data, function (i, item) {
+
+            $('#activityType').append($('<option>', {
+                value: item.code,
+                text: item.name
+            }));
+        });
+
+    }
+});
+
+var info = {
     type: "retreiveCategories"
 };
 
