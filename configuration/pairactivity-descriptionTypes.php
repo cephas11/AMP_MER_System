@@ -106,7 +106,7 @@
                  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteDescriptionCategoryForm">
+                            <form method="post" id="deleteTypeDescriptionForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
@@ -114,7 +114,7 @@
                                         </p>
                                     </div>
                                     <input type="hidden" id="code" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteDescriptionCategory"/>
+                                    <input type="hidden"  name="type" value="deleteActivityTypeDescription"/>
 
 
                                 </div>

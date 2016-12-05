@@ -104,8 +104,13 @@ if (isset($_GET['type'])) {
             $getUnassActivityDesc->getUnAssignedActivityDescriptionType();
         }else if ($type == 'retreiveActivityDescriptions') {
 
-            $geActivityDesc = new ConfigurationClass();
+            $$geActivitygeActivityDesc = new ConfigurationClass();
             $geActivityDesc->getActivityDescriptionTypes();
+        }else if ($type == 'retreiveDescriptionBasedOnActivityType') {
+
+            $type_code = $_GET['type_code'];
+          $getData = new ConfigurationClass();
+          $getData->getActivityDescriptionBasedOnType($type_code);
         }
     } else {
         echo 'provide type';

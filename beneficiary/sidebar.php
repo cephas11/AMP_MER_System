@@ -30,6 +30,9 @@
                             <li><a href="../configuration/description">Description Configuration</a></li>
                             <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
                             <li><a href="../configuration/registers">Registers</a></li>
+                            <li><a href="../configuration/activity-types">Activity Types</a></li>
+                            <li><a href="../configuration/activity-description">Activity Description</a></li>
+                            <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
 
                         </ul>
                     </li>

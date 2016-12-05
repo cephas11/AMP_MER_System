@@ -41,7 +41,7 @@
 
                             <div class="card-body">
                                 <div class="text-center"><h4>Activity Completion Reporting Tool </h4></div>
-                                <form id="beneficiaryForm">
+                                <form id="completionTooLActivityForm" method="POST" enctype="multipart/form-data">
                                     <div class="col-xs-12">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
 
@@ -171,13 +171,14 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Attached File</label>
-                                            <input  class="form-control" type="file" name="attachedfile" required>
-                                            <small class="help-block"></small>
+                                            <input  class="form-control" type="file" name="file" id="attached" >
+                     
 
                                         </div>
                                     </div>
+                                     <input type="hidden"  name="participants[]" id="participants"/>
                                     <div class="col-xs-12">
-                                        <input type="hidden" value="saveBeneficiary" name="type"/>
+                                        <input type="hidden" value="completionTool" name="type"/>
                                         <br><br>
                                     </div>
                                     <div class="col-xs-12 ">
@@ -227,7 +228,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Attach</button>
                                 </div>
                             </form>
                         </div>
