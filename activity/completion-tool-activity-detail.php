@@ -40,20 +40,17 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <div class="text-center"><h4>Activity Completion Reporting Tool </h4></div>
                                 <form id="completionTooLActivityForm" method="POST" enctype="multipart/form-data">
                                     <div class="col-xs-12">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-
-
-                                            <div class="form-group">
+                                 
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                 <label for="name-1" class="control-label">Date of  Activity</label>
                                                 <div class="input-with-icon">
                                                     <input class="form-control" type="text" name="activityDate" data-provide="datepicker">
                                                     <span class="icon icon-calendar input-icon"></span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                 <label  class="form-label">Type Of Activity</label>
                                                 <select name="activityType" id="activityType" class="form-control select2">
 
@@ -62,7 +59,7 @@
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                 <label  class="form-label">Activity Description</label>
                                                 <select name="description" id="activityDescription" class="form-control select2">
 
@@ -71,49 +68,41 @@
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                 <label  class="form-label">Category</label>
-                                                <select name="category" id="category" class="form-control select2">
-
-                                                    <option value="">Loading...</option>
-
-                                                </select>
+                                                <input class="form-control" type="text" name="category" readonly>
+                                                 
                                                 <span class="help-block"></span>
                                             </div>
 
+                                        
+
+
+
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label  class="form-label">Region</label>
+                                            <input class="form-control" type="text" name="region" readonly>
+                                                 
+              
+                                            <span class="help-block"></span>
                                         </div>
 
-                                        <div>
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label  class="form-label">District</label>
+                                            <input class="form-control" type="text" name="district" readonly>
+                                                 
+              
+                                
+                                            <span class="help-block"></span>
+                                        </div> 
 
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="form-label">Region</label>
-                                                    <select id="region" name="region" class="form-control select2" >
-                                                        <option value="">Choose...</option>
-
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="form-label">District</label>
-                                                    <select id="district" name="district" class="form-control select2" >
-                                                        <option value="">Loading...</option>
-
-
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div> 
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="control-label">Community</label>
-                                                    <input  class="form-control" type="text" name="community" required>
-                                                    <small class="help-block"></small>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label  class="control-label">Community</label>
+                                            <input  class="form-control" type="text" name="community" required>
+                                            <small class="help-block"></small>
                                         </div>
+
+
 
 
                                         <div class="col-lg-12 col-sm-12 col-md-12">
@@ -132,17 +121,6 @@
                                             </div>
 
 
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="col-lg-8 col-sm-6 col-md-8">
-                                                <p  class="text-center">Participants</p>
-
-                                            </div>
-                                            <div class="col-lg-4 col-sm-6 col-md-4">
-                                                <button type="button" class="btn btn-info  btn-block pull-right" data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Select Participants</button>
-
-                                            </div>
-                                            <br><br>
                                         </div>
 
                                         <div class="row">
@@ -169,45 +147,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <label  class="control-label">Attached File</label>
-                                            <input  class="form-control" type="file" name="file" id="attached" >
-                     
 
-                                        </div>
                                     </div>
-                                     <input type="hidden"  name="participants[]" id="participants"/>
-                                    <div class="col-xs-12">
-                                        <input type="hidden" value="completionTool" name="type"/>
-                                        <br><br>
-                                    </div>
-                                    <div class="col-xs-12 ">
-                                        <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-                                            <button class="btn btn-primary  btn-block pull-right" type="submit">Save</button>
-                                        </div>
-                                    </div>
+                                    
+                                    
+                                    
                                 </form>
+                                
+                                
+                          
+                                    
                             </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-                <div class="modal fade " id="participantsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">Participants for <span class="holder"> </span> </h4>
-                            </div>
-                            <form id="attachParticipantsForm" >
-                                <div class="modal-body">
-
-                                    <div class="table-responsive">
-                                        <table id="participantsTbl" class="table table-middle nowrap">
+                            
+                            
+                            <div class="table-responsive">
+                                        <table id="participantsListTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>
@@ -225,18 +180,14 @@
                                             <tbody></tbody>
                                         </table>
                                     </div>
-                                    
-                                    
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Attach</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
+
+
                 </div>
 
+
+             
             </div>
             <?php
             require_once '../footer.php';
