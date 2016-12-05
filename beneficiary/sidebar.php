@@ -29,23 +29,27 @@
                             <li><a href="../configuration/categories">Categories Configuration</a></li>
                             <li><a href="../configuration/description">Description Configuration</a></li>
                             <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
+                            <li><a href="../configuration/registers">Registers</a></li>
+                            <li><a href="../configuration/activity-types">Activity Types</a></li>
+                            <li><a href="../configuration/activity-description">Activity Description</a></li>
+                            <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
+
                         </ul>
                     </li>
 
-                    <li class="sidenav-item has-subnav">
-                        <a href="#" aria-haspopup="true">
-                            <span class="sidenav-icon icon icon-home"></span>
+                    <li class="sidenav-item active">
+                        <a href="beneficiaries-list">
+                            <span class="sidenav-icon icon icon-columns"></span>
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
-                        <ul class="sidenav-subnav collapse">
-
-                            <li><a href="beneficiary-form">Create</a></li>
-                            <li><a href="bulk-beneficiary-upload">Bulk Upload</a></li>
-                            <li><a href="beneficiaries-list">List</a></li>
-
-                        </ul>
                     </li>
+                    <li class="sidenav-item">
+                        <a href="../activity/completion-tool">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Activity Completion Tool </span>
+                        </a>
 
+                    </li>
 
                 </ul>
             </nav>

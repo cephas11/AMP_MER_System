@@ -16,8 +16,12 @@ var datatable = $('#beneficiaryTbl').DataTable({
 });
 
 getBneficiaryTempData();
+                console.log('dataaaaaaa here:');
+
 function getBneficiaryTempData()
 {
+                console.log('test:');
+
 
     var info = {
         type: "retreiveBeneficiaryTempData"
@@ -27,6 +31,7 @@ function getBneficiaryTempData()
         type: "GET",
         data: info,
         success: function (data) {
+            console.log('data:' + data);
 
 
             datatable.clear().draw();

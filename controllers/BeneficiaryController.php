@@ -1,6 +1,7 @@
 <?php
 
 require_once '../classes/BeneficiaryClass.php';
+require_once '../classes/ActivityClass.php';
 $response = array();
 
 if (isset($_GET['type'])) {
@@ -29,11 +30,15 @@ if (isset($_GET['type'])) {
             $getTempData->getBeneficiaresList();
         } else if ($type == 'clearTempData') {
             $clearData = new BeneficiaryClass();
-           $clearData->emptyBenficiaryTempTable();
-           echo '1';
+            $clearData->emptyBenficiaryTempTable();
+            echo '1';
+        } else if ($type == 'getBeneficiaries') {
+            $regcode = $_GET['regcode'];
+            $catcode = $_GET['catcode'];
+            $getBeneficiary = new ActivityClass();
+            $getBeneficiary->getBeneficiaries($regcode, $catcode);
         }
     } else {
         echo 'provide type';
     }
 }
-

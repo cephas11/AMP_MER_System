@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
         <link rel="stylesheet" href="../css/demo.min.css">
+
+        <link rel="stylesheet" href="../css/custom.css">
     </head>
     <body class="layout layout-header-fixed">
         <?php
@@ -52,11 +54,11 @@
                                         <table id="regionTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-                                                    
+
                                                     <th>Name</th>
 
                                                     <th>Action </th>
-                                                 
+
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -94,7 +96,41 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form method="post" id="deleteRegionForm">
+                                <div class="modal-body">
+                                    <div>
+                                        <p>
+                                            Are you sure you want to delete this region?.<span class="holder" id="regionholder"></span> 
+                                        </p>
+                                    </div>
+                                    <input type="hidden" id="code" name="code"/>
+                                    <input type="hidden"  name="type" value="deleteRegion"/>
 
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    <button type="submit"  class="btn btn-primary">YES</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                    <div class="modal-dialog" role="document">
+
+
+                        <div  id="loader" style="margin-top:30% ">
+                            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                            <span class="loader-text">Wait...</span>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
             <?php
             require_once '../footer.php';
@@ -102,7 +138,7 @@
         </div>
 
         <script src="../js/vendor.min.js"></script>
-      
+
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
