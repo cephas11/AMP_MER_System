@@ -27,28 +27,7 @@ $.ajax({
     }
 });
 
-var info = {
-    type: "retreiveActivityTypes"
-};
 
-$.ajax({
-    url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
-    type: "GET",
-    data: info,
-    dataType: 'json',
-    success: function (data) {
-
-
-        $.each(data, function (i, item) {
-
-            $('#activityType').append($('<option>', {
-                value: item.code,
-                text: item.name
-            }));
-        });
-
-    }
-});
 
 var info = {
     type: "retreiveActivityDesc"
@@ -150,6 +129,7 @@ function getDescriptionBasedOnActivityType(type_code) {
         success: function (data) {
 
             console.log(data);
+            $('#activityDescription').html('');
             $('#activityDescription').append('<option value = ""> Choose... </option>');
 
 
