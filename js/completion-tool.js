@@ -13,7 +13,8 @@
 //        'style': 'multi'
 //    },
 //    'order': [[1, 'asc']]
-//});
+//});participantsListTbl
+$('#participantsListTbl').DataTable();
 
 $('#participantsTbl').DataTable();
 
@@ -304,7 +305,7 @@ function getDescriptionBasedOnActivityType(type_code) {
 
 $('#completionTooLActivityForm').on('submit', function (e) {
     e.preventDefault();
- $('input:submit').attr("disabled", false);
+    $('input:submit').attr("disabled", false);
     //  var formData = $(this).serialize();
     // console.log(formData);
 
@@ -321,14 +322,14 @@ $('#completionTooLActivityForm').on('submit', function (e) {
         processData: false,
         dataType: "json",
         success: function (data) {
-           
+
             console.log(data);
 
 
             var successStatus = data.success;
 
             if (successStatus == 1) {
-           $('.select2').select2('val','');
+                $('.select2').select2('val', '');
                 document.getElementById("completionTooLActivityForm").reset();
 
                 $('input:submit').attr("disabled", false);
@@ -361,3 +362,78 @@ $('#completionTooLActivityForm').on('submit', function (e) {
 
 
 });
+
+
+
+//list activities
+var datatable = $('#activitiesListTbl').DataTable({
+    responsive: true,
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    },
+    order: [[0, "asc"]]
+
+});
+
+
+getActivitiesList();
+function getActivitiesList()
+{
+
+    var info = {
+        type: "retreiveCompletionToolActivity"
+    };
+
+
+    $.ajax({
+        url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: info,
+        success: function (data) {
+
+            console.log(data);
+            datatable.clear().draw();
+//
+            var obj = jQuery.parseJSON(data);
+            console.log('size' + obj.length);
+            if (obj.length == 0) {
+                console.log("NO DATA!");
+            } else {
+                $.each(obj, function (key, value) {
+
+
+                    var j = -1;
+                    var r = new Array();
+                    // represent columns as array
+//                    r[++j] = '<td >' + value.code + '</td>';
+                    r[++j] = '<td >' + value.activity_date + '</td>';
+                    r[++j] = '<td >' + value.activity_type_name + '</td>';
+                    r[++j] = '<td >' + value.activity_description_name + '</td>';
+                    r[++j] = '<td >' + value.category_name + '</td>';
+                    r[++j] = '<td >' + value.region_name + '</td>';
+                    r[++j] = '<td >' + value.district_name + '</td>';
+//                    r[++j] = '<td >' + value.community + '</td>';
+                    r[++j] = '<td >' + value.implementer + '</td>';
+                    r[++j] = '<td >' + value.total + '</td>';
+
+
+
+                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code='+value.code+'" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs">Edit</span></a>\n\
+                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.activity_type_name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs">Delete</span></button></td>';
+
+                    rowNode = datatable.row.add(r);
+                });
+
+                rowNode.draw().node();
+            }
+
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
+        }
+    });
+}
+

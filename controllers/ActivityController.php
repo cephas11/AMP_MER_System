@@ -40,6 +40,9 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
                 echo json_encode($response);
             }
+        } else if ($type = "retreiveCompletionToolActivity") {
+            $retreiveList = new ActivityClass();
+            $retreiveList->getCompletionToolActivityList();
         }
     } else {
         echo 'provide type';
