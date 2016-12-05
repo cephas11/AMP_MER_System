@@ -126,4 +126,23 @@ class ActivityClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+    
+    
+       public function getCompletionToolActivity($activity_code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM activity_completion_tool_view WHERE code='".$activity_code."'");
+        //print("Hello here");
+        if (mysqli_num_rows($query) > 0) {
+            
+            $feedback = json_encode(mysqli_fetch_row($query));
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
 }

@@ -40,65 +40,65 @@
                         <div class="card">
 
                             <div class="card-body">
+                                
+                                         
                                 <form id="completionTooLActivityForm" method="POST" enctype="multipart/form-data">
                                     <div class="col-xs-12">
-                                 
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label for="name-1" class="control-label">Date of  Activity</label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="activityDate" data-provide="datepicker">
-                                                    <span class="icon icon-calendar input-icon"></span>
-                                                </div>
+
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="name-1" class="control-label">Date of  Activity</label>
+                                            <div class="input-with-icon">
+                                                <input class="form-control" type="text" name="activityDate" id="activityDate" data-provide="datepicker">
+                                                <span class="icon icon-calendar input-icon"></span>
                                             </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label  class="form-label">Type Of Activity</label>
-                                                <select name="activityType" id="activityType" class="form-control select2">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label  class="form-label">Type Of Activity</label>
+                                            <select name="activityType" id="activityType" class="form-control select2">
 
-                                                    <option value="">Choose...</option>
+                                              
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label  class="form-label">Activity Description</label>
+                                            <select name="description" id="activityDescription" class="form-control ">
 
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label  class="form-label">Activity Description</label>
-                                                <select name="description" id="activityDescription" class="form-control select2">
+                                                
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label  class="form-label">Category</label>
+                                            <input class="form-control" type="text" name="category" id="category" readonly>
 
-                                                    <option value="">Loading...</option>
+                                            <span class="help-block"></span>
+                                        </div>
 
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label  class="form-label">Category</label>
-                                                <input class="form-control" type="text" name="category" readonly>
-                                                 
-                                                <span class="help-block"></span>
-                                            </div>
 
-                                        
 
 
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="form-label">Region</label>
-                                            <input class="form-control" type="text" name="region" readonly>
-                                                 
-              
+                                            <input class="form-control" type="text" id="region" name="region" readonly>
+
+
                                             <span class="help-block"></span>
                                         </div>
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="form-label">District</label>
-                                            <input class="form-control" type="text" name="district" readonly>
-                                                 
-              
-                                
+                                            <input class="form-control" type="text" id="district" name="district" readonly>
+
+
+
                                             <span class="help-block"></span>
                                         </div> 
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="control-label">Community</label>
-                                            <input  class="form-control" type="text" name="community" required>
+                                            <input  class="form-control" type="text" id="community" name="community" required>
                                             <small class="help-block"></small>
                                         </div>
 
@@ -108,14 +108,9 @@
                                         <div class="col-lg-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label  class="form-label">Activity Implementer </label>
-                                                <select name="activityImplementer" id="activityImplementer" class="form-control select2">
+                                                <input  class="form-control" type="text" id="activityImplementer" name="activityImplementer" readonly required>
 
-                                                    <option value="">Choose...</option>
-                                                    <option value="ASA/WISHH">ASA/WISHH</option>
-                                                    <option value="ADRA">ADRA</option>
-                                                    <option value="KSU">KSU</option>
 
-                                                </select>
 
                                                 <span class="help-block"></span>
                                             </div>
@@ -150,18 +145,19 @@
 
                                     </div>
 
-                                    
-                                    
-                                    
+
+
+
                                 </form>
-                                
-                                
-                          
-                                    
+
+
+
+
                             </div>
-                            
-                            
-                            <div class="table-responsive">
+                            <div class="row">
+                                <div class=" col-lg-12 ">
+
+                                    <div class="table-responsive">
                                         <table id="participantsListTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
@@ -174,33 +170,37 @@
                                                     <th>Email</th>
                                                     <th>Contact No</th>
                                                     <th>District</th>
-                                                  
+
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
                                         </table>
                                     </div>
+
+
+                                </div>
+                            </div>
+                            
+                            
                         </div>
+
                     </div>
 
 
+
                 </div>
-
-
-             
+                <?php
+                require_once '../footer.php';
+                ?>
             </div>
-            <?php
-            require_once '../footer.php';
-            ?>
-        </div>
 
-        <script src="../js/vendor.min.js"></script>
-        <script src="../js/elephant.min.js"></script>
-        <script src="../js/application.min.js"></script>
-        <script src="../js/demo.min.js"></script>
-        <script src="../js/select2.js"></script>
-        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
-        <script src="../js/completion-tool.js"></script>
+            <script src="../js/vendor.min.js"></script>
+            <script src="../js/elephant.min.js"></script>
+            <script src="../js/application.min.js"></script>
+            <script src="../js/demo.min.js"></script>
+    <!--        <script src="../js/select2.js"></script>-->
+            <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
+            <script src="../js/completion-tool-detail.js"></script>
 
     </body>
 </html>

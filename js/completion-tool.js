@@ -14,7 +14,6 @@
 //    },
 //    'order': [[1, 'asc']]
 //});participantsListTbl
-$('#participantsListTbl').DataTable();
 
 $('#participantsTbl').DataTable();
 
@@ -31,7 +30,7 @@ $.ajax({
     data: info,
     dataType: 'json',
     success: function (data) {
-        console.log('fff' + data);
+
 
         $.each(data, function (i, item) {
 
@@ -138,7 +137,6 @@ $("#region").change(function () {
 
     var region = region_code;
     var category = $('#category').val();
-    console.log('dnd' + category + ' ' + region);
 
     $('#participantsTbl').dataTable().fnDestroy();
 
@@ -394,7 +392,7 @@ function getActivitiesList()
         data: info,
         success: function (data) {
 
-            console.log(data);
+
             datatable.clear().draw();
 //
             var obj = jQuery.parseJSON(data);
@@ -421,7 +419,7 @@ function getActivitiesList()
 
 
 
-                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code='+value.code+'" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs">Edit</span></a>\n\
+                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code=' + value.code + '" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs">Edit</span></a>\n\
                               <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.activity_type_name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs">Delete</span></button></td>';
 
                     rowNode = datatable.row.add(r);
@@ -436,4 +434,6 @@ function getActivitiesList()
         }
     });
 }
+
+//get activity code
 
