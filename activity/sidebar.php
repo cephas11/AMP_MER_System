@@ -30,6 +30,9 @@
                             <li><a href="../configuration/description">Description Configuration</a></li>
                             <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
                             <li><a href="../configuration/registers">Registers</a></li>
+                            <li><a href="../configuration/activity-types">Activity Types</a></li>
+                            <li><a href="../configuration/activity-description">Activity Description</a></li>
+                            <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
 
                         </ul>
                     </li>
@@ -40,12 +43,12 @@
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
-                   <li class="sidenav-item active">
-                        <a href="completion-tool">
+                    <li class="sidenav-item active">
+                        <a href="completion-tool-activities">
                             <span class="sidenav-icon icon icon-home"></span>
                             <span class="sidenav-label">Activity Completion Tool </span>
                         </a>
-                       
+
                     </li>
 
                 </ul>

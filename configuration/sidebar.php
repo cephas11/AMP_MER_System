@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item ">
-                        <a href="../activity/completion-tool">
+                        <a href="../activity/completion-tool-activities">
                             <span class="sidenav-icon icon icon-home"></span>
                             <span class="sidenav-label">Activity Completion Tool </span>
                         </a>
