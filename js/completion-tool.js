@@ -149,8 +149,8 @@ $("#region").change(function () {
 $("#category").change(function () {
     var region = $('#region').val();
     var category = this.value;
-  var categoryText = $('option:selected', $(this)).text();
-    $('.holder').html(categoryText+'(s)');
+    var categoryText = $('option:selected', $(this)).text();
+    $('.holder').html(categoryText + '(s)');
     console.log('dnd' + category + ' ' + region);
     $('#participantsTbl').dataTable().fnDestroy();
     getBeneficiaries(region, category);
@@ -237,15 +237,127 @@ $('#attachParticipantsForm').on('submit', function (e) {
     console.log(ids.length);
     jQuery.each(gender, function (i, val) {
         if (val === "male") {
-             console.log('male is ' + val); 
-            males = males+1 ;
+            console.log('male is ' + val);
+            males = males + 1;
         } else {
-              females = females+1 ;
+            females = females + 1;
         }
-      
+
     });
     $('#totalParticipants').val(ids.length);
     $('#femaleParticipants').val(females);
     $('#maleParticipants').val(males);
+    $('#participants').val(ids);
     $('#participantsModal').modal('hide');
+});
+
+
+$("#activityType").change(function () {
+    console.log(this.value);
+    getDescriptionBasedOnActivityType(this.value);
+
+});
+
+
+
+
+function getDescriptionBasedOnActivityType(type_code) {
+
+    var infotype = {
+        type: 'retreiveDescriptionBasedOnActivityType',
+        type_code: type_code
+    };
+
+    $.ajax({
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: infotype,
+        dataType: 'json',
+        success: function (data) {
+
+            $('#activityDescription').select2("destroy");
+            $('#activityDescription').empty();
+
+            $('#activityDescription').select2();
+            $('#activityDescription').append('<option value = ""> Choose... </option>');
+
+
+            $.each(data, function (i, item) {
+
+                $('#activityDescription').append($('<option>', {
+                    value: item.description_code,
+                    text: item.description_name
+                }));
+            });
+            $('#activityDescription').trigger("chosen:updated");
+
+
+        }
+    });
+}
+
+
+
+
+
+//new activity
+
+$('#completionTooLActivityForm').on('submit', function (e) {
+    e.preventDefault();
+ $('input:submit').attr("disabled", false);
+    //  var formData = $(this).serialize();
+    // console.log(formData);
+
+    var formData = new FormData(this); // <-- 'this' is your form element
+
+
+
+    $.ajax({
+        url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+           
+            console.log(data);
+
+
+            var successStatus = data.success;
+
+            if (successStatus == 1) {
+           
+                document.getElementById("completionTooLActivityForm").reset();
+
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+
 });
