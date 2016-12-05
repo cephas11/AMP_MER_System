@@ -46,13 +46,20 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setCompletionToolActivity($activity_date, $type, $description, $category, $region, $district, $community, $implementer, $male, $female, $total, $url, $participants,$typeofactivity) {
+    public function setCompletionToolActivity($activity_date, $type, $description, $category, $region, $district, $community, $implementer, $male, $female, $total, $url, $participants, $typeofactivity) {
 
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $createdby = 'admin';
         $code = 'ACT' . $this->generateuniqueCode(10);
+
+        // $participants;
+        $beneficiaries = array_values($participants)[0];
+        $beneficiaries = preg_replace('/\.$/', '', $beneficiaries); //Remove dot at end if exists
+        $array = explode(',', $beneficiaries); //split string into array seperated by ', '
+
+       
         $query = mysqli_query($conn, "INSERT INTO completion_tool_activity(code,activity_date,type,description,category,region,district,community,implementer,male,female,total,url,createdby)"
                 . " VALUES "
                 . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_date) . "','" . mysqli_real_escape_string($conn, $type) . "',"
@@ -62,10 +69,13 @@ class ActivityClass {
 
 
         if ($query) {
+            $activity_code = $code;
+            foreach ($array as $value) { //loop over values
+                $this->setActivityParticipants($activity_code, $typeofactivity, $value);
+            }
             $this->response['success'] = '1';
             $this->response['message'] = 'New Activity  Added';
             echo json_encode($this->response);
-          ;
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt add' . mysqli_error($conn);
@@ -74,20 +84,19 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setActivityParticipants($activity_code, $particpant_code) {
+    public function setActivityParticipants($activity_code, $activity_type, $particpant_code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
         $code = $this->generateuniqueCode(10);
-        mysqli_query($conn, "INSERT INTO activity_participants(activity_code,activity_type,participant_code)"
+        mysqli_query($conn, "INSERT INTO activity_participants(code,activity_code,activity_type,participant_code)"
                 . " VALUES "
-                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_code) . "','" . mysqli_real_escape_string($conn, $particpant_code) . "')");
+                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_code) . "','" . mysqli_real_escape_string($conn, $activity_type) . "','" . mysqli_real_escape_string($conn, $particpant_code) . "')");
 
         $connection->closeConnection($conn);
     }
 
-    
-      private function generateuniqueCode($length = 10) {
+    private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -96,5 +105,5 @@ class ActivityClass {
         }
         return $randomString;
     }
-    
+
 }
