@@ -88,7 +88,7 @@
                                                 <select name="financialService" id="financialService" class="form-control select2">
 
                                                     <option value="">Choose...</option>
-                                                    <option value="Loan ">Loan</option>
+                                                    <option value="Loan">Loan</option>
                                                     <option value="Grant">Grant</option>
 
                                                 </select>

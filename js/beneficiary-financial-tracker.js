@@ -11,8 +11,11 @@ $("#financialService").change(function () {
 if(selectedval == 'Grant'){
      $('#grant').show();
      $('#loan').hide();
-}else{
+}else if(selectedval == 'Loan'){
    $('#loan').show();
+     $('#grant').hide();
+}else{
+    $('#loan').hide();
      $('#grant').hide();
 }
   //  getDescriptionBasedOnCategory(category_code);
