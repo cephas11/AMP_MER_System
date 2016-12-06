@@ -104,7 +104,7 @@ if (isset($_GET['type'])) {
             $getUnassActivityDesc->getUnAssignedActivityDescriptionType();
         }else if ($type == 'retreiveActivityDescriptions') {
 
-            $$geActivitygeActivityDesc = new ConfigurationClass();
+            $geActivityDesc = new ConfigurationClass();
             $geActivityDesc->getActivityDescriptionTypes();
         }else if ($type == 'retreiveDescriptionBasedOnActivityType') {
 
