@@ -37,3 +37,6 @@ table.dataTable {
     clear: both;
     width: 100% !important;
 }
+.selected{
+    background-color: #f2f1ef;
+}
