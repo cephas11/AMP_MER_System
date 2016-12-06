@@ -166,7 +166,7 @@ class ActivityClass {
         //print("Hello here");
         if (mysqli_num_rows($query) > 0) {
 
-            $feedback = json_encode(mysqli_fetch_row($query));
+            $feedback = json_encode(mysqli_fetch_assoc($query));
             //  $query->close();
         } else {
 

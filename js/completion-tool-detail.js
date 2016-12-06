@@ -81,23 +81,23 @@ $.ajax({
     data: info,
     dataType: 'json',
     success: function (data) {
-console.log(data);
-        $.each(data, function (i, item) {
+        console.log(data);
+        
             //    console.log('innnfo here:' + item.activity_date + item.region);
-            $('#activityDate').val(item.activity_date);
-            $('#category').val(item.category_name);
-            $('#region').val(item.region_name);
-            $('#district').val(item.district_name);
-            $('#community').val(item.community);
-            $('#maleParticipants').val(item.male);
-            $('#femaleParticipants').val(item.female);
-            $('#totalParticipants').val(item.total);
-            $('#activityImplementer').val(item.implementer);
+            $('#activityDate').val(data.activity_date);
+            $('#category').val(data.category_name);
+            $('#region').val(data.region_name);
+            $('#district').val(data.district_name);
+            $('#community').val(data.community);
+            $('#maleParticipants').val(data.male);
+            $('#femaleParticipants').val(data.female);
+            $('#totalParticipants').val(data.total);
+            $('#activityImplementer').val(data.implementer);
 
-            $("#activityType  option[value=" + item.type + "]").prop("selected", true);
-            $("#activityDescription  option[value=" + item.description + "]").prop("selected", true);
+            $("#activityType  option[value=" + data.type + "]").prop("selected", true);
+            $("#activityDescription  option[value=" + data.description + "]").prop("selected", true);
 
-        });
+       
 
     }
 });
@@ -153,57 +153,6 @@ function getDescriptionBasedOnActivityType(type_code) {
 
 getActivityParticipants();
 
-//function getActivityParticipants()
-//{
-//    var info={
-//        activity_code:activity_code,
-//        type:"retreiveActivityParticipants"
-//    };
-//    console.log('mlml'+activity_code);
-//    if (activity_code == "" ) {
-//        console.log('do nothing');
-//    } else {
-//        //datatable.clear().draw();
-//        $.ajax({
-//        url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
-//        type: "POST",
-//        data: info,
-//        success: function (data) {
-//            
-//            console.log(data);
-//           // datatable.clear().draw();
-//
-////            var obj = jQuery.parseJSON(data);
-////            console.log('size' + obj.length);
-////            if (obj.length == 0) {
-////                console.log("NO DATA!");
-////            } else {
-////                $.each(obj, function (key, value) {
-////
-////
-////                    var j = -1;
-////                    var r = new Array();
-////                    // represent columns as array
-////                    r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-////                    r[++j] = '<td><button onclick="editRegion()" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-////                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
-////
-////                    rowNode = datatable.row.add(r);
-////                });
-////
-////                rowNode.draw().node();
-////            }
-//
-//        },
-//        
-//        error: function (jXHR, textStatus, errorThrown) {
-//            alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
-//        }
-//    });
-//
-//    }
-//
-//}
 
 
 function getActivityParticipants()
