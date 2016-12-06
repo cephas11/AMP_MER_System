@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Completion Tool Activities </title>
+        <title>Sales Tracker</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../css/font-awesome.css">
 
         <link rel="stylesheet" href="../css/demo.min.css">
-       
+        
 
     </head>
     <body class="layout layout-header-fixed">
@@ -37,11 +37,12 @@
                     <div class="row gutter-xs">
                         <div class="card">
                             <div class="card-header">
-                                <strong> Completion Tool Activities</strong>
+                                <strong> Beneficiaries List</strong>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="pull-right">
-                                            <a class="btn btn-primary "href="completion-tool" >New Activity</a>
+                                            <a class="btn btn-primary "href="beneficiary-form" >New Beneficiary</a>
+                                            <a  class="btn btn-primary" href="bulk-beneficiary-upload" >Bulk Upload</a>
 
                                         </div>
 
@@ -55,20 +56,30 @@
                                         <div class="panel-body">
 
                                             <div class="table-responsive">
-                                                <table class="table table-middle" id="activitiesListTbl">
+                                                <table class="table table-middle" id="beneficiaresListTbl">
                                                     <thead>
                                                         <tr>
-<!--                                                            <th>Code</th>-->
+                                                            <th>Code</th>
 
-                                                            <th>Activity Date</th>
-                                                            <th>Type</th>
-                                                            <th>Description</th>
+                                                            <th>Beneficiary Name</th>
+                                                            <th>Business Name</th>
+                                                            <th>Gender</th>
+                                                            <th>Email</th>
+                                                            <th>ContactNo</th>
+                                                            <th>Fiscal Year</th>
                                                             <th>Category</th>
+                                                            <th>Description</th>
                                                             <th>Region</th>
                                                             <th>District</th>
-<!--                                                            <th>Community</th>-->
-                                                            <th>Implementer</th>
-                                                            <th>Total Participants</th>
+                                                            <th>Community</th>
+                                                            <th>Longitude</th>
+                                                            <th>Latitude</th>
+                                                            <th>Date Registered</th>
+                                                            <th>Registered By</th>         
+                                                            <th>Created By</th>
+                                                            <th>Date Created</th>
+                                                            <th>Date Modified</th>
+                                                            <th>Modified By</th>
                                                             <th>Action</th>
 
                                                         </tr>
@@ -118,7 +129,7 @@
                                     <input type="hidden" id="code" name="code"/>
                                     <input type="hidden"  name="type" value="deleteBeneficiary"/>
 
-
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -129,7 +140,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form method="post" id="deleteBeneficiaryForm">
@@ -142,7 +153,7 @@
                                     <input type="hidden" id="code" name="code"/>
                                     <input type="hidden"  name="type" value="deleteBeneficiary"/>
 
-
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -153,7 +164,7 @@
                     </div>
                 </div>
 
-
+                
             </div>
             <?php
             require_once '../footer.php';
@@ -164,7 +175,7 @@
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
         <script src="../js/select2.js"></script>
-        <script src="../js/completion-tool.js"></script>
+        <script src="../js/sales-tracker.js"></script>
 
     </body>
 </html>

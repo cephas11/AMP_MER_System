@@ -50,7 +50,13 @@
                         </a>
 
                     </li>
+                    <li class="sidenav-item ">
+                        <a href="../activity/sales-tracker">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Sales Tracker </span>
+                        </a>
 
+                    </li>
                 </ul>
             </nav>
         </div>

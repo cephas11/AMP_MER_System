@@ -81,7 +81,7 @@ $.ajax({
     data: info,
     dataType: 'json',
     success: function (data) {
-
+console.log(data);
         $.each(data, function (i, item) {
             //    console.log('innnfo here:' + item.activity_date + item.region);
             $('#activityDate').val(item.activity_date);

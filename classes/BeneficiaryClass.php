@@ -291,7 +291,28 @@ class BeneficiaryClass {
         return $randomString;
     }
 
+    
+    
+     public function getBeneficiaryInfo($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE code='".$code ."'");
+
+        if (mysqli_num_rows($query) > 0) {
+
+            $feedback = json_encode(mysqli_fetch_assoc($query));
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
 }
+
+
       // print_r($info);
 //        $fiscalYear = $info['fiscalYear'];
 //        $category = $info['category'];

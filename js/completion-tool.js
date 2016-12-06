@@ -419,8 +419,8 @@ function getActivitiesList()
 
 
 
-                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code=' + value.code + '" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs">Edit</span></a>\n\
-                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.activity_type_name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs">Delete</span></button></td>';
+                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code=' + value.code + '" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs"></span></a>\n\
+                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.activity_type_name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs"></span></button></td>';
 
                     rowNode = datatable.row.add(r);
                 });

@@ -1,7 +1,7 @@
 <?php
 
 require_once '../classes/ActivityClass.php';
-
+require_once '../classes/BeneficiaryClass.php';
 $response = array();
 if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 //echo "Check here";
@@ -40,18 +40,31 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
                 echo json_encode($response);
             }
-        } else if ($type = "retreiveCompletionToolActivity") {
+        } else if ($type == "retreiveCompletionToolActivity") {
             $retreiveList = new ActivityClass();
             $retreiveList->getCompletionToolActivityList();
-        } else if ($type = "retreiveActivityInfo") {
+        } else if ($type == "retreiveActivityInfo") {
             $activity_code = $_POST['activity_code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getCompletionToolActivity($activity_code);
-        } else if ($type = "retreiveActivityParticipants") {
+        } else if ($type == "retreiveActivityParticipants") {
             $activity_code = $_POST['activity_code'];
-             $retreiveList = new ActivityClass();
-           $retreiveList->getActivityParticipants($activity_code);
-        }
+            $retreiveList == new ActivityClass();
+            $retreiveList->getActivityParticipants($activity_code);
+        } else if ($type == "setSalesTracker") {
+            //  echo 'here in sales';
+            $activity_date = $_POST['activityDate'];
+            $beneficiary_code = $_POST['beneficiaryCode'];
+            $commodity = $_POST['commodity'];
+            $valueUsd = $_POST['salesUSD'];
+            $valueTonnes = $_POST['salesTonnes'];
+            $setSales = new ActivityClass();
+            $setSales->setSalesTracker($activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
+        }else if ($type == "getBeneficiarySales") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getBeneficiarySales($code);
+        } 
     } else {
         echo 'provide type';
     }

@@ -96,6 +96,39 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+    
+    
+      public function setSalesTracker($activity_date, $beneficiary_code,$commodity, $valueUsd, $valueTonnes){
+
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $createdby = 'admin';
+        $code = 'ACT' . $this->generateuniqueCode(10);
+
+        
+
+        $query = mysqli_query($conn, "INSERT INTO sales_tracker(code,salesdate,beneficiary_code,commodity,value_usd,value_tonnes,createdby)"
+                . " VALUES "
+                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_date) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "',"
+                . "'" . mysqli_real_escape_string($conn, $commodity) . "','" . mysqli_real_escape_string($conn, $valueUsd) . "','" . mysqli_real_escape_string($conn, $valueTonnes) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
+
+
+        if ($query) {
+           
+            $this->response['success'] = '1';
+            $this->response['message'] = 'New Sales Tracker  Added';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt add' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    
+    
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -149,16 +182,6 @@ class ActivityClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM activity_participants_view WHERE activity_code='" . $activity_code . "'");
 
-//
-//        if (mysqli_num_rows($query) > 0) {
-//
-//            $feedback = json_encode(mysqli_fetch_row($query));
-//            //  $query->close();
-//        } else {
-//
-//            $feedback = json_encode($this->response);
-//        }
-//        echo $feedback;
 
         
         $response["data"] = array();
@@ -188,4 +211,27 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+    public function getBeneficiarySales($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM sales_tracker WHERE beneficiary_code='".$code."'");
+        //print("Hello here");
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    } 
+    
+   
+
+    
 }
