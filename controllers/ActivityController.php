@@ -43,10 +43,14 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         } else if ($type = "retreiveCompletionToolActivity") {
             $retreiveList = new ActivityClass();
             $retreiveList->getCompletionToolActivityList();
-        }else if ($type = "retreiveActivityInfo") {
+        } else if ($type = "retreiveActivityInfo") {
             $activity_code = $_POST['activity_code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getCompletionToolActivity($activity_code);
+        } else if ($type = "retreiveActivityParticipants") {
+            $activity_code = $_POST['activity_code'];
+             $retreiveList = new ActivityClass();
+           $retreiveList->getActivityParticipants($activity_code);
         }
     } else {
         echo 'provide type';

@@ -158,7 +158,7 @@
                                 <div class=" col-lg-12 ">
 
                                     <div class="table-responsive">
-                                        <table id="participantsListTbl" class="table table-middle nowrap">
+                                        <table id="participantsTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>
@@ -194,13 +194,13 @@
                 ?>
             </div>
 
-            <script src="../js/vendor.min.js"></script>
-            <script src="../js/elephant.min.js"></script>
-            <script src="../js/application.min.js"></script>
-            <script src="../js/demo.min.js"></script>
-    <!--        <script src="../js/select2.js"></script>-->
-            <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
-            <script src="../js/completion-tool-detail.js"></script>
+         <script src="../js/vendor.min.js"></script>
+        <script src="../js/elephant.min.js"></script>
+        <script src="../js/application.min.js"></script>
+        <script src="../js/demo.min.js"></script>
+       
+        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
+        <script src="../js/completion-tool-detail.js"></script>
 
     </body>
 </html>

@@ -59,7 +59,7 @@ class ActivityClass {
         $beneficiaries = preg_replace('/\.$/', '', $beneficiaries); //Remove dot at end if exists
         $array = explode(',', $beneficiaries); //split string into array seperated by ', '
 
-       
+
         $query = mysqli_query($conn, "INSERT INTO completion_tool_activity(code,activity_date,type,description,category,region,district,community,implementer,male,female,total,url,createdby)"
                 . " VALUES "
                 . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_date) . "','" . mysqli_real_escape_string($conn, $type) . "',"
@@ -106,8 +106,7 @@ class ActivityClass {
         return $randomString;
     }
 
-    
-       public function getCompletionToolActivityList() {
+    public function getCompletionToolActivityList() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM activity_completion_tool_view WHERE status=0");
@@ -126,15 +125,14 @@ class ActivityClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
-    
-    
-       public function getCompletionToolActivity($activity_code) {
+
+    public function getCompletionToolActivity($activity_code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM activity_completion_tool_view WHERE code='".$activity_code."'");
+        $query = mysqli_query($conn, "SELECT * FROM activity_completion_tool_view WHERE code='" . $activity_code . "'");
         //print("Hello here");
         if (mysqli_num_rows($query) > 0) {
-            
+
             $feedback = json_encode(mysqli_fetch_row($query));
             //  $query->close();
         } else {
@@ -145,4 +143,49 @@ class ActivityClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+
+    public function getActivityParticipants($activity_code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM activity_participants_view WHERE activity_code='" . $activity_code . "'");
+
+//
+//        if (mysqli_num_rows($query) > 0) {
+//
+//            $feedback = json_encode(mysqli_fetch_row($query));
+//            //  $query->close();
+//        } else {
+//
+//            $feedback = json_encode($this->response);
+//        }
+//        echo $feedback;
+
+        
+        $response["data"] = array();
+
+        $i = 0;
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $sample = array();
+                $sample[0] = $row['beneficiary_id'];
+                $sample[1] = $row['code'];
+                $sample[2] = $row['name'];
+                $sample[3] = $row['gender'];
+                $sample[4] = $row['email'];
+                $sample[5] = $row['contactno'];
+                $sample[6] = $row['district_name'];
+                $response["data"][$i] = $sample;
+
+                $i = $i + 1;
+            }
+            echo json_encode($response);
+        } else {
+
+            echo $feedback = json_encode($this->response);
+        }
+        
+        $connection->closeConnection($conn);
+    }
+
 }

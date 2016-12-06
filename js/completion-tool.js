@@ -327,7 +327,7 @@ $('#completionTooLActivityForm').on('submit', function (e) {
             var successStatus = data.success;
 
             if (successStatus == 1) {
-                $('.select2').select2('val', '');
+             ///   $('.select2').select2('val', '');
                 document.getElementById("completionTooLActivityForm").reset();
 
                 $('input:submit').attr("disabled", false);

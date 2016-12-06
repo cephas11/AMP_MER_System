@@ -37,6 +37,10 @@ if (isset($_GET['type'])) {
             $catcode = $_GET['catcode'];
             $getBeneficiary = new ActivityClass();
             $getBeneficiary->getBeneficiaries($regcode, $catcode);
+        }else if ($type = "retreiveActivityParticipants") {
+            $activity_code = $_GET['activity_code'];
+             $retreiveList = new ActivityClass();
+           $retreiveList->getActivityParticipants($activity_code);
         }
     } else {
         echo 'provide type';
