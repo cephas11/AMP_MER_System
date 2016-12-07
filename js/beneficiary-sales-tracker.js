@@ -162,7 +162,7 @@ function getSales(bene_code)
                    r[++j] = '<td>' + value.value_tonnes + '</td>';
                    r[++j] = '<td>' + value.dateadded + '</td>';
                   
-                    r[++j] = '<td><button onclick="deleteRegion(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -179,4 +179,62 @@ function getSales(bene_code)
 
 
 }
+
+function deleteSale(code) {
+
+    $('#code').val(code);
+    $('#confirmModal').modal('show');
+}
+
+$('#deleteSaleForm').on('submit', function (e) {
+    e.preventDefault();
+    $('input:submit').attr("disabled", true);
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('#confirmModal').modal('hide');
+    $('#loaderModal').modal('show');
+
+    $.ajax({
+        url: '../controllers/deleteController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#loaderModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("deleteSaleForm").reset();
+
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getSales(bene_code);
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+});
+
 

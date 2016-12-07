@@ -2,7 +2,7 @@
 
 require_once '../classes/BeneficiaryClass.php';
 require_once '../classes/ConfigurationClass.php';
-
+require_once '../classes/ActivityClass.php';;
 $response = array();
 if (isset($_REQUEST['type'])) {
 //echo "Check here";
@@ -55,6 +55,21 @@ if (isset($_REQUEST['type'])) {
            
             $delete = new ConfigurationClass();
            $delete->deleteActivityTypeDescription($code);
+        }else if ($type == 'deleteCompletionActivity') {
+            $code = $_REQUEST['code'];
+           
+            $delete = new ActivityClass();
+           $delete->deleteCompletionActivity($code);
+        }else if ($type == 'deleteSale') {
+            $code = $_REQUEST['code'];
+           
+            $delete = new ActivityClass();
+           $delete->deleteSale($code);
+        }else if ($type == 'deleteFinace') {
+            $code = $_REQUEST['code'];
+           
+            $delete = new ActivityClass();
+           $delete->deleteFinance($code);
         }
     } else {
         echo 'provide type';

@@ -676,6 +676,9 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
+    
+    
+   
 
     public function getActivityDescriptionBasedOnType($type_code) {
         $connection = new databaseConnection(); //i created a new object
@@ -696,6 +699,8 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
+    
+      
 }
 
 ?>

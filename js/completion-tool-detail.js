@@ -82,22 +82,22 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
         console.log(data);
-        
-            //    console.log('innnfo here:' + item.activity_date + item.region);
-            $('#activityDate').val(data.activity_date);
-            $('#category').val(data.category_name);
-            $('#region').val(data.region_name);
-            $('#district').val(data.district_name);
-            $('#community').val(data.community);
-            $('#maleParticipants').val(data.male);
-            $('#femaleParticipants').val(data.female);
-            $('#totalParticipants').val(data.total);
-            $('#activityImplementer').val(data.implementer);
 
-            $("#activityType  option[value=" + data.type + "]").prop("selected", true);
-            $("#activityDescription  option[value=" + data.description + "]").prop("selected", true);
+        //    console.log('innnfo here:' + item.activity_date + item.region);
+        $('#activityDate').val(data.activity_date);
+        $('#category').val(data.category_name);
+        $('#region').val(data.region_name);
+        $('#district').val(data.district_name);
+        $('#community').val(data.community);
+        $('#maleParticipants').val(data.male);
+        $('#femaleParticipants').val(data.female);
+        $('#totalParticipants').val(data.total);
+        $('#activityImplementer').val(data.implementer);
 
-       
+        $("#activityType  option[value=" + data.type + "]").prop("selected", true);
+        $("#activityDescription  option[value=" + data.description + "]").prop("selected", true);
+        $('.holder').html(data.category_name + '(s)');
+        getUnAssignedBeneficiaries(data.region, data.category);
 
     }
 });
@@ -148,7 +148,27 @@ function getDescriptionBasedOnActivityType(type_code) {
 
 
 
-
+//function getUnAssignedBeneficiaries(regcode, catcode) {
+//    console.log('code here'+regcode+' '+catcode);
+//    var info = {
+//        "regcode": regcode,
+//        "catcode": catcode,
+//        type: "getUnAssignedBeneficiaries"
+//    };
+//
+//    $.ajax({
+//        url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
+//        type: "GET",
+//        data: info,
+//        //dataType: 'json',
+//        success: function (data) {
+//
+//
+//            console.log('response:'+data);
+//
+//        }
+//    });
+//}
 
 
 getActivityParticipants();
@@ -171,6 +191,50 @@ function getActivityParticipants()
                 "data": {
                     activity_code: activity_code,
                     type: "retreiveActivityParticipants"
+                }
+            },
+            language: {
+                paginate:
+                        {previous: "&laquo;", next: "&raquo;"},
+                search: "_INPUT_",
+                searchPlaceholder: "Search…"
+            },
+            'columnDefs': [
+                {
+                    'targets': 0,
+                    'checkboxes': {
+                        'selectRow': true
+                    }
+                }
+            ],
+            'select': {
+                'style': 'multi'
+            },
+            'order': [[1, 'asc']]
+        });
+
+    }
+
+}
+
+
+function getUnAssignedBeneficiaries(regcode, catcode)
+{
+    if (regcode == "" || catcode == "") {
+        console.log('do nothing');
+    } else {
+        //datatable.clear().draw();
+        datatable = $('#newparticipantsTbl').DataTable({
+            responsive: true,
+            "processing": true,
+            "serverSide": false,
+            "ajax": {
+                url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
+                "type": "GET",
+                "data": {
+                    "regcode": regcode,
+                    "catcode": catcode,
+                    type: "getUnAssignedBeneficiaries"
                 }
             },
             language: {

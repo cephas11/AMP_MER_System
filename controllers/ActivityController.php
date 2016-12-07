@@ -60,11 +60,38 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $valueTonnes = $_POST['salesTonnes'];
             $setSales = new ActivityClass();
             $setSales->setSalesTracker($activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
-        }else if ($type == "getBeneficiarySales") {
+        } else if ($type == "getBeneficiarySales") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getBeneficiarySales($code);
-        } 
+        } else if ($type == "setFinancialTracker") {
+            //  echo 'here in sales';
+            $beneficiaryType = $_POST['beneficiaryType'];
+            $beneficiary_code = $_POST['beneficiaryCode'];
+            $financialType = $_POST['financialType'];
+            $purposeLoan = $_POST['loanPurpose'];
+            $repaidAmount = $_POST['amountRepaid'];
+            $repaymentDate = $_POST['repaymentDate'];
+            if ($financialType == "Loan") {
+                $disbursedAmount = $_POST['amountDisbursed'];
+                $disbursementDate = $_POST['disbursementDate'];
+            } else {
+                $disbursedAmount = $_POST['amountDisbursedGrant'];
+                $disbursementDate = $_POST['disbursementDateGrant'];
+            }
+
+
+            $new = new ActivityClass();
+            $new->setFinancialTracker($beneficiary_code, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate);
+        } else if ($type == "getBeneficiaryFinances") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getBeneficiaryFinances($code);
+        }else if ($type == "getFinanceinfo") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getFinanceInfo($code);
+        }
     } else {
         echo 'provide type';
     }

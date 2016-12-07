@@ -34,14 +34,14 @@
 
                 <div class="layout-content-body">
                     <div class="text m-b">
-                        <h3 class="m-b-0">Activity Completion Tool </h3>
+                        <h3 class="m-b-0">Activity  Details </h3>
                     </div>
                     <div class="row gutter-xs">
                         <div class="card">
 
                             <div class="card-body">
-                                
-                                         
+
+
                                 <form id="completionTooLActivityForm" method="POST" enctype="multipart/form-data">
                                     <div class="col-xs-12">
 
@@ -56,7 +56,7 @@
                                             <label  class="form-label">Type Of Activity</label>
                                             <select name="activityType" id="activityType" class="form-control select2">
 
-                                              
+
                                             </select>
                                             <span class="help-block"></span>
                                         </div>
@@ -64,7 +64,7 @@
                                             <label  class="form-label">Activity Description</label>
                                             <select name="description" id="activityDescription" class="form-control ">
 
-                                                
+
                                             </select>
                                             <span class="help-block"></span>
                                         </div>
@@ -145,47 +145,95 @@
 
                                     </div>
 
+                                    <div class="row layout" >
+                                        <div class=" col-lg-12 ">
+
+                                            <div class="table-responsive">
+                                                <table id="participantsTbl" class="table table-middle nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <input type="checkbox">
+                                                            </th>
+                                                            <th>Code</th>
+                                                            <th>Name</th>
+                                                            <th>Gender</th>
+                                                            <th>Email</th>
+                                                            <th>Contact No</th>
+                                                            <th>District</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
 
 
-
-                                </form>
-
-
-
-
-                            </div>
-                            <div class="row">
-                                <div class=" col-lg-12 ">
-
-                                    <div class="table-responsive">
-                                        <table id="participantsTbl" class="table table-middle nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <input type="checkbox">
-                                                    </th>
-                                                    <th>Code</th>
-                                                    <th>Name</th>
-                                                    <th>Gender</th>
-                                                    <th>Email</th>
-                                                    <th>Contact No</th>
-                                                    <th>District</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
+                                        </div>
                                     </div>
 
 
-                                </div>
+                                    <div class="col-lg-12">
+                                        <div class="pull-right">
+                                            <button type="button" class="btn btn-info " data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Add New Participants</button>
+
+                                            <button  class="btn btn-primary" >Update</button>
+
+                                        </div>
+
+                                    </div>
                             </div>
-                            
-                            
+
+                            </form>
+
                         </div>
 
-                    </div>
 
+                    </div>
+                </div>
+                <div class="row layout">
+
+
+                    <div class="modal fade " id="participantsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Participants for <span class="holder" > </span> </h4>
+                                </div>
+                                <form id="attachParticipantsForm" >
+                                    <div class="modal-body">
+
+                                        <div class="table-responsive">
+                                            <table id="newparticipantsTbl" class="table table-middle nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox">
+                                                        </th>
+                                                        <th>Code</th>
+                                                        <th>Name</th>
+                                                        <th>Gender</th>
+                                                        <th>Email</th>
+                                                        <th>Contact No</th>
+                                                        <th>District</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Attach</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -194,13 +242,13 @@
                 ?>
             </div>
 
-         <script src="../js/vendor.min.js"></script>
-        <script src="../js/elephant.min.js"></script>
-        <script src="../js/application.min.js"></script>
-        <script src="../js/demo.min.js"></script>
-       
-        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
-        <script src="../js/completion-tool-detail.js"></script>
+            <script src="../js/vendor.min.js"></script>
+            <script src="../js/elephant.min.js"></script>
+            <script src="../js/application.min.js"></script>
+            <script src="../js/demo.min.js"></script>
+
+            <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
+            <script src="../js/completion-tool-detail.js"></script>
 
     </body>
 </html>

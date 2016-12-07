@@ -46,6 +46,41 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+       public function getUnAssignedBeneficiaries($regcode, $catcode) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM unassigned_beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code='" . $catcode . "'");
+
+        $response["data"] = array();
+
+        $i = 0;
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $sample = array();
+                $sample[0] = $row['beneficiary_id'];
+                $sample[1] = $row['code'];
+                $sample[2] = $row['name'];
+                $sample[3] = $row['gender'];
+                $sample[4] = $row['email'];
+                $sample[5] = $row['contactno'];
+                $sample[6] = $row['district_name'];
+                $response["data"][$i] = $sample;
+
+                $i = $i + 1;
+            }
+            echo json_encode($response);
+        } else {
+
+            echo $feedback = json_encode($this->response);
+        }
+
+
+        $connection->closeConnection($conn);
+    }
+
+    
+    
     public function setCompletionToolActivity($activity_date, $type, $description, $category, $region, $district, $community, $implementer, $male, $female, $total, $url, $participants, $typeofactivity) {
 
 
@@ -96,9 +131,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    
-    
-      public function setSalesTracker($activity_date, $beneficiary_code,$commodity, $valueUsd, $valueTonnes){
+    public function setSalesTracker($activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -106,7 +139,7 @@ class ActivityClass {
         $createdby = 'admin';
         $code = 'ACT' . $this->generateuniqueCode(10);
 
-        
+
 
         $query = mysqli_query($conn, "INSERT INTO sales_tracker(code,salesdate,beneficiary_code,commodity,value_usd,value_tonnes,createdby)"
                 . " VALUES "
@@ -115,7 +148,7 @@ class ActivityClass {
 
 
         if ($query) {
-           
+
             $this->response['success'] = '1';
             $this->response['message'] = 'New Sales Tracker  Added';
             echo json_encode($this->response);
@@ -127,8 +160,6 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    
-    
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -183,7 +214,7 @@ class ActivityClass {
         $query = mysqli_query($conn, "SELECT * FROM activity_participants_view WHERE activity_code='" . $activity_code . "'");
 
 
-        
+
         $response["data"] = array();
 
         $i = 0;
@@ -207,14 +238,14 @@ class ActivityClass {
 
             echo $feedback = json_encode($this->response);
         }
-        
+
         $connection->closeConnection($conn);
     }
 
     public function getBeneficiarySales($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM sales_tracker WHERE beneficiary_code='".$code."'");
+        $query = mysqli_query($conn, "SELECT * FROM sales_tracker WHERE beneficiary_code='" . $code . "'");
         //print("Hello here");
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -229,9 +260,142 @@ class ActivityClass {
 
         echo $feedback;
         $connection->closeConnection($conn);
-    } 
+    }
+
+    public function setFinancialTracker($beneficiary_code, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate) {
+
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $createdby = 'admin';
+        $code = 'FIN' . $this->generateuniqueCode(10);
+
+        if ($financialType == "Loan") {
+            $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,beneficiary_code,beneficiary_type,financial_type,loan_purpose,amount_disbursed,disbursement_date,amount_paid,repayment_date,createdby)"
+                    . " VALUES "
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $financialType) . "','" . mysqli_real_escape_string($conn, $purposeLoan) . "','" . mysqli_real_escape_string($conn, $disbursedAmount) . "','" . mysqli_real_escape_string($conn, $disbursementDate) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $repaidAmount) . "','" . mysqli_real_escape_string($conn, $repaymentDate) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
+        } else {
+            $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,beneficiary_code,beneficiary_type,financial_type,amount_disbursed,disbursement_date,createdby)"
+                    . " VALUES "
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $financialType) . "','" . mysqli_real_escape_string($conn, $disbursedAmount) . "','" . mysqli_real_escape_string($conn, $disbursementDate) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $createdby) . "')");
+        }
+
+
+        if ($query) {
+
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Saved Sucessfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt add' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    public function getBeneficiaryFinances($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM financial_services_tracker WHERE beneficiary_code='" . $code . "'");
+        //print("Hello here");
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function deleteSale($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "DELETE FROM sales_tracker  WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    public function deleteFinance($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "DELETE FROM financial_services_tracker  WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    public function getFinanceInfo($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM financial_services_tracker WHERE code='" . $code . "'");
+
+        if (mysqli_num_rows($query) > 0) {
+
+            $feedback = json_encode(mysqli_fetch_assoc($query));
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function deleteCompletionActivity($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE completion_tool_activity SET status = 1 WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    
+    
     
    
-
     
 }

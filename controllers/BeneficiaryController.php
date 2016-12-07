@@ -47,6 +47,13 @@ if (isset($_GET['type'])) {
             $code = $_GET['code'];
            $getBeneficiary = new BeneficiaryClass();
             $getBeneficiary->getBeneficiaryInfo($code);
+        }else if ($type == 'getUnAssignedBeneficiaries') {
+          
+            
+            $regcode = $_GET['regcode'];
+            $catcode = $_GET['catcode'];
+            $getBeneficiary = new ActivityClass();
+            $getBeneficiary->getUnAssignedBeneficiaries($regcode, $catcode);
         }
     } else {
         echo 'provide type';

@@ -49,13 +49,13 @@
                                             <div class="form-group">
                                                 <label for="name-1" class="control-label">Date of  Activity</label>
                                                 <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="activityDate" data-provide="datepicker">
+                                                    <input class="form-control" type="text" name="activityDate" data-provide="datepicker" required>
                                                     <span class="icon icon-calendar input-icon"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Type Of Activity</label>
-                                                <select name="activityType" id="activityType" class="form-control select2">
+                                                <select name="activityType" id="activityType" class="form-control select2" required>
 
                                                     <option value="">Choose...</option>
 
@@ -64,7 +64,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Activity Description</label>
-                                                <select name="description" id="activityDescription" class="form-control select2">
+                                                <select name="description" id="activityDescription" class="form-control select2" required>
 
                                                     <option value="">Loading...</option>
 
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Category</label>
-                                                <select name="category" id="category" class="form-control select2">
+                                                <select name="category" id="category" class="form-control select2" required>
 
                                                     <option value="">Loading...</option>
 
@@ -88,7 +88,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">Region</label>
-                                                    <select id="region" name="region" class="form-control select2" >
+                                                    <select id="region" name="region" class="form-control select2" required >
                                                         <option value="">Choose...</option>
 
                                                     </select>
@@ -119,7 +119,7 @@
                                         <div class="col-lg-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label  class="form-label">Activity Implementer </label>
-                                                <select name="activityImplementer" id="activityImplementer" class="form-control select2">
+                                                <select name="activityImplementer" id="activityImplementer" class="form-control select2" required>
 
                                                     <option value="">Choose...</option>
                                                     <option value="ASA/WISHH">ASA/WISHH</option>
