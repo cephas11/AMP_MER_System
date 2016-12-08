@@ -74,8 +74,8 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.datecreated + '</td>';
                     r[++j] = '<td>' + value.modon + '</td>';
                     r[++j] = '<td>' + value.modby + '</td>';
-                    r[++j] = '<td><button type="button" class="btn btn-outline-info btn-sm btn-edit">Edit</button>\n\
-                              <button onclick="deleteBeneficiary(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button type="button" onclick="editBeneficiary(\'' + value.code + '\')" class="btn btn-outline-info btn-sm  col-sm-6 btn-edit"><i class="fa fa-eye""></i><span class="hidden-md hidden-sm hidden-xs">Edit </span></</button>\n\
+                              <button onclick="deleteBeneficiary(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6 " type="button"><i class="fa fa-trash-o""></i><span class="hidden-md hidden-sm hidden-xs">Delete </span></</button></td>';
 
                     rowNum = rowNum + 1;
 
@@ -104,7 +104,7 @@ function deleteBeneficiary(code, title) {
 function editBeneficiary() {
     $('#editModal').modal('show');
 
-    document.getElementById('ecthh').html = this.parentElement.parentElement.getElementsByClassName('beneficiary-name')[0].innerText;
+   // document.getElementById('ecthh').html = this.parentElement.parentElement.getElementsByClassName('beneficiary-name')[0].innerText;
 
 }
 

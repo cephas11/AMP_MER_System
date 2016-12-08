@@ -175,6 +175,7 @@
 
                                     <div class="col-lg-12">
                                         <div class="pull-right">
+                                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deletedparticipantsModal" data-whatever="@mdo">Delete Participants</button>
                                             <button type="button" class="btn btn-info " data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Add New Participants</button>
 
                                             <button  class="btn btn-primary" >Update</button>

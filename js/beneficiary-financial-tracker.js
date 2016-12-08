@@ -30,9 +30,16 @@ $("#financialType").change(function () {
     var selectedval = this.value;
     console.log(selectedval);
     if (selectedval == 'Grant') {
+        $('.loan').removeAttr('required');
+
+        $('.grant').attr('required', 'required');
+
         $('#grant').show();
         $('#loan').hide();
     } else if (selectedval == 'Loan') {
+        $('.grant').removeAttr('required');
+        $('.loan').attr('required', 'required');
+
         $('#loan').show();
         $('#grant').hide();
     } else {
@@ -109,8 +116,15 @@ $('#financialTrackerForm').on('submit', function (e) {
 
                 $('#amountDisbursedGrant').val('');
                 $('#disbursementDateGrant').val('');
-                $('#financialType').select2('val', '');
 
+                $('#financialType').select2("destroy");
+                $('#financialType').empty();
+                $('#financialType').select2();
+                $('#financialType').append('<option value="">Choose...</option> <option value="Loan">Loan</option><option value="Grant">Grant</option>');
+                $('#loanPurpose').select2("destroy");
+                $('#loanPurpose').select2();
+                $('#loan').hide();
+                $('#grant').hide();
                 $('input:submit').attr("disabled", false);
                 Command: toastr["success"](data.message, "Success");
 
@@ -181,8 +195,8 @@ function getFinaceHistory(bene_code)
                     r[++j] = '<td>' + value.disbursement_date + '</td>';
                     r[++j] = '<td>' + value.createdAt + '</td>';
 
-                    r[++j] = '<td><button onclick="getFinanceDetail(\'' + value.code + '\')" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-eye"></i><span class="hidden-md hidden-sm hidden-xs">View</span></a>\n\
-                            <button onclick="deleteFinance(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs">Delete</span></button></td>';
+                    r[++j] = '<td><button onclick="getFinanceDetail(\'' + value.code + '\')" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-eye"></i><span class="hidden-md hidden-sm hidden-xs"></span></a>\n\
+                            <button onclick="deleteFinance(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs"></span></button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -282,12 +296,12 @@ function getFinanceInfo(code) {
         success: function (data) {
             console.log('response: ' + data.financial_type);
             $('#financialTypeDetail').val(data.financial_type);
-            if(data.financial_type == "Loan"){
+            if (data.financial_type == "Loan") {
                 $('#loandiv').show();
-            }else{
-                  $('#loandiv').hide();
+            } else {
+                $('#loandiv').hide();
             }
-            
+
             $('#loanPurposeDetail').val(data.loan_purpose);
             $('#amountDisbursedDetail').val(data.amount_disbursed);
             $('#disbursementDateDetail').val(data.disbursement_date);

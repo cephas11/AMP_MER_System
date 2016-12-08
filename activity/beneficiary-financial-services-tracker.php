@@ -11,15 +11,15 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-
-
-
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
         <link rel="stylesheet" href="../css/vendor.min.css">
+
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
+        <link rel="stylesheet" href="../css/font-awesome.css">
+
         <link rel="stylesheet" href="../css/demo.min.css">
-        <link rel="stylesheet" href="../css/custom.css">
+<!--        <link rel="stylesheet" href="../css/custom.css">-->
     </head>
     <body class="layout layout-header-fixed">
         <?php
@@ -42,7 +42,7 @@
 
 
                                 <div class="col-xs-12">
-                                    <form id="financialTrackerForm" method="POST" enctype="multipart/form-data">
+                                    <form id="financialTrackerForm" name="financialTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setFinancialTracker"/>
 
                                         <div class="row">
@@ -103,7 +103,7 @@
                                                 <div class="form-group col-lg-1"></div>
                                                 <div class="form-group col-lg-9">
                                                     <label for="name-1" class="control-label">Purpose Of Loan </label>
-                                                    <select name="loanPurpose" id="loanPurpose" class="form-control select2">
+                                                    <select name="loanPurpose" id="loanPurpose" class="form-control select2 loan">
 
                                                         <option value="">Choose...</option>
                                                         <option value="Purchase poultry feed inputs"> Purchase poultry feed inputs</option>
@@ -123,7 +123,7 @@
                                                 <div class="form-group col-lg-9">
                                                     <label for="name-1" class="control-label">Amount Disbursed </label>
                                                     <div class="input-with-icon">
-                                                        <input class="form-control" type="text" name="amountDisbursed" id="amountDisbursed" >
+                                                        <input class="form-control loan" type="text" name="amountDisbursed" id="amountDisbursed" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-lg-1"></div>
@@ -137,7 +137,7 @@
                                                     <label for="name-1" class="control-label">Date Of Disbursement </label>
 
                                                     <div class="input-with-icon">
-                                                        <input class="form-control" type="text" name="disbursementDate" id="disbursementDate" data-provide="datepicker" >
+                                                        <input class="form-control loan" type="text" name="disbursementDate" id="disbursementDate" data-provide="datepicker" >
                                                         <span class="icon icon-calendar input-icon"></span>
                                                     </div>
                                                 </div>
@@ -149,9 +149,9 @@
 
                                                 <div class="form-group col-lg-1"></div>
                                                 <div class="form-group col-lg-9">
-                                                    <label for="name-1" class="control-label">Amount Repaid </label>
+                                                    <label for="name-1" class="control-label ">Amount Repaid </label>
                                                     <div class="input-with-icon">
-                                                        <input class="form-control" type="text" name="amountRepaid" id="amountRepaid" >
+                                                        <input class="form-control loan" type="text" name="amountRepaid" id="amountRepaid" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-lg-1"></div>
@@ -162,11 +162,11 @@
 
                                                 <div class="form-group col-lg-1"></div>
                                                 <div class="form-group col-lg-9">
-                                                    <label for="name-1" class="control-label">Final Repayment Date </label>
+                                                    <label for="name-1" class="control-label ">Final Repayment Date </label>
 
 
                                                     <div class="input-with-icon">
-                                                        <input class="form-control" type="text" name="repaymentDate" id="repaymentDate" data-provide="datepicker" >
+                                                        <input class="form-control loan" type="text" name="repaymentDate" id="repaymentDate" data-provide="datepicker" >
                                                         <span class="icon icon-calendar input-icon"></span>
                                                     </div>
                                                 </div>
@@ -184,7 +184,7 @@
                                                 <div class="form-group col-lg-9">
                                                     <label for="name-1" class="control-label">Amount Disbursed </label>
                                                     <div class="input-with-icon">
-                                                        <input class="form-control" type="text" name="amountDisbursedGrant" id="amountDisbursedGrant" >
+                                                        <input class="form-control grant" type="text" name="amountDisbursedGrant" id="amountDisbursedGrant" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-lg-1"></div>
@@ -198,7 +198,7 @@
                                                     <label for="name-1" class="control-label">Date Of Disbursement </label>
 
                                                     <div class="input-with-icon">
-                                                        <input class="form-control" type="text" name="disbursementDateGrant" id="disbursementDateGrant" data-provide="datepicker" >
+                                                        <input class="form-control grant" type="text" name="disbursementDateGrant" id="disbursementDateGrant" data-provide="datepicker" >
                                                         <span class="icon icon-calendar input-icon"></span>
                                                     </div>
                                                 </div>
@@ -268,7 +268,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="exampleModalLabel">Detail</h4>
                             </div>
-                            <form id="saveRegionForm" >
+                            <form  >
                                 <div class="modal-body">
 
                                     <div class="form-group">
@@ -307,7 +307,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -315,7 +315,7 @@
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete ?.<span class="holder" id="regionholder"></span> 
+                                            Are you sure you want to delete?<span class="holder" id="regionholder"></span> 
                                         </p>
                                     </div>
                                     <input type="hidden" id="code" name="code"/>
@@ -354,7 +354,7 @@
             <script src="../js/demo.min.js"></script>
             <script src="../js/select2.js"></script>
             <script src="../js/beneficiary-financial-tracker.js"></script>
-
+            <script src="../js/jquery.validate.js"></script>
     </body>
 </html>
 <!-- Localized -->
