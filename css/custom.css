@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 i.fa {
-    color: #27ae60;
+  //  color: #27ae60;
 }
 
 #loader {
@@ -37,3 +37,10 @@ table.dataTable {
     clear: both;
     width: 100% !important;
 }
+.selected{
+    background-color: #f2f1ef;
+}
+
+/*.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    text-align: center;
+} */

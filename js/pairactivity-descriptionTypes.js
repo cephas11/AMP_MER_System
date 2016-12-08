@@ -149,8 +149,6 @@ function getActivityDescriptions()
         type: "GET",
         data: info,
         success: function (data) {
-            // alert(data);
-            console.log('new code here 2');
             console.log(data);
             datatable.clear().draw();
 

@@ -50,7 +50,20 @@
                         </a>
 
                     </li>
+                    <li class="sidenav-item ">
+                        <a href="../activity/sales-tracker">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Sales Tracker </span>
+                        </a>
 
+                    </li>
+                    <li class="sidenav-item ">
+                        <a href="../activity/finanacial-services-tracker">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Financial Services Tracker </span>
+                        </a>
+
+                    </li>
                 </ul>
             </nav>
         </div>

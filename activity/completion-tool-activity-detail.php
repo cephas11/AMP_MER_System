@@ -34,71 +34,71 @@
 
                 <div class="layout-content-body">
                     <div class="text m-b">
-                        <h3 class="m-b-0">Activity Completion Tool </h3>
+                        <h3 class="m-b-0">Activity  Details </h3>
                     </div>
                     <div class="row gutter-xs">
                         <div class="card">
 
                             <div class="card-body">
+
+
                                 <form id="completionTooLActivityForm" method="POST" enctype="multipart/form-data">
                                     <div class="col-xs-12">
-                                 
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label for="name-1" class="control-label">Date of  Activity</label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="activityDate" data-provide="datepicker">
-                                                    <span class="icon icon-calendar input-icon"></span>
-                                                </div>
+
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="name-1" class="control-label">Date of  Activity</label>
+                                            <div class="input-with-icon">
+                                                <input class="form-control" type="text" name="activityDate" id="activityDate" data-provide="datepicker">
+                                                <span class="icon icon-calendar input-icon"></span>
                                             </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label  class="form-label">Type Of Activity</label>
-                                                <select name="activityType" id="activityType" class="form-control select2">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label  class="form-label">Type Of Activity</label>
+                                            <select name="activityType" id="activityType" class="form-control select2">
 
-                                                    <option value="">Choose...</option>
 
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label  class="form-label">Activity Description</label>
-                                                <select name="description" id="activityDescription" class="form-control select2">
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label  class="form-label">Activity Description</label>
+                                            <select name="description" id="activityDescription" class="form-control ">
 
-                                                    <option value="">Loading...</option>
 
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                <label  class="form-label">Category</label>
-                                                <input class="form-control" type="text" name="category" readonly>
-                                                 
-                                                <span class="help-block"></span>
-                                            </div>
+                                            </select>
+                                            <span class="help-block"></span>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label  class="form-label">Category</label>
+                                            <input class="form-control" type="text" name="category" id="category" readonly>
 
-                                        
+                                            <span class="help-block"></span>
+                                        </div>
+
+
 
 
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="form-label">Region</label>
-                                            <input class="form-control" type="text" name="region" readonly>
-                                                 
-              
+                                            <input class="form-control" type="text" id="region" name="region" readonly>
+
+
                                             <span class="help-block"></span>
                                         </div>
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="form-label">District</label>
-                                            <input class="form-control" type="text" name="district" readonly>
-                                                 
-              
-                                
+                                            <input class="form-control" type="text" id="district" name="district" readonly>
+
+
+
                                             <span class="help-block"></span>
                                         </div> 
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="control-label">Community</label>
-                                            <input  class="form-control" type="text" name="community" required>
+                                            <input  class="form-control" type="text" id="community" name="community" required>
                                             <small class="help-block"></small>
                                         </div>
 
@@ -108,14 +108,9 @@
                                         <div class="col-lg-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label  class="form-label">Activity Implementer </label>
-                                                <select name="activityImplementer" id="activityImplementer" class="form-control select2">
+                                                <input  class="form-control" type="text" id="activityImplementer" name="activityImplementer" readonly required>
 
-                                                    <option value="">Choose...</option>
-                                                    <option value="ASA/WISHH">ASA/WISHH</option>
-                                                    <option value="ADRA">ADRA</option>
-                                                    <option value="KSU">KSU</option>
 
-                                                </select>
 
                                                 <span class="help-block"></span>
                                             </div>
@@ -150,57 +145,111 @@
 
                                     </div>
 
-                                    
-                                    
-                                    
-                                </form>
-                                
-                                
-                          
-                                    
-                            </div>
-                            
-                            
-                            <div class="table-responsive">
-                                        <table id="participantsListTbl" class="table table-middle nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <input type="checkbox">
-                                                    </th>
-                                                    <th>Code</th>
-                                                    <th>Name</th>
-                                                    <th>Gender</th>
-                                                    <th>Email</th>
-                                                    <th>Contact No</th>
-                                                    <th>District</th>
-                                                  
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
+                                    <div class="row layout" >
+                                        <div class=" col-lg-12 ">
+
+                                            <div class="table-responsive">
+                                                <table id="participantsTbl" class="table table-middle nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <input type="checkbox">
+                                                            </th>
+                                                            <th>Code</th>
+                                                            <th>Name</th>
+                                                            <th>Gender</th>
+                                                            <th>Email</th>
+                                                            <th>Contact No</th>
+                                                            <th>District</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+
+                                        </div>
                                     </div>
+
+
+                                    <div class="col-lg-12">
+                                        <div class="pull-right">
+                                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deletedparticipantsModal" data-whatever="@mdo">Delete Participants</button>
+                                            <button type="button" class="btn btn-info " data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Add New Participants</button>
+
+                                            <button  class="btn btn-primary" >Update</button>
+
+                                        </div>
+
+                                    </div>
+                            </div>
+
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row layout">
+
+
+                    <div class="modal fade " id="participantsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">Participants for <span class="holder" > </span> </h4>
+                                </div>
+                                <form id="attachParticipantsForm" >
+                                    <div class="modal-body">
+
+                                        <div class="table-responsive">
+                                            <table id="newparticipantsTbl" class="table table-middle nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox">
+                                                        </th>
+                                                        <th>Code</th>
+                                                        <th>Name</th>
+                                                        <th>Gender</th>
+                                                        <th>Email</th>
+                                                        <th>Contact No</th>
+                                                        <th>District</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Attach</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
 
                 </div>
-
-
-             
+                <?php
+                require_once '../footer.php';
+                ?>
             </div>
-            <?php
-            require_once '../footer.php';
-            ?>
-        </div>
 
-        <script src="../js/vendor.min.js"></script>
-        <script src="../js/elephant.min.js"></script>
-        <script src="../js/application.min.js"></script>
-        <script src="../js/demo.min.js"></script>
-        <script src="../js/select2.js"></script>
-        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
-        <script src="../js/completion-tool.js"></script>
+            <script src="../js/vendor.min.js"></script>
+            <script src="../js/elephant.min.js"></script>
+            <script src="../js/application.min.js"></script>
+            <script src="../js/demo.min.js"></script>
+
+            <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
+            <script src="../js/completion-tool-detail.js"></script>
 
     </body>
 </html>
