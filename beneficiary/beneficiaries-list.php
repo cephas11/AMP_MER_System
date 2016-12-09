@@ -137,9 +137,9 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel"> detail</h4>
+                                <h4 class="modal-title" id="exampleModalLabel"><span class="holder"></span> Information </h4>
                             </div>
-                            <form id="beneficiaryForm">
+                            <form id="updatebeneficiaryForm">
 
                                 <div class="modal-body">
                                     <br>
@@ -148,14 +148,13 @@
                                             <br>
                                             <div class="form-group">
                                                 <label  class="form-label">Fiscal Year</label>
-                                                <select  name="fiscalYear" id="fiscalYear" class="form-control select2">
+                                                <select  name="fiscalYear" id="fiscalYear" class="form-control">
 
-                                                    <option value="">Choose...</option>
-                                                    <option value="FY1 5">FY1 5</option>
-                                                    <option value="FY1 6">FY1 6</option>
-                                                    <option value="FY1 7">FY1 7</option>
-                                                    <option value="FY1 8">FY1 8</option>
-                                                    <option value="FY1 9">FY1 9</option>
+                                                   <option value="5">FY1 5</option>
+                                                    <option value="6">FY1 6</option>
+                                                    <option value="7">FY1 7</option>
+                                                    <option value="8">FY1 8</option>
+                                                    <option value="9">FY1 9</option>
 
                                                 </select>
                                                 <span class="help-block"></span>
@@ -163,7 +162,7 @@
                                             <div class="form-group">
                                                 <label for="name-1" class="control-label">Date of  Registration</label>
                                                 <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="dateRegistered" data-provide="datepicker">
+                                                    <input class="form-control" type="text" name="dateRegistered" id="dateRegistered" data-provide="datepicker">
                                                     <span class="icon icon-calendar input-icon"></span>
                                                 </div>
 
@@ -171,18 +170,15 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Category</label>
-                                                <select name="category" id="category" class="form-control select2">
+                                                <select name="category" id="category" class="form-control ">
 
-                                                    <option value="">Choose...</option>
 
                                                 </select>
                                                 <span class="help-block"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Description</label>
-                                                <select name="description" id="description" class="form-control select2">
-
-                                                    <option value="">Loading...</option>
+                                                <select name="description" id="description" class="form-control ">
 
                                                 </select>
                                                 <span class="help-block"></span>
@@ -190,20 +186,20 @@
 
                                             <div class="form-group">
                                                 <label class="control-label"> Name</label>
-                                                <input  class="form-control" type="text" name="beneficiaryName" required>
+                                                <input  class="form-control" type="text" name="beneficiaryName" id="beneficiaryName" required>
                                                 <small class="help-block"></small>
                                             </div>
                                             <div class="form-group">
                                                 <label  class="control-label">Business Name</label>
-                                                <input  class="form-control" type="text" name="businessName" required>
+                                                <input  class="form-control" type="text" name="businessName" id="businessName" required>
                                                 <small class="help-block"></small>
                                             </div> 
 
                                             <div class="form-group">
                                                 <label  class="form-label">Gender</label>
-                                                <select name="gender" id="gender" class="form-control select2">
+                                                <select name="gender" id="gender" class="form-control " disabled>
 
-                                                    <option value="">Choose...</option>
+                                                    
                                                     <option value="male">Male</option>
                                                     <option value="female">Female</option>
                                                 </select>
@@ -213,9 +209,8 @@
 
                                             <div class="form-group">
                                                 <label  class="form-label">Educational Level</label>
-                                                <select name="educational_level" id="educational_level" class="form-control select2">
+                                                <select name="educational_level" id="educational_level" class="form-control ">
 
-                                                    <option value="">Choose...</option>
                                                     <option value="Primary">Primary</option>
                                                     <option value="Secondary">Secondary</option>
                                                     <option value="Tertiary">Tertiary</option>
@@ -227,7 +222,7 @@
 
                                             <div class="form-group">
                                                 <label  class="control-label">Address</label>
-                                                <input  class="form-control" type="text" name="address" required>
+                                                <input  class="form-control" type="text" name="address" id="address" required>
                                                 <small class="help-block"></small>
                                             </div>
                                         </div>
@@ -237,8 +232,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">Region</label>
-                                                    <select id="region" name="region" class="form-control select2" >
-                                                        <option value="">Choose...</option>
+                                                    <select id="region" name="region" class="form-control " >
 
                                                     </select>
                                                     <span class="help-block"></span>
@@ -247,9 +241,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">District</label>
-                                                    <select id="district" name="district" class="form-control select2" required>
-                                                        <option value="">Loading...</option>
-
+                                                    <select id="district" name="district" class="form-control " required>
 
                                                     </select>
                                                     <span class="help-block"></span>
@@ -258,7 +250,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Community</label>
-                                                    <input  class="form-control" type="text" name="community" required>
+                                                    <input  class="form-control" type="text" name="community" id="community" required>
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
@@ -268,21 +260,21 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Tel NO</label>
-                                                    <input class="form-control" type="text" name="contactno" required>
+                                                    <input class="form-control" type="text" name="contactno" id="contactno" required>
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Alternate Phone NO</label>
-                                                    <input class="form-control" type="text" name="altcontactno" required>
+                                                    <input class="form-control" type="text" name="altcontactno" id="altcontactno">
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Email</label>
-                                                    <input class="form-control" type="email" name="email" >
+                                                    <input class="form-control" type="email" name="email" id="email" >
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>
@@ -291,9 +283,8 @@
                                         <div class="col-lg-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label  class="form-label">Registered Business</label>
-                                                <select name="registered_business" id="registered_business" class="form-control select2">
+                                                <select name="registered_business" id="registered_business" class="form-control ">
 
-                                                    <option value="">Choose...</option>
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
 
@@ -304,20 +295,12 @@
 
                                             <div class="form-group">
                                                 <label  class="form-label">Ownership Type</label>
-                                                <select name="ownership_type" id="ownership_type" class="form-control select2">
-
-                                                    <option value="">Choose...</option>
-                                                    <option value="Sole Proprietorship">Sole Proprietorship</option>
-                                                    <option value="Partnership">Partnership</option>
-                                                    <option value="Limited Liability">Limited Liability</option>
-
-                                                </select>
-
-                                                <span class="help-block"></span>
+                                          <input class="form-control" type="text" name="ownership_type" id="ownership_type" >
+                                            
                                             </div>
                                             <div class="form-group">
                                                 <label  class="control-label">Years Of Establishment</label>
-                                                <input  class="form-control" type="text" name="establishment_years" required>
+                                                <input  class="form-control" type="text" name="establishment_years" id="establishment_years" required>
                                                 <small class="help-block"></small>
                                             </div>
                                         </div>
@@ -333,14 +316,14 @@
                                                 <div class="form-group">
 
                                                     <label  class="control-label">Longitude</label>
-                                                    <input class="form-control" type="text" name="longitude" value="0">
+                                                    <input class="form-control" type="text" name="longitude" id="longitude" value="0">
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
                                             <div class="col-lg-5 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Latitude</label>
-                                                    <input  class="form-control" type="text" name="latitude" value="0">
+                                                    <input  class="form-control" type="text" name="latitude" id="latitude" value="0">
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
@@ -348,14 +331,15 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Registered By</label>
 
-                                            <select id="registeredBy" name="registeredBy" class="form-control select2" required >
-                                                <option value="">Choose...</option>
+                                            <select id="registeredBy" name="registeredBy" class="form-control " required >
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
-                                        <input type="hidden" value="saveBeneficiary" name="type"/>
+                                        <input type="hidden" value="updateBeneficiary" name="type"/>
+                                        <input type="hidden"  id="beneficiaryCode" name="beneficiaryCode"/>
+                                     
                                         <br><br>
                                     </div>
 
@@ -364,7 +348,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
+                                    <button type="submit" class="btn btn-primary" >Update</button>
+                              
                                 </div>
                             </form>
 

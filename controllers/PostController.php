@@ -21,7 +21,10 @@ if (isset($_POST['type'])) {
          
           $save_new = new ConfigurationClass();
           $save_new->setActivityTpeDescription($type,$description);
-        }
+        }else if ($type == 'updateBeneficiary') {
+            $update = new BeneficiaryClass();
+            $update->upadteBeneficiary($_POST);
+            }
     } else {
         echo 'provide type';
     }

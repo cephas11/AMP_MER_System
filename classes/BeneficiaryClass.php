@@ -180,31 +180,31 @@ class BeneficiaryClass {
     public function setBeneficiary($info) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-  
+
         $createdby = 'admin';
         $datecreated = date("Y-m-d");
- 
-        
-            $code = 'BENE' . $this->generateuniqueCode(10);
-            $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,educational_level,address,altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
-                    . " VALUES "
-                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $info['beneficiaryName']) . "','" . mysqli_real_escape_string($conn, $info['businessName']) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $info['gender']) . "','" . mysqli_real_escape_string($conn, $info['email']) . "','" . mysqli_real_escape_string($conn, $info['contactno']) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $info['category']) . "','" . mysqli_real_escape_string($conn, $info['description']) . "','" . mysqli_real_escape_string($conn, $info['region']) . "','" . mysqli_real_escape_string($conn, $info['district']) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $info['community']) . "','" . mysqli_real_escape_string($conn, $info['educational_level']) . "','" . mysqli_real_escape_string($conn, $info['address']) . "','" . mysqli_real_escape_string($conn, $info['altcontactno']) . "','" . mysqli_real_escape_string($conn, $info['registered_business']) . "','" . mysqli_real_escape_string($conn, $info['ownership_type']) . "','" . mysqli_real_escape_string($conn, $info['establishment_years']) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $info['longitude']) . "','" . mysqli_real_escape_string($conn, $info['latitude']) . "','" . mysqli_real_escape_string($conn, $info['fiscalYear']) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
 
-            if ($query) {
-                $this->response['success'] = '1';
-                $this->response['message'] = 'Data saved successfully';
-                echo json_encode($this->response);
-            } else {
-                $this->response['success'] = '0';
-                $this->response['message'] = 'couldnt save' . mysqli_error($conn);
-                echo json_encode($this->response);
-            }
-        
+
+        $code = 'BENE' . $this->generateuniqueCode(10);
+        $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,educational_level,address,altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
+                . " VALUES "
+                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $info['beneficiaryName']) . "','" . mysqli_real_escape_string($conn, $info['businessName']) . "',"
+                . "'" . mysqli_real_escape_string($conn, $info['gender']) . "','" . mysqli_real_escape_string($conn, $info['email']) . "','" . mysqli_real_escape_string($conn, $info['contactno']) . "',"
+                . "'" . mysqli_real_escape_string($conn, $info['category']) . "','" . mysqli_real_escape_string($conn, $info['description']) . "','" . mysqli_real_escape_string($conn, $info['region']) . "','" . mysqli_real_escape_string($conn, $info['district']) . "',"
+                . "'" . mysqli_real_escape_string($conn, $info['community']) . "','" . mysqli_real_escape_string($conn, $info['educational_level']) . "','" . mysqli_real_escape_string($conn, $info['address']) . "','" . mysqli_real_escape_string($conn, $info['altcontactno']) . "','" . mysqli_real_escape_string($conn, $info['registered_business']) . "','" . mysqli_real_escape_string($conn, $info['ownership_type']) . "','" . mysqli_real_escape_string($conn, $info['establishment_years']) . "',"
+                . "'" . mysqli_real_escape_string($conn, $info['longitude']) . "','" . mysqli_real_escape_string($conn, $info['latitude']) . "','" . mysqli_real_escape_string($conn, $info['fiscalYear']) . "',"
+                . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Data saved successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+
 
         $connection->closeConnection($conn);
     }
@@ -225,7 +225,7 @@ class BeneficiaryClass {
             $query = mysqli_query($conn, "INSERT INTO registers(code,name,email,contactno,createdby)"
                     . " VALUES "
                     . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $registrarInfo['name']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['email']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['contactno']) . "','" . $createdby . "')");
-           
+
             if ($query) {
                 $this->response['success'] = '1';
                 $this->response['message'] = 'Data saved successfully';
@@ -260,27 +260,26 @@ class BeneficiaryClass {
         $connection->closeConnection($conn);
     }
 
-    public function deleteBeneficiary($code){
-        
+    public function deleteBeneficiary($code) {
+
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "DELETE  FROM beneficiaries WHERE code='" . mysqli_real_escape_string($conn, $code) . "'");
 
-        
+
         if ($query) {
-                $this->response['success'] = '1';
-                $this->response['message'] = 'Beneficiary Data deleted successfully';
-                echo json_encode($this->response);
-            } else {
-                $this->response['success'] = '0';
-                $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
-                echo json_encode($this->response);
-            }
-        
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Beneficiary Data deleted successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+
         $connection->closeConnection($conn);
-        
     }
-    
+
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -291,12 +290,10 @@ class BeneficiaryClass {
         return $randomString;
     }
 
-    
-    
-     public function getBeneficiaryInfo($code) {
+    public function getBeneficiaryInfo($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE code='".$code ."'");
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE code='" . $code . "'");
 
         if (mysqli_num_rows($query) > 0) {
 
@@ -310,10 +307,30 @@ class BeneficiaryClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+
+    public function upadteBeneficiary($beninfo) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "UPDATE beneficiaries set name='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryName']) . "',business_name='".  mysqli_real_escape_string($conn,$beninfo['businessName'])."'"
+                . ",educational_level='".  mysqli_real_escape_string($conn,$beninfo['educational_level'])."',modon=NOW() WHERE code='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryCode']) . "'");
+            if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = $beninfo['beneficiaryName'].' information updated successfully';
+                echo json_encode($this->response);
+            } else {
+                $this->response['success'] = '0';
+                $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+                echo json_encode($this->response);
+            }
+
+
+        $connection->closeConnection($conn);
+    }
+
 }
 
-
-      // print_r($info);
+// print_r($info);
 //        $fiscalYear = $info['fiscalYear'];
 //        $category = $info['category'];
 //        $description = $info['description'];
