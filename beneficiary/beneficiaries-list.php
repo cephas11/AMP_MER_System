@@ -148,7 +148,7 @@
                                             <br>
                                             <div class="form-group">
                                                 <label  class="form-label">Fiscal Year</label>
-                                                <select  name="fiscalYear" id="fiscalYear" class="form-control">
+                                                <select  name="fiscalYear" id="fiscalYear" class="form-control" disabled>
 
                                                    <option value="5">FY1 5</option>
                                                     <option value="6">FY1 6</option>
@@ -170,7 +170,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Category</label>
-                                                <select name="category" id="category" class="form-control ">
+                                                <select name="category" id="category" class="form-control " disabled>
 
 
                                                 </select>
@@ -178,7 +178,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Description</label>
-                                                <select name="description" id="description" class="form-control ">
+                                                <select name="description" id="description" class="form-control "disabled>
 
                                                 </select>
                                                 <span class="help-block"></span>
@@ -232,7 +232,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">Region</label>
-                                                    <select id="region" name="region" class="form-control " >
+                                                    <select id="region" name="region" class="form-control " disabled>
 
                                                     </select>
                                                     <span class="help-block"></span>
@@ -241,7 +241,7 @@
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="form-label">District</label>
-                                                    <select id="district" name="district" class="form-control " required>
+                                                    <select id="district" name="district" class="form-control " disabled>
 
                                                     </select>
                                                     <span class="help-block"></span>
@@ -283,7 +283,7 @@
                                         <div class="col-lg-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label  class="form-label">Registered Business</label>
-                                                <select name="registered_business" id="registered_business" class="form-control ">
+                                                <select name="registered_business" id="registered_business" class="form-control " >
 
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
@@ -331,7 +331,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Registered By</label>
 
-                                            <select id="registeredBy" name="registeredBy" class="form-control " required >
+                                            <select id="registeredBy" name="registeredBy" class="form-control " disabled >
 
                                             </select>
                                         </div>
