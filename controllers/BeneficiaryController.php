@@ -49,7 +49,6 @@ if (isset($_GET['type'])) {
             $getBeneficiary->getBeneficiaryInfo($code);
         }else if ($type == 'getUnAssignedBeneficiaries') {
           
-            
             $regcode = $_GET['regcode'];
             $catcode = $_GET['catcode'];
             $getBeneficiary = new ActivityClass();
