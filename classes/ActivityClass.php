@@ -16,7 +16,7 @@ class ActivityClass {
     public function getBeneficiaries($regcode, $catcode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code='" . $catcode . "' ");
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code='" . $catcode . "' AND active=0 ");
 
         $response["data"] = array();
 

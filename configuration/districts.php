@@ -54,11 +54,11 @@
                                         <table id="districtTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-                                                  
+
                                                     <th>Name</th>
 
                                                     <th>Action </th>
-                                                   
+
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -95,8 +95,37 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Update </h4>
+                            </div>
+                            <form id="updateDistrictForm" >
+                                <div class="modal-body">
 
-                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Name:</label>
+                                        <input type="text" class="form-control" name="name" id="districtName" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="type" value="updateInformation">
+
+                                    <input type="hidden" class="form-control" name="code" id="code">
+                                    <input type="hidden" class="form-control" name="tablename" value="districts">
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form method="post" id="deleteDistrictForm">
@@ -106,7 +135,7 @@
                                             Are you sure you want to delete this district?.<span class="holder" id="districtholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="code" name="code"/>
+                                    <input type="hidden" id="districtcode" name="districtcode"/>
                                     <input type="hidden"  name="type" value="deleteDistrict"/>
 
 
@@ -131,7 +160,7 @@
 
                     </div>
                 </div>
-                
+
             </div>
             <?php
             require_once '../footer.php';

@@ -75,19 +75,26 @@
 
                                                             <th>Fiscal Year</th>
                                                             <th>Date Registered</th>
+                                                            <th>Category</th>
+                                                            <th>Description</th>
                                                             <th>Beneficiary Name</th>
                                                             <th>Business Name</th>
                                                             <th>Gender</th>
-                                                            <th>Email</th>
-                                                            <th>ContactNo</th>
+                                                            <th>Educational Level</th>
+                                                            <th>Address</th>
                                                             <th>Region</th>
                                                             <th>District</th>
-                                                            <th>Category</th>
-                                                            <th>Description</th>
                                                             <th>Community</th>
+                                                            <th>ContactNo</th>
+                                                            <th>AltContactNo</th>
+                                                            <th>Email</th>
+                                                            <th>Registered Business</th>
+                                                            <th>OwnerShip Type</th>
+                                                            <th>Years Of Establishment</th>
                                                             <th>Longitude</th>
                                                             <th>Latitude</th>
                                                             <th>Registered By</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

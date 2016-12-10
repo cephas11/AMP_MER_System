@@ -58,7 +58,7 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Contact No</th>
-                                                   
+
                                                     <th>Action </th>
 
                                                 </tr>
@@ -94,7 +94,7 @@
                                         <label for="region" class="control-label">Contact No:</label>
                                         <input type="text" class="form-control" name="contactno" id="contactno" required>
                                     </div>
-                                    
+
                                     <input type="hidden" name="type" value="saveRegistrar">
 
                                 </div>
@@ -106,6 +106,45 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" ><span class="holder"></span> Information</h4>
+                            </div>
+                            <form id="updateRegistrarForm">
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="name" class="control-label">Name:</label>
+                                        <input type="text" class="form-control" name="name" id="Regname" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="control-label">Email:</label>
+                                        <input type="email" class="form-control" name="email" id="Regemail" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Contact No:</label>
+                                        <input type="text" class="form-control" name="contactno" id="Regcontactno" required>
+                                    </div>
+
+                                    <input type="hidden" name="type" value="updateRegistrarInformation">
+                                    <input type="hidden" name="code" id="regcode">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
@@ -142,7 +181,7 @@
 
                     </div>
                 </div>
-                
+
             </div>
             <?php
             require_once '../footer.php';

@@ -95,6 +95,36 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Update </h4>
+                            </div>
+                            <form id="updateDescriptionForm" >
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Name:</label>
+                                        <input type="text" class="form-control" name="name" id="descName" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="type" value="updateInformation">
+
+                                    <input type="hidden" class="form-control" name="code" id="desc_code">
+                                    <input type="hidden" class="form-control" name="tablename" value="description">
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
