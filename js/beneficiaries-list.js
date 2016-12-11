@@ -167,7 +167,7 @@ function getBeneficiaryInfo(code) {
             //    $('#loaderModal').modal('show');
             console.log('response: ' + data.ownership_type);
             $('.holder').html(data.name);
-            $("#fiscalYear  option[text=" + data.fiscalyear + "]").prop("selected", true);
+         //   $("#fiscalYear  option[text=" + data.fiscalyear + "]").prop("selected", true);
             $('#dateRegistered').val(data.dateregistered);
             $("#category  option[value=" + data.category_code + "]").prop("selected", true);
             //$("#descriptions  option[value=" + data.description_code + "]").prop("selected", true);
@@ -184,10 +184,10 @@ function getBeneficiaryInfo(code) {
             $('#email').val(data.email);
             $('#ownership_type').val(data.ownership_type);
             
-            $("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
+            //$("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
             $('#longitude').val(data.longitude);
             $('#latitude').val(data.latitude);
-            $("#registeredBy  option[text=" + data.registeredby + "]").prop("selected", true);
+            $("#registeredBy  option[val=" + data.registeredby + "]").prop("selected", true);
             $('#establishment_years').val(data.establishment_years);
             $("#district  option[value=" + data.district_code + "]").prop("selected", true);
            

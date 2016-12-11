@@ -57,7 +57,7 @@ class BeneficiaryClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $contents = fopen($filecontents, "r");
         $createdBy = 'aba';
-
+        //   print_r($contents) ;
 
         if ($contents !== FALSE) {
             // fgets() Gets a line from file pointer and read the first line from $handle and ignore it.   
@@ -76,7 +76,7 @@ class BeneficiaryClass {
                         . "VALUES ('" . mysqli_real_escape_string($conn, $emapData[0]) . "','" . mysqli_real_escape_string($conn, $emapData[1]) . "','" . mysqli_real_escape_string($conn, $emapData[2]) . "','" . mysqli_real_escape_string($conn, $emapData[3]) . "','" . mysqli_real_escape_string($conn, $emapData[4]) . "','" . mysqli_real_escape_string($conn, $emapData[5]) . "','" . mysqli_real_escape_string($conn, $emapData[6]) . "',"
                         . "'" . mysqli_real_escape_string($conn, $emapData[7]) . "','" . mysqli_real_escape_string($conn, $emapData[8]) . "','" . mysqli_real_escape_string($conn, $emapData[9]) . "','" . mysqli_real_escape_string($conn, $emapData[10]) . "'"
                         . ",'" . mysqli_real_escape_string($conn, $emapData[11]) . "','" . mysqli_real_escape_string($conn, $emapData[12]) . "','" . mysqli_real_escape_string($conn, $emapData[13]) . "','" . mysqli_real_escape_string($conn, $emapData[14]) . "'"
-                        . ",'" . mysqli_real_escape_string($conn, $emapData[15]) . "','" . mysqli_real_escape_string($conn, $emapData[16]) . "','" . mysqli_real_escape_string($conn, $emapData[17]) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')";
+                        . ",'" . mysqli_real_escape_string($conn, $emapData[15]) . "','" . mysqli_real_escape_string($conn, $emapData[16]) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')";
 
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {
@@ -197,6 +197,9 @@ class BeneficiaryClass {
                 . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
 
         if ($query) {
+            if(isset($info['bulkInsert'])){
+             $this->removeBenficiaryTempTable($info['beneficiaryId']);
+            }
             $this->response['success'] = '1';
             $this->response['message'] = 'Data saved successfully';
             echo json_encode($this->response);
@@ -313,27 +316,34 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-        $query = mysqli_query($conn, "UPDATE beneficiaries set name='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryName']) . "',business_name='".  mysqli_real_escape_string($conn,$beninfo['businessName'])."'"
-                . ",educational_level='".  mysqli_real_escape_string($conn,$beninfo['educational_level'])."'"
-                . ",address='".  mysqli_real_escape_string($conn,$beninfo['address'])."',community='".  mysqli_real_escape_string($conn,$beninfo['community'])."',"
-                . "contactno='".  mysqli_real_escape_string($conn,$beninfo['contactno'])."',altcontactno='".  mysqli_real_escape_string($conn,$beninfo['altcontactno'])."'"
-                . ",email='".  mysqli_real_escape_string($conn,$beninfo['email'])."',registered_business='".  mysqli_real_escape_string($conn,$beninfo['registered_business'])."'"
-                . ",ownership_type='".  mysqli_real_escape_string($conn,$beninfo['ownership_type'])."',establishment_years='".  mysqli_real_escape_string($conn,$beninfo['establishment_years'])."',"
-                . "longitude='".  mysqli_real_escape_string($conn,$beninfo['longitude'])."',latitude='".  mysqli_real_escape_string($conn,$beninfo['latitude'])."',dateregistered='".  mysqli_real_escape_string($conn,$beninfo['dateRegistered'])."',modon=NOW() WHERE code='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryCode']) . "'");
-            if ($query) {
-                $this->response['success'] = '1';
-                $this->response['message'] = $beninfo['beneficiaryName'].' information updated successfully';
-                echo json_encode($this->response);
-            } else {
-                $this->response['success'] = '0';
-                $this->response['message'] = 'couldnt save' . mysqli_error($conn);
-                echo json_encode($this->response);
-            }
+        $query = mysqli_query($conn, "UPDATE beneficiaries set name='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryName']) . "',business_name='" . mysqli_real_escape_string($conn, $beninfo['businessName']) . "'"
+                . ",educational_level='" . mysqli_real_escape_string($conn, $beninfo['educational_level']) . "'"
+                . ",address='" . mysqli_real_escape_string($conn, $beninfo['address']) . "',community='" . mysqli_real_escape_string($conn, $beninfo['community']) . "',"
+                . "contactno='" . mysqli_real_escape_string($conn, $beninfo['contactno']) . "',altcontactno='" . mysqli_real_escape_string($conn, $beninfo['altcontactno']) . "'"
+                . ",email='" . mysqli_real_escape_string($conn, $beninfo['email']) . "',registered_business='" . mysqli_real_escape_string($conn, $beninfo['registered_business']) . "'"
+                . ",ownership_type='" . mysqli_real_escape_string($conn, $beninfo['ownership_type']) . "',establishment_years='" . mysqli_real_escape_string($conn, $beninfo['establishment_years']) . "',"
+                . "longitude='" . mysqli_real_escape_string($conn, $beninfo['longitude']) . "',latitude='" . mysqli_real_escape_string($conn, $beninfo['latitude']) . "',dateregistered='" . mysqli_real_escape_string($conn, $beninfo['dateRegistered']) . "',modon=NOW() WHERE code='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryCode']) . "'");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = $beninfo['beneficiaryName'] . ' information updated successfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
 
 
         $connection->closeConnection($conn);
     }
 
+    public function removeBenficiaryTempTable($beneficary_id) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the databaseSELECT * FROM region_districts_view WHERE egion_code=
+        mysqli_query($conn, "DELETE FROM temp_beneficiaries WHERE beneficiary_id=$beneficary_id");
+     $connection->closeConnection($conn);
+    }
+    
 }
 
 // print_r($info);
