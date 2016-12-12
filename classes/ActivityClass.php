@@ -46,7 +46,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-       public function getUnAssignedBeneficiaries($regcode, $catcode) {
+    public function getUnAssignedBeneficiaries($regcode, $catcode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM unassigned_beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code='" . $catcode . "'");
@@ -79,8 +79,6 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    
-    
     public function setCompletionToolActivity($activity_date, $type, $description, $category, $region, $district, $community, $implementer, $male, $female, $total, $url, $participants, $typeofactivity) {
 
 
@@ -393,9 +391,52 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+    public function setAdoptionTracker($beneficiary_code, $applied, $technique) {
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $createdby = 'admin';
+        $code = 'ADP' . $this->generateuniqueCode(10);
+
+         $techniques=   implode(', ', $technique);
+        $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,beneficiary_code,applied,technique,createdby)"
+                . " VALUES "
+                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $applied) . "',"
+                . "'" . mysqli_real_escape_string($conn, $techniques) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
+
+
+
+        if ($query) {
+
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Saved Sucessfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt add' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
     
-    
-    
-   
-    
+    public function getAdoptionTracker($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM adoption_tracker WHERE beneficiary_code='" . $code . "'");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
 }

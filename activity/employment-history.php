@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Financial Services Tracker</title>
+        <title>Employment  History</title>
 
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
@@ -11,7 +11,8 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+<!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+      -->
         <link rel="stylesheet" href="../css/vendor.min.css">
 
         <link rel="stylesheet" href="../css/elephant.min.css">
@@ -52,27 +53,17 @@
                                                 <table class="table table-middle" id="beneficiaresListTbl">
                                                     <thead>
                                                         <tr>
-                                                            <th>Code</th>
                                                             <th>Fiscal Year</th>
                                                             <th>Beneficiary Name</th>
                                                             <th>Business Name</th>
                                                             <th>Gender</th>
                                                             <th>Email</th>
-                                                            <th>ContactNo</th>
-
+                                                            <th>Contact No</th>
                                                             <th>Category</th>
                                                             <th>Description</th>
                                                             <th>Region</th>
                                                             <th>District</th>
                                                             <th>Community</th>
-                                                            <th>Longitude</th>
-                                                            <th>Latitude</th>
-                                                            <th>Date Registered</th>
-                                                            <th>Registered By</th>         
-                                                            <th>Created By</th>
-                                                            <th>Date Created</th>
-                                                            <th>Date Modified</th>
-                                                            <th>Modified By</th>
                                                             <th>Action</th>
 
                                                         </tr>
@@ -109,55 +100,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form method="post" id="deleteBeneficiaryForm">
-                                <div class="modal-body">
-                                    <div>
-                                        <p>
-                                            Are you sure you want to delete this beneficiary?.<span class="holder" id="beneficiaryholder"></span> 
-                                        </p>
-                                    </div>
-                                    <input type="hidden" id="code" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteBeneficiary"/>
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                    <button type="submit" id="deleteBeneficiary" class="btn btn-primary">YES</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form method="post" id="deleteBeneficiaryForm">
-                                <div class="modal-body">
-                                    <div>
-                                        <p>
-                                            Are you sure you want to delete this beneficiary?.<span class="holder" id="ecthh"></span> 
-                                        </p>
-                                    </div>
-                                    <input type="hidden" id="code" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteBeneficiary"/>
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                    <button type="submit" id="deleteBeneficiary" class="btn btn-primary">YES</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
+      
             </div>
             <?php
             require_once '../footer.php';
@@ -168,7 +111,7 @@
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
         <script src="../js/select2.js"></script>
-        <script src="../js/financial-traker.js"></script>
+        <script src="../js/employment-history.js"></script>
 
     </body>
 </html>

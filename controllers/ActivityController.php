@@ -87,10 +87,24 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getBeneficiaryFinances($code);
-        }else if ($type == "getFinanceinfo") {
+        } else if ($type == "getFinanceinfo") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getFinanceInfo($code);
+        } else if ($type == "setAdoptionTracker") {
+            //  echo 'here in sales';
+
+            $beneficiary_code = $_POST['beneficiaryCode'];
+            $applied = $_POST['applied'];
+            $techniques = $_POST['techniques'];
+
+
+            $new = new ActivityClass();
+            $new->setAdoptionTracker($beneficiary_code, $applied, $techniques);
+        }else if ($type == "getdoptionTracker") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getAdoptionTracker($code);
         }
     } else {
         echo 'provide type';
