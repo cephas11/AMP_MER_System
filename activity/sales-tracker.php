@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../css/font-awesome.css">
 
         <link rel="stylesheet" href="../css/demo.min.css">
-        
+
 
     </head>
     <body class="layout layout-header-fixed">
@@ -39,7 +39,7 @@
                             <div class="card-header">
                                 <strong> Beneficiaries List</strong>
                                 <div class="row">
-                             
+
                                 </div>
                             </div>
                             <div class="row">
@@ -53,13 +53,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Code</th>
-
+                                                            <th>Fiscal Year</th>
                                                             <th>Beneficiary Name</th>
                                                             <th>Business Name</th>
                                                             <th>Gender</th>
                                                             <th>Email</th>
                                                             <th>ContactNo</th>
-                                                            <th>Fiscal Year</th>
+
                                                             <th>Category</th>
                                                             <th>Description</th>
                                                             <th>Region</th>
@@ -122,7 +122,7 @@
                                     <input type="hidden" id="code" name="code"/>
                                     <input type="hidden"  name="type" value="deleteBeneficiary"/>
 
-                                    
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
 
-                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form method="post" id="deleteBeneficiaryForm">
@@ -146,7 +146,7 @@
                                     <input type="hidden" id="code" name="code"/>
                                     <input type="hidden"  name="type" value="deleteBeneficiary"/>
 
-                                    
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
             <?php
             require_once '../footer.php';

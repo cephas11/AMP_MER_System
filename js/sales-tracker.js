@@ -35,12 +35,13 @@ function getAllBeneficiaries()
                     var j = -1;
                     var r = new Array();
                     r[++j] = '<td>' + value.code + '</td>';
+                    r[++j] = '<td>' + value.fiscalyear + '</td>';
                     r[++j] = '<td lass="beneficiary-name">' + value.name + '</td>';
                     r[++j] = '<td>' + value.business_name + '</td>';
                     r[++j] = '<td>' + value.gender + '</td>';
                     r[++j] = '<td>' + value.email + '</td>';
                     r[++j] = '<td>' + value.contactno + '</td>';
-                    r[++j] = '<td>' + value.fiscalyear + '</td>';
+
                     r[++j] = '<td>' + value.category_name + '</td>';
                     r[++j] = '<td>' + value.description_name + '</td>';
                     r[++j] = '<td>' + value.region_name + '</td>';
@@ -54,7 +55,7 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.datecreated + '</td>';
                     r[++j] = '<td>' + value.modon + '</td>';
                     r[++j] = '<td>' + value.modby + '</td>';
-                    r[++j] = '<td><a  href="beneficiary-sales-tracker?code='+value.code+'" class="btn btn-outline-info btn-sm btn-edit"><i class="fa fa-eye""></i><span class="hidden-md hidden-sm hidden-xs">View </span></a></td>';
+                    r[++j] = '<td><a  href="beneficiary-sales-tracker?code=' + value.code + '" class="btn btn-outline-info btn-sm btn-edit"><i class="fa fa-eye""></i><span class="hidden-md hidden-sm hidden-xs">View </span></a></td>';
 
                     rowNum = rowNum + 1;
 

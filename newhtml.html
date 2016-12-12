@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Appointments</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"/>
+        <link rel="stylesheet"  type="text/css"  href="https://cdn.datatables.net/1.10.13/css/dataTables.material.min.css"/>  
+        <link rel="stylesheet"  type="text/css"  href="bootstrap-sweetalert/sweet-alert.min-v2.2.0.css"/>
+
+
+        <style type="text/css">
+            .mdl-data-table td, .mdl-data-table th {
+
+                text-align: center;
+            }
+            .label {
+                padding: .25em .6em .25em;
+                font-weight: 300;
+                border-radius: .3em;
+            }
+            .label-primary {
+                background-color: #3f51b5;
+                color:white;
+            }
+            .label-warning {
+                background-color: green;
+                color:white;
+            }
+
+            .label-red {
+                background-color: red;
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <h4 style="text-align:center">Appointments Booked</h4>
+        <table id="example" class="mdl-data-table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact No</th>
+                    <th>Services</th>
+                    <th>Location</th>
+                    <th>Number Of Applicnats</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.material.min.js"></script>
+        <script type="text/javascript" src="bootstrap-sweetalert/sweet-alert.min.js"></script>
+
+        <script type="text/javascript">
+//            $(document).ready(function () {
+//                $('#example').DataTable({
+//                    columnDefs: [
+//                        {
+//                            targets: [0, 1, 2],
+//                            className: 'mdl-data-table__cell--non-numeric'
+//                        }
+//                    ]
+//                });
+//            });
+//            
+            $(document).ready(function () {
+                var datatable = $('#example').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf', 'colvis']
+
+                });
+
+
+
+                getAppointment();
+
+                function getAppointment()
+                {
+
+                    var info = {
+                        type: "retreiveAppointments"
+                    };
+                    console.log('new code here');
+
+                    $.ajax({
+                        url: 'controller.php?_=' + new Date().getTime(),
+                        type: "GET",
+                        data: info,
+                        success: function (data) {
+                            // alert(data);
+                            console.log('data from server');
+                            console.log(data);
+                            datatable.clear().draw();
+
+                            var obj = jQuery.parseJSON(data);
+                            console.log('size' + obj.length);
+                            if (obj.length == 0) {
+                                console.log("NO DATA!");
+                            } else {
+                                var color, disabled;
+                                $.each(obj, function (key, value) {
+                                    if (value.status == "new") {
+                                        color = 'label-primary';
+                                        disabled = "";
+
+                                    } else if (value.status == "attended") {
+                                        color = 'label-warning';
+                                        disabled = "disabled";
+
+                                    } else {
+                                        color = 'label-red';
+                                        disabled = "disabled";
+
+                                    }
+
+                                    var j = -1;
+                                    var r = new Array();
+                                    // represent columns as array
+                                    r[++j] = '<td >' + value.name + '</td>';
+                                    r[++j] = '<td >' + value.email + '</td>';
+                                    r[++j] = '<td >' + value.contactno + '</td>';
+                                    r[++j] = '<td >' + value.services + '</td>';
+                                    r[++j] = '<td >' + value.location + '</td>';
+                                    r[++j] = '<td >' + value.number_of_applicants + '</td>';
+                                    r[++j] = '<td >' + value.appointment_start_time + '</td>';
+                                    r[++j] = '<td >' + value.appointment_end_time + '</td>';
+                                    r[++j] = '<td><span class="label ' + color + '">' + value.status + '</span></td>';
+                                    r[++j] = '<td><button onclick="cancelAppointment(\'' + value.code + '\')" ' + disabled + ' class="btn btn-outline-info btn-sm"              type="button">Cancel</button>\n\
+                              <button onclick="attendant(\'' + value.code + '\')" ' + disabled + '  class="btn btn-outline-danger btn-sm" type="button">Attended</button></td>';
+
+                                    rowNode = datatable.row.add(r);
+                                });
+
+                                rowNode.draw().node();
+                            }
+
+                        },
+                        error: function (jXHR, textStatus, errorThrown) {
+                            alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
+                        }
+                    });
+
+
+                }
+
+
+            });
+
+
+            function cancelAppointment(code) {
+                console.log('code is ' + code);
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to cancel the appointment",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, Cancel it!",
+                    closeOnConfirm: false
+                },
+                function () {
+
+                    var info = {
+                        type: "updateStatus",
+                        code: code,
+                        status: 'cancelled'
+                    };
+
+                    $.ajax({
+                        url: 'controller.php',
+                        type: "GET",
+                        data: info,
+                        //dataType: 'json',
+                        success: function (data) {
+                            console.log(data);
+
+//swal("Cancelled!", "Appointment has been cancelled", "success");
+
+                            swal({
+                                title: "Cancelled!",
+                                text: "Appointment has been cancelled",
+                                type: "success",
+                                closeOnConfirm: false,
+                            },
+                                    function () {
+                                        window.location = "appointments.php";
+                                    });
+
+                        }
+                    });
+                });
+
+            }
+
+            function attendant(code) {
+                console.log('attendant code is ' + code);
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to cancel the appointment",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, Cancel it!",
+                    closeOnConfirm: false
+                },
+                function () {
+
+                    var info = {
+                        type: "updateStatus",
+                        code: code,
+                        status: 'attended'
+                    };
+
+                    $.ajax({
+                        url: 'controller.php',
+                        type: "GET",
+                        data: info,
+                        //dataType: 'json',
+                        success: function (data) {
+                            console.log(data);
+
+//swal("Cancelled!", "Appointment has been cancelled", "success");
+
+                            swal({
+                                title: "Cancelled!",
+                                text: "Appointment has been cancelled",
+                                type: "success",
+                                closeOnConfirm: false,
+                            },
+                                    function () {
+                                        window.location = "appointments.php";
+                                    });
+
+                        }
+                    });
+                });
+            }
+
+        </script>
+    </body>
+</html>
