@@ -48,7 +48,7 @@
             <div class="login-body">
                 <a class="login-brand" href="#">
                     <img class="img-responsive" src="img/logo.png" height="30" width="60" alt="USAD">
-                    <img class="img-responsive" src="img/logo2.png" height="30" width="70" alt="USAD">
+                    <img class="img-responsive" src="img/logo.png" height="30" width="70" alt="USAD">
                 </a>
                 <h3 class="login-heading">Sign in</h3>
                 <div class="login-form">

@@ -11,8 +11,8 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-
+<!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+-->
 
 
         <link rel="stylesheet" href="../css/vendor.min.css">
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label  class="form-label">Beneficiary Category</label>
-                                                <select name="category" id="category" class="form-control select2" required>
+                                                <select name="category[]" id="category" multiple class="form-control select2" required>
 
                                                     <option value="">Loading...</option>
 
@@ -207,11 +207,11 @@
                                 <div class="modal-body">
 
                                     <div class="table-responsive">
-                                        <table id="participantsTbl" class="table table-middle nowrap">
+                                        <table id="participantsTbl" class="participants table table-middle nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        <input type="checkbox">
+                                                      
                                                     </th>
                                                     <th>Code</th>
                                                     <th>Name</th>

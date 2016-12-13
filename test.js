@@ -1,16 +1,30 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 
 
-var patricipantsdatatable = $('#participantsTbl').DataTable({
-    responsive: true,
-    language: {
-        paginate:
-                {previous: "&laquo;", next: "&raquo;"},
-        search: "_INPUT_",
-        searchPlaceholder: "Search…"
-    },
-    order: [[0, "asc"]]
-});
+//var datatable = $('#participantsTbl').DataTable({
+//    'ajax': 'https://api.myjson.com/bins/1us28',
+//    'columnDefs': [
+//        {
+//            'targets': 0,
+//            'checkboxes': {
+//                'selectRow': true
+//            }
+//        }
+//    ],
+//    'select': {
+//        'style': 'multi'
+//    },
+//    'order': [[1, 'asc']]
+//});participantsListTbl
+
+$('#participantsTbl').DataTable();
+
+var datatable;
 
 
 var info = {
@@ -126,29 +140,27 @@ $("#region").change(function () {
     var region_code = this.value;
     getDistrictsBasedOnRegion(region_code);
 
-
-    var categoryValues = $('#category').val();
-    console.log(categoryValues);
-
-    getBeneficiaries(region_code, categoryValues);
+    // var region = region_code;
+    var category = $('#category').val();
+    category = JSON.stringify(category);
+    // console.log(''+category);
+//
+//    $('#participantsTbl').dataTable().fnDestroy();
+//
+    getBeneficiaries(region_code, category);
 });
 
 
 //
-$("#category").change(function () {
-    var region = $('#region').val();
-    var categoryValues = $('#category').val();
-    console.log(categoryValues);
-
-    var categoriesSelected = $('#category :selected').map(function (i, opt) {
-        return $(opt).text();
-    }).toArray().join(', ');
-
-
-    $('.holder').html(categoriesSelected);
-
-    getBeneficiaries(region, categoryValues);
-});
+//$("#category").change(function () {
+//    var region = $('#region').val();
+//    var category = this.value;
+//    var categoryText = $('option:selected', $(this)).text();
+//    $('.holder').html(categoryText + '(s)');
+//    console.log('dnd' + category + ' ' + region);
+//    $('#participantsTbl').dataTable().fnDestroy();
+//    getBeneficiaries(region, category);
+//});
 //
 
 
@@ -171,64 +183,51 @@ function getBeneficiaries(regcode, catcode)
     if (regcode == "" || catcode == "") {
         console.log('do nothing');
     }
-
-    console.log(regcode + 'category: ' + catcode);
-
-    var info = {
-        "regcode": regcode,
-        "catcode": catcode,
-        type: "getBeneficiaries"
-    };
-    $.ajax({
-        url: '../controllers/BeneficiaryController.php?_=' + new Date().getTime(),
-        type: "GET",
-        data: info,
-        success: function (data) {
-
-
-            console.log('data is : ' + data);
-
-
-            patricipantsdatatable.clear().draw();
-            var obj = jQuery.parseJSON(data);
-            if (obj.length == 0) {
-                console.log("NO DATA!");
-            } else {
-                console.log("yes DATA!");
-                var rowNum = 0;
-                $.each(obj, function (key, value) {
-                    var j = -1;
-                    var r = new Array();
-                    r[++j] = '<td><input type="checkbox"/></td>';
-                    r[++j] = '<td>' + value.code + '</td>';
-                    r[++j] = '<td> ' + value.name + '</td>';
-                    r[++j] = '<td>' + value.gender + '</td>';
-                    r[++j] = '<td>' + value.email + '</td>';
-                    r[++j] = '<td>' + value.contactno + '</td>';
-                    r[++j] = '<td >' + value.district_name + '</td>';
-
-                    rowNum = rowNum + 1;
-
-
-                    rowNode = patricipantsdatatable.row.add(r);
-                });
-
-                rowNode.draw().node();
-            }
-
-
-
-
-
-        },
-        error: function (jXHR, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
-
+    
+    
 }
 
 
+
+
+
+$('#attachParticipantsForm').on('submit', function (e) {
+    e.preventDefault();
+    var rows = $('tr.selected');
+    var gender = [];
+    var ids = [];
+    var males = 0;
+    var females = 0;
+    var rowData = datatable.rows(rows).data();
+    var rows_selected = datatable.column(0).checkboxes.selected();
+
+    console.log(rowData);
+    $.each($(rowData), function (key, value) {
+
+        //  console.log($(this)); //"name" being the value of your first column.
+        ids.push($(this)[1]); //"name" being the value of your first column.
+        gender.push($(this)[3]); //"name" being the value of your first column.
+
+    });
+//    console.log('names:'+ rows_selected);
+    console.log(ids);
+    console.log(gender);
+    console.log(ids.length);
+    jQuery.each(gender, function (i, val) {
+        if (val === "male") {
+            console.log('male is ' + val);
+            males = males + 1;
+        } else {
+            females = females + 1;
+        }
+
+    });
+    $('#totalParticipants').val(ids.length);
+    $('#femaleParticipants').val(females);
+    $('#maleParticipants').val(males);
+    $('#participants').val(ids);
+    $('#participantsModal').modal('hide');
+});
 
 
 $("#activityType").change(function () {
@@ -474,38 +473,3 @@ $('#deleteCompletionActivityForm').on('submit', function (e) {
     });
 
 });
-
-$('#participantsTbl').find('tbody').on('click', 'input[type="checkbox"]', function(e){
-     console.log('mkmfkfmrk');
-    var $row = $(this).closest('tr');
-      if(this.checked){
-         $row.addClass('selected');
-      } else {
-         $row.removeClass('selected');
-      }
-
-      
-      // Prevent click event from propagating to parent
-      e.stopPropagation();
-   });
-
-$('#participantsTbl').find('tbody').on('click', 'tr', function(e){
-     console.log('llllll');
-      
-       var checkbox = document.querySelector('input[type="checkbox"]');
-    checkbox.checked = 'true';
-   
-     var $row = $(this).addClass('selected');
-     
-      if(this.checked){
-         $row.addClass('selected');
-      } else {
-         $row.removeClass('selected');
-      }
-      
-   
-
-      
-      // Prevent click event from propagating to parent
-      e.stopPropagation();
-   });

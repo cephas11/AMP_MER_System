@@ -106,7 +106,7 @@
                                             </div>
                                             <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
-                                                <label for="name-1" class="control-label">Value Of Sales (Metric Tonnes ) </label>
+                                                <label for="name-1" class="control-label">Volume Of Sales (Metric Tonnes ) </label>
                                                 <div class="input-with-icon">
                                                     <input class="form-control" type="text" name="salesTonnes" id="salesTonnes" required>
                                                 </div>

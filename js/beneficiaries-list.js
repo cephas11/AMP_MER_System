@@ -83,6 +83,7 @@ function getAllBeneficiaries()
             alert(errorThrown);
         }
     });
+    
 }
 
 function deleteBeneficiary(code, title) {
