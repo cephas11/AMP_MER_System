@@ -53,13 +53,14 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $retreiveList->getActivityParticipants($activity_code);
         } else if ($type == "setSalesTracker") {
             //  echo 'here in sales';
+            $fiscalYear = $_POST['fiscalYear'];
             $activity_date = $_POST['activityDate'];
             $beneficiary_code = $_POST['beneficiaryCode'];
             $commodity = $_POST['commodity'];
             $valueUsd = $_POST['salesUSD'];
             $valueTonnes = $_POST['salesTonnes'];
             $setSales = new ActivityClass();
-            $setSales->setSalesTracker($activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
+            $setSales->setSalesTracker($fiscalYear,$activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
         } else if ($type == "getBeneficiarySales") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();

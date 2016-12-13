@@ -149,7 +149,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setSalesTracker($activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes) {
+    public function setSalesTracker($fiscalYear,$activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -159,9 +159,9 @@ class ActivityClass {
 
 
 
-        $query = mysqli_query($conn, "INSERT INTO sales_tracker(code,salesdate,beneficiary_code,commodity,value_usd,value_tonnes,createdby)"
+        $query = mysqli_query($conn, "INSERT INTO sales_tracker(code,fiscalYear,salesdate,beneficiary_code,commodity,value_usd,value_tonnes,createdby)"
                 . " VALUES "
-                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_date) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "',"
+                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $activity_date) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "',"
                 . "'" . mysqli_real_escape_string($conn, $commodity) . "','" . mysqli_real_escape_string($conn, $valueUsd) . "','" . mysqli_real_escape_string($conn, $valueTonnes) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
 
 
