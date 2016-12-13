@@ -16,9 +16,9 @@
                         </form>
                     </li>
                     <li class="sidenav-heading">Portal</li>
-                    <li class="sidenav-item has-subnav active">
+                    <li class="sidenav-item has-subnav">
                         <a href="#" aria-haspopup="true">
-                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-icon icon icon-files-o"></span>
                             <span class="sidenav-label">Configuration</span>
                         </a>
                         <ul class="sidenav-subnav collapse">
@@ -39,28 +39,43 @@
 
                     <li class="sidenav-item">
                         <a href="../beneficiary/beneficiaries-list">
-                            <span class="sidenav-icon icon icon-columns"></span>
+                            <span class="sidenav-icon icon icon-user"></span>
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
                     <li class="sidenav-item ">
                         <a href="../activity/completion-tool-activities">
-                            <span class="sidenav-icon icon icon-home"></span>
-                            <span class="sidenav-label">Activity Completion Tool </span>
+                            <span class="sidenav-icon icon icon-edit"></span>
+                            <span class="sidenav-label">Activity Reporting Tool </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item ">
                         <a href="../activity/sales-tracker">
-                            <span class="sidenav-icon icon icon-home"></span>
-                            <span class="sidenav-label">Sales Tracker </span>
+                            <span class="sidenav-icon icon icon-list"></span>
+                            <span class="sidenav-label">Sales Record </span>
                         </a>
 
                     </li>
-                       <li class="sidenav-item ">
+                    
+                    <li class="sidenav-item ">
                         <a href="../activity/finanacial-services-tracker">
-                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-icon icon icon-calendar"></span>
                             <span class="sidenav-label">Financial Services Tracker </span>
+                        </a>
+
+                    </li>
+                    <li class="sidenav-item ">
+                        <a href="../activity/adoption-tracker">
+                            <span class="sidenav-icon icon icon-cog"></span>
+                            <span class="sidenav-label">Adoption  Tracker </span>
+                        </a>
+
+                    </li>
+                    <li class="sidenav-item ">
+                        <a href="../activity/employment-history">
+                            <span class="sidenav-icon icon icon-users"></span>
+                            <span class="sidenav-label">Employment History </span>
                         </a>
 
                     </li>
