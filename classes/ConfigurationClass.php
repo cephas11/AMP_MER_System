@@ -110,10 +110,9 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "UPDATE districts SET active = 1 WHERE code='" . $code . "'");
-
         if ($query) {
             $this->response['success'] = '1';
-            $this->response['message'] = 'District deleted successfully';
+            $this->response['message'] = 'District nbbn deleted successfully';
             echo json_encode($this->response);
             //   $query->close();
         } else {
@@ -439,7 +438,7 @@ class ConfigurationClass {
     public function getRegisters() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM registers");
+        $query = mysqli_query($conn, "SELECT * FROM registers WHERE active=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -459,7 +458,7 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
-        $query = mysqli_query($conn, "DELETE FROM registers  WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE registers SET active=1  WHERE code='" . $code . "'");
 
         if ($query) {
             $this->response['success'] = '1';
@@ -676,14 +675,11 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
-    
-    
-   
 
     public function getActivityDescriptionBasedOnType($type_code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM   description_types_activity_view WHERE type_code='".$type_code."' AND status=0");
+        $query = mysqli_query($conn, "SELECT * FROM   description_types_activity_view WHERE type_code='" . $type_code . "' AND status=0");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -699,8 +695,44 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    
-      
+    public function updateFunction($info) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE " . $info['tablename'] . " SET name = '" . mysqli_real_escape_string($conn, $info['name']) . "' WHERE code='" . $info['code'] . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Information Updated successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt update' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    public function updateRegistrarsInfo($info) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE registers SET name = '" . mysqli_real_escape_string($conn, $info['name']) . "',email = '" . mysqli_real_escape_string($conn, $info['email']) . "',contactno = '" . mysqli_real_escape_string($conn, $info['contactno']) . "' WHERE code='" . $info['code'] . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = $info['name'].' Information Updated successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt update' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
 }
 
 ?>

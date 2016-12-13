@@ -167,12 +167,12 @@ function getBeneficiaryInfo(code) {
             //    $('#loaderModal').modal('show');
             console.log('response: ' + data.ownership_type);
             $('.holder').html(data.name);
-            $("#fiscalYear  option[text=" + data.fiscalyear + "]").prop("selected", true);
+            //   $("#fiscalYear  option[text=" + data.fiscalyear + "]").prop("selected", true);
             $('#dateRegistered').val(data.dateregistered);
             $("#category  option[value=" + data.category_code + "]").prop("selected", true);
             //$("#descriptions  option[value=" + data.description_code + "]").prop("selected", true);
             $('#beneficiaryCode').val(code);
-             $('#beneficiaryName').val(data.name);
+            $('#beneficiaryName').val(data.name);
             $('#businessName').val(data.business_name);
             $("#gender  option[value=" + data.gender + "]").prop("selected", true);
             $("#educational_level  option[value=" + data.educational_level + "]").prop("selected", true);
@@ -183,14 +183,14 @@ function getBeneficiaryInfo(code) {
             $('#altcontactno').val(data.altcontactno);
             $('#email').val(data.email);
             $('#ownership_type').val(data.ownership_type);
-            
-            $("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
+
+            //$("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
             $('#longitude').val(data.longitude);
             $('#latitude').val(data.latitude);
-            $("#registeredBy  option[text=" + data.registeredby + "]").prop("selected", true);
+            $("#registeredBy  option[val=" + data.registeredby + "]").prop("selected", true);
             $('#establishment_years').val(data.establishment_years);
             $("#district  option[value=" + data.district_code + "]").prop("selected", true);
-           
+
         }
     });
 
@@ -391,49 +391,49 @@ $("#region").change(function () {
     getDistrictsBasedOnRegion(region_code);
 });
 
-$('#updatebeneficiaryForm').on('submit',function(e){
-        e.preventDefault();
+$('#updatebeneficiaryForm').on('submit', function (e) {
+    e.preventDefault();
     var formData = $(this).serialize();
     console.log(formData);
-      $('#loader').modal('show');
-         $.ajax({
-            url: '../controllers/PostController.php?_=' + new Date().getTime(),
-            type: "POST",
-            data: formData,
-          dataType: "json",
-            success: function (data) {
-                console.log(data);
-                $('#editModal').modal('hide');
-                $('#loader').modal('hide');
-                var successStatus = data.success;
+    $('#loader').modal('show');
+    $.ajax({
+        url: '../controllers/PostController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $('#editModal').modal('hide');
+            $('#loader').modal('hide');
+            var successStatus = data.success;
 
-                if (successStatus == 1) {
-                    $('input:submit').attr("disabled", false);
-                    Command: toastr["success"](data.message, "Success");
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                    getAllBeneficiaries();
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 }
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                alert(errorThrown);
+                getAllBeneficiaries();
             }
-        });
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
 
 });

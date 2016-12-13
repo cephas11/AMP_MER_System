@@ -34,7 +34,7 @@
 
                 <div class="layout-content-body">
                     <div class="text m-b">
-                        <h3 class="m-b-0">Activity Completion Tool </h3>
+                        <h3 class="m-b-0">Activity Completion Reporting Tool </h3>
                     </div>
                     <div class="row gutter-xs">
                         <div class="card">
@@ -72,7 +72,7 @@
                                                 <span class="help-block"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label  class="form-label">Category</label>
+                                                <label  class="form-label">Beneficiary Category</label>
                                                 <select name="category" id="category" class="form-control select2" required>
 
                                                     <option value="">Loading...</option>

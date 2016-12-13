@@ -21,11 +21,11 @@
         <link rel="stylesheet" href="css/vendor.min.css">
         <link rel="stylesheet" href="css/elephant.min.css">
         <link rel="stylesheet" href="css/login-3.min.css">
-        <link rel="stylesheet" href="css/logincustom.css">
+<!--        <link rel="stylesheet" href="css/logincustom.css">-->
     </head>
     <body>
 
-        <ul class="slideshow" style=":after {content: '';background: transparent url('img/background.jpg') repeat top left};">
+<!--        <ul class="slideshow" style=":after {content: '';background: transparent url('img/background.jpg') repeat top left};">
             <li><span style="background-image: url('img/background.jpg')"></span></li>
             <li><span style="background-image: url('img/background2.jpg')"></span></li>
             <li><span style="background-image: url('img/background3.jpg')"></span></li>
@@ -33,8 +33,17 @@
             <li><span style="background-image: url('img/background2.jpg')"></span></li>
             <li><span style="background-image: url('img/background3.jpg')"></span></li>
 
-        </ul>
+        </ul>-->
 
+<!--        <ul class="slideshow" style=":after {content: '';background: transparent url('img/background.jpg') repeat top left};">
+            <li><span style="background-image: url('img/background.jpg')"></span></li>
+            <li><span style="background-image: url('img/background2.jpg')"></span></li>
+            <li><span style="background-image: url('img/background3.jpg')"></span></li>
+            <li><span style="background-image: url('img/background.jpg')"></span></li>
+            <li><span style="background-image: url('img/background2.jpg')"></span></li>
+            <li><span style="background-image: url('img/background3.jpg')"></span></li>
+
+        </ul>-->
         <div class="login">
             <div class="login-body">
                 <a class="login-brand" href="#">

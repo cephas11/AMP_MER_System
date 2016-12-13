@@ -9,7 +9,8 @@ and open the template in the editor.
 */
 
 i.fa {
-  //  color: #27ae60;
+    
+    //  color: #27ae60;
 }
 
 #loader {
@@ -18,9 +19,11 @@ i.fa {
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 9999;
-    margin-top:30% 
+    margin-top:30%;
+   
 }
 .loader-text{
+    
     color: white;
     font-size: 24px;
     font-weight: lighter;
@@ -41,6 +44,9 @@ table.dataTable {
     background-color: #f2f1ef;
 }
 
+.displayInfo{
+    font-weight: bold;
+}
 /*.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
     text-align: center;
 } */

@@ -17,7 +17,7 @@ if (isset($_REQUEST['type'])) {
            $deleteRegion = new ConfigurationClass();
            $deleteRegion->deleteRegion($code);
         }else if ($type == 'deleteDistrict') {
-            $code = $_REQUEST['code'];
+            $code = $_REQUEST['districtcode'];
            $deleteDistrict = new ConfigurationClass();
            $deleteDistrict->deleteDistrict($code);
         }else if ($type == 'deleteRegionDistrict') {

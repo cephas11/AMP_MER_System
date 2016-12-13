@@ -6,6 +6,7 @@ $('#saveRegionForm').on('submit', function (e) {
     e.preventDefault();
 
     // var validator = $("#saveRegionForm").validate();
+  
     var region = $('#region').val();
     var formData = $(this).serialize();
     console.log(formData);
@@ -53,7 +54,9 @@ $('#saveRegionForm').on('submit', function (e) {
                         "hideMethod": "fadeOut"
                     }
                     getRegions();
+                
                 }
+                
             },
             error: function (jXHR, textStatus, errorThrown) {
                 alert(errorThrown);
@@ -110,7 +113,7 @@ function getRegions()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editRegion()" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
+                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
                               <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
@@ -120,22 +123,27 @@ function getRegions()
             }
 
         },
+        
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
         }
     });
+
+
 }
 
 
-function editRegion() {
+function editRegion(code,name) {
     //alert('goood');
-    console.log($(this).data('region'));
+    $('#code').val(code);
+    $('#regionName').val(name);
+    $('#editModal').modal('show');
 }
 
 
 function deleteRegion(code, title) {
     console.log(code + title);
-    $('#code').val(code);
+    $('#regcode').val(code);
     $('#regionholder').html(title);
     $('#confirmModal').modal('show');
 }
@@ -191,4 +199,53 @@ $('#deleteRegionForm').on('submit', function (e) {
 
 });
 
+
+$('#updateRegionForm').on('submit', function (e) {
+    e.preventDefault();
+    $('input:submit').attr("disabled", true);
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('#editModal').modal('hide');
+    $('#loaderModal').modal('show');
+
+    $.ajax({
+        url: '../controllers/PostController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#loaderModal').modal('hide');
+            var successStatus = data.success;
+         
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getRegions();
+            }
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+});
 

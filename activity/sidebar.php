@@ -65,6 +65,20 @@
                         </a>
 
                     </li>
+                    <li class="sidenav-item ">
+                        <a href="adoption-tracker">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Adoption  Tracker </span>
+                        </a>
+
+                    </li>
+                    <li class="sidenav-item ">
+                        <a href="employment-history">
+                            <span class="sidenav-icon icon icon-home"></span>
+                            <span class="sidenav-label">Employment History </span>
+                        </a>
+
+                    </li>
                 </ul>
             </nav>
         </div>
