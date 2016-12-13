@@ -39,7 +39,9 @@
                             <strong>Bulk Beneficiary Upload</strong>
                             <br>
                             <small style="color:red;">* Upload csv or excel file sheet only.This is the format below</small>
-                            <br>  <small style="color: #39f;"> name,businessname,gender,email,contactno,community,longitude,latitude,fiscal year,dateregistered,registeredby
+                            <br>  <small style="color: #39f;"> 
+                                name,business_name,gender,email,contactno,community,educational_level,address,
+                                <br>altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby
                             </small>
 
                         </div>
@@ -114,8 +116,8 @@
 
                                                     </div>
                                                     <div class="col-md-2 ">
-<!--                                                        <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#confirmModal" data-whatever="@mdo">Save</button>
-                                                  -->
+                                                        <!--                                                        <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#confirmModal" data-whatever="@mdo">Save</button>
+                                                        -->
                                                     </div>
                                                 </div>
                                             </div>

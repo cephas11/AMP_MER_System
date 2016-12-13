@@ -148,17 +148,11 @@
                                             <br>
                                             <div class="form-group">
                                                 <label  class="form-label">Fiscal Year</label>
-                                                <select  name="fiscalYear" id="fiscalYear" class="form-control" disabled>
 
-                                                   <option value="5">FY1 5</option>
-                                                    <option value="6">FY1 6</option>
-                                                    <option value="7">FY1 7</option>
-                                                    <option value="8">FY1 8</option>
-                                                    <option value="9">FY1 9</option>
-
-                                                </select>
-                                                <span class="help-block"></span>
+                                                <input  class="form-control" type="text" name="fiscalYear" id="fiscalYear" disabled>
+                                                <small class="help-block"></small>
                                             </div>
+
                                             <div class="form-group">
                                                 <label for="name-1" class="control-label">Date of  Registration</label>
                                                 <div class="input-with-icon">
@@ -168,22 +162,23 @@
 
 
                                             </div>
+
+
                                             <div class="form-group">
-                                                <label  class="form-label">Category</label>
-                                                <select name="category" id="category" class="form-control " disabled>
+                                                <label  class="form-label">Category </label>
 
-
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="form-label">Description</label>
-                                                <select name="description" id="description" class="form-control "disabled>
-
-                                                </select>
-                                                <span class="help-block"></span>
+                                                <input  class="form-control" type="text" name="category" id="category" disabled>
+                                                <small class="help-block"></small>
                                             </div>
 
+
+
+                                            <div class="form-group">
+                                                <label  class="form-label">Description </label>
+
+                                                <input  class="form-control" type="text" name="description" id="description" disabled>
+                                                <small class="help-block"></small>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="control-label"> Name</label>
                                                 <input  class="form-control" type="text" name="beneficiaryName" id="beneficiaryName" required>
@@ -196,16 +191,11 @@
                                             </div> 
 
                                             <div class="form-group">
-                                                <label  class="form-label">Gender</label>
-                                                <select name="gender" id="gender" class="form-control " disabled>
+                                                <label  class="control-label">Gender </label>
+                                                <input  class="form-control" type="text" name="gender" id="gender" disabled>
+                                                <small class="help-block"></small>
+                                            </div> 
 
-                                                    
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
-                                                </select>
-
-                                                <span class="help-block"></span>
-                                            </div>
 
                                             <div class="form-group">
                                                 <label  class="form-label">Educational Level</label>
@@ -225,28 +215,23 @@
                                                 <input  class="form-control" type="text" name="address" id="address" required>
                                                 <small class="help-block"></small>
                                             </div>
-                                        </div>
 
-                                        <div>
 
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="form-label">Region</label>
-                                                    <select id="region" name="region" class="form-control " disabled>
 
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="form-label">District</label>
-                                                    <select id="district" name="district" class="form-control " disabled>
+                                            <div class="form-group">
+                                                <label  class="control-label">Region </label>
+                                                <input  class="form-control" type="text" name="region" id="region" disabled>
+                                                <small class="help-block"></small>
+                                            </div> 
 
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div> 
-                                            </div>
+
+                                            <div class="form-group">
+                                                <label  class="control-label">District </label>
+                                                <input  class="form-control" type="text" name="district" id="district" disabled>
+                                                <small class="help-block"></small>
+                                            </div> 
+
+
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Community</label>
@@ -254,92 +239,92 @@
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                            <div>
+                                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label  class="control-label">Tel NO</label>
+                                                        <input class="form-control" type="text" name="contactno" id="contactno" required>
+                                                        <small class="help-block"></small>
+                                                    </div> 
+                                                </div>
+                                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label  class="control-label">Alternate Phone NO</label>
+                                                        <input class="form-control" type="text" name="altcontactno" id="altcontactno">
+                                                        <small class="help-block"></small>
+                                                    </div> 
+                                                </div>
+                                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label  class="control-label">Email</label>
+                                                        <input class="form-control" type="email" name="email" id="email" >
+                                                        <small class="help-block"></small>
+                                                    </div> 
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label  class="control-label">Tel NO</label>
-                                                    <input class="form-control" type="text" name="contactno" id="contactno" required>
-                                                    <small class="help-block"></small>
-                                                </div> 
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <label  class="form-label">Registered Business</label>
+                                                    <select name="registered_business" id="registered_business" class="form-control " >
+
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+
+                                                    </select>
+
+                                                    <span class="help-block"></span>
+                                                </div>
+
                                                 <div class="form-group">
-                                                    <label  class="control-label">Alternate Phone NO</label>
-                                                    <input class="form-control" type="text" name="altcontactno" id="altcontactno">
-                                                    <small class="help-block"></small>
-                                                </div> 
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <label  class="form-label">Ownership Type</label>
+                                                    <input class="form-control" type="text" name="ownership_type" id="ownership_type" >
+
+                                                </div>
                                                 <div class="form-group">
-                                                    <label  class="control-label">Email</label>
-                                                    <input class="form-control" type="email" name="email" id="email" >
+                                                    <label  class="control-label">Years Of Establishment</label>
+                                                    <input  class="form-control" type="text" name="establishment_years" id="establishment_years" required>
                                                     <small class="help-block"></small>
-                                                </div> 
+                                                </div>
+                                            </div>
+                                            <div>
+
+                                                <div class="col-lg-2 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label  class="form-label ">GPS Coordinates :</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+
+                                                        <label  class="control-label">Longitude</label>
+                                                        <input class="form-control" type="text" name="longitude" id="longitude" value="0">
+                                                        <small class="help-block"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label  class="control-label">Latitude</label>
+                                                        <input  class="form-control" type="text" name="latitude" id="latitude" value="0">
+                                                        <small class="help-block"></small>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                        </div>
-                                        <div class="col-lg-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label  class="form-label">Registered Business</label>
-                                                <select name="registered_business" id="registered_business" class="form-control " >
-
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="No">No</option>
-
-                                                </select>
-
-                                                <span class="help-block"></span>
-                                            </div>
 
                                             <div class="form-group">
-                                                <label  class="form-label">Ownership Type</label>
-                                          <input class="form-control" type="text" name="ownership_type" id="ownership_type" >
-                                            
-                                            </div>
-                                            <div class="form-group">
-                                                <label  class="control-label">Years Of Establishment</label>
-                                                <input  class="form-control" type="text" name="establishment_years" id="establishment_years" required>
+                                                <label  class="control-label">Registered By </label>
+                                                <input  class="form-control" type="text" name="registeredBy" id="registeredBy" disabled>
                                                 <small class="help-block"></small>
-                                            </div>
-                                        </div>
-                                        <div>
-
-                                            <div class="col-lg-2 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="form-label ">GPS Coordinates :</label>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5 col-md-12 col-sm-12">
-                                                <div class="form-group">
-
-                                                    <label  class="control-label">Longitude</label>
-                                                    <input class="form-control" type="text" name="longitude" id="longitude" value="0">
-                                                    <small class="help-block"></small>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="control-label">Latitude</label>
-                                                    <input  class="form-control" type="text" name="latitude" id="latitude" value="0">
-                                                    <small class="help-block"></small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <label  class="control-label">Registered By</label>
-
-                                            <select id="registeredBy" name="registeredBy" class="form-control " disabled >
-
-                                            </select>
+                                            </div> 
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
                                         <input type="hidden" value="updateBeneficiary" name="type"/>
                                         <input type="hidden"  id="beneficiaryCode" name="beneficiaryCode"/>
-                                     
+
                                         <br><br>
                                     </div>
 
@@ -349,7 +334,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary" >Update</button>
-                              
+
                                 </div>
                             </form>
 

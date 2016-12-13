@@ -75,7 +75,7 @@ function getBneficiaryTempData()
                     r[++j] = '<td>' + value.registeredby + '</td>';
                     r[++j] = '<td>' + value.beneficiary_id + '</td>';
                     r[++j] = '<td><button type="button"  class="btn btn-outline-info btn-sm  col-sm-6 btn-edit saveInfo"><i class="fa fa-edit""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button>\n\
-                              <button  class="btn btn-outline-danger btn-sm  col-sm-6 " type="button"><i class="fa fa-trash-o""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button></td>';
+                              <button  class="btn btn-outline-danger btn-sm  col-sm-6 btn-delete deleteInfo" type="button"><i class="fa fa-trash-o""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button></td>';
 
                     rowNum = rowNum + 1;
 
@@ -437,6 +437,60 @@ $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
     $('#beneficiaryId').val(beneficiaryId);
     $('#editModal').modal('show');
     console.log(fisyear);
+});
+
+
+
+
+
+$('#beneficiaryTbl tbody').on('click', '.deleteInfo', function () {
+    var $row = $(this).closest("tr");
+    var beneficiaryId = $row.find('td:eq(21)').text();
+    console.log('beneficiary' + beneficiaryId);
+    var info = {
+        type: "deleteBeneficiaryTemp",
+        beneficiaryId: beneficiaryId
+    };
+
+    $.ajax({
+        url: '../controllers/deleteController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: info,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+
+            var successStatus = data.success;
+            console.log(successStatus);
+
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getBneficiaryTempData();
+
+
+            }
+        }
+    });
+
 });
 
 $('#saveBeneficiaryForm').on('submit', function (e) {

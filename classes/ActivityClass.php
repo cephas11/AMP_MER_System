@@ -24,7 +24,6 @@ class ActivityClass {
                 $results[] = $row;
             }
             $feedback = json_encode($results);
-           
         } else {
 
             $feedback = json_encode($this->response);
@@ -361,6 +360,25 @@ class ActivityClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
         $query = mysqli_query($conn, "DELETE FROM financial_services_tracker  WHERE code='" . $code . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Deleted successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
+    public function deleteTempBeneficiary($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "DELETE FROM temp_beneficiaries  WHERE beneficiary_id='" . $code . "'");
 
         if ($query) {
             $this->response['success'] = '1';

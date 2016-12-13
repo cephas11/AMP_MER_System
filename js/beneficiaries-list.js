@@ -83,7 +83,7 @@ function getAllBeneficiaries()
             alert(errorThrown);
         }
     });
-    
+
 }
 
 function deleteBeneficiary(code, title) {
@@ -168,16 +168,17 @@ function getBeneficiaryInfo(code) {
             //    $('#loaderModal').modal('show');
             console.log('response: ' + data.ownership_type);
             $('.holder').html(data.name);
-            //   $("#fiscalYear  option[text=" + data.fiscalyear + "]").prop("selected", true);
+            $("#fiscalYear").val(data.fiscalyear);
             $('#dateRegistered').val(data.dateregistered);
-            $("#category  option[value=" + data.category_code + "]").prop("selected", true);
-            //$("#descriptions  option[value=" + data.description_code + "]").prop("selected", true);
+
+            $("#category").val(data.category_name);
+            $("#description").val(data.description_name);
             $('#beneficiaryCode').val(code);
             $('#beneficiaryName').val(data.name);
             $('#businessName').val(data.business_name);
-            $("#gender  option[value=" + data.gender + "]").prop("selected", true);
+            $("#gender").val(data.gender);
             $("#educational_level  option[value=" + data.educational_level + "]").prop("selected", true);
-            $("#region  option[value=" + data.region_code + "]").prop("selected", true);
+            $("#region").val(data.region_name);
             $('#address').val(data.address);
             $('#community').val(data.community);
             $('#contactno').val(data.contactno);
@@ -188,9 +189,10 @@ function getBeneficiaryInfo(code) {
             //$("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
             $('#longitude').val(data.longitude);
             $('#latitude').val(data.latitude);
-            $("#registeredBy  option[val=" + data.registeredby + "]").prop("selected", true);
+            $('#registeredBy').val(data.registeredby);
             $('#establishment_years').val(data.establishment_years);
-            $("#district  option[value=" + data.district_code + "]").prop("selected", true);
+            $('#district').val(data.district_name);
+
 
         }
     });
