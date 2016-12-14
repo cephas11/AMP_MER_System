@@ -42,8 +42,8 @@
 
 
                                 <div class="col-xs-12">
-                                    <form id="adoptionTrackerForm" method="POST" enctype="multipart/form-data">
-                                        <input type="hidden" name="type" value="setAdoptionTracker"/>
+                                    <form id="employeesForm" method="POST" enctype="multipart/form-data">
+                                        <input type="hidden" name="type" value="setBeneficiaryEmployees"/>
 
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
@@ -187,8 +187,8 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="pull-right">
-                                                    <a class="btn btn-primary "href="#" >Add New Employee</a>
-                                                    <a  class="btn btn-primary" href="#" >Delete Employee</a>
+                                                    <button class="btn btn-primary"  onclick="addRow('employmentTbl')" >Add New Employee</button>
+                                                    <button  class="btn btn-danger"  onclick="deleteRow('employmentTbl')" >Delete Employee</button>
 
                                                 </div>
 
@@ -201,7 +201,7 @@
                                                     <table id="employmentTbl" class="table table-middle nowrap">
                                                         <thead>
                                                             <tr>
-
+                                                                <th></th>
                                                                 <th>Name Of Employee</th>
                                                                 <th>Gender</th>
                                                                 <th>Date Of Employment </th>
@@ -210,7 +210,15 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <tr>
+                                                                <td><input type="checkbox" name="chk[]"/></td>
+                                                                <td><input type="text"  name="employeeNames[]" required/></td>
+                                                                <td><input type="text"  name="gender[]" required/></td>
+                                                                <td><input  type="text" name="employmentDate[]" data-provide="datepicker" required></td>
+                                                                <td><input type="text"  name="employmentType[]" required/></td>
+                                                                <td><input type="text"  name="duration[]" required/></td>
 
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -218,13 +226,13 @@
 
                                             </div>
                                         </div>
+                                        <div style="margin-top: 15px"></div>
+                                        <div class=" row col-xs-12 ">
+                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-                                        <!--                                        <div class="col-xs-12 ">
-                                                                                    <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
-                                        
-                                                                                        <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
-                                                                                    </div>
-                                                                                </div>-->
+                                                <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
 
@@ -290,7 +298,7 @@
             <script src="../js/application.min.js"></script>
             <script src="../js/demo.min.js"></script>
             <script src="../js/select2.js"></script>
-            <script src="../js/adoption-tracker-detail.js"></script>
+            <script src="../js/employment-tracker-detail.js"></script>
 
     </body>
 </html>
