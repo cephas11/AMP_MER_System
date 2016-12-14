@@ -280,7 +280,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setFinancialTracker($beneficiary_code, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose) {
+    public function setFinancialTracker($beneficiary_code,$fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -289,15 +289,15 @@ class ActivityClass {
         $code = 'FIN' . $this->generateuniqueCode(10);
 
         if ($financialType == "Loan") {
-            $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,beneficiary_code,beneficiary_type,financial_type,loan_purpose,amount_disbursed,disbursement_date,amount_paid,amount_outstanding,repayment_date,createdby)"
+            $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,fiscalYear,beneficiary_code,beneficiary_type,financial_type,loan_purpose,amount_disbursed,disbursement_date,amount_paid,amount_outstanding,repayment_date,createdby)"
                     . " VALUES "
-                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
                     . "'" . mysqli_real_escape_string($conn, $financialType) . "','" . mysqli_real_escape_string($conn, $purposeLoan) . "','" . mysqli_real_escape_string($conn, $disbursedAmount) . "','" . mysqli_real_escape_string($conn, $disbursementDate) . "',"
                     . "'" . mysqli_real_escape_string($conn, $repaidAmount) . "','" . mysqli_real_escape_string($conn, $amountOustanding) . "','" . mysqli_real_escape_string($conn, $repaymentDate) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
         } else {
-            $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,beneficiary_code,beneficiary_type,financial_type,grant_purpose,amount_disbursed,disbursement_date,createdby)"
+            $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,fiscalYear,beneficiary_code,beneficiary_type,financial_type,grant_purpose,amount_disbursed,disbursement_date,createdby)"
                     . " VALUES "
-                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
                     . "'" . mysqli_real_escape_string($conn, $financialType) . "','" . mysqli_real_escape_string($conn, $grantPurpose) . "','" . mysqli_real_escape_string($conn, $disbursedAmount) . "','" . mysqli_real_escape_string($conn, $disbursementDate) . "',"
                     . "'" . mysqli_real_escape_string($conn, $createdby) . "')");
         }
@@ -430,7 +430,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setAdoptionTracker($beneficiary_code, $applied, $technique) {
+    public function setAdoptionTracker($beneficiary_code,$fiscalYear, $applied, $technique) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -438,9 +438,9 @@ class ActivityClass {
         $code = 'ADP' . $this->generateuniqueCode(10);
 
         $techniques = implode(', ', $technique);
-        $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,beneficiary_code,applied,technique,createdby)"
+        $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,fiscalYear,beneficiary_code,applied,technique,createdby)"
                 . " VALUES "
-                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $applied) . "',"
+                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $applied) . "',"
                 . "'" . mysqli_real_escape_string($conn, $techniques) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
 
 

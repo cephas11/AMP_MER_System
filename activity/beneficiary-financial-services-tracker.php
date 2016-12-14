@@ -45,6 +45,9 @@
                                     <form id="financialTrackerForm" name="financialTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setFinancialTracker"/>
 
+
+
+
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -97,6 +100,30 @@
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">Fiscal Year</label>
+                                                <div class="input-with-icon">
+                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+
+                                                        <option value="FY16">FY16</option>
+                                                        <option value="FY17">FY17</option>
+                                                        <option value="FY18">FY18</option>
+                                                        <option value="FY19">FY19</option>
+                                                        <option value="FY20">FY20</option>
+
+                                                    </select>            
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+
                                         <div id="loan" style="display: none;">
                                             <div class="row" >
                                                 <h4 class="text-center">Loan</h4>
@@ -265,7 +292,7 @@
                                         <table id="financialTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-
+                                                    <th>Fiscal Year </th>
                                                     <th>Financial Type</th>
                                                     <th>Amount Disbursed</th>
                                                     <th>Date Of Disbursement</th>
@@ -297,7 +324,10 @@
                             </div>
                             <form  >
                                 <div class="modal-body">
-
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Fiscal Year :</label>
+                                        <input type="text" class="form-control" id="fiscalYearDetail"  readonly>
+                                    </div>
                                     <div class="form-group">
                                         <label for="region" class="control-label">Financial Type:</label>
                                         <input type="text" class="form-control" id="financialTypeDetail"  readonly>

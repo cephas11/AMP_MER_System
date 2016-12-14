@@ -61,7 +61,7 @@ function getBneficiaryTempData()
                     r[++j] = '<td>' + value.gender + '</td>';
                     r[++j] = '<td>' + value.educational_level + '</td>';
                     r[++j] = '<td>' + value.address + '</td>';
-                    r[++j] = "<td><select class='form-control region select2' id='region_" + rowNum + "' ><option value=''>Choose</option></select></td>";
+                    r[++j] = "<td><select class='form-control regions select2' id='region_" + rowNum + "' ><option value=''>Choose</option></select></td>";
                     r[++j] = "<td><select class='form-control districts  select2' id='districts_" + rowNum + "'></select></td>";
                     r[++j] = '<td>' + value.community + '</td>';
                     r[++j] = '<td>' + value.contactno + '</td>';
@@ -112,7 +112,7 @@ function getRegions() {
 
             $.each(data, function (i, item) {
 
-                $('.region').append($('<option>', {
+                $('.regions').append($('<option>', {
                     value: item.code,
                     text: item.name
                 }));
@@ -152,7 +152,10 @@ function getCategories() {
 //retreive districts based on region selected for a row
 $(function () {
 
-    $(document).on("change", ".region", function (e) {
+    $(document).on("change", ".regions", function (e) {
+        
+        
+        
         e.preventDefault();
 
         var _this = $(this);
@@ -210,7 +213,7 @@ $(function () {
         var description_dropdown_id = 'description_' + rowArray[1];
         var category_code = _this.val();
 
-        //console.log(region_code + district_dropdown_id);
+
         $('#' + description_dropdown_id).html("");
         $('#' + description_dropdown_id).html("<option value=''>choose</option>");
 
@@ -318,42 +321,41 @@ $('#clearBeneficiary').click(function () {
 });
 
 
-
-function storeBeneficiarieslData()
-{
-
-    var TableData = new Array();
-
-    $('#beneficiaryTbl tr').each(function (row, tr) {
-        TableData[row] = {
-            "fiscalYear": $(tr).find('td:eq(0)').text()
-            , "dateRegistered": $(tr).find('td:eq(1)').text()
-            , "name": $(tr).find('td:eq(2)').text()
-            , "businessName": $(tr).find('td:eq(3)').text()
-            , "gender": $(tr).find('td:eq(4)').text()
-
-            , "email": $(tr).find('td:eq(5)').text()
-            , "contactno": $(tr).find('td:eq(6)').text()
-            , "region": $(tr).find('td:eq(7) .region').val()
-            , "district": $(tr).find('td:eq(8) .districts').val()
-            , "category": $(tr).find('td:eq(9) .categories').val()
-            , "description": $(tr).find('td:eq(10) .description').val()
-            , "community": $(tr).find('td:eq(11)').text()
-            , "longitude": $(tr).find('td:eq(12)').text()
-            , "latitude": $(tr).find('td:eq(13)').text()
-            , "registeredBy": $(tr).find('td:eq(14)').text()
-
-        }
-    });
-    TableData.shift();  // first row will be empty - so remove
-    return TableData;
-
-}
-
+//
+//function storeBeneficiarieslData()
+//{
+//
+//    var TableData = new Array();
+//
+//    $('#beneficiaryTbl tr').each(function (row, tr) {
+//        TableData[row] = {
+//            "fiscalYear": $(tr).find('td:eq(0)').text()
+//            , "dateRegistered": $(tr).find('td:eq(1)').text()
+//            , "name": $(tr).find('td:eq(2)').text()
+//            , "businessName": $(tr).find('td:eq(3)').text()
+//            , "gender": $(tr).find('td:eq(4)').text()
+//
+//            , "email": $(tr).find('td:eq(5)').text()
+//            , "contactno": $(tr).find('td:eq(6)').text()
+//            , "region": $(tr).find('td:eq(7) .region').val()
+//            , "district": $(tr).find('td:eq(8) .districts').val()
+//            , "category": $(tr).find('td:eq(9) .categories').val()
+//            , "description": $(tr).find('td:eq(10) .description').val()
+//            , "community": $(tr).find('td:eq(11)').text()
+//            , "longitude": $(tr).find('td:eq(12)').text()
+//            , "latitude": $(tr).find('td:eq(13)').text()
+//            , "registeredBy": $(tr).find('td:eq(14)').text()
+//
+//        }
+//    });
+//    TableData.shift();  // first row will be empty - so remove
+//    return TableData;
+//
+//}
+//
 
 $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
-    //   var data = datatable.row( $(this).parents('tr') ).data();
-    //  alert( data[0] +"'s name is: "+ data[ 5 ] );
+    
     var $row = $(this).closest("tr");    // Find the row
     var fisyear = $row.find('td:eq(0)').text();
     var dateRegisterd = $row.find('td:eq(1)').text();
@@ -366,9 +368,8 @@ $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
     var gender = $row.find('td:eq(6)').text();
     var educationalLevel = $row.find('td:eq(7)').text();
     var address = $row.find('td:eq(8)').text();
-    //  var  = $row.find('td:eq(9)').text();
-    var region = $row.find('td:eq(9)  .region :selected').text();
-    var regionCode = $row.find('td:eq(9)  .region :selected').val();
+    var region = $row.find('td:eq(9)  .regions :selected').text();
+    var regionCode = $row.find('td:eq(9)  .regions :selected').val();
     var district = $row.find('td:eq(10) .districts :selected').text();
     var districtCode = $row.find('td:eq(10) .districts :selected').val();
     var community = $row.find('td:eq(11)').text();
@@ -436,7 +437,9 @@ $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
     $('#registeredBy').val(registeredBy);
     $('#beneficiaryId').val(beneficiaryId);
     $('#editModal').modal('show');
-    console.log(fisyear);
+//    console.log(fisyear);
+    
+    
 });
 
 

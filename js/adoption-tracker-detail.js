@@ -160,6 +160,8 @@ function getAdoption(bene_code)
                     var j = -1;
                     var r = new Array();
                     // represent columns as array
+                     r[++j] = '<td>' + value.fiscalYear + '</td>';
+                 
                     r[++j] = '<td>' + value.applied + '</td>';
                     r[++j] = '<td>' + value.technique + '</td>';
                     r[++j] = '<td>' + value.datecreated + '</td>';

@@ -44,18 +44,7 @@
                                 <div class="col-xs-12">
                                     <form id="adoptionTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setAdoptionTracker"/>
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label for="name-1" class="control-label">Fiscal Year </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="fiscalYear" id="fiscalYear" readonly >
 
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
-
-                                        </div>
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -68,17 +57,7 @@
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label for="name-1" class="control-label">Beneficiary Name</label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="beneficiaryName" id="beneficiaryName" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
 
-                                        </div>
 
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
@@ -135,6 +114,50 @@
                                             </div>
 
                                         </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">Fiscal Year</label>
+                                                <div class="input-with-icon">
+                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+
+                                                        <option value="FY16">FY16</option>
+                                                        <option value="FY17">FY17</option>
+                                                        <option value="FY18">FY18</option>
+                                                        <option value="FY19">FY19</option>
+                                                        <option value="FY20">FY20</option>
+
+                                                    </select>            
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">
+                                                    Have you employed any farm hands or additional labour as a result of USDA assistance during this fiscal
+
+                                                    year?
+                                                </label>
+                                                <div class="input-with-icon">
+                                                    <select name="employed" id="employed" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+
                                         <div class="row">
 
                                             <div class="col-lg-2 col-md-12 col-sm-12">
@@ -147,34 +170,29 @@
                                                 <div class="form-group">
 
                                                     <label  class="control-label">Total number of males:</label>
-                                                    <input class="form-control" type="text" name="males" value="0">
+                                                    <input class="form-control" type="text" name="males" value="0" readonly>
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
                                             <div class="col-lg-5 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Total number of females:</label>
-                                                    <input  class="form-control" type="text" name="females" value="0">
+                                                    <input  class="form-control" type="text" name="females" value="0" readonly>
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
 
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label  class="form-label">
-                                                Have you employed any farm hands or additional labour as a result of USDA assistance during this fiscal
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="pull-right">
+                                                    <a class="btn btn-primary "href="#" >Add New Employee</a>
+                                                    <a  class="btn btn-primary" href="#" >Delete Employee</a>
 
-                                                year?
-                                            </label>
-                                            <select name="employed" id="employed" class="form-control select2" required>
+                                                </div>
 
-                                                <option value="">Choose...</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
-
-                                            <span class="help-block"></span>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class=" col-lg-12 ">
@@ -185,12 +203,15 @@
                                                             <tr>
 
                                                                 <th>Name Of Employee</th>
+                                                                <th>Gender</th>
                                                                 <th>Date Of Employment </th>
                                                                 <th>Type Of Employment</th>
                                                                 <th>Duration</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody></tbody>
+                                                        <tbody>
+
+                                                        </tbody>
                                                     </table>
                                                 </div>
 
@@ -198,12 +219,12 @@
                                             </div>
                                         </div>
 
-<!--                                        <div class="col-xs-12 ">
-                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
-
-                                                <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
-                                            </div>
-                                        </div>-->
+                                        <!--                                        <div class="col-xs-12 ">
+                                                                                    <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
+                                        
+                                                                                        <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                                                                    </div>
+                                                                                </div>-->
                                     </form>
                                 </div>
 
