@@ -60,7 +60,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $valueUsd = $_POST['salesUSD'];
             $valueTonnes = $_POST['salesTonnes'];
             $setSales = new ActivityClass();
-            $setSales->setSalesTracker($fiscalYear,$activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
+            $setSales->setSalesTracker($fiscalYear, $activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
         } else if ($type == "getBeneficiarySales") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
@@ -86,7 +86,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
             $new = new ActivityClass();
-            $new->setFinancialTracker($beneficiary_code,$fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate,$amountOustanding,$grantPurpose);
+            $new->setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose);
         } else if ($type == "getBeneficiaryFinances") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
@@ -98,19 +98,23 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         } else if ($type == "setAdoptionTracker") {
             //  echo 'here in sales';
 //fiscalYear
-              $fiscalYear = $_POST['fiscalYear'];
-           
+            $fiscalYear = $_POST['fiscalYear'];
+
             $beneficiary_code = $_POST['beneficiaryCode'];
             $applied = $_POST['applied'];
             $techniques = $_POST['techniques'];
 
 
             $new = new ActivityClass();
-            $new->setAdoptionTracker($beneficiary_code,$fiscalYear, $applied, $techniques);
-        }else if ($type == "getdoptionTracker") {
+            $new->setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $techniques);
+        } else if ($type == "getdoptionTracker") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getAdoptionTracker($code);
+        } else if ($type == "setBeneficiaryEmployees") {
+            //print_r($_POST);
+            $new = new ActivityClass();
+            $new->setBeneficiaryEmployees($_POST);
         }
     } else {
         echo 'provide type';
