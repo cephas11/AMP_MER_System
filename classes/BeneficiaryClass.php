@@ -56,7 +56,7 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $contents = fopen($filecontents, "r");
-        $createdBy = 'aba';
+        $createdBy = 'admin';
         //   print_r($contents) ;
 
         if ($contents !== FALSE) {
