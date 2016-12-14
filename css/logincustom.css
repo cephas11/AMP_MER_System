@@ -3,37 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
-    Created on : Dec 7, 2016, 7:22:51 PM
-    Author     : matiyas
-*/
 
-/* CSS reset */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
-    margin: 0;
-    padding: 0;
-}
-html, body {
-    margin: 0;
-    padding: 0;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-fieldset, img {
-    border: 0;
-}
-input {
-    border: 1px solid #b0b0b0;
-    padding: 3px 5px 4px;
-    color: #979797;
-    width: 190px;
-}
-address, caption, cite, code, dfn, th, var {
-    font-style: normal;
-    font-weight: normal;
-}
 ol, ul {
     list-style: none;
 }
@@ -41,8 +11,7 @@ caption, th {
     text-align: left;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-size: 100%;
-    font-weight: normal;
+    color: white;
 }
 q:before, q:after {
     content: '';
@@ -59,49 +28,8 @@ body {
 .ie7 body {
     overflow: hidden;
 }
-body.desktop-lock > .brand {
-    margin: 0;
-}
 
-.login-form-holder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 320px;
-    background: #fff;
-    padding: 1em;
-}
-.login-form-holder h2 {
-    padding-bottom: .25em;
-    margin: 0 0 .5em 0;
-    color: #e60000;
-    font-size: 1.5em;
-    border-bottom: 1px solid #d6d6d6;
-}
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 1px solid #e60000;
-    border-radius: 0;
-    background: none;
-    font-size: 1em;
-    box-shadow: none;
-    color: #4d4d4d;
-}
-button {
-    background-color: #9c2aa0;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
+
 .slideshow,
 .slideshow:after {
     position: fixed;

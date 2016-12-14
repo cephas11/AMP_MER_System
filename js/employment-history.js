@@ -44,7 +44,7 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.region_name + '</td>';
                     r[++j] = '<td>' + value.district_name + '</td>';
                     r[++j] = '<td>' + value.community + '</td>';
-                    r[++j] = '<td><a  href="beneficiary-employment-history?code=' + value.code + '" class="btn btn-outline-info btn-sm btn-edit"><i class="fa fa-eye""></i><span class="hidden-md hidden-sm hidden-xs">View </span></a></td>';
+                    r[++j] = '<td><a  href="beneficiary-employment-history?code=' + value.code + '" class="btn btn-outline-info btn-sm btn-edit"><i class="fa fa-edit""></i><span class="hidden-md hidden-sm hidden-xs">View </span></a></td>';
 
                     rowNum = rowNum + 1;
 

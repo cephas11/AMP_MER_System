@@ -189,6 +189,7 @@ function getFinaceHistory(bene_code)
                     var j = -1;
                     var r = new Array();
                     // represent columns as array
+                    r[++j] = '<td>' + value.fiscalYear + '</td>';
                     r[++j] = '<td>' + value.financial_type + '</td>';
                     r[++j] = '<td>' + value.amount_disbursed + '</td>';
 
@@ -298,18 +299,35 @@ function getFinanceInfo(code) {
             $('#financialTypeDetail').val(data.financial_type);
             if (data.financial_type == "Loan") {
                 $('#loandiv').show();
+                $('#grantdiv').hide();
             } else {
+                $('#grantdiv').show();
                 $('#loandiv').hide();
             }
+            $('#fiscalYearDetail').val(data.fiscalYear);
 
             $('#loanPurposeDetail').val(data.loan_purpose);
+
+            $('#grantPurposeDetail').val(data.grant_purpose);
             $('#amountDisbursedDetail').val(data.amount_disbursed);
             $('#disbursementDateDetail').val(data.disbursement_date);
             $('#amountRepaidDetail').val(data.amount_paid);
             $('#repaymentDateDetail').val(data.repayment_date);
-
+            $('#amountOutstandingDetail').val(data.amount_outstanding);
         }
     });
 
 }
+$(document).ready(function () {
+
+    $("#amountRepaid").focusout(function () {
+
+        var amountPaid = $(this).val();
+        var amountDisbursed = $('#amountDisbursed').val();
+        var amountOutstanding = amountDisbursed - amountPaid;
+        $('#amountOustanding').val(amountOutstanding);
+        console.log(amountDisbursed - $(this).val());
+        //     $(this).css("background-color", "#FFFFFF");
+    });
+});
 

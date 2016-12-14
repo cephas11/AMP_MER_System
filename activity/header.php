@@ -1,11 +1,9 @@
   <div class="layout-header">
       <div class="navbar navbar-default">
         <div class="navbar-header">
-          <a class="navbar-brand navbar-brand-center" href="#">
-            <img class="" src="../img/logo.png" height="30" width="60" >
-      
-<!--            <img class="img-responsive" src="img/logo2.png" height="30" width="70" alt="USAD">-->
-          </a>
+          <a class="navbar-brand navbar-brand-center " href="#">
+            <img class="" src="../img/logo2.png" height="30" width="60" >
+         </a>
           <button class="navbar-toggler visible-xs-block collapsed" type="button" data-toggle="collapse" data-target="#sidenav">
             <span class="sr-only">Toggle navigation</span>
             <span class="bars">
@@ -64,7 +62,7 @@
                 </a>
               </li>
               <li class="visible-xs-block">
-                <a href="index.php">
+                <a href="../index.php">
                   <span class="icon icon-power-off icon-lg icon-fw"></span>
                   Sign out
                 </a>

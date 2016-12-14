@@ -55,7 +55,7 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.datecreated + '</td>';
                     r[++j] = '<td>' + value.modon + '</td>';
                     r[++j] = '<td>' + value.modby + '</td>';
-                    r[++j] = '<td><a  href="beneficiary-sales-tracker?code=' + value.code + '" class="btn btn-outline-info btn-sm btn-edit"><i class="fa fa-eye""></i><span class="hidden-md hidden-sm hidden-xs">View </span></a></td>';
+                    r[++j] = '<td><a  href="beneficiary-sales-tracker?code=' + value.code + '" class="btn btn-outline-info btn-sm btn-edit"><i class="fa fa-edit""></i><span class="hidden-md hidden-sm hidden-xs">View </span></a></td>';
 
                     rowNum = rowNum + 1;
 

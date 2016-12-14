@@ -11,7 +11,7 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-<!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">-->
+        <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">-->
 
 
 
@@ -44,18 +44,8 @@
                                 <div class="col-xs-12">
                                     <form id="adoptionTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setAdoptionTracker"/>
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label for="name-1" class="control-label">Fiscal Year </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="fiscalYear" id="fiscalYear" readonly >
 
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
 
-                                        </div>
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -135,6 +125,28 @@
                                             </div>
 
                                         </div>
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">Fiscal Year</label>
+                                                <div class="input-with-icon">
+                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+
+                                                        <option value="FY16">FY16</option>
+                                                        <option value="FY17">FY17</option>
+                                                        <option value="FY18">FY18</option>
+                                                        <option value="FY19">FY19</option>
+                                                        <option value="FY20">FY20</option>
+
+                                                    </select>            
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+
 
                                         <div class="form-group row">
                                             <label  class="form-label">Has beneficiary applied/adopted any techniques/technologies as a result of USDA assistance during
@@ -194,7 +206,7 @@
                                         <table id="adoptionTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-
+                                                    <th>Fiscal Year</th>
                                                     <th>Adoption Applied</th>
                                                     <th>Techniques Applied</th>
                                                     <th>Date Added</th>

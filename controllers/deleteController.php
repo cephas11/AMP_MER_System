@@ -70,6 +70,11 @@ if (isset($_REQUEST['type'])) {
            
             $delete = new ActivityClass();
            $delete->deleteFinance($code);
+        }else if ($type == 'deleteBeneficiaryTemp') {
+            $code = $_REQUEST['beneficiaryId'];
+           
+            $delete = new ActivityClass();
+           $delete->deleteTempBeneficiary($code);
         }
     } else {
         echo 'provide type';

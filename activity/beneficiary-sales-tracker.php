@@ -44,6 +44,30 @@
                                 <div class="col-xs-12">
                                     <form id="salesTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setSalesTracker"/>
+
+
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">Fiscal Year</label>
+                                                <div class="input-with-icon">
+                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+
+                                                        <option value="FY16">FY16</option>
+                                                        <option value="FY17">FY17</option>
+                                                        <option value="FY18">FY18</option>
+                                                        <option value="FY19">FY19</option>
+                                                        <option value="FY20">FY20</option>
+
+                                                    </select>                    </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+
+
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -93,10 +117,19 @@
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-lg-4 col-md-4 col-sm-12">
-                                                <label for="name-1" class="control-label">Commodity </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="commodity" id="commodity" readonly>
-                                                </div> 
+
+                                                <div class="form-group">
+                                                    <label  class="form-label">Commodity</label>
+                                                    <select name="commodity" id="commodity" class="form-control select2">
+
+                                                        <option value="">Choose...</option>
+
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
+
+
+
                                             </div>
                                             <div class="form-group col-lg-4 col-md-4 col-sm-12">
                                                 <label for="name-1" class="control-label">Value Of Sales (USD) </label>
@@ -106,7 +139,7 @@
                                             </div>
                                             <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
-                                                <label for="name-1" class="control-label">Value Of Sales (Metric Tonnes ) </label>
+                                                <label for="name-1" class="control-label">Volume Of Sales (Metric Tonnes ) </label>
                                                 <div class="input-with-icon">
                                                     <input class="form-control" type="text" name="salesTonnes" id="salesTonnes" required>
                                                 </div>
@@ -139,8 +172,9 @@
                                         <table id="salesTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-
+                                                    <th>Fiscal Year</th>
                                                     <th>Date</th>
+                                                    <th>Commodity</th>
                                                     <th>Value Of Sales(USD)</th>
                                                     <th>Value Of Sales(Metric Tonnes)</th>
                                                     <th>Date Added</th>
@@ -161,7 +195,7 @@
                 </div>
 
 
-               <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form method="post" id="deleteSaleForm">
@@ -184,7 +218,7 @@
                         </div>
                     </div>
                 </div>
-                  <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
                     <div class="modal-dialog" role="document">
 
 
@@ -205,6 +239,8 @@
             <script src="../js/elephant.min.js"></script>
             <script src="../js/application.min.js"></script>
             <script src="../js/demo.min.js"></script>
+            <script src="../js/select2.js"></script>
+
             <script src="../js/beneficiary-sales-tracker.js"></script>
 
     </body>

@@ -11,7 +11,7 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-<!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">-->
+        <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">-->
 
 
 
@@ -33,7 +33,7 @@
 
                 <div class="layout-content-body">
                     <div class="text m-b">
-                        <h3 class="m-b-0">Employment History </h3>
+                        <h3 class="m-b-0">Employment History Form </h3>
                     </div>
                     <div class="row gutter-xs">
                         <div class="card">
@@ -42,20 +42,9 @@
 
 
                                 <div class="col-xs-12">
-                                    <form id="adoptionTrackerForm" method="POST" enctype="multipart/form-data">
-                                        <input type="hidden" name="type" value="setAdoptionTracker"/>
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label for="name-1" class="control-label">Fiscal Year </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="fiscalYear" id="fiscalYear" readonly >
+                                    <form id="employeesForm" method="POST" enctype="multipart/form-data">
+                                        <input type="hidden" name="type" value="setBeneficiaryEmployees"/>
 
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
-
-                                        </div>
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -68,17 +57,7 @@
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label for="name-1" class="control-label">Beneficiary Name</label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="beneficiaryName" id="beneficiaryName" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
 
-                                        </div>
 
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
@@ -136,40 +115,119 @@
 
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label  class="form-label">Has beneficiary applied/adopted any techniques/technologies as a result of USDA assistance during
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">Fiscal Year</label>
+                                                <div class="input-with-icon">
+                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
 
-                                                fiscal year?</label>
-                                            <select name="applied" id="applied" class="form-control select2" required>
+                                                        <option value="">Choose...</option>
 
-                                                <option value="">Choose...</option>
-                                                <option value="yes">Yes</option>
-                                                <option value="no">No</option>
-                                            </select>
+                                                        <option value="FY16">FY16</option>
+                                                        <option value="FY17">FY17</option>
+                                                        <option value="FY18">FY18</option>
+                                                        <option value="FY19">FY19</option>
+                                                        <option value="FY20">FY20</option>
 
-                                            <span class="help-block"></span>
+                                                    </select>            
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">
+                                                    Have you employed any farm hands or additional labour as a result of USDA assistance during this fiscal
+
+                                                    year?
+                                                </label>
+                                                <div class="input-with-icon">
+                                                    <select name="employed" id="employed" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label  class="form-label">
+                                        <div class="row">
 
-                                                What techniques/technologies has beneficiary applied/adopted so far (please tick)?
-                                            </label>
-                                            <select name="techniques[]" id="techniques" multiple class="form-control select2" required>
+                                            <div class="col-lg-2 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="form-label ">Current total household size :</label>
 
-                                                <option value="">Choose...</option>
-                                                <option value="Harvesting techniques/technologies">Harvesting techniques/technologies</option>
-                                                <option value="Post-harvest handling techniques/technologies">Post-harvest handling techniques/technologies</option>
-                                                <option value="Storage techniques/technologies">Storage techniques/technologies</option>
-                                                <option value="Improved farm management practice">Improved farm management practice</option>
-                                                <option value="Improved poultry feed">Improved poultry feed</option>
-                                                <option value="Feed testing techniques">Feed testing techniques</option>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                                <div class="form-group">
 
-                                            </select>
+                                                    <label  class="control-label">Total number of males:</label>
+                                                    <input class="form-control" type="text" name="males" value="0" readonly>
+                                                    <small class="help-block"></small>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label  class="control-label">Total number of females:</label>
+                                                    <input  class="form-control" type="text" name="females" value="0" readonly>
+                                                    <small class="help-block"></small>
+                                                </div>
+                                            </div>
 
-                                            <span class="help-block"></span>
                                         </div>
-                                        <div class="col-xs-12 ">
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="pull-right">
+                                                    <button class="btn btn-primary"  onclick="addRow('employmentTbl')" >Add New Employee</button>
+                                                    <button  class="btn btn-danger"  onclick="deleteRow('employmentTbl')" >Delete Employee</button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class=" col-lg-12 ">
+
+                                                <div class="table-responsive">
+                                                    <table id="employmentTbl" class="table table-middle nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Name Of Employee</th>
+                                                                <th>Gender</th>
+                                                                <th>Date Of Employment </th>
+                                                                <th>Type Of Employment</th>
+                                                                <th>Duration</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><input type="checkbox" name="chk[]"/></td>
+                                                                <td><input type="text"  name="employeeNames[]" required/></td>
+                                                                <td><input type="text"  name="gender[]" required/></td>
+                                                                <td><input  type="text" name="employmentDate[]" data-provide="datepicker" required></td>
+                                                                <td><input type="text"  name="employmentType[]" required/></td>
+                                                                <td><input type="text"  name="duration[]" required/></td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 15px"></div>
+                                        <div class=" row col-xs-12 ">
                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
                                                 <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
@@ -187,27 +245,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h4>Employment History</h4>
-                            <div class="row">
-                                <div class=" col-lg-12 ">
-
-                                    <div class="table-responsive">
-                                        <table id="adoptionTbl" class="table table-middle nowrap">
-                                            <thead>
-                                                <tr>
-
-                                                    <th>Adoption Applied</th>
-                                                    <th>Techniques Applied</th>
-                                                    <th>Date Added</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-                                    </div>
-
-
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -261,7 +298,7 @@
             <script src="../js/application.min.js"></script>
             <script src="../js/demo.min.js"></script>
             <script src="../js/select2.js"></script>
-            <script src="../js/adoption-tracker-detail.js"></script>
+            <script src="../js/employment-tracker-detail.js"></script>
 
     </body>
 </html>

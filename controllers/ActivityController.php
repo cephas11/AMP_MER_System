@@ -53,24 +53,28 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $retreiveList->getActivityParticipants($activity_code);
         } else if ($type == "setSalesTracker") {
             //  echo 'here in sales';
+            $fiscalYear = $_POST['fiscalYear'];
             $activity_date = $_POST['activityDate'];
             $beneficiary_code = $_POST['beneficiaryCode'];
             $commodity = $_POST['commodity'];
             $valueUsd = $_POST['salesUSD'];
             $valueTonnes = $_POST['salesTonnes'];
             $setSales = new ActivityClass();
-            $setSales->setSalesTracker($activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
+            $setSales->setSalesTracker($fiscalYear,$activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes);
         } else if ($type == "getBeneficiarySales") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getBeneficiarySales($code);
         } else if ($type == "setFinancialTracker") {
             //  echo 'here in sales';
+            $fiscalYear = $_POST['fiscalYear'];
             $beneficiaryType = $_POST['beneficiaryType'];
             $beneficiary_code = $_POST['beneficiaryCode'];
             $financialType = $_POST['financialType'];
             $purposeLoan = $_POST['loanPurpose'];
             $repaidAmount = $_POST['amountRepaid'];
+            $amountOustanding = $_POST['amountOustanding'];
+            $grantPurpose = $_POST['grantPurpose'];
             $repaymentDate = $_POST['repaymentDate'];
             if ($financialType == "Loan") {
                 $disbursedAmount = $_POST['amountDisbursed'];
@@ -82,7 +86,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
             $new = new ActivityClass();
-            $new->setFinancialTracker($beneficiary_code, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate);
+            $new->setFinancialTracker($beneficiary_code,$fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate,$amountOustanding,$grantPurpose);
         } else if ($type == "getBeneficiaryFinances") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
@@ -93,14 +97,16 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $retreiveList->getFinanceInfo($code);
         } else if ($type == "setAdoptionTracker") {
             //  echo 'here in sales';
-
+//fiscalYear
+              $fiscalYear = $_POST['fiscalYear'];
+           
             $beneficiary_code = $_POST['beneficiaryCode'];
             $applied = $_POST['applied'];
             $techniques = $_POST['techniques'];
 
 
             $new = new ActivityClass();
-            $new->setAdoptionTracker($beneficiary_code, $applied, $techniques);
+            $new->setAdoptionTracker($beneficiary_code,$fiscalYear, $applied, $techniques);
         }else if ($type == "getdoptionTracker") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();

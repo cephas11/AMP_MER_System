@@ -11,7 +11,7 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
         <link rel="stylesheet" href="../css/vendor.min.css">
 
         <link rel="stylesheet" href="../css/elephant.min.css">
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../css/font-awesome.css">
 
         <link rel="stylesheet" href="../css/demo.min.css">
-<!--        <link rel="stylesheet" href="../css/custom.css">-->
+        <!--        <link rel="stylesheet" href="../css/custom.css">-->
     </head>
     <body class="layout layout-header-fixed">
         <?php
@@ -44,6 +44,9 @@
                                 <div class="col-xs-12">
                                     <form id="financialTrackerForm" name="financialTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setFinancialTracker"/>
+
+
+
 
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
@@ -97,6 +100,30 @@
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">Fiscal Year</label>
+                                                <div class="input-with-icon">
+                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+
+                                                        <option value="FY16">FY16</option>
+                                                        <option value="FY17">FY17</option>
+                                                        <option value="FY18">FY18</option>
+                                                        <option value="FY19">FY19</option>
+                                                        <option value="FY20">FY20</option>
+
+                                                    </select>            
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+
                                         <div id="loan" style="display: none;">
                                             <div class="row" >
                                                 <h4 class="text-center">Loan</h4>
@@ -151,7 +178,20 @@
                                                 <div class="form-group col-lg-9">
                                                     <label for="name-1" class="control-label ">Amount Repaid </label>
                                                     <div class="input-with-icon">
-                                                        <input class="form-control loan" type="text" name="amountRepaid" id="amountRepaid" >
+                                                        <input class="form-control loan" type="text" name="amountRepaid" id="amountRepaid" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-1"></div>
+
+                                            </div>
+
+                                            <div class="row" >
+
+                                                <div class="form-group col-lg-1"></div>
+                                                <div class="form-group col-lg-9">
+                                                    <label for="name-1" class="control-label ">Amount Outstanding </label>
+                                                    <div class="input-with-icon">
+                                                        <input class="form-control loan" type="text" name="amountOustanding" id="amountOustanding" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-lg-1"></div>
@@ -206,7 +246,21 @@
 
                                             </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-lg-1"></div>
+                                                <div class="form-group col-lg-9">
+                                                    <label for="name-1" class="control-label">Grant Purpose  </label>
+                                                    <select name="grantPurpose" id="grantPurpose" class="form-control select2" >
 
+                                                        <option value="">Choose...</option>
+                                                        <option value="Renovations to existing post-harvest storage structures">Renovations to existing post-harvest storage structures</option>
+
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-lg-1"></div>
+
+                                            </div>
 
                                         </div>
 
@@ -238,7 +292,7 @@
                                         <table id="financialTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
-
+                                                    <th>Fiscal Year </th>
                                                     <th>Financial Type</th>
                                                     <th>Amount Disbursed</th>
                                                     <th>Date Of Disbursement</th>
@@ -270,7 +324,10 @@
                             </div>
                             <form  >
                                 <div class="modal-body">
-
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Fiscal Year :</label>
+                                        <input type="text" class="form-control" id="fiscalYearDetail"  readonly>
+                                    </div>
                                     <div class="form-group">
                                         <label for="region" class="control-label">Financial Type:</label>
                                         <input type="text" class="form-control" id="financialTypeDetail"  readonly>
@@ -284,6 +341,12 @@
                                         <label for="region" class="control-label">Date Of Disbursement:</label>
                                         <input type="text" class="form-control" id="disbursementDateDetail"  readonly>
                                     </div>
+                                    <div id="grantdiv">
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Purpose Of Grant:</label>
+                                            <input type="text" class="form-control" id="grantPurposeDetail"  readonly>
+                                        </div>
+                                    </div>
                                     <div id="loandiv">
                                         <div class="form-group">
                                             <label for="region" class="control-label">Purpose Of Loan:</label>
@@ -293,10 +356,18 @@
                                             <label for="region" class="control-label">Amount Repaid:</label>
                                             <input type="text" class="form-control" id="amountRepaidDetail"  readonly>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Amount Outstanding  :</label>
+                                            <input type="text" class="form-control" id="amountOutstandingDetail"  readonly>
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="region" class="control-label">Final Repayment Date:</label>
                                             <input type="text" class="form-control" id="repaymentDateDetail"  readonly>
                                         </div>
+
+
                                     </div>
                                 </div>
                                 <div class="modal-footer">
