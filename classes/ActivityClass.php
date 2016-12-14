@@ -149,7 +149,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setSalesTracker($fiscalYear,$activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes) {
+    public function setSalesTracker($fiscalYear, $activity_date, $beneficiary_code, $commodity, $valueUsd, $valueTonnes) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -280,7 +280,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setFinancialTracker($beneficiary_code,$fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose) {
+    public function setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -430,7 +430,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setAdoptionTracker($beneficiary_code,$fiscalYear, $applied, $technique) {
+    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -480,6 +480,46 @@ class ActivityClass {
 
     public function buildSqlInClauseFromCsv($csv) {
         return "in ('" . str_replace(",", "','", $csv) . "') ";
+    }
+
+    public function setBeneficiaryEmployees($info) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $beneficiaryCode = $info['beneficiaryCode'];
+        $fiscalYear = $info['fiscalYear'];
+        $additonal_labour = $info['employed'];
+        $name = $info['employeeNames'];
+        $gender = $info['gender'];
+        $males = $info['males'];
+        $females = $info['females'];
+        $employmentDate = $info['employmentDate'];
+        $employmentType = $info['employmentType'];
+        $duration = $info['duration'];
+        $createdby = 'aba';
+       
+        foreach ($gender as $a => $b) {
+            echo $gender[$a] . ',' . $name[$a];
+            $code = $this->generateuniqueCode(10);
+        $query=    mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,males,females,name,gender,employment_date,employment_type,duration,createdby)"
+                    . " VALUES "
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiaryCode) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $additonal_labour) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $males) . "','" . mysqli_real_escape_string($conn, $females) . "','" . mysqli_real_escape_string($conn, $name[$a]) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $gender[$a]) . "','" . mysqli_real_escape_string($conn, $employmentDate[$a]) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $employmentType[$a]) . "','" . mysqli_real_escape_string($conn, $duration[$a]) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
+        }
+
+        if ($query) {
+
+            $this->response['success'] = '1';
+            $this->response['message'] = ' Saved Sucessfully';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt add' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
     }
 
 }
