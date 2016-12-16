@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../css/font-awesome.css">
 
         <link rel="stylesheet" href="../css/demo.min.css">
-       
+
 
     </head>
     <body class="layout layout-header-fixed">
@@ -32,6 +32,7 @@
             ?>
             <div class="layout-content">
                 <div class="layout-content-body">
+<h3>Activity Reporting Tool</h3>
 
 
                     <div class="row gutter-xs">
@@ -59,14 +60,12 @@
                                                     <thead>
                                                         <tr>
 <!--                                                            <th>Code</th>-->
-
                                                             <th>Activity Date</th>
                                                             <th>Type</th>
                                                             <th>Description</th>
-                                                            <th>Category</th>
+
                                                             <th>Region</th>
                                                             <th>District</th>
-<!--                                                            <th>Community</th>-->
                                                             <th>Implementer</th>
                                                             <th>Total Participants</th>
                                                             <th>Action</th>
@@ -105,7 +104,7 @@
                     </div>
                 </div>
 
-                    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form method="post" id="deleteCompletionActivityForm">
@@ -140,7 +139,7 @@
 
                     </div>
                 </div>
-            
+
             </div>
             <?php
             require_once '../footer.php';

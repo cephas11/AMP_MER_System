@@ -48,28 +48,24 @@
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label for="name-1" class="control-label">Date of  Activity</label>
                                             <div class="input-with-icon">
-                                                <input class="form-control" type="text" name="activityDate" id="activityDate" data-provide="datepicker">
+                                                <input class="form-control" type="text" name="activityDate" id="activityDate" data-provide="datepicker" readonly>
                                                 <span class="icon icon-calendar input-icon"></span>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label  class="form-label">Type Of Activity</label>
-                                            <select name="activityType" id="activityType" class="form-control select2">
 
+                                            <input class="form-control" type="text" name="activityType" id="activityType" readonly>
 
-                                            </select>
-                                            <span class="help-block"></span>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label  class="form-label">Activity Description</label>
-                                            <select name="description" id="activityDescription" class="form-control ">
+                                     
+                                            <input class="form-control" type="text" name="activityDescription" id="activityDescription" readonly>
 
-
-                                            </select>
-                                            <span class="help-block"></span>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label  class="form-label">Category</label>
+                                            <label  class="form-label">Beneficiary Category</label>
                                             <input class="form-control" type="text" name="category" id="category" readonly>
 
                                             <span class="help-block"></span>
@@ -98,7 +94,7 @@
 
                                         <div class="form-group col-lg-4 col-md-12 col-sm-12">
                                             <label  class="control-label">Community</label>
-                                            <input  class="form-control" type="text" id="community" name="community" required>
+                                            <input  class="form-control" type="text" id="community" name="community" required readonly>
                                             <small class="help-block"></small>
                                         </div>
 
@@ -152,9 +148,7 @@
                                                 <table id="participantsTbl" class="table table-middle nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>
-                                                                <input type="checkbox">
-                                                            </th>
+                                                            
                                                             <th>Code</th>
                                                             <th>Name</th>
                                                             <th>Gender</th>
@@ -175,10 +169,10 @@
 
                                     <div class="col-lg-12">
                                         <div class="pull-right">
-                                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deletedparticipantsModal" data-whatever="@mdo">Delete Participants</button>
-                                            <button type="button" class="btn btn-info " data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Add New Participants</button>
-
-                                            <button  class="btn btn-primary" >Update</button>
+                                            <!--                                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deletedparticipantsModal" data-whatever="@mdo">Delete Participants</button>
+                                                                                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Add New Participants</button>
+                                            
+                                                                                        <button  class="btn btn-primary" >Update</button>-->
 
                                         </div>
 
@@ -209,9 +203,7 @@
                                             <table id="newparticipantsTbl" class="table table-middle nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>
-                                                            <input type="checkbox">
-                                                        </th>
+                                                        
                                                         <th>Code</th>
                                                         <th>Name</th>
                                                         <th>Gender</th>

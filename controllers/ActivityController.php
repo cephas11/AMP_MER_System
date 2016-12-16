@@ -115,7 +115,11 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             //print_r($_POST);
             $new = new ActivityClass();
             $new->setBeneficiaryEmployees($_POST);
-        }
+        }else if ($type == "getActivityCategories") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getActivityCategories($code);
+        } 
     } else {
         echo 'provide type';
     }

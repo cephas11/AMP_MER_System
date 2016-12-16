@@ -11,15 +11,15 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-<!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
--->
+
 
 
         <link rel="stylesheet" href="../css/vendor.min.css">
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
         <link rel="stylesheet" href="../css/demo.min.css">
-        <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/css/dataTables.checkboxes.css" rel="stylesheet" />
+        <!--        <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/css/dataTables.checkboxes.css" rel="stylesheet" />
+        -->
         <link rel="stylesheet" href="../css/custom.css">
     </head>
     <body class="layout layout-header-fixed">
@@ -139,7 +139,7 @@
 
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-4">
-                                                <button type="button" class="btn btn-info  btn-block pull-right" data-toggle="modal" data-target="#participantsModal" data-whatever="@mdo">Select Participants</button>
+                                                <button type="button" class="btn btn-danger  btn-block pull-right"id="participantsselected" onclick="selectParticipants()">Select Participants</button>
 
                                             </div>
                                             <br><br>
@@ -172,11 +172,11 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label  class="control-label">Attached File</label>
                                             <input  class="form-control" type="file" name="file" id="attached" >
-                     
+
 
                                         </div>
                                     </div>
-                                     <input type="hidden"  name="participants[]" id="participants"/>
+                                    <input type="hidden"  name="participants[]" id="participants"/>
                                     <div class="col-xs-12">
                                         <input type="hidden" value="completionTool" name="type"/>
                                         <br><br>
@@ -210,34 +210,76 @@
                                         <table id="participantsTbl" class="participants table table-middle nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>
-                                                      
-                                                    </th>
+                                                    <th><input name="select_all" value="1" type="checkbox"></th>
+
                                                     <th>Code</th>
                                                     <th>Name</th>
                                                     <th>Gender</th>
                                                     <th>Email</th>
                                                     <th>Contact No</th>
                                                     <th>District</th>
-                                                  
+
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
                                         </table>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-<!--                                    <button type="submit" class="btn btn-primary">Attach</button>
-                            -->
+                                    <!--                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    -->
+                                    <button type="button" id="attachParticipants" class="btn btn-primary">Attach</button>
+
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
 
+
+                <div class="modal fade " id="displaybeneficairiesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">
+                                    <span class="displayTitle">By clicking on the confirm button ,you are confirming that the listed participants should be added to the activity.Note:This cant be reversed. </span> </h4>
+                          
+                            </div>
+                            <form id="participantsForm" >
+                                <div class="modal-body">
+                                    <div id="loadbeneficiaries">
+                                        <ul>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    -->
+                                    <button type="button" id="confirmParticipants" class="btn btn-primary">Confirm</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                      <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                    <div class="modal-dialog" role="document">
+
+
+                        <div  id="loader" style="margin-top:30% ">
+                            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                            <span class="loader-text">Wait...</span>
+                        </div>
+
+
+                    </div>
+                </div>
+           
             </div>
             <?php
             require_once '../footer.php';
@@ -249,7 +291,8 @@
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
         <script src="../js/select2.js"></script>
-        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
+<!--        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
+        -->
         <script src="../js/completion-tool.js"></script>
 
     </body>
