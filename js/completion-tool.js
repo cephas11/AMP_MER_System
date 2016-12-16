@@ -506,8 +506,7 @@ function getActivitiesList()
                     r[++j] = '<td >' + value.activity_date + '</td>';
                     r[++j] = '<td >' + value.activity_type_name + '</td>';
                     r[++j] = '<td >' + value.activity_description_name + '</td>';
-                    r[++j] = '<td >' + value.category_name + '</td>';
-                    r[++j] = '<td >' + value.region_name + '</td>';
+                   r[++j] = '<td >' + value.region_name + '</td>';
                     r[++j] = '<td >' + value.district_name + '</td>';
 //                    r[++j] = '<td >' + value.community + '</td>';
                     r[++j] = '<td >' + value.implementer + '</td>';

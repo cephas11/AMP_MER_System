@@ -251,32 +251,17 @@ class ActivityClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM activity_participants_view WHERE activity_code='" . $activity_code . "'");
 
-
-
-        $response["data"] = array();
-
-        $i = 0;
-
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                $sample = array();
-                $sample[0] = $row['beneficiary_id'];
-                $sample[1] = $row['code'];
-                $sample[2] = $row['name'];
-                $sample[3] = $row['gender'];
-                $sample[4] = $row['email'];
-                $sample[5] = $row['contactno'];
-                $sample[6] = $row['district_name'];
-                $response["data"][$i] = $sample;
-
-                $i = $i + 1;
+                $results[] = $row;
             }
-            echo json_encode($response);
+            $feedback = json_encode($results);
         } else {
 
-            echo $feedback = json_encode($this->response);
+            $feedback = json_encode($this->response);
         }
 
+        echo $feedback;
         $connection->closeConnection($conn);
     }
 
@@ -539,6 +524,25 @@ class ActivityClass {
             $this->response['message'] = 'couldnt add' . mysqli_error($conn);
             echo json_encode($this->response);
         }
+        $connection->closeConnection($conn);
+    }
+    
+       public function getActivityCategories($activityCode) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM completion_activity_categories_view WHERE activity_code='" . $activityCode . "'");
+   if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
         $connection->closeConnection($conn);
     }
 

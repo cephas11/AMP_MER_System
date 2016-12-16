@@ -11,8 +11,8 @@
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-<!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-      -->
+        <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+        -->
         <link rel="stylesheet" href="../css/vendor.min.css">
 
         <link rel="stylesheet" href="../css/elephant.min.css">
@@ -34,6 +34,7 @@
             <div class="layout-content">
                 <div class="layout-content-body">
 
+                    <h3>Employment  History</h3>
 
                     <div class="row gutter-xs">
                         <div class="card">
@@ -100,7 +101,7 @@
                     </div>
                 </div>
 
-      
+
             </div>
             <?php
             require_once '../footer.php';

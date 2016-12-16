@@ -32,6 +32,7 @@
             ?>
             <div class="layout-content">
                 <div class="layout-content-body">
+<h3>Activity Reporting Tool</h3>
 
 
                     <div class="row gutter-xs">
@@ -59,13 +60,12 @@
                                                     <thead>
                                                         <tr>
 <!--                                                            <th>Code</th>-->
-                                                           <th>Activity Date</th>
+                                                            <th>Activity Date</th>
                                                             <th>Type</th>
                                                             <th>Description</th>
-                                                            <th>Category</th>
+
                                                             <th>Region</th>
                                                             <th>District</th>
-<!--                                                            <th>Community</th>-->
                                                             <th>Implementer</th>
                                                             <th>Total Participants</th>
                                                             <th>Action</th>
