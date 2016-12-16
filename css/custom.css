@@ -34,7 +34,9 @@ i.fa {
 }
 
 
-
+.displayTitle{
+    color:#d81450;
+}
 table.dataTable {
     margin: 0 auto;
     clear: both;

@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../css/font-awesome.css">
 
         <link rel="stylesheet" href="../css/demo.min.css">
-       
+
 
     </head>
     <body class="layout layout-header-fixed">
@@ -59,8 +59,7 @@
                                                     <thead>
                                                         <tr>
 <!--                                                            <th>Code</th>-->
-
-                                                            <th>Activity Date</th>
+                                                           <th>Activity Date</th>
                                                             <th>Type</th>
                                                             <th>Description</th>
                                                             <th>Category</th>
@@ -105,7 +104,7 @@
                     </div>
                 </div>
 
-                    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form method="post" id="deleteCompletionActivityForm">
@@ -140,7 +139,7 @@
 
                     </div>
                 </div>
-            
+
             </div>
             <?php
             require_once '../footer.php';

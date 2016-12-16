@@ -13,6 +13,7 @@ class ActivityClass {
 
     var $response = array();
 
+//
     public function getBeneficiaries($regcode, $catcode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -36,8 +37,11 @@ class ActivityClass {
 //       public function getBeneficiaries($regcode, $catcode) {
 //        $connection = new databaseConnection(); //i created a new object
 //        $conn = $connection->connectToDatabase(); // connected to the database
-//        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code='" . $catcode . "' AND active=0 ");
-//
+//       $category = '"' . implode('","', $catcode) . '"';
+////
+//        
+//        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code IN (" . $category . ") AND active=0 ");
+////       
 //        $response["data"] = array();
 //
 //        $i = 0;
@@ -65,7 +69,7 @@ class ActivityClass {
 //
 //        $connection->closeConnection($conn);
 //    }
-//    
+////    
     public function getUnAssignedBeneficiaries($regcode, $catcode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -111,12 +115,13 @@ class ActivityClass {
         $beneficiaries = array_values($participants)[0];
         $beneficiaries = preg_replace('/\.$/', '', $beneficiaries); //Remove dot at end if exists
         $array = explode(',', $beneficiaries); //split string into array seperated by ', '
-
-
-        $query = mysqli_query($conn, "INSERT INTO completion_tool_activity(code,activity_date,type,description,category,region,district,community,implementer,male,female,total,url,createdby)"
+//       // $categories = explode(',', $category); //split string into array seperated by ', '
+//
+//       print_r($category);
+        $query = mysqli_query($conn, "INSERT INTO completion_tool_activity(code,activity_date,type,description,region,district,community,implementer,male,female,total,url,createdby)"
                 . " VALUES "
                 . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_date) . "','" . mysqli_real_escape_string($conn, $type) . "',"
-                . "'" . mysqli_real_escape_string($conn, $description) . "','" . mysqli_real_escape_string($conn, $category) . "','" . mysqli_real_escape_string($conn, $region) . "',"
+                . "'" . mysqli_real_escape_string($conn, $description) . "','" . mysqli_real_escape_string($conn, $region) . "',"
                 . "'" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $community) . "','" . mysqli_real_escape_string($conn, $implementer) . "','" . mysqli_real_escape_string($conn, $male) . "',"
                 . "'" . mysqli_real_escape_string($conn, $female) . "','" . mysqli_real_escape_string($conn, $total) . "','" . mysqli_real_escape_string($conn, $url) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
 
@@ -125,6 +130,9 @@ class ActivityClass {
             $activity_code = $code;
             foreach ($array as $value) { //loop over values
                 $this->setActivityParticipants($activity_code, $typeofactivity, $value);
+            }
+            foreach ($category as $value) { //loop over values
+                $this->setActivityCategories($activity_code, $value);
             }
             $this->response['success'] = '1';
             $this->response['message'] = 'New Activity  Added';
@@ -145,6 +153,18 @@ class ActivityClass {
         mysqli_query($conn, "INSERT INTO activity_participants(code,activity_code,activity_type,participant_code)"
                 . " VALUES "
                 . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_code) . "','" . mysqli_real_escape_string($conn, $activity_type) . "','" . mysqli_real_escape_string($conn, $particpant_code) . "')");
+
+        $connection->closeConnection($conn);
+    }
+
+    public function setActivityCategories($activity_code, $category_code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = $this->generateuniqueCode(10);
+        mysqli_query($conn, "INSERT INTO completion_activity_categories(activity_code,category_code)"
+                . " VALUES "
+                . "('" . trim($activity_code) . "','" . mysqli_real_escape_string($conn, $category_code) . "')");
 
         $connection->closeConnection($conn);
     }
@@ -497,11 +517,11 @@ class ActivityClass {
         $employmentType = $info['employmentType'];
         $duration = $info['duration'];
         $createdby = 'aba';
-       
+
         foreach ($gender as $a => $b) {
             echo $gender[$a] . ',' . $name[$a];
             $code = $this->generateuniqueCode(10);
-        $query=    mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,males,females,name,gender,employment_date,employment_type,duration,createdby)"
+            $query = mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,males,females,name,gender,employment_date,employment_type,duration,createdby)"
                     . " VALUES "
                     . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiaryCode) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $additonal_labour) . "',"
                     . "'" . mysqli_real_escape_string($conn, $males) . "','" . mysqli_real_escape_string($conn, $females) . "','" . mysqli_real_escape_string($conn, $name[$a]) . "',"
