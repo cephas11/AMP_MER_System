@@ -39,7 +39,7 @@ $.ajax({
     type: "GET",
     data: info,
     success: function (data) {
-        $('#loan').html(data);
+        $('#loan').html('GHS '+data);
         console.log('total' + data);
     }
 });
@@ -51,7 +51,7 @@ $.ajax({
     type: "GET",
     data: info,
     success: function (data) {
-        $('#grant').html(data);
+        $('#grant').html('GHS '+data);
         console.log('total' + data);
     }
 });

@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="beneficiary/completion-tool-activities">
+                        <a href="activity/completion-tool-activities">
                             <span class="sidenav-icon icon icon-edit"></span>
                             <span class="sidenav-label">Activity Reporting Tool </span>
                         </a>
