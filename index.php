@@ -21,8 +21,8 @@
         <link rel="stylesheet" href="css/vendor.min.css">
         <link rel="stylesheet" href="css/elephant.min.css">
         <link rel="stylesheet" href="css/login-3.min.css">
-                <link rel="stylesheet" href="css/logincustom.css">
-   
+        <link rel="stylesheet" href="css/logincustom.css">
+
     </head>
     <body>
 
@@ -36,20 +36,20 @@
         
                 </ul>-->
 
-                <ul class="slideshow" style=":after {content: '';background: transparent url('img/background.jpg') repeat top left};">
-                    <li><span style="background-image: url('img/background5.jpg')"></span></li>
-                    <li><span style="background-image: url('img/background5.jpg')"></span></li>
-                    <li><span style="background-image: url('img/background5.jpg')"></span></li>
-                    <li><span style="background-image: url('img/background5.jpg')"></span></li>
-                    <li><span style="background-image: url('img/background5.jpg')"></span></li>
-                    <li><span style="background-image: url('img/background5.jpg')"></span></li>
-                   
-                </ul>
+        <ul class="slideshow" style=":after {content: '';background: transparent url('img/background.jpg') repeat top left};">
+            <li><span style="background-image: url('img/background5.jpg')"></span></li>
+            <li><span style="background-image: url('img/background5.jpg')"></span></li>
+            <li><span style="background-image: url('img/background5.jpg')"></span></li>
+            <li><span style="background-image: url('img/background5.jpg')"></span></li>
+            <li><span style="background-image: url('img/background5.jpg')"></span></li>
+            <li><span style="background-image: url('img/background5.jpg')"></span></li>
+
+        </ul>
         <h2 class="text-center">
             Amplifies Ghana Project Monitoring And Reporting platform
         </h2>
         <div class="login">
-          
+
             <div class="login-body">
                 <a class="login-brand" href="#">
                     <img class="img-responsive" src="img/logo2.png"  alt="USAD">
@@ -58,7 +58,7 @@
                 </a>
                 <h3 class="login-heading">Sign in</h3>
                 <div class="login-form">
-                    <form data-toggle="md-validator" action="beneficiary/beneficiary-form.php">
+                    <form data-toggle="md-validator" action="dashboard" method="POST">
                         <div class="md-form-group md-label-floating">
                             <input class="md-form-control" type="text" name="username" spellcheck="false" autocomplete="off" data-msg-required="Please enter username." required>
                             <label class="md-control-label">Username</label>
