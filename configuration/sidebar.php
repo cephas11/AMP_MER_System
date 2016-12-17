@@ -16,6 +16,13 @@
                         </form>
                     </li>
                     <li class="sidenav-heading">Portal</li>
+                      <li class="sidenav-item ">
+                              <a href="../dashboard">
+                            <span class="sidenav-icon icon icon-list"></span>
+                            <span class="sidenav-label">Dashboard </span>
+                        </a>
+
+                    </li>
                     <li class="sidenav-item has-subnav">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-files-o"></span>
