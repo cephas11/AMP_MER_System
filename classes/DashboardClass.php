@@ -72,19 +72,37 @@ WHERE  financial_type='Grant'
 
         $query = mysqli_query($conn, "SELECT * FROM beneficiaries_per_region ");
 
+//        $val = "[";
+//        if (mysqli_num_rows($query) > 0) {
+//
+//            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+//
+//                if($val != "[")
+//                    $val = $val . ",";
+//               // $results[] = $row['name'];
+//                $val = $val . "'". $row['name'] . "'";
+//                
+//            }
+//        }
+//        
+//        $val = $val . "]";
+//
+//        echo $val;
+
+
         if (mysqli_num_rows($query) > 0) {
 
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 
-                $results[] = $row['name'];
-                
+                $results[] = $row;
             }
         }
 
         echo json_encode($results);
         $connection->closeConnection($conn);
     }
-      public function getBeneficiaryPerRegion() {
+
+    public function getBeneficiaryPerRegion() {
         $results = array();
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -95,14 +113,12 @@ WHERE  financial_type='Grant'
 
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
 
-                $results[] = $row['total'];
-                
+                $results[] = $row;
             }
         }
 
         echo json_encode($results);
         $connection->closeConnection($conn);
     }
-
 
 }

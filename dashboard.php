@@ -82,7 +82,7 @@
                                         <div class="media-middle media-body">
                                             <h6 class="media-heading">Total Loan Given Out</h6>
                                             <h3 class="media-heading">
-                                               <span class="fw-l" id="loan"></span>
+                                                <span class="fw-l" id="loan"></span>
                                             </h3>
                                         </div>
                                     </div>
@@ -113,15 +113,34 @@
                     <div class="row gutter-xs">
                         <div class="col-xs-12 col-md-6">
                             <div class="panel panel-body text-center" data-toggle="match-height">
-                                <canvas data-chart="line" data-labels='["Western", "Central", "Greater", "North"]' data-values='[{"backgroundColor": "rgba(80, 180, 50, 0.2)", "borderColor": "#50b432", "borderWidth": 2, "pointBackgroundColor": "#50b432", "pointRadius": 1, "label": "Visitors", "data": [60285, 50687, 56529, 49634]}]' data-hide='["gridLinesX", "legend"]' height="150" width="300"></canvas>
-                              
-                              
+<!--                                <canvas data-chart="bar" 
+                                        data-labels='["Western", "Central", "Greater"]' 
+                                        data-values='[{"backgroundColor": "rgba(80, 180, 50, 0.2)",
+"borderColor": "#50b432", "borderWidth": 2, "pointBackgroundColor": "#50b432", "pointRadius": 1, "label": "Visitors", "data": [60285, 50687, 56529]}]' 
+                                        data-hide='["gridLinesX", "legend"]' 
+                                        height="150" 
+                                        width="300"></canvas>
+                                -->
+  <!--                              <canvas data-chart="line" 
+                                        id="linechart"  data-hide='["gridLinesX", "legend"]'
+                                          height="150" width="300"
+                                        
+                                            ></canvas>-->
+                                <canvas id="myChart"  data-hide='["gridLinesX", "legend"]'></canvas>
                                 <h6 class="m-b-0">Beneficiaries Per region</h6>
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <div class="panel panel-body text-center" data-toggle="match-height">
-                                <canvas data-chart="line" data-labels='["May", "Jun", "Jul", "Aug"]' data-values='[{"backgroundColor": "transparent", "borderColor": "#50b432", "label": "Visitors", "data": [60285, 50687, 56529, 49634]}]' data-hide='["legend"]' height="150" width="300"></canvas>
+                                <canvas data-chart="line" 
+                                        data-labels='["May", "Jun", "Jul", "Aug"]'
+                                        data-values='[{
+                                        "backgroundColor": "transparent", "borderColor": "#50b432", "label": "Visitors", "data": [60285, 50687, 56529, 49634]
+                                        
+                                        
+                                        }]' 
+                                        data-hide='["legend"]' 
+                                        height="150" width="300"></canvas>
                                 <h6 class="m-b-0">Beneficiaries Per category</h6>
 
                             </div>
@@ -152,11 +171,11 @@
 
         </div>
         <script src="js/vendor.min.js"></script>
-         <script src="js/dashboard.js"></script>
+        <script src="js/dashboard.js"></script>
 
         <script src="js/elephant.min.js"></script>
         <script src="js/application.min.js"></script>
-       
+
     </body>
 </html>
 <!-- Localized -->

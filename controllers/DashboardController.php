@@ -35,7 +35,7 @@ if (isset($_GET['type'])) {
 
             $getData = new DashboardClass();
             $getData->getRegions();
-        } else if ($type == 'getBeneficiaryPerRegion') {
+        } else if ($type == 'getBeneficiaryPerRegions') {
 
             $getData = new DashboardClass();
             $getData->getBeneficiaryPerRegion();
