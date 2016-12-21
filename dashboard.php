@@ -111,37 +111,25 @@
                     </div>
 
                     <div class="row gutter-xs">
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-xs-12 col-md-12">
+                            
                             <div class="panel panel-body text-center" data-toggle="match-height">
-<!--                                <canvas data-chart="bar" 
-                                        data-labels='["Western", "Central", "Greater"]' 
-                                        data-values='[{"backgroundColor": "rgba(80, 180, 50, 0.2)",
-"borderColor": "#50b432", "borderWidth": 2, "pointBackgroundColor": "#50b432", "pointRadius": 1, "label": "Visitors", "data": [60285, 50687, 56529]}]' 
-                                        data-hide='["gridLinesX", "legend"]' 
-                                        height="150" 
-                                        width="300"></canvas>
-                                -->
-  <!--                              <canvas data-chart="line" 
-                                        id="linechart"  data-hide='["gridLinesX", "legend"]'
-                                          height="150" width="300"
-                                        
-                                            ></canvas>-->
+<!--                                 <h4 class="m-b-0">Beneficiaries Per region</h4>
+                               --> <div class="card-body">
+                                    <h4 class="card-title pull-left">Beneficiaries Per region</h4>
+                                </div>
                                 <canvas id="myChart"  data-hide='["gridLinesX", "legend"]'></canvas>
-                                <h6 class="m-b-0">Beneficiaries Per region</h6>
+                               
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-xs-12 col-md-12">
                             <div class="panel panel-body text-center" data-toggle="match-height">
-                                <canvas data-chart="line" 
-                                        data-labels='["May", "Jun", "Jul", "Aug"]'
-                                        data-values='[{
-                                        "backgroundColor": "transparent", "borderColor": "#50b432", "label": "Visitors", "data": [60285, 50687, 56529, 49634]
-                                        
-                                        
-                                        }]' 
-                                        data-hide='["legend"]' 
-                                        height="150" width="300"></canvas>
-                                <h6 class="m-b-0">Beneficiaries Per category</h6>
+                                 <div class="card-body">
+                                    <h4 class="card-title pull-left">Beneficiaries Per category</h4>
+                                </div>
+                                <canvas id="myChartCategory"  data-hide='["gridLinesX", "legend"]'></canvas>
+                          
+<!--                                <h6 class="m-b-0">Beneficiaries Per category</h6>-->
 
                             </div>
                         </div>
@@ -155,7 +143,9 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="card-chart">
-                                        <canvas id="demo-visitors" data-chart="bar" data-animation="false" data-labels='["Aug 1", "Aug 2", "Aug 3", "Aug 4", "Aug 5", "Aug 6", "Aug 7", "Aug 8", "Aug 9", "Aug 10", "Aug 11", "Aug 12", "Aug 13", "Aug 14", "Aug 15", "Aug 16", "Aug 17", "Aug 18", "Aug 19", "Aug 20", "Aug 21", "Aug 22", "Aug 23", "Aug 24", "Aug 25", "Aug 26", "Aug 27", "Aug 28", "Aug 29", "Aug 30", "Aug 31"]' data-values='[{"label": "Visitors", "backgroundColor": "#27ae60", "borderColor": "#27ae60",  "data": [29432, 20314, 17665, 22162, 31194, 35053, 29298, 36682, 45325, 39140, 22190, 28014, 24121, 39355, 36064, 45033, 42995, 30519, 20246, 42399, 37536, 34607, 33807, 30988, 24562, 49143, 44579, 43600, 18064, 36068, 41605]}]' data-hide='["legend", "scalesX"]' height="150"></canvas>
+                                        <canvas id="districtsChart"
+                                                data-hide='["gridLinesX", "legend"]'
+                                                ></canvas>
                                     </div>
                                 </div>
                             </div>

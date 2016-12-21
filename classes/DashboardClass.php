@@ -120,5 +120,43 @@ WHERE  financial_type='Grant'
         echo json_encode($results);
         $connection->closeConnection($conn);
     }
+    
+      public function getBeneficiaryPerCategories() {
+        $results = array();
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_per_categories ");
+
+        if (mysqli_num_rows($query) > 0) {
+
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+
+                $results[] = $row;
+            }
+        }
+
+        echo json_encode($results);
+        $connection->closeConnection($conn);
+    }
+    
+    public function getBeneficiaryPerDistricts() {
+        $results = array();
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_per_districts ");
+
+        if (mysqli_num_rows($query) > 0) {
+
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+
+                $results[] = $row;
+            }
+        }
+
+        echo json_encode($results);
+        $connection->closeConnection($conn);
+    }
 
 }

@@ -4,7 +4,15 @@
  * and open the template in the editor.
  */
 
-
+var colors = [
+    "#2ecc71",
+    "#3498db",
+    "#95a5a6",
+    "#9b59b6",
+    "#f1c40f",
+    "#e74c3c",
+    "#34495e"
+];
 //get total beneficiaries
 
 var info = {
@@ -72,7 +80,7 @@ function getBeneficiaryPerRegions() {
     });
 }
 
-getBeneficiaryPerRegions();
+//getBeneficiaryPerRegions();
 
 
 $.when(getBeneficiaryPerRegions()).done(function (data) {
@@ -91,8 +99,8 @@ $.when(getBeneficiaryPerRegions()).done(function (data) {
 
     });
     figures = figures.map(Number);
-    console.log(figures);
-    console.log(regions);
+    console.log('figures: '+figures);
+    console.log('regions:'+regions);
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -104,15 +112,153 @@ $.when(getBeneficiaryPerRegions()).done(function (data) {
                     "borderWidth": 2,
                     "pointBackgroundColor": "#50b432",
                     "pointRadius": 1,
-                    "label": "Beneficiaries", 
-                    "data": [2,1]
-                                        
+                    "label": "Beneficiaries",
+                    "data": figures
+
                 }]
-            
+
         }
     });
 
 });
+
+
+
+function getBeneficiaryPerCategories() {
+
+
+    var info = {
+        type: "getBeneficiaryPerCategories"
+    };
+    return    $.ajax({
+        url: 'controllers/DashboardController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: info,
+        dataType: 'json'
+
+    });
+}
+
+$.when(getBeneficiaryPerCategories()).done(function (data) {
+    // the code here will be executed when all four ajax requests resolve.
+    // a1, a2, a3 and a4 are lists of length 3 containing the response text,
+    // status, and jqXHR object for each of the four ajax calls respectively.
+    var categories = [];
+    var figures = [];
+
+
+    console.log('data her: ' + data);
+
+    $.each(data, function (i, item) {
+
+        categories.push(item.name);
+        figures.push(item.total);
+
+    });
+    figures = figures.map(Number);
+    var figures_length = figures.length;
+    var random_colors = getUnique(figures_length);
+   
+    
+    var ctx = document.getElementById("myChartCategory").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: categories,
+            datasets: [{
+                    backgroundColor: [
+                        "#2ecc71",
+                        "#3498db",
+                        "#95a5a6",
+                        "#9b59b6",
+                        "#f1c40f",
+                        "#e74c3c",
+                        "#34495e"
+                    ],
+                    data: figures
+                }]
+        }
+    });
+
+
+});
+
+function getUnique(count) {
+    // Make a copy of the array
+    var tmp = colors.slice(colors);
+    var ret = [];
+
+    for (var i = 0; i < count; i++) {
+        var index = Math.floor(Math.random() * tmp.length);
+        var removed = tmp.splice(index, 1);
+        // Since we are only removing one element
+        ret.push(removed[0]);
+    }
+    return  ret ;
+}
+
+
+
+function getBeneficiaryPerDistricts() {
+
+
+    var info = {
+        type: "getBeneficiaryPeristricts"
+    };
+    return    $.ajax({
+        url: 'controllers/DashboardController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: info,
+        dataType: 'json'
+
+    });
+}
+
+$.when(getBeneficiaryPerDistricts()).done(function (data) {
+    // the code here will be executed when all four ajax requests resolve.
+    // a1, a2, a3 and a4 are lists of length 3 containing the response text,
+    // status, and jqXHR object for each of the four ajax calls respectively.
+    var districts = [];
+    var figures = [];
+
+
+    console.log('data her: ' + data);
+
+    $.each(data, function (i, item) {
+
+        districts.push(item.name);
+        figures.push(item.total);
+
+    });
+    figures = figures.map(Number);
+    
+    
+    var ctx = document.getElementById("districtsChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+      data: {
+            labels: districts,
+            datasets: [{
+                    "backgroundColor": "green",
+                    
+                    "borderWidth": 2,
+                    "pointBackgroundColor": "#50b432",
+                    "pointRadius": 1,
+                    "label": "Beneficiaries",
+                    "data": figures
+
+                }]
+
+        }
+    });
+
+
+});
+
+
+//
+//
+//
 //var ctx = document.getElementById('myChart').getContext('2d');
 //var myChart = new Chart(ctx, {
 //  type: 'line',
