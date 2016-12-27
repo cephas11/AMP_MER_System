@@ -39,10 +39,13 @@
                             <strong>Bulk Beneficiary Upload</strong>
                             <br>
                             <small style="color:red;">* Upload csv or excel file sheet only.This is the format below</small>
-                            <br>  <small style="color: #39f;"> 
+                            <a href="../download-multiple.php?file=bulksample.xlsx" class="btn btn-sm btn-warning" >Download Sample</a>
+                              
+                            <br>
+<!--                            <small style="color: #39f;"> 
                                 name,business_name,gender,email,contactno,community,educational_level,address,
                                 <br>altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby
-                            </small>
+                            </small>-->
 
                         </div>
 
