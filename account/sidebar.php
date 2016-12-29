@@ -15,9 +15,9 @@
                             </div>
                         </form>
                     </li>
-                    <li class="sidenav-heading">Portal</li>
-                    <li class="sidenav-item " id="1">
-                        <a href="../dashboard">
+                    <li class="sidenav-heading" >Portal</li>
+                          <li class="sidenav-item " id="1">
+                              <a href="../dashboard">
                             <span class="sidenav-icon icon icon-list"></span>
                             <span class="sidenav-label">Dashboard </span>
                         </a>
@@ -45,7 +45,7 @@
                     </li>
 
                     <li class="sidenav-item" id="3">
-                        <a href="beneficiaries-list">
+                        <a href="../beneficiary/beneficiaries-list">
                             <span class="sidenav-icon icon icon-user"></span>
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
@@ -64,7 +64,7 @@
                         </a>
 
                     </li>
-
+                    
                     <li class="sidenav-item " id="6">
                         <a href="../activity/finanacial-services-tracker">
                             <span class="sidenav-icon icon icon-calendar"></span>
@@ -87,16 +87,17 @@
 
                     </li>
                     
-                      <li class="sidenav-item has-subnav" id="9">
+                    
+                    <li class="sidenav-item has-subnav" id="9">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-files-o"></span>
                             <span class="sidenav-label">Account</span>
                         </a>
                         <ul class="sidenav-subnav collapse">
 
-                            <li><a href="../account/user-groups">User Groups</a></li>
-                            <li><a href="../account/rolesandpermissions">Assign Roles And Permissions</a></li>
-                            <li><a href="../account/users">Users </a></li>
+                            <li><a href="user-groups">User Groups</a></li>
+                            <li><a href="rolesandpermissions">Assign Roles And Permissions</a></li>
+                            <li><a href="users">Users </a></li>
                   
                         </ul>
                     </li>

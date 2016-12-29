@@ -41,13 +41,13 @@
             </button>
             <ul class="nav navbar-nav navbar-right">
               <li class="visible-xs-block">
-                <h4 class="navbar-text text-center">Hi, User</h4>
+                <h4 class="navbar-text text-center">Hi,<?php echo $_SESSION['username']?></h4>
               </li>
              
               
               <li class="dropdown hidden-xs">
                 <button class="navbar-account-btn" data-toggle="dropdown" aria-haspopup="true">
-                  <img class="rounded" width="36" height="36" src="" > Hi,User
+               Hi,<?php echo $_SESSION['username']?>
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">

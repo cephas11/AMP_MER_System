@@ -78,6 +78,12 @@ class BeneficiaryClass {
                         . ",'" . mysqli_real_escape_string($conn, $emapData[11]) . "','" . mysqli_real_escape_string($conn, $emapData[12]) . "','" . mysqli_real_escape_string($conn, $emapData[13]) . "','" . mysqli_real_escape_string($conn, $emapData[14]) . "'"
                         . ",'" . mysqli_real_escape_string($conn, $emapData[15]) . "','" . mysqli_real_escape_string($conn, $emapData[16]) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')";
 
+//                echo "INSERT INTO temp_beneficiaries (name,business_name,gender,email,contactno,community,educational_level,address,altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby) "
+//                        . "VALUES ('" . mysqli_real_escape_string($conn, $emapData[0]) . "','" . mysqli_real_escape_string($conn, $emapData[1]) . "','" . mysqli_real_escape_string($conn, $emapData[2]) . "','" . mysqli_real_escape_string($conn, $emapData[3]) . "','" . mysqli_real_escape_string($conn, $emapData[4]) . "','" . mysqli_real_escape_string($conn, $emapData[5]) . "','" . mysqli_real_escape_string($conn, $emapData[6]) . "',"
+//                        . "'" . mysqli_real_escape_string($conn, $emapData[7]) . "','" . mysqli_real_escape_string($conn, $emapData[8]) . "','" . mysqli_real_escape_string($conn, $emapData[9]) . "','" . mysqli_real_escape_string($conn, $emapData[10]) . "'"
+//                        . ",'" . mysqli_real_escape_string($conn, $emapData[11]) . "','" . mysqli_real_escape_string($conn, $emapData[12]) . "','" . mysqli_real_escape_string($conn, $emapData[13]) . "','" . mysqli_real_escape_string($conn, $emapData[14]) . "'"
+//                        . ",'" . mysqli_real_escape_string($conn, $emapData[15]) . "','" . mysqli_real_escape_string($conn, $emapData[16]) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')";
+
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {
                     echo "<script type=\"text/javascript\">

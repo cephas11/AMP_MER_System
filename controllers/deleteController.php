@@ -2,7 +2,8 @@
 
 require_once '../classes/BeneficiaryClass.php';
 require_once '../classes/ConfigurationClass.php';
-require_once '../classes/ActivityClass.php';;
+require_once '../classes/ActivityClass.php';
+require_once '../classes/AccountClass.php';
 $response = array();
 if (isset($_REQUEST['type'])) {
 //echo "Check here";
@@ -75,6 +76,11 @@ if (isset($_REQUEST['type'])) {
            
             $delete = new ActivityClass();
            $delete->deleteTempBeneficiary($code);
+        }else if ($type == 'deleteUserGroup') {
+            $id = $_REQUEST['usergroupid'];
+           
+            $delete = new AccountClass();
+           $delete->deleteUserGroup($id);
         }
     } else {
         echo 'provide type';

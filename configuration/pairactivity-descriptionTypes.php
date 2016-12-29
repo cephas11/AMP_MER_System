@@ -1,3 +1,13 @@
+<?php
+session_start();
+if ($_SESSION['login_valid'] != "YES") {
+    ?>
+    <script type="text/javascript">
+        window.location = 'index.php';
+    </script>
+    <?php
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

@@ -4,6 +4,46 @@
  * and open the template in the editor.
  */
 
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+           
+        var info = {
+
+        type: "userGroupPermissions"
+        };
+                $.ajax({
+                url: 'controllers/AccountController.php?_=' + new Date().getTime(),
+                        type: "GET",
+                        data: info,
+                        dataType: 'json',
+                        success: function (data) {
+
+                        console.log(data);
+//                        if (jQuery.inArray("1", myarray) != - 1) {
+//                console.log("is in array");
+//                        } else {
+//                console.log("is NOT in array");
+//                        }
+                                console.log()
+                                var countt = 1;
+                                $.each(data, function(i, obj) {
+                                if (obj.form_id == countt) {
+                                if (obj.view_status == 'false'){
+                                $('#' + countt).hide();
+                                        console.log('true');
+                                } else{
+                                console.log('false');
+                                }
+
+                                }
+                                countt = countt + 1;
+                                        console.log('count is ' + countt);
+                                });
+                        }
+                });
+        
+
+
 var colors = [
     "#2ecc71",
     "#3498db",
@@ -99,8 +139,8 @@ $.when(getBeneficiaryPerRegions()).done(function (data) {
 
     });
     figures = figures.map(Number);
-    console.log('figures: '+figures);
-    console.log('regions:'+regions);
+    console.log('figures: ' + figures);
+    console.log('regions:' + regions);
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -158,8 +198,8 @@ $.when(getBeneficiaryPerCategories()).done(function (data) {
     figures = figures.map(Number);
     var figures_length = figures.length;
     var random_colors = getUnique(figures_length);
-   
-    
+
+
     var ctx = document.getElementById("myChartCategory").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
@@ -194,7 +234,7 @@ function getUnique(count) {
         // Since we are only removing one element
         ret.push(removed[0]);
     }
-    return  ret ;
+    return  ret;
 }
 
 
@@ -231,23 +271,26 @@ $.when(getBeneficiaryPerDistricts()).done(function (data) {
 
     });
     figures = figures.map(Number);
-    
-    
+
+
     var ctx = document.getElementById("districtsChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
-      data: {
+        data: {
             labels: districts,
             datasets: [{
                     "backgroundColor": "green",
-                    
                     "borderWidth": 2,
                     "pointBackgroundColor": "#50b432",
                     "pointRadius": 1,
                     "label": "Beneficiaries",
                     "data": figures
 
-                }]
+                }],
+            yaxis: {
+                tickDecimals: 0
+            }
+
 
         }
     });

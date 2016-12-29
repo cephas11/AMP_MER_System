@@ -27,6 +27,8 @@ var patricipantsdatatable = $('#participantsTbl').DataTable({
         }
     }
 });
+
+
 function updateDataTableSelectAllCtrl(table) {
     var $table = table.table().node();
     var $chkbox_all = $('tbody input[type="checkbox"]', $table);
@@ -112,6 +114,8 @@ patricipantsdatatable.on('draw', function () {
     // Update state of "Select all" control
     updateDataTableSelectAllCtrl(patricipantsdatatable);
 });
+
+
 function selectParticipants() {
     var region = $('#region').val();
     var categoryValues = $('#category').val();
