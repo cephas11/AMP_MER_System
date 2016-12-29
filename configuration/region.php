@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -49,7 +49,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regionModal" data-whatever="@mdo">Add New Region</button>
+                                <button type="button" id="regionbtn" style="display: none;" class="btn btn-primary" data-toggle="modal" data-target="#regionModal" data-whatever="@mdo">Add New Region</button>
                             </div>
                         </div>
                     </div>

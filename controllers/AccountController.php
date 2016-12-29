@@ -52,6 +52,10 @@ if (isset($_REQUEST)) {
             
             $get = new AccountClass();
             $get->getUserGroupPermissions();
+        }else if ($type == "formPermmission") {
+            $formid= $_POST['formid'];
+            $get = new AccountClass();
+            $get->getFormPermissions($formid);
         }
     } else {
         echo 'provide type';
