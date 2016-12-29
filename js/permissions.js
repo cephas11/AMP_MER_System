@@ -49,11 +49,12 @@ function getForms()
                     var r = new Array();
                     r[++j] = "<td ><label id='cols" + rowNum + "' >" + value.id + "</label> </td>";
                     r[++j] = "<td> " + value.name + "</td>";
+                    r[++j] = "<td><input type='checkbox' id='all" + rowNum + "' name='all[]'/></td>";
+
                     r[++j] = "<td><input type='checkbox' id='view" + rowNum + "'   name='view[]'/></td>";
                     r[++j] = "<td><input type='checkbox' id='edit" + rowNum + "' name='edit[]'/></td>";
                     r[++j] = "<td><input type='checkbox' id='delete" + rowNum + "' name='delete[]'/></td>";
-                    r[++j] = "<td><input type='checkbox' id='all" + rowNum + "' name='all[]'/></td>";
-
+                    
                     rowNum = rowNum + 1;
 
 
@@ -164,7 +165,6 @@ var permissions = JSON.stringify(jsonObj);
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                    setInterval('refreshPage', 5000);
                 }else{
                     Command: toastr["warning"](data.message, "Warning");
 
@@ -185,7 +185,6 @@ var permissions = JSON.stringify(jsonObj);
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                 //   setInterval(location.relo, 5000);
                 }
 
         }

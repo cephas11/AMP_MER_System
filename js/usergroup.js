@@ -48,7 +48,7 @@ $('#saveUserGroupForm').on('submit', function (e) {
                     getUserGroups();
                 
                 }else{
-                   Command: toastr["danger"](data.message, "Error");
+                   Command: toastr["warning"](data.message, "Error");
 
                     toastr.options = {
                         "closeButton": false,

@@ -9,30 +9,34 @@
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
 session_start();
+
 class AccountClass {
 
-    
-     var $response = array();
+    var $response = array();
 
 //
-    
+
     public function setUserGroup($name) {
 
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $createdBy = 'admin';
-        $query = mysqli_query($conn, "INSERT INTO user_groups(name,createdBy) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
-        if ($query) {
-            $this->response['success'] = '1';
-            $this->response['message'] = 'User Group saved successfully';
-            echo json_encode($this->response);
-            //   $query->close();
-        } else {
+
+        $results = $this->checkUserGroupExistence($name);
+        if ($results > 0) {
             $this->response['success'] = '0';
-            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
-            echo json_encode($this->response);
+            $this->response['message'] = 'User Group already exist';
+        } else {
+            $query = mysqli_query($conn, "INSERT INTO user_groups(name,createdBy) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
+            if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = 'User Group saved successfully';
+                
+            }
         }
+        echo json_encode($this->response);
+
         $connection->closeConnection($conn);
     }
 
@@ -132,7 +136,7 @@ class AccountClass {
             $array = json_decode($data, true);
 
             foreach ($array as $item) { //foreach element in $arr
-                $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,form_id,view_status,edit_status,delete_status,all_status,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $item['formid']) . "','" . mysqli_real_escape_string($conn, $item['view']) . "','" . mysqli_real_escape_string($conn, $item['edit']) . "','" . mysqli_real_escape_string($conn, $item['deletestatus']) . "','" . mysqli_real_escape_string($conn, $item['all']) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
+                $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,form_id,view_status,edit_status,delete_status,create_status,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $item['formid']) . "','" . mysqli_real_escape_string($conn, $item['view']) . "','" . mysqli_real_escape_string($conn, $item['edit']) . "','" . mysqli_real_escape_string($conn, $item['deletestatus']) . "','" . mysqli_real_escape_string($conn, $item['all']) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             }
 
             if ($query) {
@@ -150,6 +154,16 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM permissions_and_roles WHERE user_group_id=$usergroup");
 
+
+
+        $connection->closeConnection($conn);
+        return mysqli_num_rows($query);
+    }
+
+    private function checkUserGroupExistence($name) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM user_groups WHERE name LIKE '%" . $name . "%'");
 
 
         $connection->closeConnection($conn);
@@ -310,12 +324,11 @@ class AccountClass {
         return mysqli_num_rows($query);
     }
 
-    
     public function getUserGroupPermissions() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $user_group = $_SESSION['usergroup'];
-        $query = mysqli_query($conn, "SELECT * FROM permissions_and_roles WHERE user_group_id=".$user_group."");
+        $query = mysqli_query($conn, "SELECT * FROM permissions_and_roles WHERE user_group_id=" . $user_group . "");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -331,5 +344,24 @@ class AccountClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
-    
+
+    public function getFormPermissions($formid) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $user_group = $_SESSION['usergroup'];
+        $query = mysqli_query($conn, "SELECT * FROM permissions_and_roles WHERE user_group_id=" . $user_group . " AND form_id=$formid");
+
+        if (mysqli_num_rows($query) > 0) {
+            $results = mysqli_fetch_array($query, MYSQLI_ASSOC);
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
 }

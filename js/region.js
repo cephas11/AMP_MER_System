@@ -1,12 +1,38 @@
 
+//form permission
+//
 
+
+var info = {
+    type: "formPermmission",
+    formid: 2
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if(data.create_status == 'true'){
+            $('#regionbtn').show();
+        }
+         if(data.edit_status == 'false'){
+            $('#regionbtn').show();
+        }
+         if(data.create_status == 'true'){
+            $('#regionbtn').show();
+        }
+
+    }
+});
 //save region
 
 $('#saveRegionForm').on('submit', function (e) {
     e.preventDefault();
-
     // var validator = $("#saveRegionForm").validate();
-  
+
     var region = $('#region').val();
     var formData = $(this).serialize();
     console.log(formData);
@@ -18,7 +44,6 @@ $('#saveRegionForm').on('submit', function (e) {
             region: region
         };
         $('input:submit').attr("disabled", true);
-
         $.ajax({
             url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
             type: "GET",
@@ -31,11 +56,9 @@ $('#saveRegionForm').on('submit', function (e) {
                 $('#regionModal').modal('hide');
                 var successStatus = data.success;
                 document.getElementById("saveRegionForm").reset();
-
                 if (successStatus == 1) {
                     $('input:submit').attr("disabled", false);
                     Command: toastr["success"](data.message, "Success");
-
                     toastr.options = {
                         "closeButton": false,
                         "debug": false,
@@ -54,20 +77,17 @@ $('#saveRegionForm').on('submit', function (e) {
                         "hideMethod": "fadeOut"
                     }
                     getRegions();
-                
                 }
-                
+
             },
             error: function (jXHR, textStatus, errorThrown) {
                 alert(errorThrown);
             }
         });
-
     }
 
 
 });
-
 //retreive regions
 
 var datatable = $('#regionTbl').DataTable({
@@ -80,9 +100,7 @@ var datatable = $('#regionTbl').DataTable({
     },
     order: [[0, "asc"]]
 });
-
 getRegions();
-
 function getRegions()
 {
 
@@ -90,7 +108,6 @@ function getRegions()
         type: "retreiveRegion"
     };
     console.log('new code here');
-
     $.ajax({
         url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
         type: "GET",
@@ -100,7 +117,6 @@ function getRegions()
             console.log('new code here 2');
             console.log(data);
             datatable.clear().draw();
-
             var obj = jQuery.parseJSON(data);
             console.log('size' + obj.length);
             if (obj.length == 0) {
@@ -113,27 +129,22 @@ function getRegions()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
-
+                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm editbtn" type="button">Edit</button>\n\
+                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm deletebtn" type="button">Delete</button></td>';
                     rowNode = datatable.row.add(r);
                 });
-
                 rowNode.draw().node();
             }
 
         },
-        
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
         }
     });
-
-
 }
 
 
-function editRegion(code,name) {
+function editRegion(code, name) {
     //alert('goood');
     $('#code').val(code);
     $('#regionName').val(name);
@@ -156,7 +167,6 @@ $('#deleteRegionForm').on('submit', function (e) {
     console.log(formData);
     $('#confirmModal').modal('hide');
     $('#loaderModal').modal('show');
-
     $.ajax({
         url: '../controllers/deleteController.php?_=' + new Date().getTime(),
         type: "POST",
@@ -168,10 +178,8 @@ $('#deleteRegionForm').on('submit', function (e) {
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
             document.getElementById("deleteRegionForm").reset();
-
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
-
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -196,10 +204,7 @@ $('#deleteRegionForm').on('submit', function (e) {
             alert(errorThrown);
         }
     });
-
 });
-
-
 $('#updateRegionForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
@@ -207,7 +212,6 @@ $('#updateRegionForm').on('submit', function (e) {
     console.log(formData);
     $('#editModal').modal('hide');
     $('#loaderModal').modal('show');
-
     $.ajax({
         url: '../controllers/PostController.php?_=' + new Date().getTime(),
         type: "POST",
@@ -218,10 +222,8 @@ $('#updateRegionForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-         
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
-
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -246,6 +248,5 @@ $('#updateRegionForm').on('submit', function (e) {
             alert(errorThrown);
         }
     });
-
 });
 

@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -86,10 +86,11 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Form</th>
+                                                    <th>Create</th>
                                                     <th>View</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
-                                                    <th>All</th>
+                                                    
 
                                                 </tr>
                                             </thead>
