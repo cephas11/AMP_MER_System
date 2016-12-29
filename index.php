@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+
+<?php
+ob_start();
+session_start();
+
+//session_start();
+if (isset($_REQUEST['logout']) == 'logout') {
+    session_destroy();
+    ?>
+    <script type="text/javascript">
+        window.location = 'index.php';
+    </script>
+    <?php
+}
+?><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -22,7 +36,7 @@
         <link rel="stylesheet" href="css/elephant.min.css">
         <link rel="stylesheet" href="css/login-3.min.css">
         <link rel="stylesheet" href="css/logincustom.css">
-
+        <link rel="stylesheet" href="css/custom.css">
     </head>
     <body>
 
@@ -57,8 +71,11 @@
                     -->
                 </a>
                 <h3 class="login-heading">Sign in</h3>
+                <p class="holder text-center"></p>
                 <div class="login-form">
-                    <form data-toggle="md-validator" action="dashboard" method="POST">
+                    <form id="loginForm" data-toggle="md-validator"  method="POST">
+                        <input class="md-form-control" type="hidden" name="type" value="login">
+                           
                         <div class="md-form-group md-label-floating">
                             <input class="md-form-control" type="text" name="username" spellcheck="false" autocomplete="off" data-msg-required="Please enter username." required>
                             <label class="md-control-label">Username</label>
@@ -84,7 +101,7 @@
         </div>
         <script src="js/vendor.min.js"></script>
         <script src="js/elephant.min.js"></script>
-
+        <script src="js/login.js"></script>
     </body>
 </html>
 <!-- Localized -->

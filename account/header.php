@@ -2,8 +2,8 @@
       <div class="navbar navbar-default">
         <div class="navbar-header">
           <a class="navbar-brand navbar-brand-center" href="#">
-           <img class="" src="../img/logo2.png" height="30" width="60" >
-         
+            <img class="" src="img/logo2.png" height="30" width="60" >
+      
 <!--            <img class="img-responsive" src="img/logo2.png" height="30" width="70" alt="USAD">-->
           </a>
           <button class="navbar-toggler visible-xs-block collapsed" type="button" data-toggle="collapse" data-target="#sidenav">
@@ -39,7 +39,7 @@
                 <span class="bar-line bar-line-6 in"></span>
               </span>
             </button>
-              <ul class="nav navbar-nav navbar-right">
+             <ul class="nav navbar-nav navbar-right">
               <li class="visible-xs-block">
                 <h4 class="navbar-text text-center">Hi,<?php echo $_SESSION['username']?></h4>
               </li>
@@ -53,7 +53,7 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                 
                   <li><a href="#">Profile</a></li>
-                  <li><a href="../index.php">Sign out</a></li>
+                  <li><a href="../index.php?logout=logout">Sign out</a></li>
                 </ul>
               </li>
              

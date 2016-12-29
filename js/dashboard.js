@@ -4,6 +4,46 @@
  * and open the template in the editor.
  */
 
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+           
+        var info = {
+
+        type: "userGroupPermissions"
+        };
+                $.ajax({
+                url: 'controllers/AccountController.php?_=' + new Date().getTime(),
+                        type: "GET",
+                        data: info,
+                        dataType: 'json',
+                        success: function (data) {
+
+                        console.log(data);
+//                        if (jQuery.inArray("1", myarray) != - 1) {
+//                console.log("is in array");
+//                        } else {
+//                console.log("is NOT in array");
+//                        }
+                                console.log()
+                                var countt = 1;
+                                $.each(data, function(i, obj) {
+                                if (obj.form_id == countt) {
+                                if (obj.view_status == 'false'){
+                                $('#' + countt).hide();
+                                        console.log('true');
+                                } else{
+                                console.log('false');
+                                }
+
+                                }
+                                countt = countt + 1;
+                                        console.log('count is ' + countt);
+                                });
+                        }
+                });
+        
+
+
 var colors = [
     "#2ecc71",
     "#3498db",
