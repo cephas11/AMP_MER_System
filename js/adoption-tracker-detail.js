@@ -7,6 +7,7 @@
 
 
 
+
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
@@ -160,13 +161,13 @@ function getAdoption(bene_code)
                     var j = -1;
                     var r = new Array();
                     // represent columns as array
-                     r[++j] = '<td>' + value.fiscalYear + '</td>';
-                 
+                    r[++j] = '<td>' + value.fiscalYear + '</td>';
+
                     r[++j] = '<td>' + value.applied + '</td>';
                     r[++j] = '<td>' + value.technique + '</td>';
                     r[++j] = '<td>' + value.datecreated + '</td>';
 
-                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -182,3 +183,29 @@ function getAdoption(bene_code)
 
 
 }
+
+
+
+
+var info = {
+    type: "formPermmission",
+    formid: 7
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#saveBtn').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+        }
+
+
+    }
+});

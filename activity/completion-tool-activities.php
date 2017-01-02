@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -51,7 +51,7 @@ if ($_SESSION['login_valid'] != "YES") {
                         <div class="card">
                             <div class="card-header">
                                 <strong> Completion Tool Activities</strong>
-                                <div class="row">
+                                <div class="row" id="creatediv" style="display: none">
                                     <div class="col-lg-12">
                                         <div class="pull-right">
                                             <a class="btn btn-primary "href="completion-tool" >New Activity</a>

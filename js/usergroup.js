@@ -1,84 +1,7 @@
 
 
-//save region
+//save regio
 
-$('#saveUserGroupForm').on('submit', function (e) {
-    e.preventDefault();
-
-     var formData = $(this).serialize();
-    console.log(formData);
-    
-        
-        $('input:submit').attr("disabled", true);
-
-        $.ajax({
-            url: '../controllers/AccountController.php?_=' + new Date().getTime(),
-            type: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                $('input:submit').attr("disabled", false);
-                console.log('rerereer'+data);
-                // $("#loader").hide();
-                $('#userGroupModal').modal('hide');
-                var successStatus = data.success;
-                document.getElementById("saveUserGroupForm").reset();
-
-                if (successStatus == 1) {
-                    $('input:submit').attr("disabled", false);
-                    Command: toastr["success"](data.message, "Success");
-
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                    getUserGroups();
-                
-                }else{
-                   Command: toastr["warning"](data.message, "Error");
-
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    } 
-                }
-                
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-        });
-
-    
-
-
-});
 
 //retreive regions
 
@@ -125,8 +48,8 @@ function getUserGroups()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td>' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editUserGroup(\'' + value.id + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteUserGroup(\'' + value.id + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editUserGroup(\'' + value.id + '\',\'' + value.name + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
+                              <button onclick="deleteUserGroup(\'' + value.id + '\',\'' + value.name + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -135,7 +58,6 @@ function getUserGroups()
             }
 
         },
-        
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
         }
@@ -145,7 +67,92 @@ function getUserGroups()
 }
 
 
-function editUserGroup(id,name) {
+
+
+
+
+
+
+$('#saveUserGroupForm').on('submit', function (e) {
+    e.preventDefault();
+
+    var formData = $(this).serialize();
+    console.log(formData);
+
+    $("#loaderModal").modal('show');
+    $('input:submit').attr("disabled", true);
+
+    $.ajax({
+        url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            $('input:submit').attr("disabled", false);
+            console.log('rerereer' + data);
+            $("#loaderModal").modal('hide');
+            $('#userGroupModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("saveUserGroupForm").reset();
+
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getUserGroups();
+
+            } else {
+                Command: toastr["warning"](data.message, "Error");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+
+
+
+});
+
+
+function editUserGroup(id, name) {
     //alert('goood');
     $('#code').val(id);
     $('#usergroupdetail').val(name);
@@ -230,7 +237,7 @@ $('#updateUserGroupForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-         
+
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
 
@@ -261,3 +268,27 @@ $('#updateUserGroupForm').on('submit', function (e) {
 
 });
 
+var info = {
+    type: "formPermmission",
+    formid: 9
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#createUserGroupBtn').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+        }
+        if (data.delete_status == 'true') {
+            $('.deleteBtn').removeAttr('disabled');
+        }
+
+    }
+});

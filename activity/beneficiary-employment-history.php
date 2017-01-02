@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -16,7 +16,6 @@ if ($_SESSION['login_valid'] != "YES") {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Beneficiary Employment History</title>
-
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
@@ -24,9 +23,6 @@ if ($_SESSION['login_valid'] != "YES") {
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
         <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">-->
-
-
-
         <link rel="stylesheet" href="../css/vendor.min.css">
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
@@ -196,11 +192,11 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row" style="display: none" id="createBtn">
                                             <div class="col-lg-12">
                                                 <div class="pull-right">
-                                                    <button class="btn btn-primary"  onclick="addRow('employmentTbl')" >Add New Employee</button>
-                                                    <button  class="btn btn-danger"  onclick="deleteRow('employmentTbl')" >Delete Employee</button>
+                                                    <button class="btn btn-primary"   onclick="addRow('employmentTbl')" >Add New Employee</button>
+                                                    <button  class="btn btn-danger"   onclick="deleteRow('employmentTbl')" >Delete Employee</button>
 
                                                 </div>
 

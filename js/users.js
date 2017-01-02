@@ -1,4 +1,7 @@
 
+
+
+
 var info = {
     type: "retreiveUserGroups"
 };
@@ -112,6 +115,11 @@ var datatable = $('#usersTbl').DataTable({
     order: [[0, "asc"]]
 });
 
+
+
+
+
+
 getUsers();
 
 function getUsers()
@@ -150,8 +158,8 @@ function getUsers()
                     r[++j] = '<td>' + value.usergroup + '</td>';
                     r[++j] = '<td>' + value.createdby + '</td>';
 
-                    r[++j] = '<td><button onclick="editUser(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteUser(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editUser(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm editBtn" disabled type="button">Edit</button>\n\
+                              <button onclick="deleteUser(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm deleteBtn" disabled type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -167,4 +175,32 @@ function getUsers()
 
 
 }
+
+
+
+var info = {
+    type: "formPermmission",
+    formid: 9
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#createUserBtn').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+            
+        }
+        if (data.delete_status == 'true') {
+            $('.deleteBtn').removeAttr('disabled');
+        }
+
+    }
+});
 

@@ -48,7 +48,7 @@ if ($_SESSION['login_valid'] != "YES") {
                         <div class="card">
                             <div class="card-header">
                                 <strong> Beneficiaries List</strong>
-                                <div class="row">
+                                <div class="row" id="creatediv" style="display: none">
                                     <div class="col-lg-12">
                                         <div class="pull-right">
                                             <a class="btn btn-primary "href="beneficiary-form" >New Beneficiary</a>
@@ -57,9 +57,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                         </div>
 
                                     </div>
-                                    
-
-
+        
                                 </div>
                             </div>
                             <div class="row">

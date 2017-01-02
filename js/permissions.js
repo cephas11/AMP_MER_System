@@ -5,6 +5,27 @@
  */
 
 
+var info = {
+    type: "formPermmission",
+    formid: 9
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#permisiontable').show();
+        }
+       
+
+    }
+});
+
+
 var patricipantsdatatable = $('#formsTbl').DataTable({
     responsive: true,
     language: {
@@ -54,7 +75,7 @@ function getForms()
                     r[++j] = "<td><input type='checkbox' id='view" + rowNum + "'   name='view[]'/></td>";
                     r[++j] = "<td><input type='checkbox' id='edit" + rowNum + "' name='edit[]'/></td>";
                     r[++j] = "<td><input type='checkbox' id='delete" + rowNum + "' name='delete[]'/></td>";
-                    
+
                     rowNum = rowNum + 1;
 
 
@@ -105,7 +126,7 @@ $('#permissionsForm').on('submit', function (e) {
     e.preventDefault();
     var total = $('#total').val();
     var usergroup = $('#userGroup').val();
-   
+
     var jsonObj = [];
     var id, view, edit, deletestatus, all;
     for ($i = 0; $i < total; $i++) {
@@ -118,15 +139,15 @@ $('#permissionsForm').on('submit', function (e) {
 
         item = {};
         item ["formid"] = id;
-        item ["view"] = ''+view+'';
-        item ["edit"] = ''+edit+'';
-        item ["deletestatus"] = ''+deletestatus+'';
-        item ["all"] = ''+all+'';
+        item ["view"] = '' + view + '';
+        item ["edit"] = '' + edit + '';
+        item ["deletestatus"] = '' + deletestatus + '';
+        item ["all"] = '' + all + '';
 
         jsonObj.push(item);
 
     }
-var permissions = JSON.stringify(jsonObj);
+    var permissions = JSON.stringify(jsonObj);
     var info = {
         usergroup: usergroup,
         jsonObj: permissions,
@@ -138,54 +159,53 @@ var permissions = JSON.stringify(jsonObj);
         type: "POST",
         data: info,
         dataType: 'json',
-      
         success: function (data) {
 
             console.log(data);
             var successStatus = data.success;
 
-                if (successStatus == 1) {
-                    $('input:submit').attr("disabled", false);
-                    Command: toastr["success"](data.message, "Success");
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                }else{
-                    Command: toastr["warning"](data.message, "Warning");
-
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 }
+            } else {
+                Command: toastr["warning"](data.message, "Warning");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
 
         }
     });

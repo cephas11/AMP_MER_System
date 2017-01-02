@@ -189,7 +189,7 @@ function getSales(bene_code)
                     r[++j] = '<td>' + value.value_tonnes + '</td>';
                     r[++j] = '<td>' + value.dateadded + '</td>';
 
-                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" disabled class=" btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -264,3 +264,28 @@ $('#deleteSaleForm').on('submit', function (e) {
 });
 
 
+var info = {
+    type: "formPermmission",
+    formid: 5
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('.creatediv').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+        }
+        if (data.delete_status == 'true') {
+         
+            $('.deleteBtn').removeAttr('disabled');
+        }
+
+    }
+});

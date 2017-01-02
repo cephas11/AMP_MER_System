@@ -79,9 +79,9 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                     </div>
 
-                                    <div class="">
+                                    <div class="" id="permisiontable" style="display: none;" >
 
-                                        <table id="formsTbl"  class="participants table table-middle nowrap">
+                                        <table id="formsTbl"   class="participants table table-middle nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>Id</th>
@@ -96,7 +96,6 @@ if ($_SESSION['login_valid'] != "YES") {
                                             </thead>
                                             <tbody></tbody>
                                         </table>
-                                    </div>
 
 
                                     <div class="col-xs-12 ">
@@ -105,6 +104,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <button class="btn btn-primary  btn-block pull-right" type="submit">Save</button>
                                         </div>
                                     </div>
+                                                                            </div>
+
                                 </form>
                             </div>
                         </div>

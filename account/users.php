@@ -1,15 +1,15 @@
+
+
 <?php
 session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,7 +17,7 @@ if ($_SESSION['login_valid'] != "YES") {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Users</title>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+       <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="manifest.json">
@@ -51,7 +51,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regionModal" data-whatever="@mdo">Add New User</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regionModal" id="createUserBtn" style="display: none" data-whatever="@mdo">Add New User</button>
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -57,7 +57,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                     <form id="salesTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setSalesTracker"/>
 
-
+                                        <div class="creatediv" style="display: none">
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -92,6 +92,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
+                                        
+</div>          
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -127,7 +129,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-                                        <div class="row">
+                                        <div class="creatediv" style="display: none">
                                             <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
                                                 <div class="form-group">
@@ -156,15 +158,15 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <input class="form-control" type="text" name="salesTonnes" id="salesTonnes" required>
                                                 </div>
                                             </div>
-
-                                        </div>
-
-                                        <div class="col-xs-12 ">
+           <div class="col-xs-12 ">
                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
                                                 <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
                                             </div>
                                         </div>
+                                        </div>
+
+                             
                                     </form>
                                 </div>
 

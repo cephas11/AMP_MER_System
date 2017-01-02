@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -95,7 +95,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-
+             <div id="creatediv" style="display: none">
+                           
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -135,7 +136,6 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-
                                         <div id="loan" style="display: none;">
                                             <div class="row" >
                                                 <h4 class="text-center">Loan</h4>
@@ -283,6 +283,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
                                             </div>
                                         </div>
+                                        
+                                        <div>
                                     </form>
                                 </div>
 

@@ -28,7 +28,7 @@ class LoginClass {
                 $userid = $row['id'];
 
                 $_SESSION['usergroup'] = $userType;
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $username.$userType;
                 $_SESSION['userid'] = $userid;
                 $_SESSION['login_valid'] = "YES";
                 echo '0';
