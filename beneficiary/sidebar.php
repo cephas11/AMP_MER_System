@@ -40,6 +40,7 @@
                             <li><a href="../configuration/activity-types">Activity Types</a></li>
                             <li><a href="../configuration/activity-description">Activity Description</a></li>
                             <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
+                            <li><a href="../configuration/commodity">Commodity</a></li>
 
                         </ul>
                     </li>
@@ -86,8 +87,8 @@
                         </a>
 
                     </li>
-                    
-                      <li class="sidenav-item has-subnav" id="9">
+
+                    <li class="sidenav-item has-subnav" id="9">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-files-o"></span>
                             <span class="sidenav-label">Account</span>
@@ -97,7 +98,7 @@
                             <li><a href="../account/user-groups">User Groups</a></li>
                             <li><a href="../account/rolesandpermissions">Assign Roles And Permissions</a></li>
                             <li><a href="../account/users">Users </a></li>
-                  
+
                         </ul>
                     </li>
                 </ul>

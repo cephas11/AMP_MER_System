@@ -43,7 +43,7 @@ if ($_SESSION['login_valid'] != "YES") {
             <div class="layout-content">
                 <div class="layout-content-body">
 
-<h3>Sales Record</h3>
+<h3>Sales Records</h3>
 
                     <div class="row gutter-xs">
                         <div class="card">

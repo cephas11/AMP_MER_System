@@ -17,7 +17,7 @@
                     </li>
                     <li class="sidenav-heading" >Portal</li>
                     <li class="sidenav-item " style="display: none"  id="1">
-                              <a href="dashboard">
+                        <a href="dashboard">
                             <span class="sidenav-icon icon icon-list"></span>
                             <span class="sidenav-label">Dashboard </span>
                         </a>
@@ -40,6 +40,7 @@
                             <li><a href="configuration/activity-types">Activity Types</a></li>
                             <li><a href="configuration/activity-description">Activity Description</a></li>
                             <li><a href="configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
+                            <li><a href="configuration/commodity">Commodity</a></li>
 
                         </ul>
                     </li>
@@ -64,7 +65,7 @@
                         </a>
 
                     </li>
-                    
+
                     <li class="sidenav-item " id="6" style="display: none" >
                         <a href="activity/finanacial-services-tracker">
                             <span class="sidenav-icon icon icon-calendar"></span>
@@ -86,8 +87,8 @@
                         </a>
 
                     </li>
-                    
-                    
+
+
                     <li class="sidenav-item has-subnav" id="9" style="display: none" >
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-files-o"></span>
@@ -98,7 +99,7 @@
                             <li><a href="account/user-groups">User Groups</a></li>
                             <li><a href="account/rolesandpermissions">Assign Roles And Permissions</a></li>
                             <li><a href="account/users">Users </a></li>
-                  
+
                         </ul>
                     </li>
                 </ul>
