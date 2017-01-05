@@ -21,9 +21,6 @@ if ($_SESSION['login_valid'] != "YES") {
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
         <meta name="theme-color" content="#ffffff">
-
-
-
         <link rel="stylesheet" href="../css/vendor.min.css">
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
@@ -256,7 +253,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="exampleModalLabel">
                                     <span class="displayTitle">By clicking on the confirm button ,you are confirming that the listed participants should be added to the activity.Note:This cant be reversed. </span> </h4>
-                          
+
                             </div>
                             <form id="participantsForm" >
                                 <div class="modal-body">
@@ -277,7 +274,7 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
                 </div>
 
-                      <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
                     <div class="modal-dialog" role="document">
 
 
@@ -289,7 +286,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                     </div>
                 </div>
-           
+
             </div>
             <?php
             require_once '../footer.php';
