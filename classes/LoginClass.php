@@ -28,8 +28,8 @@ class LoginClass {
                 $userid = $row['id'];
 
                 $_SESSION['usergroup'] = $userType;
-                $_SESSION['username'] = $username.$userType;
-                $_SESSION['userid'] = $userid;
+                $_SESSION['username'] = $username.$userid;
+                $_SESSION['meruserid'] = $userid;
                 $_SESSION['login_valid'] = "YES";
                 echo '0';
             } else {

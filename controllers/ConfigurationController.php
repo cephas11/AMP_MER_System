@@ -85,7 +85,7 @@ if (isset($_GET['type'])) {
             $type = $_GET['name'];
             $save_new = new ConfigurationClass();
             $save_new->setActivityType($type);
-        }else if ($type == 'retreiveActivityTypes') {
+        } else if ($type == 'retreiveActivityTypes') {
 
             $getActivityTpes = new ConfigurationClass();
             $getActivityTpes->getActivityTypes();
@@ -94,24 +94,33 @@ if (isset($_GET['type'])) {
             $type = $_GET['name'];
             $save_new = new ConfigurationClass();
             $save_new->setActivityDescription($type);
-        }else if ($type == 'retreiveActivityDesc') {
+        } else if ($type == 'retreiveActivityDesc') {
 
             $getActivityDesc = new ConfigurationClass();
             $getActivityDesc->getActivityDescriptions();
-        }else if ($type == 'retreivenassignedActivityDescriptions') {
+        } else if ($type == 'retreivenassignedActivityDescriptions') {
 
             $getUnassActivityDesc = new ConfigurationClass();
             $getUnassActivityDesc->getUnAssignedActivityDescriptionType();
-        }else if ($type == 'retreiveActivityDescriptions') {
+        } else if ($type == 'retreiveActivityDescriptions') {
 
             $geActivityDesc = new ConfigurationClass();
             $geActivityDesc->getActivityDescriptionTypes();
-        }else if ($type == 'retreiveDescriptionBasedOnActivityType') {
+        } else if ($type == 'retreiveDescriptionBasedOnActivityType') {
 
             $type_code = $_GET['type_code'];
-          $getData = new ConfigurationClass();
-          $getData->getActivityDescriptionBasedOnType($type_code);
-        }
+            $getData = new ConfigurationClass();
+            $getData->getActivityDescriptionBasedOnType($type_code);
+        } else if ($type == 'saveCommodity') {
+
+
+            $name = $_GET['commodity'];
+            $new_region = new ConfigurationClass();
+            $new_region->setCommodity($name);
+        }else if ($type == 'retreiveCommodity') {
+            $getAllregions = new ConfigurationClass();
+            $getAllregions->getCommodities();
+        } 
     } else {
         echo 'provide type';
     }

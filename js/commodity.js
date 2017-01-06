@@ -16,16 +16,12 @@
 //save region
 
 
-$('#saveDistrictForm').on('submit', function (e) {
+$('#saveCommodityForm').on('submit', function (e) {
     e.preventDefault();
-    // var validator = $("#saveRegionForm").validate();
-    var district = $('#district').val();
+  
     var formData = $(this).serialize();
     console.log(formData);
-    if (district == "") {
-
-        alert('field is required');
-    } else {
+  
         $('input:submit').attr("disabled", true);
         $.ajax({
             url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
@@ -34,10 +30,10 @@ $('#saveDistrictForm').on('submit', function (e) {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                $('#districtModal').modal('hide');
+                $('#commodityModal').modal('hide');
                 var successStatus = data.success;
 
-                document.getElementById("saveDistrictForm").reset();
+                document.getElementById("saveCommodityForm").reset();
 
                 if (successStatus == 1) {
                     $('input:submit').attr("disabled", false);
@@ -60,22 +56,24 @@ $('#saveDistrictForm').on('submit', function (e) {
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                    getDistricts();
+                    getCommodities();
                 }
+        
+            
             },
             error: function (jXHR, textStatus, errorThrown) {
                 alert(errorThrown);
             }
         });
 
-    }
+    
 
 
 });
 
 //retreive regions
 
-var datatable = $('#districtTbl').DataTable({
+var datatable = $('#commodityTbl').DataTable({
     responsive: true,
     language: {
         paginate:
@@ -86,13 +84,13 @@ var datatable = $('#districtTbl').DataTable({
     order: [[0, "asc"]]
 });
 
-getDistricts();
+getCommodities();
 
-function getDistricts()
+function getCommodities()
 {
 
     var info = {
-        type: "retreiveDistrict"
+        type: "retreiveCommodity"
     };
 
 
@@ -117,8 +115,8 @@ function getDistricts()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editDistrict(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editCommodity(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
+                              <button onclick="deleteCommodity(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -135,14 +133,14 @@ function getDistricts()
 
 
 
-function deleteDistrict(code, title) {
+function deleteCommodity(code, title) {
     console.log(code + title);
-    $('#districtcode').val(code);
-    $('#districtholder').html(title);
+    $('#code').val(code);
+    $('#commodityholder').html(title);
     $('#confirmModal').modal('show');
 }
 
-$('#deleteDistrictForm').on('submit', function (e) {
+$('#deleteCommodityForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();
@@ -156,13 +154,10 @@ $('#deleteDistrictForm').on('submit', function (e) {
         data: formData,
         dataType: "json",
         success: function (data) {
-           // console.log(data);
-            // $("#loader").hide();
-            $('input:submit').attr("disabled", false);
-            $('#loaderModal').modal('hide');
+            console.log('njnnkn'+data);
+           $('#loaderModal').modal('hide');
             var successStatus = data.success;
-            document.getElementById("deleteDistrictForm").reset();
-
+         
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
 
@@ -183,8 +178,10 @@ $('#deleteDistrictForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                getDistricts();
+                getCommodities();
             }
+//      
+        
         },
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -194,14 +191,14 @@ $('#deleteDistrictForm').on('submit', function (e) {
 });
 
 
-function editDistrict(code,name) {
+function editCommodity(code,name) {
     //alert('goood');
-    $('#code').val(code);
-    $('#districtName').val(name);
+    $('#commodity_code').val(code);
+    $('#commodityName').val(name);
     $('#editModal').modal('show');
 }
 
-$('#updateDistrictForm').on('submit', function (e) {
+$('#updateCommodityForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();
@@ -240,7 +237,7 @@ $('#updateDistrictForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                getDistricts();
+                getCommodities();
             }
         },
         error: function (jXHR, textStatus, errorThrown) {

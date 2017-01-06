@@ -49,7 +49,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" data-whatever="@mdo">Add New Category</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commodityModal" data-whatever="@mdo">Add New Commodity</button>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ if ($_SESSION['login_valid'] != "YES") {
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="categoryTbl" class="table table-middle nowrap">
+                                        <table id="commodityTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
 
@@ -80,14 +80,14 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
                 </div>
 
-                <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="commodityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" >New Commodity</h4>
                             </div>
-                            <form id="saveCategoryForm">
+                            <form id="saveCommodityForm">
                                 <div class="modal-body">
 
                                     <div class="form-group">
@@ -118,11 +118,11 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                     <div class="form-group">
                                         <label for="region" class="control-label">Name:</label>
-                                        <input type="text" class="form-control" name="name" id="catName" required>
+                                        <input type="text" class="form-control" name="name" id="commodityName" required>
                                     </div>
                                     <input type="hidden" class="form-control" name="type" value="updateInformation">
 
-                                    <input type="hidden" class="form-control" name="code" id="cat_code">
+                                    <input type="hidden" class="form-control" name="code" id="commodity_code">
                                     <input type="hidden" class="form-control" name="tablename" value="commodites">
 
 
@@ -140,11 +140,11 @@ if ($_SESSION['login_valid'] != "YES") {
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteCategoryForm">
+                            <form method="post" id="deleteCommodityForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete this commodity?.<span class="holder" id="categoryholder"></span> 
+                                            Are you sure you want to delete this commodity?.<span class="holder" id="commodityholder"></span> 
                                         </p>
                                     </div>
                                     <input type="hidden" id="code" name="code"/>
