@@ -174,7 +174,9 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <span class="help-block"></span>
                                         </div>
 
-                                        <div class="form-group row">
+
+
+                                        <div class="form-group row" id="techniquesdiv" style="display: none">
                                             <label  class="form-label">
 
                                                 What techniques/technologies has beneficiary applied/adopted so far (please tick)?
@@ -192,6 +194,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                             </select>
 
                                             <span class="help-block"></span>
+                                        </div>
+
+                                        <div class="form-group row" id='reasondiv' style="display: none">
+                                            <label for="name-1" class="control-label">Reason </label>
+                                            <div class="input-with-icon">
+                                                <textarea class="form-control" name="reason" rows="6" cols="6"></textarea>
+                                            </div>
                                         </div>
                                         <div class="col-xs-12 " id="saveBtn" style="display: none">
                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
@@ -220,7 +229,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <tr>
                                                     <th>Fiscal Year</th>
                                                     <th>Adoption Applied</th>
-                                                    <th>Techniques Applied</th>
+                                                    <th>Techniques Applied/Reason</th>
                                                     <th>Date Added</th>
                                                     <th>Action</th>
                                                 </tr>

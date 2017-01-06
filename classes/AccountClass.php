@@ -5,12 +5,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-$path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
-require_once $path . '/databaseConnectionClass.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+$path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
+require_once $path . '/databaseConnectionClass.php';
+
 class AccountClass {
 
     var $response = array();
@@ -187,7 +188,7 @@ class AccountClass {
 
             $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
-                //     $this->sendemail($username, $email, $password);
+                $this->sendemail($username, $email, $password);
                 $this->response['success'] = '1';
                 $this->response['message'] = 'User created successfully';
 

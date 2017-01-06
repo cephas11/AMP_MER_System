@@ -1,5 +1,8 @@
 <?php
-
+if (session_status() == PHP_SESSION_NONE) {
+    ob_start();
+    session_start();
+}
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,7 +31,7 @@ class LoginClass {
                 $userid = $row['id'];
 
                 $_SESSION['usergroup'] = $userType;
-                $_SESSION['username'] = $username.$userid;
+                $_SESSION['username'] = $username;
                 $_SESSION['meruserid'] = $userid;
                 $_SESSION['login_valid'] = "YES";
                 echo '0';
