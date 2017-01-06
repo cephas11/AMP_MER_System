@@ -28,8 +28,8 @@
                                 var countt = 1;
                                 $.each(data, function(i, obj) {
                                 if (obj.form_id == countt) {
-                                if (obj.view_status == 'false'){
-                                $('#' + countt).hide();
+                                if (obj.view_status == 'true'){
+                                $('#' + countt).show();
                                         console.log('true');
                                 } else{
                                 console.log('false');

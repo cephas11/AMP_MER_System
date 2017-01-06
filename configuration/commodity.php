@@ -1,11 +1,9 @@
-
-
 <?php
 session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = '../index.php';
+        window.location = 'index.php';
     </script>
     <?php
 }
@@ -15,9 +13,9 @@ if ($_SESSION['login_valid'] != "YES") {
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Users</title>
+        <title>Commodity</title>
 
-       <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="manifest.json">
@@ -28,8 +26,8 @@ if ($_SESSION['login_valid'] != "YES") {
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
         <link rel="stylesheet" href="../css/demo.min.css">
-
         <link rel="stylesheet" href="../css/custom.css">
+
     </head>
     <body class="layout layout-header-fixed">
         <?php
@@ -43,7 +41,7 @@ if ($_SESSION['login_valid'] != "YES") {
                 <div class="layout-content-body">
 
                     <div class="text m-b">
-                        <h3 class="m-b-0">Users</h3>
+                        <h3 class="m-b-0">Commodity</h3>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
@@ -51,7 +49,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regionModal" id="createUserBtn" style="display: none" data-whatever="@mdo">Add New User</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commodityModal" data-whatever="@mdo">Add New Commodity</button>
                             </div>
                         </div>
                     </div>
@@ -63,16 +61,11 @@ if ($_SESSION['login_valid'] != "YES") {
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table id="usersTbl" class="table table-middle nowrap">
+                                        <table id="commodityTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
 
                                                     <th>Name</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>
-                                                    <th>Contact No</th>
-                                                    <th>User Group</th>
-                                                    <th>Created By</th>
 
                                                     <th>Action </th>
 
@@ -87,44 +80,21 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
                 </div>
 
-                <div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="commodityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">New User</h4>
+                                <h4 class="modal-title" >New Commodity</h4>
                             </div>
-                            <form id="saveUserForm" >
+                            <form id="saveCommodityForm">
                                 <div class="modal-body">
 
                                     <div class="form-group">
                                         <label for="region" class="control-label">Name:</label>
-                                        <input type="text" class="form-control" name="name" id="name" required>
+                                        <input type="text" class="form-control" name="commodity" id="commodity" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Username:</label>
-                                        <input type="text" class="form-control" name="username" id="username" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Email:</label>
-                                        <input type="email" class="form-control" name="email" id="email" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Contact No:</label>
-                                        <input type="text" min="10" class="form-control" name="phoneno" id="phoneno" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label  class="form-label">User Group</label>
-                                        <select name="userGroup" id="userGroup" class="form-control select2" required>
-
-                                            <option value="">Choose</option>
-
-                                        </select>
-                                        <span class="help-block"></span>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="type" value="saveUser">
-
+                                    <input type="hidden" name="type" value="saveCommodity">
 
                                 </div>
                                 <div class="modal-footer">
@@ -135,21 +105,50 @@ if ($_SESSION['login_valid'] != "YES") {
                         </div>
                     </div>
                 </div>
+                
+                 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Update </h4>
+                            </div>
+                            <form id="updateCommodityForm" >
+                                <div class="modal-body">
 
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Name:</label>
+                                        <input type="text" class="form-control" name="name" id="commodityName" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="type" value="updateInformation">
+
+                                    <input type="hidden" class="form-control" name="code" id="commodity_code">
+                                    <input type="hidden" class="form-control" name="tablename" value="commodites">
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
 
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteRegionForm">
+                            <form method="post" id="deleteCommodityForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete this region?.<span class="holder" id="regionholder"></span> 
+                                            Are you sure you want to delete this commodity?.<span class="holder" id="commodityholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="regcode" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteRegion"/>
+                                    <input type="hidden" id="code" name="code"/>
+                                    <input type="hidden"  name="type" value="deleteCommodity"/>
 
 
                                 </div>
@@ -173,6 +172,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                     </div>
                 </div>
+
             </div>
             <?php
             require_once '../footer.php';
@@ -180,13 +180,12 @@ if ($_SESSION['login_valid'] != "YES") {
         </div>
 
         <script src="../js/vendor.min.js"></script>
-
         <script src="../js/elephant.min.js"></script>
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
-        <script src="../js/users.js"></script>
-        <script src="../js/select2.js"></script>
-        <script src="../js/jquery.validate.js"></script>
+        <script src="../js/commodity.js"></script>
+
+
 
     </body>
 </html>

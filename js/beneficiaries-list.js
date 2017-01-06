@@ -66,8 +66,8 @@ function getAllBeneficiaries()
                     r[++j] = '<td>' + value.district_name + '</td>';
                     r[++j] = '<td>' + value.community + '</td>';
                     r[++j] = '<td>' + value.registeredby + '</td>';
-                    r[++j] = '<td><button type="button" onclick="editBeneficiary(\'' + value.code + '\')" class="btn btn-outline-info btn-sm  col-sm-6 btn-edit"><i class="fa fa-edit""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button>\n\
-                              <button onclick="deleteBeneficiary(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6 " type="button"><i class="fa fa-trash-o""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button></td>';
+                    r[++j] = '<td><button type="button" onclick="editBeneficiary(\'' + value.code + '\')" class="btn btn-outline-info btn-sm  col-sm-6 btn-edit editBtn" disabled><i class="fa fa-edit""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button>\n\
+                              <button onclick="deleteBeneficiary(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm  col-sm-6  deleteBtn" disabled type="button"><i class="fa fa-trash-o""></i><span class="hidden-md hidden-sm hidden-xs"> </span></</button></td>';
 
                     rowNum = rowNum + 1;
 
@@ -439,4 +439,30 @@ $('#updatebeneficiaryForm').on('submit', function (e) {
         }
     });
 
+});
+
+
+var info = {
+    type: "formPermmission",
+    formid: 3
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#creatediv').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+        }
+        if (data.delete_status == 'true') {
+            $('.deleteBtn').removeAttr('disabled');
+        }
+
+    }
 });

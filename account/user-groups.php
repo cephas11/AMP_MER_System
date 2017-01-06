@@ -4,7 +4,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -52,7 +52,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userGroupModal" data-whatever="@mdo"> New User Group</button>
+                                <button type="button" class="btn btn-primary" id="createUserGroupBtn" style="display: none" data-toggle="modal" data-target="#userGroupModal" data-whatever="@mdo"> New User Group</button>
                             </div>
                         </div>
                     </div>

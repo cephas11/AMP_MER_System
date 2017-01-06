@@ -2,7 +2,7 @@
       <div class="navbar navbar-default">
         <div class="navbar-header">
           <a class="navbar-brand navbar-brand-center" href="#">
-            <img class="" src="img/logo2.png" height="30" width="60" >
+            <img class="" src="../img/logo2.png" height="30" width="60" >
       
 <!--            <img class="img-responsive" src="img/logo2.png" height="30" width="70" alt="USAD">-->
           </a>

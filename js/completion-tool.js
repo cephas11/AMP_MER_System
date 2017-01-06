@@ -27,8 +27,6 @@ var patricipantsdatatable = $('#participantsTbl').DataTable({
         }
     }
 });
-
-
 function updateDataTableSelectAllCtrl(table) {
     var $table = table.table().node();
     var $chkbox_all = $('tbody input[type="checkbox"]', $table);
@@ -114,9 +112,8 @@ patricipantsdatatable.on('draw', function () {
     // Update state of "Select all" control
     updateDataTableSelectAllCtrl(patricipantsdatatable);
 });
-
-
 function selectParticipants() {
+    
     var region = $('#region').val();
     var categoryValues = $('#category').val();
     if (region == "" || categoryValues == " ") {
@@ -209,9 +206,12 @@ $('#attachParticipants').click(function () {
     $.each(array, function (i) {
         $("#loadbeneficiaries ul").append("<li>" + array[i] + "</li>");
     });
+    //loaderModal
+    $('#loaderModal').modal('show');
     $('#participantsModal').modal('hide');
     $('#displaybeneficairiesModal').modal('show');
 });
+
 //confirmParticipants
 
 
@@ -410,6 +410,7 @@ $('#completionTooLActivityForm').on('submit', function (e) {
     $('input:submit').attr("disabled", false);
     $('#category').prop('disabled', false);
     $('#region').prop('disabled', false);
+   
     $('#loaderModal').modal('show');
     var formData = $(this).serialize();
     console.log(formData);
@@ -458,6 +459,30 @@ $('#completionTooLActivityForm').on('submit', function (e) {
                     location.href = "completion-tool";
                 }, 2000);
 
+            }else{
+                
+               
+
+                $('input:submit').attr("disabled", false);
+                Command: toastr["error"](data.message, "Success");
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                
             }
         },
         error: function (jXHR, textStatus, errorThrown) {
@@ -586,5 +611,32 @@ $('#deleteCompletionActivityForm').on('submit', function (e) {
 });
 
 
+
+
+var info = {
+    type: "formPermmission",
+    formid: 4
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#creatediv').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+        }
+        if (data.delete_status == 'true') {
+         
+            $('.deleteBtn').removeAttr('disabled');
+        }
+
+    }
+});
 
 

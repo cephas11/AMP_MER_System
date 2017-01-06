@@ -59,7 +59,7 @@ if (isset($_REQUEST['logout']) == 'logout') {
             <li><span style="background-image: url('img/background5.jpg')"></span></li>
 
         </ul>
-        <h2 class="text-center">
+        <h2 class="text-center" style="text-transform: uppercase;">
             Amplifies Ghana Project Monitoring And Reporting platform
         </h2>
         <div class="login">

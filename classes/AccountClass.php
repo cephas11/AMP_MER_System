@@ -8,8 +8,9 @@
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
-session_start();
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 class AccountClass {
 
     var $response = array();

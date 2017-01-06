@@ -6,7 +6,6 @@
 
 
 
-
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
@@ -157,4 +156,25 @@ $('#employeesForm').on('submit', function (e) {
         }
     });
 
+});
+
+
+var info = {
+    type: "formPermmission",
+    formid: 8
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+        if (data.create_status == 'true') {
+            $('#createBtn').show();
+        }
+        
+
+    }
 });

@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['login_valid'] != "YES") {
     ?>
     <script type="text/javascript">
-        window.location = 'index.php';
+        window.location = '../index.php';
     </script>
     <?php
 }
@@ -193,7 +193,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                             <span class="help-block"></span>
                                         </div>
-                                        <div class="col-xs-12 ">
+                                        <div class="col-xs-12 " id="saveBtn" style="display: none">
                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
                                                 <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
