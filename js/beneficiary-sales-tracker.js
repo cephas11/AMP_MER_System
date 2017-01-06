@@ -26,7 +26,7 @@ var datatable = $('#salesTbl').DataTable({
 });
 
 var info = {
-    type: "retreiveDescription"
+    type: "retreiveCommodity"
 };
 
 $.ajax({
