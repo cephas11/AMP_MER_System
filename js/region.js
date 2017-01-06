@@ -3,30 +3,6 @@
 //
 
 
-var info = {
-    type: "formPermmission",
-    formid: 2
-};
-$.ajax({
-    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
-    type: "POST",
-    data: info,
-    dataType: 'json',
-    success: function (data) {
-
-//create staatus
-        if(data.create_status == 'true'){
-            $('#regionbtn').show();
-        }
-         if(data.edit_status == 'false'){
-            $('#regionbtn').show();
-        }
-         if(data.create_status == 'true'){
-            $('#regionbtn').show();
-        }
-
-    }
-});
 //save region
 
 $('#saveRegionForm').on('submit', function (e) {
@@ -129,8 +105,8 @@ function getRegions()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm editbtn" type="button">Edit</button>\n\
-                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm deletebtn" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
+                              <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
                     rowNode = datatable.row.add(r);
                 });
                 rowNode.draw().node();
@@ -250,3 +226,28 @@ $('#updateRegionForm').on('submit', function (e) {
     });
 });
 
+
+var info = {
+    type: "formPermmission",
+    formid: 2
+};
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "POST",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+//create staatus
+          if (data.create_status == 'true') {
+            $('#createregionbtn').show();
+        }
+        if (data.edit_status == 'true') {
+            $('.editBtn').removeAttr('disabled');
+        }
+        if (data.delete_status == 'true') {
+            $('.deleteBtn').removeAttr('disabled');
+        }
+
+    }
+});

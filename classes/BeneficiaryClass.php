@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';

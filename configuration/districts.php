@@ -49,7 +49,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#districtModal" data-whatever="@mdo">Add New District</button>
+                                <button type="button" id='createDistrictBtn' style="display: none;" class="btn btn-primary" data-toggle="modal" data-target="#districtModal" data-whatever="@mdo">Add New District</button>
                             </div>
                         </div>
                     </div>

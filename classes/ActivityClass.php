@@ -5,6 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
