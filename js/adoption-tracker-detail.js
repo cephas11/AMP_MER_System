@@ -146,7 +146,7 @@ function getAdoption(bene_code)
         type: "POST",
         data: info,
         success: function (data) {
-
+            var holder = '';
             console.log(data);
             datatable.clear().draw();
 
@@ -156,7 +156,11 @@ function getAdoption(bene_code)
                 console.log("NO DATA!");
             } else {
                 $.each(obj, function (key, value) {
-
+                    if (value.technique == "") {
+                        holder = value.reason;
+                    } else {
+                        holder = value.technique;
+                    }
 
                     var j = -1;
                     var r = new Array();
@@ -164,7 +168,7 @@ function getAdoption(bene_code)
                     r[++j] = '<td>' + value.fiscalYear + '</td>';
 
                     r[++j] = '<td>' + value.applied + '</td>';
-                    r[++j] = '<td>' + value.technique + '</td>';
+                    r[++j] = '<td>' + holder + '</td>';
                     r[++j] = '<td>' + value.datecreated + '</td>';
 
                     r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
@@ -184,6 +188,29 @@ function getAdoption(bene_code)
 
 }
 
+
+
+
+
+$("#applied").change(function () {
+    var selectedval = this.value;
+    console.log(selectedval);
+    if (selectedval == 'yes') {
+
+        $('#techniques').attr('required', 'required');
+        $('#techniquesdiv').show();
+        $('#reasondiv').hide();
+    } else if (selectedval == 'no') {
+
+        $('#techniques').removeAttr('required');
+        $('#reasondiv').show();
+        $('#techniquesdiv').hide();
+    } else {
+        $('#reasondiv').hide();
+        $('#techniquesdiv').hide();
+    }
+    //  getDescriptionBasedOnCategory(category_code);
+});
 
 
 
