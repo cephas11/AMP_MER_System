@@ -86,6 +86,11 @@ if (isset($_REQUEST['type'])) {
            
             $delete = new ConfigurationClass();
            $delete->deleteCommodity($id);
+        }else if ($type == 'deleteUser') {
+            $id = $_REQUEST['userid'];
+           
+            $delete = new AccountClass();
+           $delete->deleteUser($id);
         }
     } else {
         echo 'provide type';

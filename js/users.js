@@ -155,7 +155,7 @@ function getUsers()
                     r[++j] = '<td>' + value.username + '</td>';
                     r[++j] = '<td>' + value.email + '</td>';
                     r[++j] = '<td>' + value.phoneno + '</td>';
-                    r[++j] = '<td>' + value.usergroup + '</td>';
+                    r[++j] = '<td>' + value.usergroup_name + '</td>';
                     r[++j] = '<td>' + value.createdby + '</td>';
 
                     r[++j] = '<td><button onclick="editUser(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm editBtn" disabled type="button">Edit</button>\n\
@@ -176,6 +176,13 @@ function getUsers()
 
 }
 
+
+function deleteUser(code, title) {
+    console.log(code + title);
+    $('#userid').val(code);
+    $('#userholder').html(title);
+    $('#confirmModal').modal('show');
+}
 
 
 var info = {

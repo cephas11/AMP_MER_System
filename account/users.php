@@ -17,7 +17,7 @@ if ($_SESSION['login_valid'] != "YES") {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Users</title>
 
-       <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="manifest.json">
@@ -87,69 +87,18 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
                 </div>
 
-                <div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">New User</h4>
-                            </div>
-                            <form id="saveUserForm" >
-                                <div class="modal-body">
-
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Name:</label>
-                                        <input type="text" class="form-control" name="name" id="name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Username:</label>
-                                        <input type="text" class="form-control" name="username" id="username" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Email:</label>
-                                        <input type="email" class="form-control" name="email" id="email" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region" class="control-label">Contact No:</label>
-                                        <input type="text" min="10" class="form-control" name="phoneno" id="phoneno" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label  class="form-label">User Group</label>
-                                        <select name="userGroup" id="userGroup" class="form-control select2" required>
-
-                                            <option value="">Choose</option>
-
-                                        </select>
-                                        <span class="help-block"></span>
-                                    </div>
-                                    <input type="hidden" class="form-control" name="type" value="saveUser">
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteRegionForm">
+                            <form method="post" id="deleteUserGroupForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete this region?.<span class="holder" id="regionholder"></span> 
+                                            Are you sure you want to delete this User?.<span class="holder" id="userholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="regcode" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteRegion"/>
+                                    <input type="hidden" id="groupid" name="userid"/>
+                                    <input type="hidden"  name="type" value="deleteUser"/>
 
 
                                 </div>
@@ -173,6 +122,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                     </div>
                 </div>
+
             </div>
             <?php
             require_once '../footer.php';

@@ -147,10 +147,10 @@ if ($_SESSION['login_valid'] != "YES") {
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete this region?.<span class="holder" id="regionholder"></span> 
+                                            Are you sure you want to delete this User Group?.<span class="holder" id="regionholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="groupid" name="usergroupid"/>
+                                    <input type="hidden" id="userid" name="userid"/>
                                     <input type="hidden"  name="type" value="deleteUserGroup"/>
 
 
