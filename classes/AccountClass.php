@@ -98,7 +98,7 @@ class AccountClass {
         }
         $connection->closeConnection($conn);
     }
-    
+
     public function deleteUser($id) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -205,15 +205,13 @@ class AccountClass {
 
             $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
-                
                 $this->sendemail($username, $email, $password);
-                $this->response['success'] = '1';
-                $this->response['message'] = 'User created successfully';
+
 
                 //   $query->close();
             }
         }
-        echo json_encode($this->response);
+
         $connection->closeConnection($conn);
     }
 
@@ -323,14 +321,25 @@ class AccountClass {
 // Compose a simple HTML email message
         $message = '<html><body>';
         $message .= 'Hello,' . $username . '.\n Your account has successfully been created.'
-                . 'sername:'.$username.',Password:'.$password.'';
+                . 'sername:' . $username . ',Password:' . $password . '';
 
         $message .= '</body></html>';
 
 
-        mail($to, $subject, $message, $headers);
-    }
+        $result = mail($to, $subject, $message, $headers);
+        if (!$result) {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'User created successfully but Email wasnt sent';
 
+           
+        } else {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'User created successfully.User Details has been sent to email';
+
+            
+        }
+        echo json_encode($this->response); 
+    }
 
     private function generateuniqueCode($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
