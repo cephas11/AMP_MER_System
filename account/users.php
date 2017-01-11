@@ -17,7 +17,7 @@ if ($_SESSION['login_valid'] != "YES") {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Users</title>
 
-       <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="manifest.json">
@@ -51,7 +51,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                             </div>
                             <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regionModal" id="createUserBtn" style="display: none" data-whatever="@mdo">Add New User</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" id="createUserBtn" style="display: none" data-whatever="@mdo">Add New User</button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
                 </div>
 
-                <div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -141,15 +141,15 @@ if ($_SESSION['login_valid'] != "YES") {
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteRegionForm">
+                            <form method="post" id="deleteUserForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete this region?.<span class="holder" id="regionholder"></span> 
+                                            Are you sure you want to delete this User?.<span class="holder" id="userholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="regcode" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteRegion"/>
+                                    <input type="hidden" id="userid" name="userid"/>
+                                    <input type="hidden"  name="type" value="deleteUser"/>
 
 
                                 </div>
@@ -173,6 +173,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                     </div>
                 </div>
+
             </div>
             <?php
             require_once '../footer.php';
