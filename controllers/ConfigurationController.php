@@ -112,15 +112,20 @@ if (isset($_GET['type'])) {
             $getData = new ConfigurationClass();
             $getData->getActivityDescriptionBasedOnType($type_code);
         } else if ($type == 'saveCommodity') {
-
-
             $name = $_GET['commodity'];
             $new_region = new ConfigurationClass();
             $new_region->setCommodity($name);
         }else if ($type == 'retreiveCommodity') {
             $getAllregions = new ConfigurationClass();
             $getAllregions->getCommodities();
-        } 
+        } else if ($type == 'saveEmploymentType') {
+            $name = $_GET['name'];
+            $save = new ConfigurationClass();
+            $save->setEmploymentType($name);
+        }else if ($type == 'retreiveEmploymentTypes') {
+            $get = new ConfigurationClass();
+            $get->getEmploymentTypes();
+        }
     } else {
         echo 'provide type';
     }

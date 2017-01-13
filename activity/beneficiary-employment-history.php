@@ -144,27 +144,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label  class="form-label">
-                                                    Have you employed any farm hands or additional labour as a result of USDA assistance during this fiscal
 
-                                                    year?
-                                                </label>
-                                                <div class="input-with-icon">
-                                                    <select name="employed" id="employed" class="form-control select2" required>
-
-                                                        <option value="">Choose...</option>
-                                                        <option value="yes">Yes</option>
-                                                        <option value="no">No</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
-
-                                        </div>
 
                                         <div class="row">
 
@@ -189,6 +169,29 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label  class="form-label">
+                                                    Have you employed any farm hands or additional labour as a result of USDA assistance during this fiscal
+
+                                                    year?
+                                                </label>
+                                                <div class="input-with-icon">
+                                                    <select name="employed" id="employed" class="form-control select2" required>
+
+                                                        <option value="">Choose...</option>
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
 
                                         </div>
 
@@ -221,7 +224,14 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <tr>
                                                                 <td><input type="checkbox" name="chk[]"/></td>
                                                                 <td><input type="text"  name="employeeNames[]" required/></td>
-                                                                <td><input type="text"  name="gender[]" required/></td>
+                                                                <td>
+                                                                    <select name="gender[]" class="form-control " >
+
+                                                                        <option value="">Choose...</option>
+                                                                        <option value="female">Female</option>
+                                                                        <option value="male">Male</option>
+                                                                    </select>
+                                                                </td>
                                                                 <td><input  type="text" name="employmentDate[]" data-provide="datepicker" required></td>
                                                                 <td><input type="text"  name="employmentType[]" required/></td>
                                                                 <td><input type="text"  name="duration[]" required/></td>
