@@ -91,6 +91,10 @@ if (isset($_REQUEST['type'])) {
            
             $delete = new AccountClass();
            $delete->deleteUser($id);
+        }else if ($type == 'deleteEmploymentType') {
+            $id = $_REQUEST['code'];  
+            $delete = new ConfigurationClass();
+           $delete->deleteEmplomentType($id);
         }
     } else {
         echo 'provide type';

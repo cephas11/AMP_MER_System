@@ -822,13 +822,13 @@ class ConfigurationClass {
     public function deleteEmplomentType($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "UPDATE employment_types SET status = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE employment_types SET status = 1 WHERE code='".$code."'");
 
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Type deleted successfully';
             $feedback = json_encode($this->response);
-            //   $query->close();
+            
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt delete' . mysqli_error($conn);

@@ -20,11 +20,10 @@ $.ajax({
         if (data.create_status == 'true') {
             $('#permisiontable').show();
         }
-       
+
 
     }
 });
-
 
 var patricipantsdatatable = $('#formsTbl').DataTable({
     responsive: true,
@@ -36,6 +35,72 @@ var patricipantsdatatable = $('#formsTbl').DataTable({
     },
     order: [[0, "asc"]]
 });
+
+$("#userGroup").change(function () {
+
+    $('input:checkbox').prop('checked',false);
+    var userGroup = this.value;
+    getGroupPermissions(userGroup);
+});
+
+function getGroupPermissions(usegroup) {
+    var info = {
+        type: "retreiveUserGroupPermissions",
+        groupid: usegroup
+    };
+    $.ajax({
+        url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: info,
+        dataType: "json",
+        success: function (data) {
+
+            console.log('data is : ' + data.message);
+            var successStatus = data.success;
+            console.log('sucess ' + successStatus);
+
+
+
+            if (successStatus == 0) {
+
+                $('#saveBtn').attr('Update');
+
+
+
+                $.each(data.message, function (counter, item) {
+                    // console.log('creeate status ' + item.create_status);
+                    var create = (item.create_status === 'true');
+                    var edit = (item.edit_status === 'true');
+                    var view = (item.view_status === 'true');
+                    var deletest = (item.delete_status === 'true');
+
+
+
+
+
+                    $('#all' + counter).prop('checked', create);
+                    $('#view' + counter).prop('checked', view);
+                    $('#edit' + counter).prop('checked', edit);
+                    $('#delete' + counter).prop('checked', deletest);
+
+
+
+                    //   $('#all' + 1).attr('checked', true);
+                    //  $('#all' + 2).attr('checked', true);
+                    console.log(counter)
+
+                });
+            }
+
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+}
+
+
 
 
 
@@ -153,6 +218,7 @@ $('#permissionsForm').on('submit', function (e) {
         jsonObj: permissions,
         type: 'savePermissionRoles'
     };
+    $('#loaderModal').modal('show');
 
     $.ajax({
         url: '../controllers/AccountController.php?_=' + new Date().getTime(),
@@ -163,6 +229,7 @@ $('#permissionsForm').on('submit', function (e) {
 
             console.log(data);
             var successStatus = data.success;
+            $('#loaderModal').modal('hide');
 
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);

@@ -114,16 +114,16 @@ if ($_SESSION['login_valid'] != "YES") {
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="exampleModalLabel">Update </h4>
                             </div>
-                            <form id="updateActivityTypeForm" >
+                            <form id="updateTypeForm" >
                                 <div class="modal-body">
 
                                     <div class="form-group">
                                         <label for="region" class="control-label">Name:</label>
-                                        <input type="text" class="form-control" name="name" id="name" required>
+                                        <input type="text" class="form-control" name="name" id="empname" required>
                                     </div>
                                     <input type="hidden" class="form-control" name="type" value="updateInformation">
 
-                                    <input type="hidden" class="form-control" name="code" id="code">
+                                    <input type="hidden" class="form-control" name="code" id="empcode">
                                     <input type="hidden" class="form-control" name="tablename" value="employment_types">
 
 
@@ -142,15 +142,15 @@ if ($_SESSION['login_valid'] != "YES") {
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form method="post" id="deleteActivityTypeForm">
+                            <form method="post" id="deleteEmploymentTypeForm">
                                 <div class="modal-body">
                                     <div>
                                         <p>
-                                            Are you sure you want to delete?<span class="holder" id="activityholder"></span> 
+                                            Are you sure you want to delete?<span class="holder" id="typeholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="code" name="code"/>
-                                    <input type="hidden"  name="type" value="deleteActivityType"/>
+                                    <input type="hidden" id="typecode" name="code"/>
+                                    <input type="hidden"  name="type" value="deleteEmploymentType"/>
 
 
                                 </div>

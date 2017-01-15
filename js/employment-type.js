@@ -123,12 +123,12 @@ function getTypes()
 
 function deleteActivity(code, title) {
     console.log(code + title);
-    $('#code').val(code);
-    $('#activityholder').html(title);
+    $('#typecode').val(code);
+    $('#typeholder').html(title);
     $('#confirmModal').modal('show');
 }
 
-$('#deleteActivityTypeForm').on('submit', function (e) {
+$('#deleteEmploymentTypeForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();
@@ -147,7 +147,7 @@ $('#deleteActivityTypeForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-            document.getElementById("deleteActivityTypeForm").reset();
+            document.getElementById("deleteEmploymentTypeForm").reset();
 
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
@@ -183,11 +183,11 @@ $('#deleteActivityTypeForm').on('submit', function (e) {
 
 function editActivity(code,name) {
     //alert('goood');
-    $('#activityCode').val(code);
-    $('#activityTypeName').val(name);
+    $('#empcode').val(code);
+    $('#empname').val(name);
     $('#editModal').modal('show');
 }
-$('#updateActivityTypeForm').on('submit', function (e) {
+$('#updateTypeForm').on('submit', function (e) {
     e.preventDefault();
     $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();

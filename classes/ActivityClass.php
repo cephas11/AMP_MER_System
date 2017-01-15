@@ -522,27 +522,23 @@ class ActivityClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-        $beneficiaryCode = $info['beneficiaryCode'];
-        $fiscalYear = $info['fiscalYear'];
-        $additonal_labour = $info['employed'];
-        $name = $info['employeeNames'];
-        $gender = $info['gender'];
-        $males = $info['males'];
-        $females = $info['females'];
-        $employmentDate = $info['employmentDate'];
-        $employmentType = $info['employmentType'];
-        $duration = $info['duration'];
-        $createdby = 'aba';
 
-        foreach ($gender as $a => $b) {
-            echo $gender[$a] . ',' . $name[$a];
+
+        $fiscalyear = $info['fiscalYear'];
+        $employed = $info['employed'];
+        $bene_code = $info['bene_code'];
+        $employees = $info['employees'];
+
+
+        foreach ($employees as $data) {
+            echo $data['name'];
             $code = $this->generateuniqueCode(10);
-            $query = mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,males,females,name,gender,employment_date,employment_type,duration,createdby)"
+            $query = mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,name,gender,employment_date,employment_type,duration,createdby)"
                     . " VALUES "
-                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $beneficiaryCode) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $additonal_labour) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $males) . "','" . mysqli_real_escape_string($conn, $females) . "','" . mysqli_real_escape_string($conn, $name[$a]) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $gender[$a]) . "','" . mysqli_real_escape_string($conn, $employmentDate[$a]) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $employmentType[$a]) . "','" . mysqli_real_escape_string($conn, $duration[$a]) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $bene_code) . "','" . mysqli_real_escape_string($conn, $fiscalyear) . "','" . mysqli_real_escape_string($conn, $employed) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $data['name']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $data['gender']) . "','" . mysqli_real_escape_string($conn, $data['date']) . "',"
+                    . "'" . mysqli_real_escape_string($conn, $data['type']) . "','" . mysqli_real_escape_string($conn, $data['duration']) . "','" . mysqli_real_escape_string($conn, $_SESSION['meruserid']) . "')");
         }
 
         if ($query) {
@@ -562,6 +558,25 @@ class ActivityClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM completion_activity_categories_view WHERE activity_code='" . $activityCode . "'");
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function getBeneficiaryEmployees($beneCode) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM beneficiary_employess WHERE beneficiary_code='" . $beneCode . "'");
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
