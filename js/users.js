@@ -40,6 +40,7 @@ $('#saveUserForm').on('submit', function (e) {
         success: function (data) {
             $('input:submit').attr("disabled", false);
             console.log(data);
+            $('.userdetails').html(data.userdetails);
             // $("#loader").hide();
             $('#userModal').modal('hide');
             var successStatus = data.success;
