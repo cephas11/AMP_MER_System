@@ -206,6 +206,8 @@ class AccountClass {
         if ($results > 0) {
             $this->response['success'] = '0';
             $this->response['message'] = 'User already exist';
+            
+            
         } else {
             $password = $this->generateuniqueCode();
 
@@ -336,9 +338,11 @@ class AccountClass {
         if (!$result) {
             $this->response['success'] = '0';
             $this->response['message'] = 'User created successfully but Email wasnt sent';
+            $this->response['userdetails'] = 'Username: '.$username.'. Password: '.$password;
         } else {
             $this->response['success'] = '1';
             $this->response['message'] = 'User created successfully.User Details has been sent to email';
+            $this->response['userdetails'] = 'Username: '.$username.'. Password: '.$password;
         }
         echo json_encode($this->response);
     }

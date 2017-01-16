@@ -59,8 +59,12 @@ if ($_SESSION['login_valid'] != "YES") {
 
                     </div>
                     <div class="row">
+
                         <div class="col-xs-12">
+                            <h4> <p class="userdetails holder"></p></h4>
+
                             <div class="panel">
+
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table id="usersTbl" class="table table-middle nowrap">
