@@ -1,12 +1,10 @@
 <?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
-
-
-
 
 class ConfigurationClass {
 
@@ -745,8 +743,8 @@ class ConfigurationClass {
         $conn = $connection->connectToDatabase(); // connected to the database
 
         $code = 'COM' . $this->generateuniqueCode(8);
-        
-        $query = mysqli_query($conn, "INSERT INTO commodites(code,name,createdby) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','".$_SESSION['meruserid']."')");
+
+        $query = mysqli_query($conn, "INSERT INTO commodites(code,name,createdby) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','" . $_SESSION['meruserid'] . "')");
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Commodity saved successfully';
@@ -780,8 +778,7 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    
-     public function deleteCommodity($code) {
+    public function deleteCommodity($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "UPDATE commodites SET active = 1 WHERE code='" . $code . "'");
@@ -789,13 +786,75 @@ class ConfigurationClass {
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Commodity deleted successfully';
-            $feedback= json_encode($this->response);
+            $feedback = json_encode($this->response);
             //   $query->close();
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
             $feedback = json_encode($this->response);
         }
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    public function setEmploymentType($name) {
+
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $code = $this->generateuniqueCode(8);
+        $query = mysqli_query($conn, "INSERT INTO employment_types(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Emplyment Type saved successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+    
+    
+    public function deleteEmplomentType($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "UPDATE employment_types SET status = 1 WHERE code='".$code."'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Type deleted successfully';
+            $feedback = json_encode($this->response);
+            
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
+            $feedback = json_encode($this->response);
+        }
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+
+    
+    public function getEmploymentTypes() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM employment_types WHERE status=0");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
         echo $feedback;
         $connection->closeConnection($conn);
     }

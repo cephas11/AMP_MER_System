@@ -4,6 +4,28 @@
  * and open the template in the editor.
  */
 
+var info = {
+    type: "retreiveEmploymentTypes"
+};
+
+$.ajax({
+    url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
+    type: "GET",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
+
+        console.log('data' + data);
+        $.each(data, function (i, item) {
+
+            $('#employmentType').append($('<option>', {
+                value: item.code,
+                text: item.name
+            }));
+        });
+
+    }
+});
 
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -107,49 +129,78 @@ function deleteRow(tableID) {
     }
 }
 
+function storeEmployessData()
+{
+//
+    var TableData = new Array();
+//
+    $('#employmentTbl tr').each(function (row, tr) {
+        TableData[row] = {
+            "name": $(tr).find('td:eq(1) .empname').val()
+            , "gender": $(tr).find('td:eq(2) .gender').val()
+            , "date": $(tr).find('td:eq(3) .empdate').val()
+            , "type": $(tr).find('td:eq(4) .emptype').val()
+            , "duration": $(tr).find('td:eq(5) .duration').val()
+
+        }
+    });
+    TableData.shift();  // first row will be empty - so remove
+    return TableData;
+
+}
+
 
 $('#employeesForm').on('submit', function (e) {
     e.preventDefault();
 
-    var formData = $(this).serialize();
-    console.log(formData);
+    var fiscalYear = $('#fiscalYear').val();
+    var employed = $('#employed').val();
+
+    var info = {
+        type: "setBeneficiaryEmployees",
+        fiscalYear: fiscalYear,
+        employed: employed,
+        employees: storeEmployessData(),
+        bene_code: bene_code
+    };
 
     $('#loaderModal').modal('show');
-     $.ajax({
+    $.ajax({
         url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
         type: "POST",
-        data: formData,
-        dataType: "json",
+        data: info,
+        // dataType: "json",
         success: function (data) {
             console.log(data);
             var successStatus = data.success;
 
-              
-                if (successStatus == 1) {
-                    $('input:submit').attr("disabled", false);
-                    Command: toastr["success"](data.message, "Success");
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                    getDistricts();
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 }
-         
-        
+                getEmployees(bene_code);
+
+            }
+
+
         },
         error: function (jXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -157,6 +208,83 @@ $('#employeesForm').on('submit', function (e) {
     });
 
 });
+
+
+var datatable = $('#employemntTbl').DataTable({
+    responsive: true,
+    dom: 'Bfrtip',
+    buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+    ],
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    },
+    order: [[0, "asc"]]
+
+
+});
+getEmployees(bene_code);
+
+function getEmployees(bene_code)
+{
+
+    var info = {
+        type: "getBeneficiaryEmployees",
+        code: bene_code
+    };
+
+    $.ajax({
+        url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: info,
+        success: function (data) {
+            var holder = '';
+            console.log(data);
+            datatable.clear().draw();
+
+            var obj = jQuery.parseJSON(data);
+            console.log('size' + obj.length);
+            if (obj.length == 0) {
+                console.log("NO DATA!");
+            } else {
+                $.each(obj, function (key, value) {
+                    if (value.technique == "") {
+                        holder = value.reason;
+                    } else {
+                        holder = value.technique;
+                    }
+
+                    var j = -1;
+                    var r = new Array();
+                    // represent columns as array
+                    r[++j] = '<td>' + value.name + '</td>';
+                    r[++j] = '<td>' + value.gender + '</td>';
+                    r[++j] = '<td>' + value.employment_type + '</td>';
+                    r[++j] = '<td>' + value.duration + '</td>';
+                    r[++j] = '<td>' + value.employment_date + '</td>';
+                    rowNode = datatable.row.add(r);
+
+                });
+
+                rowNode.draw().node();
+            }
+
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
+        }
+    });
+
+
+}
+
+
 
 
 var info = {
@@ -174,7 +302,10 @@ $.ajax({
         if (data.create_status == 'true') {
             $('#createBtn').show();
         }
-        
+
 
     }
 });
+
+
+

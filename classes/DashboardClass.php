@@ -1,6 +1,5 @@
 <?php
 
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -125,8 +124,8 @@ WHERE  financial_type='Grant'
         echo json_encode($results);
         $connection->closeConnection($conn);
     }
-    
-      public function getBeneficiaryPerCategories() {
+
+    public function getBeneficiaryPerCategories() {
         $results = array();
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -144,7 +143,7 @@ WHERE  financial_type='Grant'
         echo json_encode($results);
         $connection->closeConnection($conn);
     }
-    
+
     public function getBeneficiaryPerDistricts() {
         $results = array();
         $connection = new databaseConnection(); //i created a new object

@@ -120,6 +120,10 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getActivityCategories($code);
+        }else if ($type == "getBeneficiaryEmployees") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getBeneficiaryEmployees($code);
         }
     } else {
         echo 'provide type';

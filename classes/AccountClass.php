@@ -145,30 +145,36 @@ class AccountClass {
         $createdBy = 'admin';
 
 
-        $results = $this->checkUserPermission($usergroup);
+        $this->deleteUserPermission($usergroup);
 
-        if ($results > 0) {
-            $this->response['success'] = '0';
-            $this->response['message'] = 'User Group has permissions already assigned to it.Go to update to alter permissions save';
-        } else {
 
-            $array = json_decode($data, true);
 
-            foreach ($array as $item) { //foreach element in $arr
-                $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,form_id,view_status,edit_status,delete_status,create_status,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $item['formid']) . "','" . mysqli_real_escape_string($conn, $item['view']) . "','" . mysqli_real_escape_string($conn, $item['edit']) . "','" . mysqli_real_escape_string($conn, $item['deletestatus']) . "','" . mysqli_real_escape_string($conn, $item['all']) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
-            }
+        $array = json_decode($data, true);
 
-            if ($query) {
-                $this->response['success'] = '1';
-                $this->response['message'] = 'Permissions added to UserGroup';
-            }
+        foreach ($array as $item) { //foreach element in $arr
+            $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,form_id,view_status,edit_status,delete_status,create_status,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $item['formid']) . "','" . mysqli_real_escape_string($conn, $item['view']) . "','" . mysqli_real_escape_string($conn, $item['edit']) . "','" . mysqli_real_escape_string($conn, $item['deletestatus']) . "','" . mysqli_real_escape_string($conn, $item['all']) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
         }
-        echo json_encode($this->response);
 
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Permissions added to UserGroup';
+        }
         $connection->closeConnection($conn);
+        echo json_encode($this->response);
     }
 
-    private function checkUserPermission($usergroup) {
+    private function deleteUserPermission($usergroup) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+         mysqli_query($conn, "DELETE FROM permissions_and_roles WHERE user_group_id=$usergroup");
+
+
+
+        $connection->closeConnection($conn);
+       
+    }
+
+    private function getUserPermission($usergroup) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM permissions_and_roles WHERE user_group_id=$usergroup");
@@ -176,7 +182,7 @@ class AccountClass {
 
 
         $connection->closeConnection($conn);
-        return mysqli_num_rows($query);
+        return $query;
     }
 
     private function checkUserGroupExistence($name) {
@@ -330,15 +336,11 @@ class AccountClass {
         if (!$result) {
             $this->response['success'] = '0';
             $this->response['message'] = 'User created successfully but Email wasnt sent';
-
-           
         } else {
             $this->response['success'] = '1';
             $this->response['message'] = 'User created successfully.User Details has been sent to email';
-
-            
         }
-        echo json_encode($this->response); 
+        echo json_encode($this->response);
     }
 
     private function generateuniqueCode($length = 10) {
@@ -419,6 +421,32 @@ class AccountClass {
 
         echo $feedback;
         $connection->closeConnection($conn);
+    }
+
+    public function getGroupPermissions($usergroup) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $results = $this->getUserPermission($usergroup);
+
+        if (mysqli_num_rows($results) == 0) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'New permission to be assigned';
+        } else {
+            $this->response['success'] = '0';
+
+            $this->response['message'] = array();
+
+            while ($one = mysqli_fetch_assoc($results)) {
+                array_push($this->response['message'], $one);
+            }
+
+            //$this->response['data'] = mysqli_fetch_array($results,MYSQLI_ASSOC);
+        }
+
+        $feedback = json_encode($this->response);
+
+        echo $feedback;
     }
 
 }

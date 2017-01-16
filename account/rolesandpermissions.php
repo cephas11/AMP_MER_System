@@ -90,7 +90,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <th>View</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
-                                                    
+
 
                                                 </tr>
                                             </thead>
@@ -98,13 +98,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                         </table>
 
 
-                                    <div class="col-xs-12 ">
-                                        <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
+                                        <div class="col-xs-12 ">
+                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-                                            <button class="btn btn-primary  btn-block pull-right" type="submit">Save</button>
+                                                <button class="btn btn-primary  btn-block pull-right"  type="submit">Save</button>
+                                            </div>
                                         </div>
                                     </div>
-                                                                            </div>
 
                                 </form>
                             </div>

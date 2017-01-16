@@ -41,6 +41,7 @@
                             <li><a href="activity-description">Activity Description</a></li>
                             <li><a href="pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
                             <li><a href="commodity">Commodity</a></li>
+                            <li><a href="employment-type">Employment Types</a></li>
 
                         </ul>
                     </li>
