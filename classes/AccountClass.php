@@ -166,12 +166,11 @@ class AccountClass {
     private function deleteUserPermission($usergroup) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-         mysqli_query($conn, "DELETE FROM permissions_and_roles WHERE user_group_id=$usergroup");
+        mysqli_query($conn, "DELETE FROM permissions_and_roles WHERE user_group_id=$usergroup");
 
 
 
         $connection->closeConnection($conn);
-       
     }
 
     private function getUserPermission($usergroup) {
@@ -206,17 +205,16 @@ class AccountClass {
         if ($results > 0) {
             $this->response['success'] = '0';
             $this->response['message'] = 'User already exist';
-            
-            
         } else {
             $password = $this->generateuniqueCode();
 
             $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
                 $this->sendemail($username, $email, $password);
-
-
-                //   $query->close();
+            } else {
+                $this->response['success'] = '0';
+                $this->response['message'] = 'Error creating user';
+                $this->response['userdetails'] = 'Error: ' .mysqli_error($conn);
             }
         }
 
@@ -338,11 +336,11 @@ class AccountClass {
         if (!$result) {
             $this->response['success'] = '0';
             $this->response['message'] = 'User created successfully but Email wasnt sent';
-            $this->response['userdetails'] = 'Username: '.$username.'. Password: '.$password;
+            $this->response['userdetails'] = 'Username: ' . $username . '. Password: ' . $password;
         } else {
             $this->response['success'] = '1';
             $this->response['message'] = 'User created successfully.User Details has been sent to email';
-            $this->response['userdetails'] = 'Username: '.$username.'. Password: '.$password;
+            $this->response['userdetails'] = 'Username: ' . $username . '. Password: ' . $password;
         }
         echo json_encode($this->response);
     }
