@@ -30,6 +30,7 @@ $('#saveUserForm').on('submit', function (e) {
     e.preventDefault();
 
     var formData = $(this).serialize();
+    console.log(formData);
     $('input:submit').attr("disabled", true);
 
     $.ajax({
@@ -39,7 +40,7 @@ $('#saveUserForm').on('submit', function (e) {
         dataType: "json",
         success: function (data) {
             $('input:submit').attr("disabled", false);
-            console.log(data);
+            console.log('server details:'+data);
             $('.userdetails').html(data.userdetails);
             // $("#loader").hide();
             $('#userModal').modal('hide');
