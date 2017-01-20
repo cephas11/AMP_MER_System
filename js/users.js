@@ -40,7 +40,7 @@ $('#saveUserForm').on('submit', function (e) {
         dataType: "json",
         success: function (data) {
             $('input:submit').attr("disabled", false);
-            console.log('server details:'+data);
+            console.log('server details:' + data);
             $('.userdetails').html(data.userdetails);
             // $("#loader").hide();
             $('#userModal').modal('hide');
@@ -91,7 +91,7 @@ $('#saveUserForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-
+                getUsers();
             }
 
         },
