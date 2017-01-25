@@ -462,7 +462,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique, $reason) {
+    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique, $reason,$harvesting,$handling,$storage) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -470,15 +470,15 @@ class ActivityClass {
         $code = 'ADP' . $this->generateuniqueCode(10);
         if ($reason == "") {
             $techniques = implode(', ', $technique);
-            $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,fiscalYear,beneficiary_code,applied,technique,createdby,reason)"
+            $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,fiscalYear,beneficiary_code,applied,technique,harvesting,handling,storage,createdby,reason)"
                     . " VALUES "
                     . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $applied) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $techniques) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . mysqli_real_escape_string($conn, $reason) . "')");
+                    . "'" . mysqli_real_escape_string($conn, $techniques) . "','" . mysqli_real_escape_string($conn, $harvesting) . "','" . mysqli_real_escape_string($conn, $handling) . "','" . mysqli_real_escape_string($conn, $storage) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . mysqli_real_escape_string($conn, $reason) . "')");
         } else {
-            $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,fiscalYear,beneficiary_code,applied,createdby,reason)"
+            $query = mysqli_query($conn, "INSERT INTO adoption_tracker(code,fiscalYear,beneficiary_code,applied,createdby,reason,harvesting,handling,storage)"
                     . " VALUES "
                     . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $applied) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $createdby) . "','" . mysqli_real_escape_string($conn, $reason) . "')");
+                    . "'" . mysqli_real_escape_string($conn, $createdby) . "','" . mysqli_real_escape_string($conn, $reason) . "','" . mysqli_real_escape_string($conn, $harvesting) . "','" . mysqli_real_escape_string($conn, $handling) . "','" . mysqli_real_escape_string($conn, $storage) . "')");
         }
 
         if ($query) {

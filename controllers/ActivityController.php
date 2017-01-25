@@ -102,12 +102,14 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
             $beneficiary_code = $_POST['beneficiaryCode'];
             $applied = $_POST['applied'];
-            
-            $techniques = isset( $_POST['techniques']);
+            $harvesting = $_POST['harvesting'];
+            $handling = $_POST['handling'];
+            $storage = $_POST['storage'];
+            @$techniques = $_POST['techniqus'];
             $reason = $_POST['reason'];
-
+            
             $new = new ActivityClass();
-            $new->setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $techniques,$reason);
+            $new->setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $techniques, $reason, $harvesting, $handling, $storage);
         } else if ($type == "getdoptionTracker") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
@@ -120,7 +122,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getActivityCategories($code);
-        }else if ($type == "getBeneficiaryEmployees") {
+        } else if ($type == "getBeneficiaryEmployees") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getBeneficiaryEmployees($code);
