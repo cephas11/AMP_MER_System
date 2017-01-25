@@ -7,6 +7,25 @@
 
 
 
+var datatable = $('#amountTbl').DataTable({
+    responsive: true,
+    dom: 'Bfrtip',
+    buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+    ],
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    },
+    order: [[0, "asc"]]
+
+
+});
 
 
 var datatable = $('#financialTbl').DataTable({
@@ -304,9 +323,11 @@ function getFinanceInfo(code) {
             if (data.financial_type == "Loan") {
                 $('#loandiv').show();
                 $('#grantdiv').hide();
+                $('#loanhistorydiv').show();
             } else {
                 $('#grantdiv').show();
                 $('#loandiv').hide();
+                   $('#loanhistorydiv').hide();
             }
             $('#fiscalYearDetail').val(data.fiscalYear);
 

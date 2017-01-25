@@ -79,6 +79,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             if ($financialType == "Loan") {
                 $disbursedAmount = $_POST['amountDisbursed'];
                 $disbursementDate = $_POST['disbursementDate'];
+                   $datePaid = $_POST['datePaid'];
             } else {
                 $disbursedAmount = $_POST['amountDisbursedGrant'];
                 $disbursementDate = $_POST['disbursementDateGrant'];
@@ -86,7 +87,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
             $new = new ActivityClass();
-            $new->setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose);
+            $new->setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose,$datePaid);
         } else if ($type == "getBeneficiaryFinances") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();

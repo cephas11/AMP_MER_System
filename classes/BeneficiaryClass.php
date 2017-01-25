@@ -191,7 +191,7 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-        $createdby = 'admin';
+        $createdby = $_SESSION['meruserid'];
         $datecreated = date("Y-m-d");
 
 

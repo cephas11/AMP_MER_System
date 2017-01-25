@@ -264,9 +264,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <!--                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    -->
-                                    <button type="button" id="confirmParticipants" class="btn btn-primary">Confirm</button>
+<!--                                    //confirmParticipants-->
+                                    <button type="submit" id="" class="btn btn-primary">Confirm</button>
 
                                 </div>
                             </form>
@@ -274,7 +273,7 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
                 </div>
 
-                <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+<!--                <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
                     <div class="modal-dialog" role="document">
 
 
@@ -285,7 +284,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
 
                     </div>
-                </div>
+                </div>-->
 
             </div>
             <?php
