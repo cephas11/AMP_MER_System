@@ -61,7 +61,7 @@
                     <li class="sidenav-item " id="5">
                         <a href="sales-tracker">
                             <span class="sidenav-icon icon icon-list"></span>
-                            <span class="sidenav-label">Sales Record </span>
+                            <span class="sidenav-label">Sales Records </span>
                         </a>
 
                     </li>
