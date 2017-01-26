@@ -51,7 +51,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                 <div class="col-xs-12">
                                     <form id="employeesForm" method="POST" enctype="multipart/form-data">
-                                        
+
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -147,24 +147,26 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                         <div class="row">
 
-                                            <div class="col-lg-2 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label  class="form-label ">Current total household size :</label>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
 
-                                                    <label  class="control-label">Total number of males:</label>
-                                                    <input class="form-control" type="text" name="males" value="0" readonly>
+                                                    <label  class="control-label">Total household size:</label>
+                                                    <input class="form-control" type="text" name="totalsize" >
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="form-group">
+
+                                                    <label  class="control-label">Total number of males:</label>
+                                                    <input class="form-control" type="text" name="males" >
+                                                    <small class="help-block"></small>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Total number of females:</label>
-                                                    <input  class="form-control" type="text" name="females" value="0" readonly>
+                                                    <input  class="form-control" type="text" name="females" >
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div>
@@ -269,7 +271,7 @@ if ($_SESSION['login_valid'] != "YES") {
                     <div class="card">
                         <div class="card-body">
                             <h4>Employment History</h4>
-                      <div class="row">
+                            <div class="row">
                                 <div class=" col-lg-12 ">
 
                                     <div class="table-responsive">

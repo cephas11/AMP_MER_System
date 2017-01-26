@@ -196,6 +196,21 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <div class="form-group col-lg-1"></div>
 
                                                 </div>
+                                                          <div class="row" >
+
+                                                    <div class="form-group col-lg-1"></div>
+                                                    <div class="form-group col-lg-9">
+                                                        <label for="name-1" class="control-label">Date Paid </label>
+
+                                                        <div class="input-with-icon">
+                                                            <input class="form-control loan" type="text" name="datePaid"  data-provide="datepicker" >
+                                                            <span class="icon icon-calendar input-icon"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-1"></div>
+
+                                                </div>
+
 
                                                 <div class="row" >
 
@@ -332,69 +347,6 @@ if ($_SESSION['login_valid'] != "YES") {
 
                         </div>
 
-                        <div class="modal fade" id="financeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="exampleModalLabel">Detail</h4>
-                                    </div>
-                                    <form  >
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="region" class="control-label">Fiscal Year :</label>
-                                                <input type="text" class="form-control" id="fiscalYearDetail"  readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="region" class="control-label">Financial Type:</label>
-                                                <input type="text" class="form-control" id="financialTypeDetail"  readonly>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="region" class="control-label">Amount Disbursed:</label>
-                                                <input type="text" class="form-control" id="amountDisbursedDetail"  readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="region" class="control-label">Date Of Disbursement:</label>
-                                                <input type="text" class="form-control" id="disbursementDateDetail"  readonly>
-                                            </div>
-                                            <div id="grantdiv">
-                                                <div class="form-group">
-                                                    <label for="region" class="control-label">Purpose Of Grant:</label>
-                                                    <input type="text" class="form-control" id="grantPurposeDetail"  readonly>
-                                                </div>
-                                            </div>
-                                            <div id="loandiv">
-                                                <div class="form-group">
-                                                    <label for="region" class="control-label">Purpose Of Loan:</label>
-                                                    <input type="text" class="form-control" id="loanPurposeDetail"  readonly>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="region" class="control-label">Amount Repaid:</label>
-                                                    <input type="text" class="form-control" id="amountRepaidDetail"  readonly>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="region" class="control-label">Amount Outstanding  :</label>
-                                                    <input type="text" class="form-control" id="amountOutstandingDetail"  readonly>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="region" class="control-label">Final Repayment Date:</label>
-                                                    <input type="text" class="form-control" id="repaymentDateDetail"  readonly>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                             <div class="modal-dialog" role="document">
@@ -436,13 +388,115 @@ if ($_SESSION['login_valid'] != "YES") {
                         ?>
                     </div>
 
-                    <script src="../js/vendor.min.js"></script>
-                    <script src="../js/elephant.min.js"></script>
-                    <script src="../js/application.min.js"></script>
-                    <script src="../js/demo.min.js"></script>
-                    <script src="../js/select2.js"></script>
-                    <script src="../js/beneficiary-financial-tracker.js"></script>
-                    <script src="../js/jquery.validate.js"></script>
-                    </body>
-                    </html>
-                    <!-- Localized -->
+                </div>
+
+                <div class="modal fade" id="financeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Detail</h4>
+                            </div>
+                            <form  >
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Fiscal Year :</label>
+                                        <input type="text" class="form-control" id="fiscalYearDetail"  readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Financial Type:</label>
+                                        <input type="text" class="form-control" id="financialTypeDetail"  readonly>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Amount Disbursed:</label>
+                                        <input type="text" class="form-control" id="amountDisbursedDetail"  readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Date Of Disbursement:</label>
+                                        <input type="text" class="form-control" id="disbursementDateDetail"  readonly>
+                                    </div>
+                                    <div id="grantdiv">
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Purpose Of Grant:</label>
+                                            <input type="text" class="form-control" id="grantPurposeDetail"  readonly>
+                                        </div>
+                                    </div>
+                                    <div id="loandiv">
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Purpose Of Loan:</label>
+                                            <input type="text" class="form-control" id="loanPurposeDetail"  readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Amount Paid:</label>
+                                            <input type="text" class="form-control" id="amountRepaidDetail"  readonly>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">New Amount:</label>
+                                            <input type="text" class="form-control" id="newamount"  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Amount Outstanding  :</label>
+                                            <input type="text" class="form-control" id="amountOutstandingDetail"  readonly>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Final Repayment Date:</label>
+                                            <input type="text" class="form-control" id="repaymentDateDetail"  readonly>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="card" id="loanhistorydiv">
+                                        <div class="card-body">
+                                            <h4>Loan History</h4>
+                                            <div class="row">
+                                                <div class=" col-lg-12 ">
+
+                                                    <div class="table-responsive">
+                                                        <table id="amountTbl" class="table table-middle nowrap">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Amount Paid </th>
+                                                                    <th>Amount left</th>
+                                                                    <th>Date Paid</th>
+                                                                    <th>Date Entered</th>
+                                                                    <th>Added By</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <script src="../js/vendor.min.js"></script>
+            <script src="../js/elephant.min.js"></script>
+            <script src="../js/application.min.js"></script>
+            <script src="../js/demo.min.js"></script>
+            <script src="../js/select2.js"></script>
+            <script src="../js/beneficiary-financial-tracker.js"></script>
+            <script src="../js/jquery.validate.js"></script>
+    </body>
+</html>
+<!-- Localized -->

@@ -450,5 +450,44 @@ class AccountClass {
 
         echo $feedback;
     }
+    
+    public function getUserInfo($userid) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM users_view WHERE id=$userid");
+
+        if (mysqli_num_rows($query) > 0) {
+
+            $feedback = json_encode(mysqli_fetch_assoc($query));
+            //  $query->close();
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
+    
+    public function updateUserInfo($name, $username, $email, $phoneno, $usergroup,$id) {
+
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "UPDATE users SET name =  '" . mysqli_real_escape_string($conn, $name) . "' , username =  '" . mysqli_real_escape_string($conn, $username) . "' , email =  '" . mysqli_real_escape_string($conn, $email) . "' , phoneno =  '" . mysqli_real_escape_string($conn, $phoneno) . "' , usergroup =  '" . mysqli_real_escape_string($conn, $usergroup) . "'  WHERE id=$id");
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'User Group updated successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
+
 
 }

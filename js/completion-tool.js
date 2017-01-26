@@ -113,7 +113,7 @@ patricipantsdatatable.on('draw', function () {
     updateDataTableSelectAllCtrl(patricipantsdatatable);
 });
 function selectParticipants() {
-    
+
     var region = $('#region').val();
     var categoryValues = $('#category').val();
     if (region == "" || categoryValues == " ") {
@@ -215,7 +215,9 @@ $('#attachParticipants').click(function () {
 //confirmParticipants
 
 
-$('#confirmParticipants').click(function () {
+$('#participantsForm').on('submit', function (e) {
+    e.preventDefault();
+
     //  $('#participantsselected').attr("disabled", false);
     $('#participantsselected').attr("disabled", "disabled");
 
@@ -410,7 +412,7 @@ $('#completionTooLActivityForm').on('submit', function (e) {
     $('input:submit').attr("disabled", false);
     $('#category').prop('disabled', false);
     $('#region').prop('disabled', false);
-   
+
     $('#loaderModal').modal('show');
     var formData = $(this).serialize();
     console.log(formData);
@@ -459,9 +461,9 @@ $('#completionTooLActivityForm').on('submit', function (e) {
                     location.href = "completion-tool";
                 }, 2000);
 
-            }else{
-                
-               
+            } else {
+
+
 
                 $('input:submit').attr("disabled", false);
                 Command: toastr["error"](data.message, "Success");
@@ -482,7 +484,7 @@ $('#completionTooLActivityForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                
+
             }
         },
         error: function (jXHR, textStatus, errorThrown) {
@@ -535,7 +537,7 @@ function getActivitiesList()
                     r[++j] = '<td >' + value.activity_date + '</td>';
                     r[++j] = '<td >' + value.activity_type_name + '</td>';
                     r[++j] = '<td >' + value.activity_description_name + '</td>';
-                   r[++j] = '<td >' + value.region_name + '</td>';
+                    r[++j] = '<td >' + value.region_name + '</td>';
                     r[++j] = '<td >' + value.district_name + '</td>';
 //                    r[++j] = '<td >' + value.community + '</td>';
                     r[++j] = '<td >' + value.implementer + '</td>';
@@ -632,7 +634,7 @@ $.ajax({
             $('.editBtn').removeAttr('disabled');
         }
         if (data.delete_status == 'true') {
-         
+
             $('.deleteBtn').removeAttr('disabled');
         }
 

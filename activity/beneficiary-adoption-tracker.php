@@ -181,7 +181,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                                 What techniques/technologies has beneficiary applied/adopted so far (please tick)?
                                             </label>
-                                            <select name="techniques[]" id="techniques" multiple class="form-control select2" required>
+                                            <select name="techniqus[]" id="techniques" multiple class="form-control select2" required>
 
                                                 <option value="">Choose...</option>
                                                 <option value="Harvesting techniques/technologies">Harvesting techniques/technologies</option>
@@ -202,12 +202,49 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <textarea class="form-control" name="reason" rows="6" cols="6"></textarea>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <h4 class="text-center">To what size of land (Hectares) did beneficiary apply the following techniques/technologies?</h4>
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label for="name-1" class="control-label">Harvesting </label>
+                                                <div class="input-with-icon">
+                                                    <input class="form-control" type="text" name="harvesting"  id="harvesting"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label for="name-1" class="control-label">Post-harvest handling  </label>
+                                                <div class="input-with-icon">
+                                                    <input class="form-control" type="text" name="handling" id="handling" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-lg-1"></div>
+                                            <div class="form-group col-lg-9">
+                                                <label for="name-1" class="control-label">Storage  </label>
+                                                <div class="input-with-icon">
+                                                    <input class="form-control" type="text" name="storage" id="storage" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-1"></div>
+
+                                        </div>
                                         <div class="col-xs-12 " id="saveBtn" style="display: none">
                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
                                                 <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
                                             </div>
                                         </div>
+
+
                                     </form>
                                 </div>
 
@@ -230,6 +267,9 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <th>Fiscal Year</th>
                                                     <th>Adoption Applied</th>
                                                     <th>Techniques Applied/Reason</th>
+                                                    <th>Harvesting</th>
+                                                    <th>Post-Harvest</th>
+                                                    <th>Storage</th>
                                                     <th>Date Added</th>
                                                     <th>Action</th>
                                                 </tr>

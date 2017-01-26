@@ -43,23 +43,37 @@ if (isset($_REQUEST)) {
 
             $get = new AccountClass();
             $get->getUsers();
-        }else if ($type == "login") {
+        } else if ($type == "login") {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $save = new LoginClass();
             $save->login($username, $password);
-        }else if ($type == "userGroupPermissions") {
-            
+        } else if ($type == "userGroupPermissions") {
+
             $get = new AccountClass();
             $get->getUserGroupPermissions();
-        }else if ($type == "formPermmission") {
-            $formid= $_POST['formid'];
+        } else if ($type == "formPermmission") {
+            $formid = $_POST['formid'];
             $get = new AccountClass();
             $get->getFormPermissions($formid);
-        }else if ($type == "retreiveUserGroupPermissions") {
-            $id= $_POST['groupid'];
+        } else if ($type == "retreiveUserGroupPermissions") {
+            $id = $_POST['groupid'];
             $get = new AccountClass();
             $get->getGroupPermissions($id);
+        } else if ($type == "retreiveUserInfo") {
+            $id = $_POST['userid'];
+            $get = new AccountClass();
+            $get->getUserInfo($id);
+        } else if ($type == "updateUserInfo") {
+            $name = $_POST['name'];
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $phoneno = $_POST['phoneno'];
+            $userGroup = $_POST['userGroup'];
+            $userid = $_POST['userid'];
+           // print_r($_POST);
+            $save = new AccountClass();
+          $save->updateUserInfo($name, $username, $email, $phoneno, $userGroup,$userid);
         }
     } else {
         echo 'provide type';

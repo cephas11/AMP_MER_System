@@ -57,7 +57,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                         </div>
 
                                     </div>
-        
+
                                 </div>
                             </div>
                             <div class="row">
@@ -242,14 +242,14 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <small class="help-block"></small>
                                             </div> 
 
-
-                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                            <div class="form-group">
                                                 <div class="form-group">
                                                     <label  class="control-label">Community</label>
                                                     <input  class="form-control" type="text" name="community" id="community" required>
                                                     <small class="help-block"></small>
                                                 </div>
-                                            </div>
+                                            </div> 
+                                    
 
                                             <div>
                                                 <div class="col-lg-4 col-md-12 col-sm-12">
@@ -325,7 +325,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                             </div>
 
 
-                                            <div class="form-group">
+                                            <div class="form-group ">
                                                 <label  class="control-label">Registered By </label>
                                                 <input  class="form-control" type="text" name="registeredBy" id="registeredBy" disabled>
                                                 <small class="help-block"></small>

@@ -142,6 +142,57 @@ if ($_SESSION['login_valid'] != "YES") {
 
 
 
+                <div class="modal fade" id="edituserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">New User</h4>
+                            </div>
+                            <form id="updateUserForm" >
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Name:</label>
+                                        <input type="text" class="form-control" name="name" id="upname" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Username:</label>
+                                        <input type="text" class="form-control" name="username" id="upusername" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Email:</label>
+                                        <input type="email" class="form-control" name="email" id="upemail" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Contact No:</label>
+                                        <input type="text" min="10" class="form-control" name="phoneno" id="upphoneno" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="form-label">User Group</label>
+                                        <select name="userGroup" id="upuserGroup" class="form-control " required>
+
+                                            <option value="">Choose</option>
+
+                                        </select>
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="type" value="updateUserInfo">
+
+                                    <input type="hidden" class="form-control" name="userid" id="upuserid" >
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

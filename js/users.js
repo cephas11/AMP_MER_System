@@ -16,7 +16,7 @@ $.ajax({
 
         $.each(data, function (i, item) {
 
-            $('#userGroup').append($('<option>', {
+            $('[name="userGroup"]').append($('<option>', {
                 value: item.id,
                 text: item.name
             }));
@@ -40,7 +40,7 @@ $('#saveUserForm').on('submit', function (e) {
         dataType: "json",
         success: function (data) {
             $('input:submit').attr("disabled", false);
-            console.log('server details:'+data);
+            console.log('server details:' + data);
             $('.userdetails').html(data.userdetails);
             // $("#loader").hide();
             $('#userModal').modal('hide');
@@ -91,7 +91,7 @@ $('#saveUserForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-
+                getUsers();
             }
 
         },
@@ -181,8 +181,120 @@ function getUsers()
 function editUser(id, name) {
     //alert('goood');
 
-    $('#editModal').modal('show');
+
+    var info = {
+        type: "retreiveUserInfo",
+        userid: id
+    };
+
+    $.ajax({
+        url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: info,
+        dataType: 'json',
+        success: function (data) {
+
+            var username = data.username;
+            var name = data.name;
+            var email = data.email;
+            var contactno = data.phoneno;
+            var usergroup = data.usergroup;
+
+            $('#upname').val(name);
+            $('#upuserid').val(id);
+            $('#upusername').val(username);
+            $('#upemail').val(email);
+            $('#upphoneno').val(contactno);
+            $("#upuserGroup  option[value=" + usergroup + "]").prop("selected", true);
+
+            $('#edituserModal').modal('show');
+
+
+        }
+    });
+
 }
+
+
+
+$('#updateUserForm').on('submit', function (e) {
+    e.preventDefault();
+
+    var formData = $(this).serialize();
+    console.log(formData);
+    $('input:submit').attr("disabled", true);
+
+    $.ajax({
+        url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            $('input:submit').attr("disabled", false);
+            console.log('server details:' + data);
+            $('.userdetails').html(data.userdetails);
+            // $("#loader").hide();
+            $('#edituserModal').modal('hide');
+            var successStatus = data.success;
+           
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getUsers();
+
+            } else {
+
+                Command: toastr["warning"](data.message, "Warning");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getUsers();
+            }
+
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+
+
+
+
+});
+
 
 
 function deleteUser(code, title) {

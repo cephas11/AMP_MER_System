@@ -77,6 +77,10 @@ $('#adoptionTrackerForm').on('submit', function (e) {
 
             if (successStatus == 1) {
                 $('select').select2().select2('val', $('.select2 option:eq(1)').val());
+//                $('#harvesting').val('');
+//                $('#handling').val('');
+//                $('#storage').val('');
+
                 $('input:submit').attr("disabled", false);
                 Command: toastr["success"](data.message, "Success");
 
@@ -169,6 +173,9 @@ function getAdoption(bene_code)
 
                     r[++j] = '<td>' + value.applied + '</td>';
                     r[++j] = '<td>' + holder + '</td>';
+                    r[++j] = '<td>' + value.harvesting + '</td>';
+                    r[++j] = '<td>' + value.handling + '</td>';
+                    r[++j] = '<td>' + value.storage + '</td>';
                     r[++j] = '<td>' + value.datecreated + '</td>';
 
                     r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';

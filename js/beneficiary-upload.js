@@ -24,7 +24,6 @@ console.log('dataaaaaaa here:');
 
 function getBneficiaryTempData()
 {
-    console.log('test:');
 
 
     var info = {
@@ -35,7 +34,6 @@ function getBneficiaryTempData()
         type: "GET",
         data: info,
         success: function (data) {
-            console.log('data:' + data);
 
 
             datatable.clear().draw();
@@ -153,9 +151,9 @@ function getCategories() {
 $(function () {
 
     $(document).on("change", ".regions", function (e) {
-        
-        
-        
+
+
+
         e.preventDefault();
 
         var _this = $(this);
@@ -181,7 +179,7 @@ $(function () {
             dataType: 'json',
             success: function (data) {
 
-                console.log(data);
+
                 $.each(data, function (i, item) {
 
                     $('#' + district_dropdown_id).append($('<option>', {
@@ -221,7 +219,6 @@ $(function () {
             type: 'retreiveDescriptionBasedOnCategory',
             category_code: category_code
         };
-        console.log('data');
         $.ajax({
             url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
             type: "GET",
@@ -229,7 +226,6 @@ $(function () {
             dataType: 'json',
             success: function (data) {
 
-                console.log(data);
                 $.each(data, function (i, item) {
 
                     $('#' + description_dropdown_id).append($('<option>', {
@@ -289,7 +285,6 @@ $('#clearBeneficiary').click(function () {
     $('#clearModal').modal('hide');
     $('#loaderModal').modal('show');
 
-    console.log('data is');
     $.ajax({
         type: "GET",
         url: "../controllers/BeneficiaryController.php?_=" + new Date().getTime(),
@@ -355,7 +350,7 @@ $('#clearBeneficiary').click(function () {
 //
 
 $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
-    
+
     var $row = $(this).closest("tr");    // Find the row
     var fisyear = $row.find('td:eq(0)').text();
     var dateRegisterd = $row.find('td:eq(1)').text();
@@ -438,8 +433,8 @@ $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
     $('#beneficiaryId').val(beneficiaryId);
     $('#editModal').modal('show');
 //    console.log(fisyear);
-    
-    
+
+
 });
 
 
@@ -499,71 +494,88 @@ $('#beneficiaryTbl tbody').on('click', '.deleteInfo', function () {
 $('#saveBeneficiaryForm').on('submit', function (e) {
     e.preventDefault();
 
-    var formData = $(this).serialize();
-    console.log(formData);
-    $('input:submit').attr("disabled", true);
-    $("#loader").show();
-    $.ajax({
-        url: '../controllers/PostController.php?_=' + new Date().getTime(),
-        type: "POST",
-        data: formData,
-        dataType: 'json',
-        success: function (data) {
-            $('input:submit').attr("disabled", false);
-            console.log(data);
-            $("#loader").hide();
-            $('#editModal').modal('hide');
-            var successStatus = data.success;
-            console.log(successStatus);
+    //VALIDATE FOR region,districts,category,decription
+    var category = $('#category').val();
+    var description = $('#description').val();
+    var region = $('#region').val();
+    var district = $('#district').val();
 
-            if (successStatus == 1) {
+    if (category == "") {
+        alert('Category is not selected');
+    } else if (description == "") {
+        alert('description is not selected');
+    } else if (region == "") {
+        alert('region is not selected');
+    } else if (district == "") {
+        alert('district is not selected');
+    } else {
+        var formData = $(this).serialize();
+        console.log(formData);
+        $('input:submit').attr("disabled", true);
+        $("#loader").show();
+        $.ajax({
+            url: '../controllers/PostController.php?_=' + new Date().getTime(),
+            type: "POST",
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
                 $('input:submit').attr("disabled", false);
-                Command: toastr["success"](data.message, "Success");
+                console.log(data);
+                $("#loader").hide();
+                $('#editModal').modal('hide');
+                var successStatus = data.success;
+                console.log(successStatus);
 
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                getBneficiaryTempData();
-            } else {
-                Command: toastr["error"](data.message, "Error");
+                if (successStatus == 1) {
+                    $('input:submit').attr("disabled", false);
+                    Command: toastr["success"](data.message, "Success");
 
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    getBneficiaryTempData();
+                } else {
+                    Command: toastr["error"](data.message, "Error");
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
                 }
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                alert(errorThrown);
             }
-        },
-        error: function (jXHR, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
+        });
+
+    }
 
 
 });
