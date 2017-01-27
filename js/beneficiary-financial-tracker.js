@@ -7,7 +7,7 @@
 
 
 
-var datatable = $('#amountTbl').DataTable({
+var amntdatatable = $('#amountTbl').DataTable({
     responsive: true,
     dom: 'Bfrtip',
     buttons: [
@@ -324,15 +324,17 @@ function getFinanceInfo(code) {
                 $('#loandiv').show();
                 $('#grantdiv').hide();
                 $('#loanhistorydiv').show();
+                $('#updatebtndiv').show();
+                getLoanHistory(code);
             } else {
                 $('#grantdiv').show();
                 $('#loandiv').hide();
-                   $('#loanhistorydiv').hide();
+                $('#loanhistorydiv').hide();
+                $('#updatebtndiv').hide();
             }
             $('#fiscalYearDetail').val(data.fiscalYear);
-
+            $('#loancode').val(code);
             $('#loanPurposeDetail').val(data.loan_purpose);
-
             $('#grantPurposeDetail').val(data.grant_purpose);
             $('#amountDisbursedDetail').val(data.amount_disbursed);
             $('#disbursementDateDetail').val(data.disbursement_date);
@@ -354,8 +356,147 @@ $(document).ready(function () {
         console.log(amountDisbursed - $(this).val());
         //     $(this).css("background-color", "#FFFFFF");
     });
+
+    $("#newamount").focusout(function () {
+
+        var amountPaid = $(this).val();
+        var amountDisbursed = $('#amountOutstandingDetail').val();
+        var amountOutstanding = amountDisbursed - amountPaid;
+        $('#amountOutstandingDetail').val(amountOutstanding);
+        console.log(amountDisbursed - $(this).val());
+        //     $(this).css("background-color", "#FFFFFF");
+    });
 });
 
+
+function getLoanHistory(loan_code)
+{
+
+    var info = {
+        type: "getLoanHistory",
+        code: loan_code
+    };
+
+    $.ajax({
+        url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
+        type: "POST",
+        data: info,
+        success: function (data) {
+
+            console.log(data);
+            amntdatatable.clear().draw();
+
+            var obj = jQuery.parseJSON(data);
+            console.log('size' + obj.length);
+            if (obj.length == 0) {
+                console.log("NO DATA!");
+            } else {
+                $.each(obj, function (key, value) {
+
+
+                    var j = -1;
+                    var r = new Array();
+                    // represent columns as array
+                    r[++j] = '<td>' + value.amount_paid + '</td>';
+                    r[++j] = '<td>' + value.amount_outstanding + '</td>';
+                    r[++j] = '<td>' + value.date_paid + '</td>';
+                    r[++j] = '<td>' + value.createdAt + '</td>';
+                    r[++j] = '<td>' + value.createdby + '</td>';
+
+
+                    rowNode = amntdatatable.row.add(r);
+                });
+                rowNode.draw().node();
+            }
+
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown + " " + textStatus + " New Error: " + jXHR);
+        }
+    });
+
+
+}
+
+
+$('#updatePayment').click(function () {
+    var loancode = $('#loancode').val();
+    var newamount = $('#newamount').val();
+    var amtoutstanding = $('#amountOutstandingDetail').val();
+    var datepaid = $('#datePayment').val();
+    
+    var info = {
+        loancode: loancode,
+        newamount: newamount,
+        amtoutstanding: amtoutstanding,
+        datepaid: datepaid,
+        bencode: bene_code,
+        type: 'setLoanHistory'
+    }
+
+
+    $.ajax({
+        url: '../controllers/ActivityController.php',
+        type: "POST",
+        data: info,
+        dataType: 'json',
+        success: function (data) {
+
+            $('input:submit').attr("disabled", false);
+            console.log('server details:' + data);
+            
+            var successStatus = data.success;
+          
+            if (successStatus == 1) {
+                $('input:submit').attr("disabled", false);
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                getLoanHistory(loancode);
+
+            } else {
+
+                Command: toastr["error"](data.message, "Warning");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                
+            }
+        }
+    });
+
+});
 var info = {
     type: "formPermmission",
     formid: 6
@@ -366,12 +507,12 @@ $.ajax({
     data: info,
     dataType: 'json',
     success: function (data) {
-console.log(data.create_status);
+        console.log(data.create_status);
 //create staatus
         if (data.create_status == 'true') {
             $('#creatediv').show();
         }
-       if (data.edit_status == 'true') {
+        if (data.edit_status == 'true') {
             $('.editBtn').removeAttr('disabled');
         }
         if (data.delete_status == 'true') {

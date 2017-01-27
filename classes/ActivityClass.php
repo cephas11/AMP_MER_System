@@ -288,7 +288,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose,$datepaid) {
+    public function setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose, $datepaid) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -302,8 +302,7 @@ class ActivityClass {
                     . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $fiscalYear) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $beneficiaryType) . "',"
                     . "'" . mysqli_real_escape_string($conn, $financialType) . "','" . mysqli_real_escape_string($conn, $purposeLoan) . "','" . mysqli_real_escape_string($conn, $disbursedAmount) . "','" . mysqli_real_escape_string($conn, $disbursementDate) . "',"
                     . "'" . mysqli_real_escape_string($conn, $repaidAmount) . "','" . mysqli_real_escape_string($conn, $amountOustanding) . "','" . mysqli_real_escape_string($conn, $repaymentDate) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
-         return   $this->setLoanHistory($code, $beneficiary_code, $repaidAmount, $amountOustanding,$datepaid);
-         
+            return $this->setLoanHistory($code, $beneficiary_code, $repaidAmount, $amountOustanding, $datepaid);
         } else {
             $query = mysqli_query($conn, "INSERT INTO financial_services_tracker(code,fiscalYear,beneficiary_code,beneficiary_type,financial_type,grant_purpose,amount_disbursed,disbursement_date,createdby)"
                     . " VALUES "
@@ -326,15 +325,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-
-    public function getLoanHistory($loancode) {
-
-
-        $connection = new databaseConnection(); //i created a new object
-        $conn = $connection->connectToDatabase(); // connected to the database
-
-        mysqli_query($conn, "(SELECT * FROM loan_history where loan_history='" . $loancode . "')");
-    }
+    
 
     public function getBeneficiaryFinances($code) {
         $connection = new databaseConnection(); //i created a new object
@@ -450,7 +441,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique, $reason,$harvesting,$handling,$storage) {
+    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique, $reason, $harvesting, $handling, $storage) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -579,20 +570,19 @@ class ActivityClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
-    
-    
-     public function setLoanHistory($loan_code,$beneficiary_code, $amountpaid, $amount_outstanding,$datepaid) {
+
+    public function setLoanHistory($loan_code, $beneficiary_code, $amountpaid, $amount_outstanding, $datepaid) {
 
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $createdby = $_SESSION['meruserid'];
-        
-            $query = mysqli_query($conn, "INSERT INTO loan_history(loan_code,bene_code,amount_paid,amount_outstanding,date_paid,createdby)"
-                    . " VALUES "
-                    . "('" . trim($loan_code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $amountpaid) . "','" . mysqli_real_escape_string($conn, $amount_outstanding) . "',"
-                    . "'" . mysqli_real_escape_string($conn, $datepaid) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
-        
+
+        $query = mysqli_query($conn, "INSERT INTO loan_history(loan_code,bene_code,amount_paid,amount_outstanding,date_paid,createdby)"
+                . " VALUES "
+                . "('" . trim($loan_code) . "','" . mysqli_real_escape_string($conn, $beneficiary_code) . "','" . mysqli_real_escape_string($conn, $amountpaid) . "','" . mysqli_real_escape_string($conn, $amount_outstanding) . "',"
+                . "'" . mysqli_real_escape_string($conn, $datepaid) . "','" . mysqli_real_escape_string($conn, $createdby) . "')");
+
 
 
         if ($query) {
@@ -608,5 +598,23 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+    public function getLoanHistory($loancode) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+      
+        $query = mysqli_query($conn, "SELECT * FROM loan_history WHERE loan_code='" . $loancode . "'");
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
 
 }

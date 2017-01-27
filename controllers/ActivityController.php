@@ -79,7 +79,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             if ($financialType == "Loan") {
                 $disbursedAmount = $_POST['amountDisbursed'];
                 $disbursementDate = $_POST['disbursementDate'];
-                   $datePaid = $_POST['datePaid'];
+                $datePaid = $_POST['datePaid'];
             } else {
                 $disbursedAmount = $_POST['amountDisbursedGrant'];
                 $disbursementDate = $_POST['disbursementDateGrant'];
@@ -87,7 +87,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
             $new = new ActivityClass();
-            $new->setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose,$datePaid);
+            $new->setFinancialTracker($beneficiary_code, $fiscalYear, $beneficiaryType, $financialType, $purposeLoan, $disbursedAmount, $disbursementDate, $repaidAmount, $repaymentDate, $amountOustanding, $grantPurpose, $datePaid);
         } else if ($type == "getBeneficiaryFinances") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
@@ -108,7 +108,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $storage = $_POST['storage'];
             @$techniques = $_POST['techniqus'];
             $reason = $_POST['reason'];
-            
+
             $new = new ActivityClass();
             $new->setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $techniques, $reason, $harvesting, $handling, $storage);
         } else if ($type == "getdoptionTracker") {
@@ -127,6 +127,19 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getBeneficiaryEmployees($code);
+        } else if ($type == "getLoanHistory") {
+            $code = $_POST['code'];
+            $retreiveList = new ActivityClass();
+            $retreiveList->getLoanHistory($code);
+        } else if ($type == "setLoanHistory") {
+            $loan_code = $_POST['loancode'];
+            $beneficiary_code = $_POST['bencode'];
+            $amountpaid = $_POST['newamount'];
+            $amount_outstanding = $_POST['amtoutstanding'];
+            $datepaid = $_POST['datepaid'];
+            
+            $new = new ActivityClass();
+            $new->setLoanHistory($loan_code, $beneficiary_code, $amountpaid, $amount_outstanding, $datepaid);
         }
     } else {
         echo 'provide type';
