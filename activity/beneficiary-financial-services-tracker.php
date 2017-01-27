@@ -196,7 +196,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <div class="form-group col-lg-1"></div>
 
                                                 </div>
-                                                          <div class="row" >
+                                                <div class="row" >
 
                                                     <div class="form-group col-lg-1"></div>
                                                     <div class="form-group col-lg-9">
@@ -436,6 +436,14 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <label for="region" class="control-label">New Amount:</label>
                                             <input type="text" class="form-control" id="newamount"  >
                                         </div>
+                                        <input type="hidden" class="form-control" id="loancode"  >
+                                        <div class="form-group">
+                                            <label for="region" class="control-label">Payment Date:</label>
+                                            <div class="input-with-icon">
+                                                <input class="form-control grant" type="text"  id="datePayment" data-provide="datepicker" >
+                                                <span class="icon icon-calendar input-icon"></span>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="region" class="control-label">Amount Outstanding  :</label>
                                             <input type="text" class="form-control" id="amountOutstandingDetail"  readonly>
@@ -448,55 +456,59 @@ if ($_SESSION['login_valid'] != "YES") {
 
 
                                     </div>
-
-
-                                    <div class="card" id="loanhistorydiv">
-                                        <div class="card-body">
-                                            <h4>Loan History</h4>
-                                            <div class="row">
-                                                <div class=" col-lg-12 ">
-
-                                                    <div class="table-responsive">
-                                                        <table id="amountTbl" class="table table-middle nowrap">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Amount Paid </th>
-                                                                    <th>Amount left</th>
-                                                                    <th>Date Paid</th>
-                                                                    <th>Date Entered</th>
-                                                                    <th>Added By</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody></tbody>
-                                                        </table>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                    <div id="updatebtndiv" style="display: none">
+                                        <button class="btn btn-primary btn-block " id="updatePayment" type="button">Update Payment</button>
                                     </div>
-
-
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
+
+                                <div class="card" id="loanhistorydiv">
+                                    <div class="card-body">
+                                        <h4>Loan History</h4>
+                                        <div class="row">
+                                            <div class=" col-lg-12 ">
+
+                                                <div class="table-responsive">
+                                                    <table id="amountTbl" class="table table-middle nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Amount Paid </th>
+                                                                <th>Amount left</th>
+                                                                <th>Date Paid</th>
+                                                                <th>Date Entered</th>
+                                                                <th>Added By</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </form>
+
+
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
-            <script src="../js/vendor.min.js"></script>
-            <script src="../js/elephant.min.js"></script>
-            <script src="../js/application.min.js"></script>
-            <script src="../js/demo.min.js"></script>
-            <script src="../js/select2.js"></script>
-            <script src="../js/beneficiary-financial-tracker.js"></script>
-            <script src="../js/jquery.validate.js"></script>
+
+        </div>
+        <script src="../js/vendor.min.js"></script>
+        <script src="../js/elephant.min.js"></script>
+        <script src="../js/application.min.js"></script>
+        <script src="../js/demo.min.js"></script>
+        <script src="../js/select2.js"></script>
+        <script src="../js/beneficiary-financial-tracker.js"></script>
+        <script src="../js/jquery.validate.js"></script>
     </body>
 </html>
 <!-- Localized -->
