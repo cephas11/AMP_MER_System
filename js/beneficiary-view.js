@@ -54,7 +54,7 @@ $('#beneficiaryForm').on('submit', function (e) {
             $('#registered_business').select2("destroy");
             $('#registered_business').select2();
 
-            
+
 
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);
@@ -101,9 +101,9 @@ $.ajax({
 
 
         $.each(data, function (i, item) {
-
+            var code = item.shortcode + '-' + item.code;
             $('#category').append($('<option>', {
-                value: item.code,
+                value: code,
                 text: item.name
             }));
         });
@@ -124,9 +124,10 @@ $.ajax({
 
 
         $.each(data, function (i, item) {
+            var code = item.shortcode + '-' + item.code;
 
             $('#region').append($('<option>', {
-                value: item.code,
+                value: code,
                 text: item.name
             }));
         });
@@ -159,10 +160,12 @@ $.ajax({
 });
 
 function getDescriptionBasedOnCategory(category_code) {
+    category_code = category_code.split('-');
+    var code = category_code[1];
 
     var infotype = {
         type: 'retreiveDescriptionBasedOnCategory',
-        category_code: category_code
+        category_code: code
     };
 
     $.ajax({
@@ -196,9 +199,12 @@ function getDescriptionBasedOnCategory(category_code) {
 
 function getDistrictsBasedOnRegion(region_code) {
 
+    region_code = region_code.split('-');
+    var code = region_code[1];
+
     var infotype = {
         type: 'retreiveDistrictsBasedOnRegion',
-        region_code: region_code
+        region_code: code
     };
 
     $.ajax({

@@ -15,8 +15,8 @@ var datatable = $('#beneficiaryTbl').DataTable({
     order: [[0, "asc"]]
 });
 
-//datatable.columns([21]).visible(false, false);
-//datatable.columns.adjust().draw(false); // adjust column sizing and redraw
+datatable.columns([21]).visible(false, false);
+datatable.columns.adjust().draw(false); // adjust column sizing and redraw
 
 
 getBneficiaryTempData();
@@ -109,9 +109,10 @@ function getRegions() {
 
 
             $.each(data, function (i, item) {
+                var code = item.shortcode + '-' + item.code;
 
                 $('.regions').append($('<option>', {
-                    value: item.code,
+                    value: code,
                     text: item.name
                 }));
             });
@@ -134,9 +135,10 @@ function getCategories() {
         success: function (data) {
 
             $.each(data, function (i, item) {
+                var code = item.shortcode + '-' + item.code;
 
                 $('.categories').append($('<option>', {
-                    value: item.code,
+                    value: code,
                     text: item.name
                 }));
             });

@@ -104,8 +104,10 @@ function getRegions()
                     var j = -1;
                     var r = new Array();
                     // represent columns as array
+                       r[++j] = '<td>' + value.shortcode + '</td>';
+                 
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
+                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
                               <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
                     rowNode = datatable.row.add(r);
                 });
@@ -120,10 +122,11 @@ function getRegions()
 }
 
 
-function editRegion(code, name) {
+function editRegion(code, name, shortcode) {
     //alert('goood');
     $('#code').val(code);
     $('#regionName').val(name);
+    $('#detshortcode').val(shortcode);
     $('#editModal').modal('show');
 }
 
@@ -239,7 +242,7 @@ $.ajax({
     success: function (data) {
 
 //create staatus
-          if (data.create_status == 'true') {
+        if (data.create_status == 'true') {
             $('#createregionbtn').show();
         }
         if (data.edit_status == 'true') {

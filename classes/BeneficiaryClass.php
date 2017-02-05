@@ -1,4 +1,5 @@
 <?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -193,24 +194,42 @@ class BeneficiaryClass {
 
         $createdby = $_SESSION['meruserid'];
         $datecreated = date("Y-m-d");
+        $categorycode = explode('-', $info['category']);
+        $category_code = $categorycode[1];
+
+        $regcode = explode('-', $info['region']);
+        $reg_code = $regcode[1];
+
+        $fiscalyear = explode('FY', $info['fiscalYear']);
 
 
-        $code = 'BENE' . $this->generateuniqueCode(10);
-        $query = mysqli_query($conn, "INSERT INTO beneficiaries(code,name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,educational_level,address,altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
+        $shortcode = $regcode[0] . $categorycode[0] . $fiscalyear[1];
+
+
+
+        $query = mysqli_query($conn, "INSERT INTO beneficiaries(name,business_name,gender,email,contactno,category_code,description_code,region_code,district_code,community,educational_level,address,altcontactno,registered_business,ownership_type,establishment_years,longitude,latitude,fiscalyear,dateregistered,registeredby,createdby,datecreated,timeadded)"
                 . " VALUES "
-                . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $info['beneficiaryName']) . "','" . mysqli_real_escape_string($conn, $info['businessName']) . "',"
+                . "('" . mysqli_real_escape_string($conn, $info['beneficiaryName']) . "','" . mysqli_real_escape_string($conn, $info['businessName']) . "',"
                 . "'" . mysqli_real_escape_string($conn, $info['gender']) . "','" . mysqli_real_escape_string($conn, $info['email']) . "','" . mysqli_real_escape_string($conn, $info['contactno']) . "',"
-                . "'" . mysqli_real_escape_string($conn, $info['category']) . "','" . mysqli_real_escape_string($conn, $info['description']) . "','" . mysqli_real_escape_string($conn, $info['region']) . "','" . mysqli_real_escape_string($conn, $info['district']) . "',"
+                . "'" . mysqli_real_escape_string($conn, $category_code) . "','" . mysqli_real_escape_string($conn, $info['description']) . "','" . mysqli_real_escape_string($conn, $reg_code) . "','" . mysqli_real_escape_string($conn, $info['district']) . "',"
                 . "'" . mysqli_real_escape_string($conn, $info['community']) . "','" . mysqli_real_escape_string($conn, $info['educational_level']) . "','" . mysqli_real_escape_string($conn, $info['address']) . "','" . mysqli_real_escape_string($conn, $info['altcontactno']) . "','" . mysqli_real_escape_string($conn, $info['registered_business']) . "','" . mysqli_real_escape_string($conn, $info['ownership_type']) . "','" . mysqli_real_escape_string($conn, $info['establishment_years']) . "',"
                 . "'" . mysqli_real_escape_string($conn, $info['longitude']) . "','" . mysqli_real_escape_string($conn, $info['latitude']) . "','" . mysqli_real_escape_string($conn, $info['fiscalYear']) . "',"
                 . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
 
         if ($query) {
-            if(isset($info['bulkInsert'])){
-             $this->removeBenficiaryTempTable($info['beneficiaryId']);
+            $new_id = mysqli_insert_id($conn);
+            $id = str_pad("$new_id", 5, '0', STR_PAD_LEFT);
+            $bene_code = $shortcode . $id;
+
+            mysqli_query($conn, "UPDATE beneficiaries SET code='" . $bene_code . "' WHERE beneficiary_id=$new_id");
+
+            if (isset($info['bulkInsert'])) {
+                $this->removeBenficiaryTempTable($info['beneficiaryId']);
             }
+            
             $this->response['success'] = '1';
             $this->response['message'] = 'Data saved successfully';
+            
             echo json_encode($this->response);
         } else {
             $this->response['success'] = '0';
@@ -350,9 +369,9 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the databaseSELECT * FROM region_districts_view WHERE egion_code=
         mysqli_query($conn, "DELETE FROM temp_beneficiaries WHERE beneficiary_id=$beneficary_id");
-     $connection->closeConnection($conn);
+        $connection->closeConnection($conn);
     }
-    
+
 }
 
 // print_r($info);

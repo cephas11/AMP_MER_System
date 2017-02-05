@@ -178,7 +178,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="col-lg-4 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label  class="control-label">Alternate Phone NO</label>
-                                                    <input class="form-control" type="text" name="altcontactno" required>
+                                                    <input class="form-control" type="text" name="altcontactno" >
                                                     <small class="help-block"></small>
                                                 </div> 
                                             </div>

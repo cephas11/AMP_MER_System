@@ -100,8 +100,9 @@ function getCategories()
                     var j = -1;
                     var r = new Array();
                     // represent columns as array
+                    r[++j] = '<td>' + value.shortcode + '</td>';
                     r[++j] = '<td class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editCategory(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
+                    r[++j] = '<td><button onclick="editCategory(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
                               <button onclick="deleteCategory(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
@@ -177,10 +178,12 @@ $('#deleteCategoryForm').on('submit', function (e) {
 });
 
 
-function editCategory(code,name) {
+function editCategory(code, name,shortcode) {
     //alert('goood');
     $('#cat_code').val(code);
     $('#catName').val(name);
+    $('#catshortcode').val(shortcode);
+
     $('#editModal').modal('show');
 }
 $('#updateCategoryForm').on('submit', function (e) {
@@ -201,7 +204,7 @@ $('#updateCategoryForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-         
+
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
 
