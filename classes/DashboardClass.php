@@ -26,7 +26,31 @@ class DashboardClass {
         echo $total;
     }
 
-    public function getTotalActivitiesCompleted() {
+       public function getBeneficiariesTrained() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT  COUNT(DISTINCT participant_code) AS total  FROM `activity_participants`");
+        while ($row = mysqli_fetch_assoc($query)) {
+            $total = $row['total'];
+        }
+        $connection->closeConnection($conn);
+        echo $total;
+    }
+    
+     public function getBeneficiariesApplyingMethods() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT  COUNT(DISTINCT `beneficiary_code`) AS total  FROM `adoption_tracker` WHERE `applied`='yes'");
+        while ($row = mysqli_fetch_assoc($query)) {
+            $total = $row['total'];
+        }
+        $connection->closeConnection($conn);
+        echo $total;
+    }
+//
+  public function getTotalActivitiesCompleted() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
