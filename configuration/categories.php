@@ -64,6 +64,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                         <table id="categoryTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
+                                                    <th>ShortCode</th>
 
                                                     <th>Name</th>
 
@@ -94,6 +95,11 @@ if ($_SESSION['login_valid'] != "YES") {
                                         <label for="region" class="control-label">Name:</label>
                                         <input type="text" class="form-control" name="category" id="category" required>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">ShortCode:</label>
+                                        <input type="text" class="form-control" name="shortcode" id="shortcode" required>
+                                    </div>
                                     <input type="hidden" name="type" value="saveCategory">
 
                                 </div>
@@ -105,8 +111,8 @@ if ($_SESSION['login_valid'] != "YES") {
                         </div>
                     </div>
                 </div>
-                
-                 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -120,7 +126,11 @@ if ($_SESSION['login_valid'] != "YES") {
                                         <label for="region" class="control-label">Name:</label>
                                         <input type="text" class="form-control" name="name" id="catName" required>
                                     </div>
-                                    <input type="hidden" class="form-control" name="type" value="updateInformation">
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Shortcode:</label>
+                                        <input type="text" class="form-control" name="shortcode" id="catshortcode" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="type" value="updateRegInformation">
 
                                     <input type="hidden" class="form-control" name="code" id="cat_code">
                                     <input type="hidden" class="form-control" name="tablename" value="categories">

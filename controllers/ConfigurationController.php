@@ -11,8 +11,9 @@ if (isset($_GET['type'])) {
             if (isset($_GET['region'])) {
 
                 $name = $_GET['region'];
+                 $shortcode = $_GET['shortcode'];
                 $new_region = new ConfigurationClass();
-                $new_region->setRegion($name);
+                $new_region->setRegion($name,$shortcode);
             }
         } else if ($type == 'retreiveRegion') {
             $getAllregions = new ConfigurationClass();
@@ -41,9 +42,10 @@ if (isset($_GET['type'])) {
             if (isset($_GET['category'])) {
 
                 $category = $_GET['category'];
+                $shortcode = $_GET['shortcode'];
 
                 $save_new = new ConfigurationClass();
-                $save_new->setCategory($category);
+                $save_new->setCategory($category,$shortcode);
             }
         } else if ($type == 'retreiveCategories') {
 

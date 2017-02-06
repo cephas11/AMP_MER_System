@@ -75,25 +75,25 @@ type: "userGroupPermissions"
                 }
         });
         var info = {
-        type: "getLoanGivenOut"
+        type: "getBeneficiariesTrained"
                 };
         $.ajax({
         url: 'controllers/DashboardController.php?_=' + new Date().getTime(),
                 type: "GET",
                 data: info,
                 success: function (data) {
-                $('#loan').html('GHS ' + data);
+                $('#bentrained').html(data);
                 }
         });
         var info = {
-        type: "getGrantGivenOut"
+        type: "getBeneficiariesApplyMethods"
                 };
         $.ajax({
         url: 'controllers/DashboardController.php?_=' + new Date().getTime(),
                 type: "GET",
                 data: info,
                 success: function (data) {
-                $('#grant').html('GHS ' + data);
+                $('#benapplied').html( data);
                 }
         });
         function getBeneficiaryPerRegions() {

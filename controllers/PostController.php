@@ -27,6 +27,9 @@ if (isset($_POST['type'])) {
         } else if ($type == 'updateInformation') {
             $update = new ConfigurationClass();
             $update->updateFunction($_POST);
+        } else if ($type == 'updateRegInformation') {
+            $update = new ConfigurationClass();
+            $update->updateRegFunction($_POST);
         } else if ($type == 'updateRegistrarInformation') {
             $update = new ConfigurationClass();
             $update->updateRegistrarsInfo($_POST);

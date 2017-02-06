@@ -71,8 +71,6 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <thead>
                                                         <tr>
                                                             <th>Code</th>
-
-
                                                             <th>Fiscal Year</th>
                                                             <th>Date Registered</th>
                                                             <th>Category</th>
@@ -249,7 +247,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <small class="help-block"></small>
                                                 </div>
                                             </div> 
-                                    
+
 
                                             <div>
                                                 <div class="col-lg-4 col-md-12 col-sm-12">

@@ -23,6 +23,14 @@ if (isset($_GET['type'])) {
 
             $getData = new DashboardClass();
             $getData->getTotalActivitiesCompleted();
+        }else if ($type == 'getBeneficiariesTrained') {
+
+            $getData = new DashboardClass();
+            $getData->getBeneficiariesTrained();
+        }else if ($type == 'getBeneficiariesApplyMethods') {
+
+            $getData = new DashboardClass();
+            $getData->getBeneficiariesApplyingMethods();
         }else if ($type == 'getLoanGivenOut') {
 
             $getData = new DashboardClass();

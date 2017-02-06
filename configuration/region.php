@@ -64,6 +64,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                         <table id="regionTbl" class="table table-middle nowrap">
                                             <thead>
                                                 <tr>
+                                                    <th>ShortCode</th>
 
                                                     <th>Name</th>
 
@@ -94,6 +95,10 @@ if ($_SESSION['login_valid'] != "YES") {
                                         <label for="region" class="control-label">Name:</label>
                                         <input type="text" class="form-control" name="region" id="region" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">ShortCode:</label>
+                                        <input type="text" class="form-control" name="shortcode" id="shortcode" required>
+                                    </div>
                                     <input type="hidden" class="form-control" name="type" value="saveRegion">
 
 
@@ -122,7 +127,12 @@ if ($_SESSION['login_valid'] != "YES") {
                                         <label for="region" class="control-label">Name:</label>
                                         <input type="text" class="form-control" name="name" id="regionName" required>
                                     </div>
-                                    <input type="hidden" class="form-control" name="type" value="updateInformation">
+
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">ShortCode:</label>
+                                        <input type="text" class="form-control" name="shortcode" id="detshortcode" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="type" value="updateRegInformation">
 
                                     <input type="hidden" class="form-control" name="code" id="code">
                                     <input type="hidden" class="form-control" name="tablename" value="region">

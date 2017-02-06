@@ -12,14 +12,14 @@ class ConfigurationClass {
     //put your code here
     var $response = array();
 
-    public function setRegion($name) {
+    public function setRegion($name,$shortcode) {
 
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
         $code = 'REG' . $this->generateuniqueCode(8);
-        $query = mysqli_query($conn, "INSERT INTO region(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+        $query = mysqli_query($conn, "INSERT INTO region(code,name,shortcode) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $shortcode) . "')");
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Region saved successfully';
@@ -210,12 +210,12 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    public function setCategory($name) {
+    public function setCategory($name,$shortcode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
         $code = $this->generateuniqueCode(8);
-        $query = mysqli_query($conn, "INSERT INTO categories(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+        $query = mysqli_query($conn, "INSERT INTO categories(code,name,shortcode) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $shortcode) . "')");
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Category saved successfully';
@@ -698,11 +698,11 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    public function updateFunction($info) {
+    public function updateRegFunction($info) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
-        $query = mysqli_query($conn, "UPDATE " . $info['tablename'] . " SET name = '" . mysqli_real_escape_string($conn, $info['name']) . "' WHERE code='" . $info['code'] . "'");
+        $query = mysqli_query($conn, "UPDATE " . $info['tablename'] . " SET name = '" . mysqli_real_escape_string($conn, $info['name']) . "', shortcode = '" . mysqli_real_escape_string($conn, $info['shortcode']) . "' WHERE code='" . $info['code'] . "'");
 
         if ($query) {
             $this->response['success'] = '1';

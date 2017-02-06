@@ -88,13 +88,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                     <div class="media">
                                         <div class="media-middle media-left">
                                             <span class="bg-danger circle sq-48">
-                                                <span class="icon icon-files-o"></span>
+                                                <span class="icon icon-user"></span>
                                             </span>
                                         </div>
                                         <div class="media-middle media-body">
-                                            <h6 class="media-heading">Total Loan Given Out</h6>
+                                            <h6 class="media-heading">Beneficiaries Trained</h6>
                                             <h3 class="media-heading">
-                                                <span class="fw-l" id="loan"></span>
+                                                <span class="fw-l" id="bentrained"></span>
                                             </h3>
                                         </div>
                                     </div>
@@ -107,13 +107,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                     <div class="media">
                                         <div class="media-middle media-left">
                                             <span class="bg-warning circle sq-48">
-                                                <span class="icon icon-envelope-o"></span>
+                                                <span class="icon icon-users"></span>
                                             </span>
                                         </div>
                                         <div class="media-middle media-body">
-                                            <h6 class="media-heading">Total Grant Given Out</h6>
+                                            <h6 class="media-heading">Beneficiaries applying techniques/technologies</h6>
                                             <h3 class="media-heading">
-                                                <span class="fw-l" id="grant"></span>
+                                                <span class="fw-l" id="benapplied"></span>
                                             </h3>
                                         </div>
                                     </div>

@@ -27,7 +27,7 @@
 
 var datatable = $('#beneficiaresListTbl').DataTable();
 
-datatable.columns([0]).visible(false, false);
+//datatable.columns([0]).visible(false, false);
 datatable.columns.adjust().draw(false); // adjust column sizing and redraw
 
 getAllBeneficiaries();
