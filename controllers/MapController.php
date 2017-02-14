@@ -18,7 +18,7 @@ if (isset($_GET['type'])) {
         if ($type == 'getBeneficiariesLocations') {
 
             $getData = new MapClass();
-            $getData->getBeneficiariesLocation();
+         echo   $getData->getBeneficiariesLocation();
         }
     }else {
             echo 'provide type';

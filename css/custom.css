@@ -13,6 +13,14 @@ i.fa {
     //  color: #27ae60;
 }
 
+#map_wrapper {
+    height: 400px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
 #loader {
     position: fixed;
     top: 50%;
