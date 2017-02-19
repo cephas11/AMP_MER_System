@@ -69,6 +69,8 @@ $('#saveCategoryForm').on('submit', function (e) {
 
 
 });
+
+
 getCategories();
 
 

@@ -8,8 +8,12 @@ and open the template in the editor.
     Author     : matiyas
 */
 
+
+/* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+
 i.fa {
-    
+
     //  color: #27ae60;
 }
 
@@ -28,10 +32,10 @@ i.fa {
     transform: translate(-50%,-50%);
     z-index: 9999;
     margin-top:30%;
-   
+
 }
 .loader-text{
-    
+
     color: white;
     font-size: 24px;
     font-weight: lighter;
