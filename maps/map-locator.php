@@ -1,105 +1,133 @@
+<?php
+session_start();
+if ($_SESSION['login_valid'] != "YES") {
+    ?>
+    <script type="text/javascript">
+        window.location = 'index.php';
+    </script>
+    <?php
+}
+?>
 <!DOCTYPE html >
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Using MySQL and PHP with Google Maps</title>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map {
-            height: 100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maps</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <!--    <link rel="manifest" href="manifest.json">-->
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
+    <meta name="theme-color" content="#ffffff">
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    -->
+    <link rel="stylesheet" href="../css/vendor.min.css">
+    <link rel="stylesheet" href="../css/elephant.min.css">
+    <link rel="stylesheet" href="../css/application.min.css">
+    <link rel="stylesheet" href="../css/demo.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <style type="text/css">
+
+
     </style>
 </head>
 
-<body>
-    <div id="map"></div>
 
-    <script>
-        var customLabel = {
-            restaurant: {
-                label: 'R'
-            },
-            bar: {
-                label: 'B'
-            }
-        };
 
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(7.946527, -1.023194),
-                zoom: 8
-            });
-            var infoWindow = new google.maps.InfoWindow;
+<body class="layout layout-header-fixed">
+    <?php
+    require_once 'header.php';
+    ?>
+    <div class="layout-main">
+        <?php
+        require_once 'sidebar.php';
+        ?>
+        <div class="layout-content">
+            <div class="layout-content-body">
 
-            // Change this depending on the name of your PHP or XML file
-            downloadUrl('http://35.161.105.234/AMP_MER_System/controllers/MapController?type=getBeneficiariesLocations', function (data) {
-                var xml = data.responseXML;
-                var markers = xml.documentElement.getElementsByTagName('marker');
-                Array.prototype.forEach.call(markers, function (markerElem) {
-                    var name = markerElem.getAttribute('name');
-                    var address = markerElem.getAttribute('address');
-                    var point = new google.maps.LatLng(
-                            parseFloat(markerElem.getAttribute('lat')),
-                            parseFloat(markerElem.getAttribute('lng')));
-                    console.log('latitude:' + markerElem.getAttribute('lat'));
-                    var infowincontent = document.createElement('div');
-                    var strong = document.createElement('strong');
-                    strong.textContent = name
-                    infowincontent.appendChild(strong);
-                    infowincontent.appendChild(document.createElement('br'));
+                <div class="text m-b">
+                    <h3 class="m-b-0">Maps</h3>
+                </div>
 
-                    var text = document.createElement('text');
-                    text.textContent = address
-                    infowincontent.appendChild(text);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: point
-                    });
-                    marker.addListener('click', function () {
-                        infoWindow.setContent(infowincontent);
-                        infoWindow.open(map, marker);
-                    });
-                });
-            });
-        }
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <form method="POST" id="filterResultsForm">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label  class="form-label">Region</label>
+                                                <select id="region" name="region" class="form-control select2" >
+                                                    <option selected value="all">All</option>
+
+                                                    <option value="">Choose...</option>
+
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-12 ">
+                                        <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
+
+                                            <input class="btn btn-primary  btn-block pull-right" type="submit" value="Filter"/>
+                                        </div>
+                                    </div>
+                                </form>
 
 
 
-        function downloadUrl(url, callback) {
-            var request = window.ActiveXObject ?
-                    new ActiveXObject('Microsoft.XMLHTTP') :
-                    new XMLHttpRequest;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
 
-            request.onreadystatechange = function () {
-                if (request.readyState == 4) {
-                    request.onreadystatechange = doNothing;
-                    callback(request, request.status);
-                }
-            };
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="map" style=" height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
 
-            request.open('GET', url, true);
-            request.send(null);
-        }
 
-        function doNothing() {
-        }
-    </script>
+            <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                <div class="modal-dialog" role="document">
 
-    <script type="text/javascript" src="assets/jquery.js"></script>
-    <script type="text/javascript" src="assets/jquery-migrate.js"></script>
-    <script type="text/javascript" src="assets/gmaps.js"></script>
-    <script type="text/javascript" src="script.js"></script>
 
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgE4jENhvFNyi-BqOACrhuB8Tjn2XmAv0&callback=initMap">
-    </script>
+                    <div  id="loader" style="margin-top:30% ">
+                        <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                        <span class="loader-text">Wait...</span>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <?php
+        require_once '../footer.php';
+        ?>
+    </div>
+    <script src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBJ9GGHgRkGMRBP72c_XTQ1yM9f02TF43A" 
+    type="text/javascript"></script>
+    <script src="../js/vendor.min.js"></script>
+    <script src="../js/elephant.min.js"></script>
+    <script src="../js/application.min.js"></script>
+    <script src="../js/select2.js"></script>
+    <script type="text/javascript" src="../js/map.js"></script>
+
+
+
 
 </body>
 </html>

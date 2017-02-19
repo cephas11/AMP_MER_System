@@ -95,6 +95,14 @@
                         </a>
 
                     </li>
+                    
+                     <li class="sidenav-item " id="10">
+                        <a href="map-locator">
+                            <span class="sidenav-icon icon icon-users"></span>
+                            <span class="sidenav-label">Maps </span>
+                        </a>
+
+                    </li>
                     <li class="sidenav-item has-subnav" id="9">
                         <a href="#" aria-haspopup="true">
                             <span class="sidenav-icon icon icon-files-o"></span>

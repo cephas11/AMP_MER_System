@@ -6,7 +6,9 @@
  * and open the template in the editor.
  */
 
-require_once '../classes/MapClass.php';
+require_once '../classes/MapXmlClass.php';
+require_once '../classes/MapBenRegLocations.php';
+
 
 $response = array();
 
@@ -17,11 +19,14 @@ if (isset($_GET['type'])) {
     if (!empty($type)) {
         if ($type == 'getBeneficiariesLocations') {
 
-            $getData = new MapClass();
-         echo   $getData->getBeneficiariesLocation();
+            $getData = new MapXmlClass();
+            echo $getData->getBeneficiariesLocation();
+        } if ($type == 'getBeneficiariesLocationsByRegion') {
+
+            $regcode = $_GET['region'];
+          echo  getBeneficiariesLocationByRegion($regcode);
         }
-    }else {
-            echo 'provide type';
-        }
-    
+    } else {
+        echo 'provide type';
+    }
 }
