@@ -48,12 +48,12 @@ class MapXmlClass {
     }
 
     
-     public function getBeneficiariesLocationByRegion($regcode) {
+     public function getFilteredBeneficiariesLocation($regcode,$catcode) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE active = 0 AND region_code='".$regcode."'");
+        $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE active = 0 AND region_code='".$regcode."' AND category_code='".$catcode."'");
 
 
 

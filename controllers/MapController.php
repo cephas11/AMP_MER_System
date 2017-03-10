@@ -21,10 +21,12 @@ if (isset($_GET['type'])) {
 
             $getData = new MapXmlClass();
             echo $getData->getBeneficiariesLocation();
-        } if ($type == 'getBeneficiariesLocationsByRegion') {
-
+        } if ($type == 'getFilteredBeneficiariesLocations') {
             $regcode = $_GET['region'];
-          echo  getBeneficiariesLocationByRegion($regcode);
+            $category = $_GET['category'];
+
+            $getData = new MapXmlClass();
+            echo $getData->getFilteredBeneficiariesLocation($regcode, $category);
         }
     } else {
         echo 'provide type';
