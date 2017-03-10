@@ -1,4 +1,6 @@
-var url = '../controllers/MapController?type=getBeneficiariesLocations';
+
+//var dataurl = '../controllers/MapController?type=getBeneficiariesLocations';
+  var dataurl = 'http://35.161.105.234/AMP_MER_System/controllers/MapController?type=getBeneficiariesLocations';
 
 function initMap(url) {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -7,8 +9,8 @@ function initMap(url) {
     });
     var infoWindow = new google.maps.InfoWindow;
 
-   // var url = 'http://35.161.105.234/AMP_MER_System/controllers/MapController?type=getBeneficiariesLocations';
-    var url = url;
+  //  var url = 'http://35.161.105.234/AMP_MER_System/controllers/MapController?type=getBeneficiariesLocations';
+  var url = dataurl;
     // Change this depending on the name of your PHP or XML file
     downloadUrl(url, function (data) {
 
