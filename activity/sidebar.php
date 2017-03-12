@@ -41,6 +41,8 @@
                             <li><a href="../configuration/activity-description">Activity Description</a></li>
                             <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
                             <li><a href="../configuration/commodity">Commodity</a></li>
+                              <li><a href="../configuration/employment-type">Employment Types</a></li>
+
 
                         </ul>
                     </li>

@@ -41,6 +41,7 @@
                             <li><a href="../configuration/activity-description">Activity Description</a></li>
                             <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
                             <li><a href="../configuration/commodity">Commodity</a></li>
+                            <li><a href="../configuration/employment-type">Employment Types</a></li>
 
                         </ul>
                     </li>
@@ -88,15 +89,9 @@
 
                     </li>
 
-                    <li class="sidenav-item " id="10">
-                        <a href="map-locator">
-                            <span class="sidenav-icon icon icon-power-off"></span>
-                            <span class="sidenav-label">    Map Locator </span>
-                        </a>
 
-                    </li>
-                    
-                     <li class="sidenav-item " id="10">
+
+                    <li class="sidenav-item " id="10">
                         <a href="map-locator">
                             <span class="sidenav-icon icon icon-users"></span>
                             <span class="sidenav-label">Maps </span>
