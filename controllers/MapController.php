@@ -5,9 +5,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//
 require_once '../classes/MapXmlClass.php';
-require_once '../classes/MapBenRegLocations.php';
 
 
 $response = array();
@@ -21,10 +20,15 @@ if (isset($_GET['type'])) {
 
             $getData = new MapXmlClass();
             echo $getData->getBeneficiariesLocation();
-        } if ($type == 'getBeneficiariesLocationsByRegion') {
+        } if ($type == 'getFilteredBeneficiariesLocations') {
+         
+             $regcode = $_GET['region'];
+             $category = $_GET['category'];
+                //          $district = $_GET['district'];
 
-            $regcode = $_GET['region'];
-          echo  getBeneficiariesLocationByRegion($regcode);
+
+            $getData = new MapXmlClass();
+            $getData->getFilteredBeneficiariesLocation($regcode, $category);
         }
     } else {
         echo 'provide type';

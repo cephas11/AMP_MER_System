@@ -88,7 +88,7 @@
                         </a>
 
                     </li>
-                     <li class="sidenav-item " id="10">
+                    <li class="sidenav-item " id="10">
                         <a href="../maps/map-locator">
                             <span class="sidenav-icon icon icon-users"></span>
                             <span class="sidenav-label">Maps </span>

@@ -87,7 +87,7 @@ function getGroupPermissions(usegroup) {
 
                     //   $('#all' + 1).attr('checked', true);
                     //  $('#all' + 2).attr('checked', true);
-                    console.log(counter)
+                    console.log(counter);
 
                 });
             }

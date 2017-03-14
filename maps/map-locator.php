@@ -48,6 +48,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                 <div class="text m-b">
                     <h3 class="m-b-0">Maps</h3>
+                    <small>Click on filter to display all beneficiaries locations on map.</small>
                 </div>
 
 
@@ -58,17 +59,44 @@ if ($_SESSION['login_valid'] != "YES") {
                                 <form method="POST" id="filterResultsForm">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
 
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label  class="form-label">Region</label>
-                                                <select id="region" name="region" class="form-control select2" >
-                                                    <option selected value="all">All</option>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
 
-                                                    <option value="">Choose...</option>
+                                                <div class="form-group">
+                                                    <label  class="form-label">Region</label>
+                                                    <select id="region" name="region" class="form-control select2" >
 
-                                                </select>
-                                                <span class="help-block"></span>
+                                                        <option selected value="">Choose...</option>
+
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
                                             </div>
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-12">
+
+                                                <div class="form-group">
+                                                    <label  class="form-label">District</label>
+                                                    <select id="district" name="district" class="form-control select2" >
+
+                                                        <option selected value="">Choose...</option>
+
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            </div>-->
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                                <div class="form-group">
+                                                    <label  class="form-label">Category</label>
+                                                    <select id="category" name="category" class="form-control select2" >
+
+                                                        <option selected value="">Choose...</option>
+
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="type" value="getFilteredBeneficiariesLocations"/>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
 
