@@ -81,7 +81,9 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <th>Region</th>
                                                             <th>District</th>
                                                             <th>Community</th>
-                                                            <th>Registered By</th>         
+                                                            <th>Registered By</th>      
+                                                            <th>Date Created</th>         
+
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>

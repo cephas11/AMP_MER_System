@@ -104,7 +104,7 @@ $.ajax({
 
 
 var reginfo = {
-    type: "retreiveCategories"
+    type: "retreiveDescription"
 };
 
 $.ajax({

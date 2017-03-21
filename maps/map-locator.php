@@ -65,32 +65,34 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <div class="form-group">
                                                     <label  class="form-label">Region</label>
                                                     <select id="region" name="region" class="form-control select2" >
+                                                        <option  value="">Choose..</option>
 
-                                                        <option selected value="">Choose...</option>
+                                                        <option selected value="">All</option>
 
                                                     </select>
                                                     <span class="help-block"></span>
                                                 </div>
                                             </div>
-<!--                                            <div class="col-lg-4 col-md-4 col-sm-12">
-
-                                                <div class="form-group">
-                                                    <label  class="form-label">District</label>
-                                                    <select id="district" name="district" class="form-control select2" >
-
-                                                        <option selected value="">Choose...</option>
-
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div>
-                                            </div>-->
+                                            <!--                                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                            
+                                                                                            <div class="form-group">
+                                                                                                <label  class="form-label">District</label>
+                                                                                                <select id="district" name="district" class="form-control select2" >
+                                            
+                                                                                                    <option selected value="">Choose...</option>
+                                            
+                                                                                                </select>
+                                                                                                <span class="help-block"></span>
+                                                                                            </div>
+                                                                                        </div>-->
                                             <div class="col-lg-6 col-md-6 col-sm-12">
 
                                                 <div class="form-group">
-                                                    <label  class="form-label">Category</label>
+                                                    <label  class="form-label">Description</label>
                                                     <select id="category" name="category" class="form-control select2" >
+                                                        <option selected value="">Choose..</option>
 
-                                                        <option selected value="">Choose...</option>
+                                                        <option  value="">All</option>
 
                                                     </select>
                                                     <span class="help-block"></span>

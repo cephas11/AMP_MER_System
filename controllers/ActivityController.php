@@ -116,7 +116,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $retreiveList = new ActivityClass();
             $retreiveList->getAdoptionTracker($code);
         } else if ($type == "setBeneficiaryEmployees") {
-            //print_r($_POST);
+          //  print_r($_POST);
             $new = new ActivityClass();
             $new->setBeneficiaryEmployees($_POST);
         } else if ($type == "getActivityCategories") {
@@ -137,7 +137,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $amountpaid = $_POST['newamount'];
             $amount_outstanding = $_POST['amtoutstanding'];
             $datepaid = $_POST['datepaid'];
-            
+
             $new = new ActivityClass();
             $new->setLoanHistory($loan_code, $beneficiary_code, $amountpaid, $amount_outstanding, $datepaid);
         }
