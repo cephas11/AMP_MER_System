@@ -11,6 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
+require_once $path . '/classes/AuditClass.php';
 
 class AccountClass {
 
@@ -24,6 +25,7 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $createdBy = $_SESSION['username'];
+        $audit = new AuditClass();
 
         $results = $this->checkUserGroupExistence($name);
         if ($results > 0) {
@@ -32,6 +34,7 @@ class AccountClass {
         } else {
             $query = mysqli_query($conn, "INSERT INTO user_groups(name,createdBy) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
+                $audit->setAuditLog('Created ' . $name . ' user goup');
                 $this->response['success'] = '1';
                 $this->response['message'] = 'User Group saved successfully';
             }
@@ -45,8 +48,11 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM user_groups WHERE active=0");
+        $audit = new AuditClass();
+        $audit->setAuditLog("Retreive user groups");
 
         if (mysqli_num_rows($query) > 0) {
+
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
@@ -69,6 +75,8 @@ class AccountClass {
 
         $query = mysqli_query($conn, "UPDATE user_groups SET name =  '" . mysqli_real_escape_string($conn, $name) . "' WHERE id=$id");
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Updated" . $name . " user group ");
             $this->response['success'] = '1';
             $this->response['message'] = 'User Group updated successfully';
             echo json_encode($this->response);
@@ -81,12 +89,15 @@ class AccountClass {
         $connection->closeConnection($conn);
     }
 
-    public function deleteUserGroup($id) {
+    public function deleteUserGroup($id, $name) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
         $query = mysqli_query($conn, "UPDATE user_groups SET active = 1 WHERE id=$id");
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted " . $name . " user group ");
+
             $this->response['success'] = '1';
             $this->response['message'] = 'User Group updated successfully';
             echo json_encode($this->response);
@@ -99,12 +110,15 @@ class AccountClass {
         $connection->closeConnection($conn);
     }
 
-    public function deleteUser($id) {
+    public function deleteUser($id, $name) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
         $query = mysqli_query($conn, "UPDATE users SET deleted = 1 WHERE id=$id");
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted user " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'User  deleted successfully';
             echo json_encode($this->response);
@@ -121,6 +135,8 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM forms");
+        $audit = new AuditClass();
+        $audit->setAuditLog("Retreive Forms ");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -210,105 +226,20 @@ class AccountClass {
 
             $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
+                $audit = new AuditClass();
+                $audit->setAuditLog("Created new user " . $name);
+
                 $this->sendemail($username, $email, $password);
             } else {
                 $this->response['success'] = '0';
                 $this->response['message'] = 'Error creating user';
-                $this->response['userdetails'] = 'Error: ' .mysqli_error($conn);
+                $this->response['userdetails'] = 'Error: ' . mysqli_error($conn);
             }
         }
 
         $connection->closeConnection($conn);
     }
 
-//    private function sendemail($username, $email, $password) {
-//
-//      
-//        $subject = 'User Created Successfully';
-//        $from = 'Amp Mer System';
-//
-//// To send HTML mail, the Content-type header must be set
-//        $headers = 'MIME-Version: 1.0' . "\r\n";
-//        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-//
-//// Create email headers
-//        $headers .= 'From: ' . $from . "\r\n" .
-//                'Reply-To: ' . $from . "\r\n" .
-//                'X-Mailer: PHP/' . phpversion();
-//
-//// Compose a simple HTML email message
-//        $message = '<html><body>';
-//        $message .= '<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" style="border-left-color:#e4e4e4;border-left-style:solid;border-left-width:1px;border-right-color:#e4e4e4;border-right-style:solid;border-right-width:1px">
-//    <tbody><tr bgcolor="#f5f5f5">
-//        <td align="center" style="border-collapse:collapse;color:#7a7a7a;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;padding-left:10px;padding-right:10px">
-//            <table width="594">
-//                <tbody><tr>
-//                    <td align="left" style="border-collapse:collapse;color:#7a7a7a;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px">
-//                        <a href="">
-//                            <img alt="Amp Mer System" height="52" src="http://35.161.105.234/AMP_MER_System/img/logo2.png" width="208" style="border:none;line-height:100%;outline:none;text-decoration:none" class="CToWUd">
-//                        </a>              </td>
-//                </tr>
-//                </tbody></table>
-//        </td>
-//    </tr>
-//
-//
-//    <tr bgcolor="#ffffff">
-//        <td align="center" style="border-collapse:collapse;color:#7a7a7a;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;padding:30px 10px 50px">
-//            <table width="594" border="0" align="center" cellpadding="0" cellspacing="0">
-//                <tbody><tr>
-//                    <td style="border-collapse:collapse;color:#7a7a7a;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;padding-bottom:30px">
-//                        <table width="100%">
-//                            <tbody>
-//                            <tr>
-//                                <td align="left" valign="top" style="border-collapse:collapse;color:#7a7a7a;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;padding-bottom:15px">
-//                                    <h1 style="color:#666666;font-size:28px;font-style:normal;font-weight:700;margin:0">Hi ' . $firstname . ',</h1>
-//                                </td>
-//                            </tr>
-//                            <tr>
-//                                <td align="left" valign="top" style="border-collapse:collapse;color:#949494;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:20px">
-//                                    <strong>Below is your credentials to login to Amp Mer System portal.</strong><br>
-//                                    <br>
-//<strong>Username:</strong>' . $username . '<br>
-//<strong>Password:</strong>' . $password . '<br><br><br>
-//
-//                                </td>
-//                            </tr>
-//                            </tbody>
-//                        </table>
-//                    </td>
-//                </tr>
-//
-//               
-//                </tbody></table>
-//        </td>
-//    </tr>
-//
-//
-//
-//    <tr width="100%" bgcolor="#f0f0f0" align="center">
-//        <td align="center" style="border-collapse:collapse;color:#7a7a7a;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;padding:20px 10px;text-align:center">
-//            <table width="594" border="0" align="center" cellpadding="0" cellspacing="0">
-//                <tbody>
-//
-//                <tr>
-//                    <td align="center" valign="top" style="border-collapse:collapse;color:#999;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;padding-top:10px">
-//                        Copyright Amp Mer System 2016 |  Greater Accra, Ghana · <br>
-//                        
-//                    </td>
-//                </tr>
-//                </tbody></table>
-//        </td>
-//    </tr>
-//    </tbody></table>';
-//
-//        $message .= '</body></html>';
-//
-//
-//        mail($email, $subject, $message, $headers);
-//    }
-//
-//    
     private function sendemail($username, $emmail, $password) {
 
         $to = $emmail;
@@ -359,8 +290,10 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM users_view WHERE deleted=0");
-
         if (mysqli_num_rows($query) > 0) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Retreive users");
+
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
@@ -450,7 +383,7 @@ class AccountClass {
 
         echo $feedback;
     }
-    
+
     public function getUserInfo($userid) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -468,8 +401,8 @@ class AccountClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
-    
-    public function updateUserInfo($name, $username, $email, $phoneno, $usergroup,$id) {
+
+    public function updateUserInfo($name, $username, $email, $phoneno, $usergroup, $id) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -488,6 +421,5 @@ class AccountClass {
         }
         $connection->closeConnection($conn);
     }
-
 
 }

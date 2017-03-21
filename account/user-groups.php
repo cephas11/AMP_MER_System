@@ -128,7 +128,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                     <input type="hidden" class="form-control" name="type" value="updateUserGroupInformation">
 
                                     <input type="hidden" class="form-control" name="usergroupid" id="code">
-                  
+
 
                                 </div>
                                 <div class="modal-footer">
@@ -150,7 +150,9 @@ if ($_SESSION['login_valid'] != "YES") {
                                             Are you sure you want to delete this User Group?.<span class="holder" id="regionholder"></span> 
                                         </p>
                                     </div>
-                                    <input type="hidden" id="userid" name="userid"/>
+                                    <input type="hidden" id="groupid" name="groupid"/>
+                                    <input type="hidden" id="usergroupname" name="usergroupname"/>
+
                                     <input type="hidden"  name="type" value="deleteUserGroup"/>
 
 

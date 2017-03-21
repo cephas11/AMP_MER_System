@@ -236,7 +236,7 @@ $('#updateUserForm').on('submit', function (e) {
             // $("#loader").hide();
             $('#edituserModal').modal('hide');
             var successStatus = data.success;
-           
+
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);
                 Command: toastr["success"](data.message, "Success");
@@ -300,6 +300,8 @@ $('#updateUserForm').on('submit', function (e) {
 function deleteUser(code, title) {
     console.log(code + title);
     $('#userid').val(code);
+    $('#user_name').val(title);
+
     $('#userholder').html(title);
     $('#confirmModal').modal('show');
 }
