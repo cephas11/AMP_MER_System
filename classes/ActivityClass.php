@@ -510,7 +510,7 @@ class ActivityClass {
 
 
         foreach ($employees as $data) {
-            echo $data['name'];
+            
             $code = $this->generateuniqueCode(10);
             $query = mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,name,gender,employment_date,employment_type,duration,createdby)"
                     . " VALUES "

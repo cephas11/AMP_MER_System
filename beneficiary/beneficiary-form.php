@@ -274,7 +274,18 @@ if ($_SESSION['login_valid'] != "YES") {
                     </div>
 
                 </div>
+  <div class="modal fade" id="loaderModal" data-keyboard="false" data-backdrop="static" role="dialog" >
+                    <div class="modal-dialog" role="document">
 
+
+                        <div  id="loader" style="margin-top:30% ">
+                            <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                            <span class="loader-text">Wait...</span>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
             <?php
             require_once '../footer.php';

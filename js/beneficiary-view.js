@@ -9,6 +9,7 @@ $('#beneficiaryForm').on('submit', function (e) {
     var formData = $(this).serialize();
     console.log(formData);
     $('input:submit').attr("disabled", true);
+$("#loaderModal").modal('show');
 
     $.ajax({
         url: '../controllers/PostController.php?_=' + new Date().getTime(),
@@ -18,7 +19,7 @@ $('#beneficiaryForm').on('submit', function (e) {
         success: function (data) {
             $('input:submit').attr("disabled", false);
             console.log(data);
-            // $("#loader").hide();
+             $("#loaderModal").modal('hide');
 
             var successStatus = data.success;
             console.log(successStatus);

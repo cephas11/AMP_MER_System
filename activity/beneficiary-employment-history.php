@@ -241,9 +241,15 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                                                     </select>
                                                                 </td>
+                                                                
+                                                                                                                   <td>
+                                                                    <select name="duration[]" id="duration" class="form-control duration" required >
+                                                                        <option value="">Choose...</option>
 
-                                                                <td><input type="text"  name="duration[]" class="duration" required/></td>
+                                                                    </select>
+                                                                </td>
 
+                                                              
                                                             </tr>
                                                         </tbody>
                                                     </table>

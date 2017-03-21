@@ -204,6 +204,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                         </p>
                                     </div>
                                     <input type="hidden" id="userid" name="userid"/>
+                                    <input type="hidden" id="user_name" name="user_name"/>
+
                                     <input type="hidden"  name="type" value="deleteUser"/>
 
 

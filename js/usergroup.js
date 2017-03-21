@@ -164,6 +164,7 @@ function deleteUserGroup(code, title) {
     console.log(code + title);
     $('#groupid').val(code);
     $('#regionholder').html(title);
+    $('#usergroupname').val(title);
     $('#confirmModal').modal('show');
 }
 

@@ -19,13 +19,19 @@ $.ajax({
         $.each(data, function (i, item) {
 
             $('#employmentType').append($('<option>', {
-                value: item.code,
+                value: item.name,
                 text: item.name
             }));
         });
 
     }
 });
+
+$("#duration").append($("<option></option>").val("Less than one month").html("Less than one month"));
+$("#duration").append($("<option></option>").val("between 1-6 months").html("between 1-6 months"));
+$("#duration").append($("<option></option>").val("between 6-12 months").html("between 6-12 months"));
+$("#duration").append($("<option></option>").val("More than 12 months").html("More than 12 months"));
+
 
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -155,7 +161,7 @@ $('#employeesForm').on('submit', function (e) {
 
     var fiscalYear = $('#fiscalYear').val();
     var employed = $('#employed').val();
-
+    console.log(storeEmployessData());
     var info = {
         type: "setBeneficiaryEmployees",
         fiscalYear: fiscalYear,
@@ -164,17 +170,17 @@ $('#employeesForm').on('submit', function (e) {
         bene_code: bene_code
     };
 
-    $('#loaderModal').modal('show');
+       $('#loaderModal').modal('show');
     $.ajax({
         url: '../controllers/ActivityController.php?_=' + new Date().getTime(),
         type: "POST",
         data: info,
-        // dataType: "json",
+        dataType: "json",
         success: function (data) {
             console.log(data);
             var successStatus = data.success;
 
-
+            
             if (successStatus == 1) {
                 $('input:submit').attr("disabled", false);
                 Command: toastr["success"](data.message, "Success");
@@ -196,7 +202,9 @@ $('#employeesForm').on('submit', function (e) {
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                getEmployees(bene_code);
+              getEmployees(bene_code);
+              $('#loaderModal').modal('hide');
+
 
             }
 
@@ -245,7 +253,7 @@ function getEmployees(bene_code)
         data: info,
         success: function (data) {
             var holder = '';
-            console.log(data);
+            //  console.log(data);
             datatable.clear().draw();
 
             var obj = jQuery.parseJSON(data);

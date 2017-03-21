@@ -54,7 +54,7 @@ class MapXmlClass {
             $data = $data . " AND region_code IN('" . $regcode . "')";
         }
         if (!empty($catcode)) {
-            $data = $data . " AND category_code IN('" . $catcode . "')";
+            $data = $data . " AND description_code IN('" . $catcode . "')";
         }
 
 //        if (!empty($district)) {
