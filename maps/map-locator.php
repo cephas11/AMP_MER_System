@@ -65,9 +65,9 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <div class="form-group">
                                                     <label  class="form-label">Region</label>
                                                     <select id="region" name="region" class="form-control select2" >
-                                                        <option  value="">Choose..</option>
+                                                        <option selected  value="">Choose..</option>
 
-                                                        <option selected value="">All</option>
+                                                        <option  value="">All</option>
 
                                                     </select>
                                                     <span class="help-block"></span>
