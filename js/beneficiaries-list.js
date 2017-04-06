@@ -26,7 +26,7 @@
 //});
 
 var datatable = $('#beneficiaresListTbl').DataTable({
-            "order": [[ 12, "desc" ]]
+    "order": [[12, "desc"]]
 });
 
 //datatable.columns([0]).visible(false, false);
@@ -169,7 +169,7 @@ function getBeneficiaryInfo(code) {
         dataType: 'json',
         success: function (data) {
             //    $('#loaderModal').modal('show');
-            console.log('response: ' + data.ownership_type);
+            //  console.log('response: ' + data.region_name);
             $('.holder').html(data.name);
             $("#fiscalYear").val(data.fiscalyear);
             $('#dateRegistered').val(data.dateregistered);
@@ -180,21 +180,21 @@ function getBeneficiaryInfo(code) {
             $('#beneficiaryName').val(data.name);
             $('#businessName').val(data.business_name);
             $("#gender").val(data.gender);
-            $("#educational_level  option[value=" + data.educational_level + "]").prop("selected", true);
-            $("#region").val(data.region_name);
+            $("#region_update").val(data.region_name);
             $('#address').val(data.address);
             $('#community').val(data.community);
             $('#contactno').val(data.contactno);
             $('#altcontactno').val(data.altcontactno);
             $('#email').val(data.email);
             $('#ownership_type').val(data.ownership_type);
-
-            //$("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
             $('#longitude').val(data.longitude);
             $('#latitude').val(data.latitude);
             $('#registeredBy').val(data.registeredby);
             $('#establishment_years').val(data.establishment_years);
-            $('#district').val(data.district_name);
+            $('#district_update').val(data.district_name);
+            $("#educational_level  option[value=" + data.educational_level + "]").prop("selected", true);
+
+            $("#registered_business  option[value=" + data.registered_business + "]").prop("selected", true);
 
 
         }

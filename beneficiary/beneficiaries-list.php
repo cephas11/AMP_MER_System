@@ -231,14 +231,14 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                             <div class="form-group">
                                                 <label  class="control-label">Region </label>
-                                                <input  class="form-control" type="text" name="region" id="region" disabled>
+                                                <input  class="form-control" type="text" name="region" id="region_update" disabled>
                                                 <small class="help-block"></small>
                                             </div> 
 
 
                                             <div class="form-group">
                                                 <label  class="control-label">District </label>
-                                                <input  class="form-control" type="text" name="district" id="district" disabled>
+                                                <input  class="form-control" type="text" name="district" id="district_update" disabled>
                                                 <small class="help-block"></small>
                                             </div> 
 

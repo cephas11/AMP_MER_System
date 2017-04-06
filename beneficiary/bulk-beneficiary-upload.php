@@ -50,7 +50,7 @@ if ($_SESSION['login_valid'] != "YES") {
                             <br>
                             <small style="color:red;">* Upload csv or excel file sheet only.This is the format below</small>
                             <a href="../download-multiple.php?file=bulksample.xlsx" class="btn btn-sm btn-warning" >Download Sample</a>
-                              
+
                             <br>
 <!--                            <small style="color: #39f;"> 
                                 name,business_name,gender,email,contactno,community,educational_level,address,
@@ -109,7 +109,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <th>Longitude</th>
                                                             <th>Latitude</th>
                                                             <th>Registered By</th>
-                                                            <th>Beneficiary Id </th>
+                                                            <th> Id </th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -306,6 +306,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                     <input type="hidden" name="latitude" id="latitude">
                                     <input type="hidden" name="registeredBy" id="registeredBy">
                                     <input type="hidden" name="beneficiaryId" id="beneficiaryId">
+                                 
+
                                     <input type="hidden" name="bulkInsert" >
                                     <input type="hidden" value="saveBeneficiary" name="type"/>
                                 </div>

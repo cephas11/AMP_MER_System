@@ -110,8 +110,8 @@ function getDistricts()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editDistrict(\'' + value.code + '\',\'' + value.name + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
-                              <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editDistrict(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
+                              <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -258,11 +258,11 @@ $.ajax({
           if (data.create_status == 'true') {
             $('#createDistrictBtn').show();
         }
-        if (data.edit_status == 'true') {
-            $('.editBtn').removeAttr('disabled');
+        if (data.edit_status == 'false') {
+            $('.editBtn').attr('disabled');
         }
-        if (data.delete_status == 'true') {
-            $('.deleteBtn').removeAttr('disabled');
+        if (data.delete_status == 'false') {
+            $('.deleteBtn').attr('disabled');
         }
 
     }

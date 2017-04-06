@@ -226,10 +226,10 @@ class BeneficiaryClass {
             if (isset($info['bulkInsert'])) {
                 $this->removeBenficiaryTempTable($info['beneficiaryId']);
             }
-            
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Data saved successfully';
-            
+
             echo json_encode($this->response);
         } else {
             $this->response['success'] = '0';

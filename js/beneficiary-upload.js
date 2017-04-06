@@ -15,7 +15,7 @@ var datatable = $('#beneficiaryTbl').DataTable({
     order: [[0, "asc"]]
 });
 
-datatable.columns([21]).visible(false, false);
+//datatable.columns([21]).visible(false, false);
 datatable.columns.adjust().draw(false); // adjust column sizing and redraw
 
 
@@ -164,7 +164,7 @@ $(function () {
         var district_dropdown_id = 'districts_' + rowArray[1];
         var region_code = _this.val();
 
-        //console.log(region_code + district_dropdown_id);
+        console.log(region_code + district_dropdown_id);
 
         var info = {
             type: 'retreiveDistrictsBasedOnRegion',
@@ -181,7 +181,7 @@ $(function () {
             dataType: 'json',
             success: function (data) {
 
-
+                console.log('districts data : ' + data);
                 $.each(data, function (i, item) {
 
                     $('#' + district_dropdown_id).append($('<option>', {
@@ -241,46 +241,46 @@ $(function () {
 
     });
 });
-
-$('#saveBeneficiary').click(function () {
-    $('#confirmModal').modal('hide');
-    $('#loaderModal').modal('show');
-    var TableData;
-    // TableData = storeBeneficiarieslData();
-    TableData = JSON.stringify(storeBeneficiarieslData());
-    console.log('beneficiaries data:' + TableData);
-
-
-
-    $.ajax({
-        type: "POST",
-        url: "../controllers/bulkBeneficiaryController.php?_=" + new Date().getTime(),
-        data: "pTableData=" + TableData,
-        dataType: "json",
-        success: function (data) {
-            var successStatus = data.success;
-            if (successStatus == 1) {
-                $('#loaderModal').modal('hide');
-
-
-                swal({
-                    title: "Success",
-                    text: data.message,
-                    type: "success",
-                    confirmButtonText: "Ok",
-                    closeOnConfirm: false,
-                }, function (isConfirm) {
-                    if (isConfirm) {
-                        window.location = "beneficiaries-list";
-
-                    }
-                });
-
-            }
-
-        }
-    });
-});
+//
+//$('#saveBeneficiary').click(function () {
+//    $('#confirmModal').modal('hide');
+//    $('#loaderModal').modal('show');
+//    var TableData;
+//    // TableData = storeBeneficiarieslData();
+//    TableData = JSON.stringify(storeBeneficiarieslData());
+//    console.log('beneficiaries data:' + TableData);
+//
+//
+//
+//    $.ajax({
+//        type: "POST",
+//        url: "../controllers/bulkBeneficiaryController.php?_=" + new Date().getTime(),
+//        data: "pTableData=" + TableData,
+//        dataType: "json",
+//        success: function (data) {
+//            var successStatus = data.success;
+//            if (successStatus == 1) {
+//                $('#loaderModal').modal('hide');
+//
+//
+//                swal({
+//                    title: "Success",
+//                    text: data.message,
+//                    type: "success",
+//                    confirmButtonText: "Ok",
+//                    closeOnConfirm: false,
+//                }, function (isConfirm) {
+//                    if (isConfirm) {
+//                        window.location = "beneficiaries-list";
+//
+//                    }
+//                });
+//
+//            }
+//
+//        }
+//    });
+//});
 
 
 $('#clearBeneficiary').click(function () {
@@ -380,7 +380,7 @@ $('#beneficiaryTbl tbody').on('click', '.saveInfo', function () {
     var latitude = $row.find('td:eq(19)').text();
     var registeredBy = $row.find('td:eq(20)').text();
     var beneficiaryId = $row.find('td:eq(21)').text();
-
+console.log('beneficiary id '+beneficiaryId);
     $('.fiscalyear').html(fisyear);
     $('.dateRegistered').html(dateRegisterd);
     $('.category').html(category);
@@ -493,9 +493,11 @@ $('#beneficiaryTbl tbody').on('click', '.deleteInfo', function () {
 
 });
 
+
+
 $('#saveBeneficiaryForm').on('submit', function (e) {
     e.preventDefault();
-
+    console.log('right here :');
     //VALIDATE FOR region,districts,category,decription
     var category = $('#category').val();
     var description = $('#description').val();
