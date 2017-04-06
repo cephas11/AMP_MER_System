@@ -71,6 +71,7 @@ if (isset($_GET['type'])) {
             $getCategoryDescription = new ConfigurationClass();
             $getCategoryDescription->getCategoryDescriptions();
         } else if ($type == 'retreiveDistrictsBasedOnRegion') {
+           
             $region_code = $_GET['region_code'];
             $getDistrictsBasedOnRegion = new ConfigurationClass();
             $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($region_code);

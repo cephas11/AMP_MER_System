@@ -12,7 +12,7 @@ class ConfigurationClass {
     //put your code here
     var $response = array();
 
-    public function setRegion($name,$shortcode) {
+    public function setRegion($name, $shortcode) {
 
 
         $connection = new databaseConnection(); //i created a new object
@@ -210,7 +210,7 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    public function setCategory($name,$shortcode) {
+    public function setCategory($name, $shortcode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
@@ -403,7 +403,9 @@ class ConfigurationClass {
     public function getDistrictsBasedOnRegion($regionCode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='" . $regionCode . "'");
+        $regcode = explode('-', $regionCode);
+
+        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='" . $regcode[1] . "'");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -422,7 +424,9 @@ class ConfigurationClass {
     public function getDescriptionsBasedOnCategory($categoryCode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM description_categories_view WHERE category_code='" . $categoryCode . "'");
+        $catcode = explode('-', $categoryCode);
+
+        $query = mysqli_query($conn, "SELECT * FROM description_categories_view WHERE category_code='" . $catcode[1] . "'");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -817,18 +821,16 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
-    
-    
+
     public function deleteEmplomentType($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "UPDATE employment_types SET status = 1 WHERE code='".$code."'");
+        $query = mysqli_query($conn, "UPDATE employment_types SET status = 1 WHERE code='" . $code . "'");
 
         if ($query) {
             $this->response['success'] = '1';
             $this->response['message'] = 'Type deleted successfully';
             $feedback = json_encode($this->response);
-            
         } else {
             $this->response['success'] = '0';
             $this->response['message'] = 'couldnt delete' . mysqli_error($conn);
@@ -838,7 +840,6 @@ class ConfigurationClass {
         $connection->closeConnection($conn);
     }
 
-    
     public function getEmploymentTypes() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -858,6 +859,7 @@ class ConfigurationClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+
 }
 
 ?>
