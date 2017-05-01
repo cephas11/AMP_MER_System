@@ -20,7 +20,7 @@ class LoginClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-       // $password = md5($password);
+       $password = md5($password);
         $query = mysqli_query($conn,"SELECT * FROM users WHERE username = '" . trim($username) . "' AND password = '" . trim($password) . "'");
 
         if ($query) {
