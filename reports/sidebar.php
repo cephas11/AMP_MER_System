@@ -17,7 +17,7 @@
                     </li>
                     <li class="sidenav-heading" >Portal</li>
                     <li class="sidenav-item " style="display: none"  id="1">
-                        <a href="dashboard">
+                        <a href="../dashboard">
                             <span class="sidenav-icon icon icon-list"></span>
                             <span class="sidenav-label">Dashboard </span>
                         </a>
@@ -30,37 +30,37 @@
                         </a>
                         <ul class="sidenav-subnav collapse">
 
-                            <li><a href="configuration/region">Region Configuration</a></li>
-                            <li><a href="configuration/districts">Districts Configuration</a></li>
-                            <li><a href="configuration/region-districts">Pair Region and Districts </a></li>
-                            <li><a href="configuration/categories">Categories Configuration</a></li>
-                            <li><a href="configuration/description">Description Configuration</a></li>
-                            <li><a href="configuration/description-categories">Pair Description and Category Configuration</a></li>
-                            <li><a href="configuration/registers">Registers</a></li>
-                            <li><a href="configuration/activity-types">Activity Types</a></li>
-                            <li><a href="configuration/activity-description">Activity Description</a></li>
-                            <li><a href="configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
-                            <li><a href="configuration/commodity">Commodity</a></li>
-                            <li><a href="configuration/employment-type">Employment Types</a></li>
+                            <li><a href="../configuration/region">Region Configuration</a></li>
+                            <li><a href="../configuration/districts">Districts Configuration</a></li>
+                            <li><a href="../configuration/region-districts">Pair Region and Districts </a></li>
+                            <li><a href="../configuration/categories">Categories Configuration</a></li>
+                            <li><a href="../configuration/description">Description Configuration</a></li>
+                            <li><a href="../configuration/description-categories">Pair Description and Category Configuration</a></li>
+                            <li><a href="../configuration/registers">Registers</a></li>
+                            <li><a href="../configuration/activity-types">Activity Types</a></li>
+                            <li><a href="../configuration/activity-description">Activity Description</a></li>
+                            <li><a href="../configuration/pairactivity-descriptionTypes">Pair Activity Description and Types</a></li>
+                            <li><a href="../configuration/commodity">Commodity</a></li>
+                            <li><a href="../configuration/employment-type">Employment Types</a></li>
 
                         </ul>
                     </li>
 
                     <li class="sidenav-item" id="3" style="display: none" >
-                        <a href="beneficiary/beneficiaries-list">
+                        <a href="../beneficiary/beneficiaries-list">
                             <span class="sidenav-icon icon icon-user"></span>
                             <span class="sidenav-label">Beneficiaries</span>
                         </a>
                     </li>
                     <li class="sidenav-item" id="4" style="display: none" >
-                        <a href="activity/completion-tool-activities">
+                        <a href="../../activity/completion-tool-activities">
                             <span class="sidenav-icon icon icon-edit"></span>
                             <span class="sidenav-label">Activity Reporting Tool </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item " id="5" style="display: none" >
-                        <a href="activity/sales-tracker">
+                        <a href="../../activity/sales-tracker">
                             <span class="sidenav-icon icon icon-list"></span>
                             <span class="sidenav-label">Sales Records </span>
                         </a>
@@ -68,21 +68,21 @@
                     </li>
 
                     <li class="sidenav-item " id="6" style="display: none" >
-                        <a href="activity/finanacial-services-tracker">
+                        <a href="../activity/finanacial-services-tracker">
                             <span class="sidenav-icon icon icon-calendar"></span>
                             <span class="sidenav-label">Financial Services Tracker </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item " id="7" style="display: none" >
-                        <a href="activity/adoption-tracker">
+                        <a href="../activity/adoption-tracker">
                             <span class="sidenav-icon icon icon-cog"></span>
                             <span class="sidenav-label">Adoption  Tracker </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item " id="8" style="display: none" >
-                        <a href="activity/employment-history">
+                        <a href="../activity/employment-history">
                             <span class="sidenav-icon icon icon-users"></span>
                             <span class="sidenav-label">Employment History </span>
                         </a>
@@ -90,7 +90,7 @@
                     </li>
 
                     <li class="sidenav-item " id="10">
-                        <a href="maps/map-locator">
+                        <a href="../maps/map-locator">
                             <span class="sidenav-icon icon icon-search"></span>
                             <span class="sidenav-label">Maps </span>
                         </a>
@@ -105,9 +105,9 @@
                         </a>
                         <ul class="sidenav-subnav collapse">
 
-                            <li><a href="account/user-groups">User Groups</a></li>
-                            <li><a href="account/rolesandpermissions">Assign Roles And Permissions</a></li>
-                            <li><a href="account/users">Users </a></li>
+                            <li><a href="../account/user-groups">User Groups</a></li>
+                            <li><a href="../account/rolesandpermissions">Assign Roles And Permissions</a></li>
+                            <li><a href="../account/users">Users </a></li>
 
                         </ul>
                     </li>
@@ -119,12 +119,12 @@
                         </a>
                         <ul class="sidenav-subnav collapse">
 
-                            <li><a href="reports/beneficiary-report">Beneficiary Report</a></li>
-                            <li><a href="reports/activity-report">Activity Report</a></li>
-                            <li><a href="reports/sales-report">Sales Report </a></li>
-                            <li><a href="reports/adoption-report">Adoption Report </a></li>
-                            <li><a href="reports/financial-report">Financial Services Report </a></li>
-                            <li><a href="reports/employment-report">Employment/Household Report </a></li>
+                            <li><a href="beneficiary-report">Beneficiary Report</a></li>
+                            <li><a href="activity-report">Activity Report</a></li>
+                            <li><a href="sales-report">Sales Report </a></li>
+                            <li><a href="adoption-report">Adoption Report </a></li>
+                            <li><a href="financial-report">Financial Services Report </a></li>
+                            <li><a href="employment-report">Employment/Household Report </a></li>
 
                         </ul>
                     </li>

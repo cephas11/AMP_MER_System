@@ -720,6 +720,25 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
+    
+        public function updateFunction($info) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
+        $query = mysqli_query($conn, "UPDATE " . $info['tablename'] . " SET name = '" . mysqli_real_escape_string($conn, $info['name']) . "' WHERE code='" . $info['code'] . "'");
+
+        if ($query) {
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Information Updated successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt update' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+        $connection->closeConnection($conn);
+    }
 
     public function updateRegistrarsInfo($info) {
         $connection = new databaseConnection(); //i created a new object
