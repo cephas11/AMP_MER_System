@@ -21,7 +21,7 @@ class LoginClass {
         $conn = $connection->connectToDatabase(); // connected to the database
 
        // $password = md5($password);
-        $query = mysqli_query($conn,"SELECT * FROM users WHERE username = '" . trim($username) . "' AND password = '" . trim($password) . "'");
+        $query = mysqli_query($conn,"SELECT * FROM users WHERE username = '" . mysqli_real_escape_string($conn, $username). "' AND password = '" . mysqli_real_escape_string($conn, $password) . "'");
 
         if ($query) {
             if (mysqli_num_rows($query) > 0) {
