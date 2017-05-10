@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if ($_SESSION['login_valid'] != "YES") {
@@ -79,7 +80,7 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                     </div>
 
-                                    <div class="" id="permisiontable" style="display: none;" >
+                                    <div class="" id="permisiontable" >
 
                                         <table id="formsTbl"   class="participants table table-middle nowrap">
                                             <thead>
@@ -145,3 +146,5 @@ if ($_SESSION['login_valid'] != "YES") {
     </body>
 </html>
 <!-- Localized -->
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
