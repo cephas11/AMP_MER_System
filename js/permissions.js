@@ -281,4 +281,3 @@ $('#permissionsForm').on('submit', function (e) {
 
 
 });
-
