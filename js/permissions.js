@@ -25,20 +25,20 @@ $.ajax({
     }
 });
 
-var patricipantsdatatable = $('#formsTbl').DataTable({
-    responsive: true,
-    language: {
-        paginate:
-                {previous: "&laquo;", next: "&raquo;"},
-        search: "_INPUT_",
-        searchPlaceholder: "Search…"
-    },
-    order: [[0, "asc"]]
-});
+//var patricipantsdatatable = $('#formsTbl').DataTable({
+//    responsive: true,
+//    language: {
+//        paginate:
+//                {previous: "&laquo;", next: "&raquo;"},
+//        search: "_INPUT_",
+//        searchPlaceholder: "Search…"
+//    },
+//    order: [[0, "asc"]]
+//});
 
 $("#userGroup").change(function () {
 
-    $('input:checkbox').prop('checked',false);
+    $('input:checkbox').prop('checked', false);
     var userGroup = this.value;
     getGroupPermissions(userGroup);
 });
@@ -120,8 +120,6 @@ function getForms()
 
             console.log('data is : ' + data);
 
-
-            patricipantsdatatable.clear().draw();
             var obj = jQuery.parseJSON(data);
             if (obj.length == 0) {
                 console.log("NO DATA!");
@@ -129,25 +127,24 @@ function getForms()
 
                 $('#total').val(obj.length);
                 console.log("yes DATA!");
+
                 var rowNum = 0;
                 $.each(obj, function (key, value) {
                     var j = -1;
                     var r = new Array();
-                    r[++j] = "<td ><label id='cols" + rowNum + "' >" + value.id + "</label> </td>";
-                    r[++j] = "<td> " + value.name + "</td>";
-                    r[++j] = "<td><input type='checkbox' id='all" + rowNum + "' name='all[]'/></td>";
+                    var tr = "<tr><td ><label id='cols" + rowNum + "' >" + value.id + "</label> </td>"
+                            + "<td> " + value.name + "</td>"
+                            + "<td><input type='checkbox' id='all" + rowNum + "' name='all[]'/></td>"
 
-                    r[++j] = "<td><input type='checkbox' id='view" + rowNum + "'   name='view[]'/></td>";
-                    r[++j] = "<td><input type='checkbox' id='edit" + rowNum + "' name='edit[]'/></td>";
-                    r[++j] = "<td><input type='checkbox' id='delete" + rowNum + "' name='delete[]'/></td>";
+                            + "<td><input type='checkbox' id='view" + rowNum + "'   name='view[]'/></td>"
+                            + "<td><input type='checkbox' id='edit" + rowNum + "' name='edit[]'/></td>"
+                            + "<td><input type='checkbox' id='delete" + rowNum + "' name='delete[]'/></td></tr>";
 
                     rowNum = rowNum + 1;
+                    $(tr).appendTo("tbody");
 
-
-                    rowNode = patricipantsdatatable.row.add(r);
                 });
 
-                rowNode.draw().node();
             }
 
 
@@ -281,3 +278,11 @@ $('#permissionsForm').on('submit', function (e) {
 
 
 });
+
+  $('#assign_all').click(function () {
+
+        $('tbody tr td input[type="checkbox"]').each(function () {
+            $(this).prop('checked', true);
+        });
+
+    });

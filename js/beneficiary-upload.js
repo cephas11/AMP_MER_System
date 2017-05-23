@@ -5,7 +5,7 @@
  */
 $('#saveButton').hide();
 var datatable = $('#beneficiaryTbl').DataTable({
-    responsive: true,
+    responsive: false,
     language: {
         paginate:
                 {previous: "&laquo;", next: "&raquo;"},

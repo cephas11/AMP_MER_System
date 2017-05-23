@@ -80,6 +80,18 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                     </div>
 
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary "href="#" id="assign_all" >Assign All</a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
                                     <div class="" id="permisiontable" >
 
                                         <table id="formsTbl"   class="participants table table-middle nowrap">
