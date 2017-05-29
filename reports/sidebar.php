@@ -53,14 +53,14 @@
                         </a>
                     </li>
                     <li class="sidenav-item" id="4"  >
-                        <a href="completion-tool-activities">
+                        <a href="../activity/completion-tool-activities">
                             <span class="sidenav-icon icon icon-edit"></span>
                             <span class="sidenav-label">Activity Reporting Tool </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item " id="5"  >
-                        <a href="sales-tracker">
+                        <a href="../activity/sales-tracker">
                             <span class="sidenav-icon icon icon-list"></span>
                             <span class="sidenav-label">Sales Records </span>
                         </a>
@@ -68,21 +68,21 @@
                     </li>
 
                     <li class="sidenav-item " id="6"  >
-                        <a href="finanacial-services-tracker">
+                        <a href="../activity/finanacial-services-tracker">
                             <span class="sidenav-icon icon icon-calendar"></span>
                             <span class="sidenav-label">Financial Services Tracker </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item " id="7"  >
-                        <a href="adoption-tracker">
+                        <a href="../activity/adoption-tracker">
                             <span class="sidenav-icon icon icon-cog"></span>
                             <span class="sidenav-label">Adoption  Tracker </span>
                         </a>
 
                     </li>
                     <li class="sidenav-item " id="8"  >
-                        <a href="employment-history">
+                        <a href="../activity/employment-history">
                             <span class="sidenav-icon icon icon-users"></span>
                             <span class="sidenav-label">Employment History </span>
                         </a>
