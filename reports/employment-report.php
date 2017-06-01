@@ -26,7 +26,7 @@ if ($_SESSION['login_valid'] != "YES") {
         <link rel="stylesheet" href="../css/elephant.min.css">
         <link rel="stylesheet" href="../css/application.min.css">
         <link rel="stylesheet" href="../css/demo.min.css">
-        <!--                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">       
+<!--                        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">       
                         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
                         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.bootstrap4.min.css
                               ">-->
@@ -55,7 +55,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <table id="employmntTbl" class="table table-bordered table-striped table-nowrap " cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th colspan="5">Total Household size</th>
+                                                        <th colspan="2">Total Household size</th>
                                                         <th colspan="2">
                                                             Total number farm hands or additional
 
@@ -70,12 +70,8 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <tr>
                                                         <th>Male</th>
                                                         <th>Female</th>
-                                                        <th>Harvesting</th>
-                                                        <th>Post-Harvest Handling</th>
-                                                        <th>Storage</th>
-                                                        <th>Harvesting</th>
-                                                        <th>Post-Harvest Handling</th>
-                                                        <th>Storage</th>
+                                                        <th>Male</th>
+                                                        <th>Female</th>
 
                                                     </tr>
                                                 </thead>
@@ -119,6 +115,17 @@ if ($_SESSION['login_valid'] != "YES") {
         <script src="../js/application.min.js"></script>
         <script src="../js/demo.min.js"></script>
         <script src="../js/select2.js"></script>
+<!--
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js
+        "></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+        <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+        -->
+<!--        <script src="hhttps://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+
         <script src="../js/report.js"></script>
         <!--https://cdn.datatables.net/buttons/1.3.1/js/buttons.bootstrap4.min.js
         //cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js

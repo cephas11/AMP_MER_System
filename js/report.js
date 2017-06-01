@@ -495,3 +495,22 @@ $.ajax({
 
     }
 });
+
+
+var empdatatable = $('#employmntTbl').DataTable({
+    responsive: true,
+    dom: 'Bfrtip',
+    buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+    ],
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    }
+
+});
