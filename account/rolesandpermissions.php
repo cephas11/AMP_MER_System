@@ -55,9 +55,8 @@ if ($_SESSION['login_valid'] != "YES") {
                             <div class="card-body">
                                 <!--                                <div class="text-center"><h4>Activity Completion Reporting Tool </h4></div>
                                 -->
-                                <form id="permissionsForm" method="POST" enctype="multipart/form-data">
-                                    <input  type="hidden" name="type" value="savePermissionRoles"/>
-                                    <input  type="hidden" name="total" id="total" />
+                                <form id="assignPermissionsForm" method="POST" enctype="multipart/form-data">
+                                    <input  type="hidden" name="type" value="saveGroupPermissions"/>
 
                                     <div class="col-xs-12">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -94,16 +93,13 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                     <div class="" id="permisiontable" >
 
-                                        <table id="formsTbl"   class="participants table table-middle nowrap">
+                                        <table id="formsTbl" class="participants table table-middle nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>Id</th>
-                                                    <th>Form</th>
-                                                    <th>Create</th>
-                                                    <th>View</th>
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-
+                                                    <th>Permission</th>
+                                                    <th></th>
+                                                    
 
                                                 </tr>
                                             </thead>
@@ -153,7 +149,7 @@ if ($_SESSION['login_valid'] != "YES") {
         <script src="../js/select2.js"></script>
 <!--        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.0.4/js/dataTables.checkboxes.min.js"></script>
         -->
-        <script src="../js/permissions.js"></script>
+        <script src="../js/account.js"></script>
 
     </body>
 </html>

@@ -131,10 +131,10 @@ class AccountClass {
         $connection->closeConnection($conn);
     }
 
-    public function retreiveForms() {
+    public function retreivePermissions() {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM forms");
+        $query = mysqli_query($conn, "SELECT * FROM permissions");
         $audit = new AuditClass();
         $audit->setAuditLog("Retreive Forms ");
 
@@ -158,17 +158,14 @@ class AccountClass {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $createdBy = 'admin';
 
+        $createdBy = $_SESSION['meruserid'];
 
         $this->deleteUserPermission($usergroup);
 
 
-
-        $array = json_decode($data, true);
-
-        foreach ($array as $item) { //foreach element in $arr
-            $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,form_id,view_status,edit_status,delete_status,create_status,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $item['formid']) . "','" . mysqli_real_escape_string($conn, $item['view']) . "','" . mysqli_real_escape_string($conn, $item['edit']) . "','" . mysqli_real_escape_string($conn, $item['deletestatus']) . "','" . mysqli_real_escape_string($conn, $item['all']) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
+        foreach ($data as $perm) { //foreach element in $arr
+            $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,perm_keyword,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $perm) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
         }
 
         if ($query) {
@@ -192,7 +189,7 @@ class AccountClass {
     private function getUserPermission($usergroup) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM permissions_and_roles WHERE user_group_id=$usergroup");
+        $query = mysqli_query($conn, "SELECT perm_keyword FROM permissions_and_roles WHERE user_group_id=$usergroup");
 
 
 
@@ -376,7 +373,7 @@ class AccountClass {
                 array_push($this->response['message'], $one);
             }
 
-            //$this->response['data'] = mysqli_fetch_array($results,MYSQLI_ASSOC);
+            $this->response['data'] = mysqli_fetch_array($results,MYSQLI_ASSOC);
         }
 
         $feedback = json_encode($this->response);
@@ -420,6 +417,38 @@ class AccountClass {
             echo json_encode($this->response);
         }
         $connection->closeConnection($conn);
+    }
+
+    public function setPermission($name) {
+
+
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $results = $this->checkPermissionExistence($name);
+        if ($results > 0) {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'Permission Keyword already exist';
+        } else {
+            $query = mysqli_query($conn, "INSERT INTO permissions(perm_keyword) VALUES ('" . mysqli_real_escape_string($conn, $name) . "')");
+            if ($query) {
+                $this->response['success'] = '1';
+                $this->response['message'] = 'New Permission saved successfully';
+            }
+        }
+        echo json_encode($this->response);
+
+        $connection->closeConnection($conn);
+    }
+
+    private function checkPermissionExistence($name) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = mysqli_query($conn, "SELECT * FROM permissions WHERE perm_keyword LIKE '%" . $name . "%'");
+//echo  "SELECT * FROM permissions WHERE perm_keyword LIKE '%".$name."%'";
+
+        $connection->closeConnection($conn);
+        return mysqli_num_rows($query);
     }
 
 }

@@ -20,14 +20,13 @@ if (isset($_REQUEST)) {
             $id = $_POST['usergroupid'];
             $save = new AccountClass();
             $save->updateUserGroup($id, $name);
-        } else if ($type == "retreiveForms") {
+        } else if ($type == "retreivePermissions") {
 
             $get = new AccountClass();
-            $get->retreiveForms();
-        } else if ($type == "savePermissionRoles") {
-            $usergroup = $_POST['usergroup'];
-            $data = $_POST['jsonObj'];
-
+            $get->retreivePermissions();
+        } else if ($type == "saveGroupPermissions") {
+            $usergroup = $_POST['userGroup'];
+            $data = $_POST['permissions'];
             $setGroupPermissions = new AccountClass();
             $setGroupPermissions->setPermissionsAndRoles($usergroup, $data);
         } else if ($type == "saveUser") {
@@ -58,8 +57,8 @@ if (isset($_REQUEST)) {
             $get->getFormPermissions($formid);
         } else if ($type == "retreiveUserGroupPermissions") {
             $id = $_POST['groupid'];
-            $get = new AccountClass();
-            $get->getGroupPermissions($id);
+          $get = new AccountClass();
+         $get->getGroupPermissions($id);
         } else if ($type == "retreiveUserInfo") {
             $id = $_POST['userid'];
             $get = new AccountClass();
@@ -74,7 +73,12 @@ if (isset($_REQUEST)) {
            // print_r($_POST);
             $save = new AccountClass();
           $save->updateUserInfo($name, $username, $email, $phoneno, $userGroup,$userid);
-        }
+        }if ($type == "savePermission") {
+            
+           $permission = $_POST['permission'];
+            $save = new AccountClass();
+            $save->setPermission($permission);
+        } 
     } else {
         echo 'provide type';
     }
