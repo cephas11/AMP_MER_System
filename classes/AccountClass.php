@@ -186,7 +186,7 @@ class AccountClass {
         $connection->closeConnection($conn);
     }
 
-    private function getUserPermission($usergroup) {
+    public function getUserPermission($usergroup) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT perm_keyword FROM permissions_and_roles WHERE user_group_id=$usergroup");
