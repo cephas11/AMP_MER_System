@@ -43,16 +43,23 @@ if ($_SESSION['login_valid'] != "YES") {
                     <div class="text m-b">
                         <h3 class="m-b-0">Categories</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="col-md-10 ">
+                    <?php
+                    $scopes = $_SESSION['permissions'];
+                    if (in_array("ADD_CATEGORY", $scopes)) {
+                        ?>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-md-10 ">
 
-                            </div>
-                            <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" data-whatever="@mdo">Add New Category</button>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal" data-whatever="@mdo">Add New Category</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
                     <div style="margin-bottom:5px;">
 
                     </div>
@@ -68,8 +75,20 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                                     <th>Name</th>
 
-                                                    <th>Action </th>
+                                                    <?php
+                                                    if (in_array("EDIT_CATEGORY", $scopes)) {
+                                                        ?>
 
+                                                        <th>Edit </th>
+                                                        <?php
+                                                    }
+                                                    if (in_array("DELETE_CATEGORY", $scopes)) {
+                                                        ?>
+
+                                                        <th>Delete </th>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>

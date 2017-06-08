@@ -98,9 +98,8 @@ function getRegisters()
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.email + '" class="subject">' + value.email + '</td>';
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.contactno + '" class="subject">' + value.contactno + '</td>';
-
-                    r[++j] = '<td><button onclick="editRegistrar(\'' + value.code + '\',\'' + value.name + '\',\'' + value.email + '\',\'' + value.contactno + '\')"" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteRegistrar(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editRegistrar(\'' + value.code + '\',\'' + value.name + '\',\'' + value.email + '\',\'' + value.contactno + '\')"" class="btn btn-outline-info btn-sm" type="button">Edit</button></td>';
+                    r[++j] = '<td><button onclick="deleteRegistrar(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });

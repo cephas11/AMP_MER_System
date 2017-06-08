@@ -104,8 +104,8 @@ function getCategories()
                     // represent columns as array
                     r[++j] = '<td>' + value.shortcode + '</td>';
                     r[++j] = '<td class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editCategory(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteCategory(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editCategory(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button></td>';
+                    r[++j] = '<td><button onclick="deleteCategory(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -180,7 +180,7 @@ $('#deleteCategoryForm').on('submit', function (e) {
 });
 
 
-function editCategory(code, name,shortcode) {
+function editCategory(code, name, shortcode) {
     //alert('goood');
     $('#cat_code').val(code);
     $('#catName').val(name);

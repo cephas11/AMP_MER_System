@@ -110,8 +110,8 @@ function getDistricts()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editDistrict(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
-                              <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editDistrict(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button></td>';
+                    r[++j] = '<td> <button onclick="deleteDistrict(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -149,7 +149,7 @@ $('#deleteDistrictForm').on('submit', function (e) {
         data: formData,
         dataType: "json",
         success: function (data) {
-           // console.log(data);
+            // console.log(data);
             // $("#loader").hide();
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
@@ -187,7 +187,7 @@ $('#deleteDistrictForm').on('submit', function (e) {
 });
 
 
-function editDistrict(code,name) {
+function editDistrict(code, name) {
     //alert('goood');
     $('#code').val(code);
     $('#districtName').val(name);
@@ -212,7 +212,7 @@ $('#updateDistrictForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-         
+
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
 
@@ -255,7 +255,7 @@ $.ajax({
     success: function (data) {
 
 //create staatus
-          if (data.create_status == 'true') {
+        if (data.create_status == 'true') {
             $('#createDistrictBtn').show();
         }
         if (data.edit_status == 'false') {

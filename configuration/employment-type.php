@@ -43,16 +43,23 @@ if ($_SESSION['login_valid'] != "YES") {
                     <div class="text m-b">
                         <h3 class="m-b-0">Employment Type</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="col-md-10 ">
+                    <?php
+                    $scopes = $_SESSION['permissions'];
+                    if (in_array("ADD_EMPLOYMENT_TYPE", $scopes)) {
+                        ?>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-md-10 ">
 
-                            </div>
-                            <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#activityModal" data-whatever="@mdo">Add New Type</button>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#activityModal" data-whatever="@mdo">Add New Type</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
                     <div style="margin-bottom:5px;">
 
                     </div>
@@ -66,9 +73,14 @@ if ($_SESSION['login_valid'] != "YES") {
                                                 <tr>
 
                                                     <th>Name</th>
+                                                    <?php
+                                                    if (in_array("DELETE_EMPLOYMENT_TYPES", $scopes)) {
+                                                        ?>
 
-                                                    <th>Action </th>
-
+                                                        <th>Action </th>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>

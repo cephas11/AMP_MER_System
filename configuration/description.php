@@ -42,16 +42,23 @@ if ($_SESSION['login_valid'] != "YES") {
                     <div class="text m-b">
                         <h3 class="m-b-0">Description</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="col-md-9">
+                    <?php
+                    $scopes = $_SESSION['permissions'];
+                    if (in_array("ADD_DESCRIPTION", $scopes)) {
+                        ?>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-md-9">
 
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#descriptionModal" data-whatever="@mdo">Add New Description</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#descriptionModal" data-whatever="@mdo">Add New Description</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
                     <div style="margin-bottom:5px;">
 
                     </div>
@@ -66,8 +73,20 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                                     <th>Name</th>
 
-                                                    <th>Action </th>
+  <?php
+                                                    if (in_array("EDIT_DESCRIPTION", $scopes)) {
+                                                        ?>
 
+                                                        <th>Edit </th>
+                                                        <?php
+                                                    }
+                                                    if (in_array("DELETE_DESCRIPTION", $scopes)) {
+                                                        ?>
+
+                                                        <th>Delete </th>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>

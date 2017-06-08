@@ -105,8 +105,8 @@ function getTypes()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editActivity(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteActivity(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editActivity(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button></td>';
+                    r[++j] = '<td><button onclick="deleteActivity(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });

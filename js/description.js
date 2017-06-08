@@ -13,50 +13,50 @@ var datatable = $('#descriptionTbl').DataTable({
 $('#saveDescriptionForm').on('submit', function (e) {
     e.preventDefault();
     // var validator = $("#saveRegionForm").validate();
-   $('input:submit').attr("disabled", true);
+    $('input:submit').attr("disabled", true);
     var formData = $(this).serialize();
     console.log(formData);
-         
-       
-        $.ajax({
-            url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
-            type: "GET",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                // $("#loader").hide();
-                      $('input:submit').attr("disabled", false);
-                $('#descriptionModal').modal('hide');
-                var successStatus = data.success;
-                document.getElementById("saveDescriptionForm").reset();
 
-                if (successStatus == 1) {
-                    Command: toastr["success"](data.message, "Success");
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
-                    getDescription();
+    $.ajax({
+        url: '../controllers/ConfigurationController.php?_=' + new Date().getTime(),
+        type: "GET",
+        data: formData,
+        dataType: "json",
+        success: function (data) {
+            // $("#loader").hide();
+            $('input:submit').attr("disabled", false);
+            $('#descriptionModal').modal('hide');
+            var successStatus = data.success;
+            document.getElementById("saveDescriptionForm").reset();
+
+            if (successStatus == 1) {
+                Command: toastr["success"](data.message, "Success");
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 }
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                alert(errorThrown);
+                getDescription();
             }
-        });
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
 
 });
 
@@ -91,8 +91,8 @@ function getDescription()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editDescription(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button>\n\
-                              <button onclick="deleteDescription(\'' + value.code + '\',\'' + value.name +'\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editDescription(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-info btn-sm" type="button">Edit</button></td>';
+                    r[++j] = '<td><button onclick="deleteDescription(\'' + value.code + '\',\'' + value.name + '\')" class="btn btn-outline-danger btn-sm" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -165,7 +165,7 @@ $('#deleteDescriptionForm').on('submit', function (e) {
 });
 
 
-function editDescription(code,name) {
+function editDescription(code, name) {
     //alert('goood');
     $('#desc_code').val(code);
     $('#descName').val(name);
@@ -189,7 +189,7 @@ $('#updateDescriptionForm').on('submit', function (e) {
             $('input:submit').attr("disabled", false);
             $('#loaderModal').modal('hide');
             var successStatus = data.success;
-         
+
             if (successStatus == 1) {
                 Command: toastr["success"](data.message, "Success");
 
