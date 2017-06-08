@@ -106,89 +106,135 @@ if (isset($_SESSION['meruserid'])) {
                             </li>
                             <?php
                         }
+                        if (in_array("VIEW_BENEFICIARIES", $scopes)) {
+                            ?>
+                            <li class="sidenav-item" id="3"  >
+                                <a href="beneficiary/beneficiaries-list">
+                                    <span class="sidenav-icon icon icon-user"></span>
+                                    <span class="sidenav-label">Beneficiaries</span>
+                                </a>
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_ACTIVITY_REPORT_TOOL", $scopes)) {
+                            ?>
+                            <li class="sidenav-item" id="4"  >
+                                <a href="activity/completion-tool-activities">
+                                    <span class="sidenav-icon icon icon-edit"></span>
+                                    <span class="sidenav-label">Activity Reporting Tool </span>
+                                </a>
+
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_SALES_RECORD", $scopes)) {
+                            ?>
+                            <li class="sidenav-item " id="5"  >
+                                <a href="activity/sales-tracker">
+                                    <span class="sidenav-icon icon icon-list"></span>
+                                    <span class="sidenav-label">Sales Records </span>
+                                </a>
+
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_FINANCIAL_SERVICE", $scopes)) {
+                            ?>
+
+                            <li class="sidenav-item " id="6"  >
+                                <a href="activity/finanacial-services-tracker">
+                                    <span class="sidenav-icon icon icon-calendar"></span>
+                                    <span class="sidenav-label">Financial Services Tracker </span>
+                                </a>
+
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_ADOPTION_TRACKER", $scopes)) {
+                            ?>
+                            <li class="sidenav-item " id="7"  >
+                                <a href="activity/adoption-tracker">
+                                    <span class="sidenav-icon icon icon-cog"></span>
+                                    <span class="sidenav-label">Adoption  Tracker </span>
+                                </a>
+
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_EMPLOYMENT_HISTORY", $scopes)) {
+                            ?>
+                            <li class="sidenav-item " id="8"  >
+                                <a href="activity/employment-history">
+                                    <span class="sidenav-icon icon icon-users"></span>
+                                    <span class="sidenav-label">Employment History </span>
+                                </a>
+
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_MAPS", $scopes)) {
+                            ?>
+
+                            <li class="sidenav-item " id="9" >
+                                <a href="maps/map-locator">
+                                    <span class="sidenav-icon icon icon-search"></span>
+                                    <span class="sidenav-label">Maps </span>
+                                </a>
+
+                            </li>
+
+                            <?php
+                        }
+                        if (in_array("MANAGE_ACCOUNT", $scopes)) {
+                            ?>
+                            <li class="sidenav-item has-subnav" id="10"  >
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-files-o"></span>
+                                    <span class="sidenav-label">Account</span>
+                                </a>
+                                <ul class="sidenav-subnav collapse">
+
+                                    <li><a href="account/user-groups">User Groups</a></li>
+                                    <li><a href="account/rolesandpermissions">Assign Roles And Permissions</a></li>
+                                    <li><a href="account/users">Users </a></li>
+
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                        if (in_array("VIEW_REPORTS", $scopes)) {
+                            ?>
+
+                            <li class="sidenav-item has-subnav" id="11" >
+                                <a href="#" aria-haspopup="true">
+                                    <span class="sidenav-icon icon icon-files-o"></span>
+                                    <span class="sidenav-label">Reports</span>
+                                </a>
+                                <ul class="sidenav-subnav collapse">
+
+                                    <li><a href="reports/beneficiary-report">Beneficiary Report</a></li>
+                                    <li><a href="reports/activity-report">Activity Report</a></li>
+                                    <li><a href="reports/sales-report">Sales Report </a></li>
+                                    <li><a href="reports/adoption-report">Adoption Report </a></li>
+                                    <li><a href="reports/financial-report">Financial Services Report </a></li>
+                                    <li><a href="reports/employment-report">Employment/Household Report </a></li>
+
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                        if (in_array("READ_AUDIT_LOGS", $scopes)) {
+                            ?>
+                            <li class="sidenav-item " id="5"  >
+                                <a href="auditlogs">
+                                    <span class="sidenav-icon icon icon-list"></span>
+                                    <span class="sidenav-label">Audit Logs </span>
+                                </a>
+
+                            </li>
+                            <?php
+                        }
                         ?>
-                        <li class="sidenav-item" id="3"  >
-                            <a href="beneficiary/beneficiaries-list">
-                                <span class="sidenav-icon icon icon-user"></span>
-                                <span class="sidenav-label">Beneficiaries</span>
-                            </a>
-                        </li>
-                        <li class="sidenav-item" id="4"  >
-                            <a href="activity/completion-tool-activities">
-                                <span class="sidenav-icon icon icon-edit"></span>
-                                <span class="sidenav-label">Activity Reporting Tool </span>
-                            </a>
-
-                        </li>
-                        <li class="sidenav-item " id="5"  >
-                            <a href="activity/sales-tracker">
-                                <span class="sidenav-icon icon icon-list"></span>
-                                <span class="sidenav-label">Sales Records </span>
-                            </a>
-
-                        </li>
-
-                        <li class="sidenav-item " id="6"  >
-                            <a href="activity/finanacial-services-tracker">
-                                <span class="sidenav-icon icon icon-calendar"></span>
-                                <span class="sidenav-label">Financial Services Tracker </span>
-                            </a>
-
-                        </li>
-                        <li class="sidenav-item " id="7"  >
-                            <a href="activity/adoption-tracker">
-                                <span class="sidenav-icon icon icon-cog"></span>
-                                <span class="sidenav-label">Adoption  Tracker </span>
-                            </a>
-
-                        </li>
-                        <li class="sidenav-item " id="8"  >
-                            <a href="activity/employment-history">
-                                <span class="sidenav-icon icon icon-users"></span>
-                                <span class="sidenav-label">Employment History </span>
-                            </a>
-
-                        </li>
-
-                        <li class="sidenav-item " id="9" >
-                            <a href="maps/map-locator">
-                                <span class="sidenav-icon icon icon-search"></span>
-                                <span class="sidenav-label">Maps </span>
-                            </a>
-
-                        </li>
-
-
-                        <li class="sidenav-item has-subnav" id="10"  >
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-files-o"></span>
-                                <span class="sidenav-label">Account</span>
-                            </a>
-                            <ul class="sidenav-subnav collapse">
-
-                                <li><a href="account/user-groups">User Groups</a></li>
-                                <li><a href="account/rolesandpermissions">Assign Roles And Permissions</a></li>
-                                <li><a href="account/users">Users </a></li>
-
-                            </ul>
-                        </li>
-
-                        <li class="sidenav-item has-subnav" id="11" >
-                            <a href="#" aria-haspopup="true">
-                                <span class="sidenav-icon icon icon-files-o"></span>
-                                <span class="sidenav-label">Reports</span>
-                            </a>
-                            <ul class="sidenav-subnav collapse">
-
-                                <li><a href="reports/beneficiary-report">Beneficiary Report</a></li>
-                                <li><a href="reports/activity-report">Activity Report</a></li>
-                                <li><a href="reports/sales-report">Sales Report </a></li>
-                                <li><a href="reports/adoption-report">Adoption Report </a></li>
-                                <li><a href="reports/financial-report">Financial Services Report </a></li>
-                                <li><a href="reports/employment-report">Employment/Household Report </a></li>
-
-                            </ul>
-                        </li>
                     </ul>
                 </nav>
             </div>
