@@ -42,6 +42,9 @@ if ($_SESSION['login_valid'] != "YES") {
                             <span class="d-ib">Dashboard</span>
 
                     </div>
+                    <?php
+            print_r($_SESSION['permissions']);                    
+                    ?>
                   
                     <div class="row gutter-xs">
                         <div class="col-md-6 col-lg-3 col-lg-push-0">

@@ -35,7 +35,7 @@ class LoginClass {
                 $permission = new AccountClass();
                 $results = $permission->getUserPermission($userType);
                 while ($one = mysqli_fetch_assoc($results)) {
-                    array_push($permissions, $one);
+                    array_push($permissions, $one['perm_keyword']);
                 }
 
                 $this->response['data'] = mysqli_fetch_array($results, MYSQLI_ASSOC);

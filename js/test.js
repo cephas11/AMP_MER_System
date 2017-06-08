@@ -12,15 +12,59 @@ function getPermissions() {
         dataType: 'json'
     });
 }
+$.ajax({
+    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "GET",
+    data: info,
+    dataType: 'json',
+    success: function (data) {
 
-getPermissions().done(function (data) {
-    permissions = []
-    console.log('permissions: ' + data);
-    $.each(data, function (index, perm) {
-        permissions.push(perm.perm_keyword); //push values here
-    });
-//
+        // console.log(data);
+//                        if (jQuery.inArray("1", myarray) != - 1) {
+//                console.log("is in array");
+//                        } else {
+//                console.log("is NOT in array");
+        $.each(data, function (index, perm) {
+            permissions.push(perm.perm_keyword); //push values here
+        });
+        
+        if (jQuery.inArray("EDIT_REGION", permissions) != -1) {
+            console.log("is in array");
+        }  
+
+    }
 });
+
+
+
+//var info = {
+//    type: "userGroupPermissions"
+//};
+//$.ajax({
+//    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
+//    type: "GET",
+//    data: info,
+//    dataType: 'json',
+//    success: function (data) {
+//
+//        // console.log(data);
+////                        if (jQuery.inArray("1", myarray) != - 1) {
+////                console.log("is in array");
+////                        } else {
+////                console.log("is NOT in array");
+//        $.each(data, function (index, perm) {
+//            permissions.push(perm.perm_keyword); //push values here
+//        });
+//
+//    }
+//});
+//
+//if(permissions != null){
+//  console.log('Permissions: ' + permissions); // see the output here
+//if (jQuery.inArray("EDIT_REGION", permissions) != -1) {
+//    console.log("is in array");
+//}  
+//}
 
 
 $('#saveRegionForm').on('submit', function (e) {
@@ -125,8 +169,32 @@ function getRegions()
                     r[++j] = '<td>' + value.shortcode + '</td>';
 
                     r[++j] = '<td data-regioncode="' + value.code + '" data-region="' + value.name + '" class="subject">' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')"  class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button> </td>';
-                    r[++j] = '<td><button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
+
+                    r[++j] = '<td>' +
+                     getPermissions().done(function (data) {
+                        permissions = [];
+                     //   console.log('permissions: ' + data);
+                        $.each(data, function (index, perm) {
+                            permissions.push(perm.perm_keyword); //push values here
+                        });
+                        if (jQuery.inArray("EDIT_REGION", permissions) != -1) {
+                            console.log('here');
+                            ////' <button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')"  class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>';
+
+                        } else {
+                            // ' <button onclick="editRegion(\'' + value.code + '\',\'' + value.name + '\',\'' + value.shortcode + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>';
+
+                        }
+
+//                        if (jQuery.inArray("DELETE_REGION", permissions) != -1) {
+//                            ' <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button>';
+//                        } else {
+//                            ' <button onclick="deleteRegion(\'' + value.code + '\',\'' + value.name + '\')" disabled  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button>';
+//
+//                        }
+                        '</td>';
+                    });
+
 
 
                     rowNode = datatable.row.add(r);
