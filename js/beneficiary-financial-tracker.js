@@ -219,8 +219,9 @@ function getFinaceHistory(bene_code)
                     r[++j] = '<td>' + value.disbursement_date + '</td>';
                     r[++j] = '<td>' + value.createdAt + '</td>';
 
-                    r[++j] = '<td><button onclick="getFinanceDetail(\'' + value.code + '\')" disabled class="editBtn btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-eye"></i><span class="hidden-md hidden-sm hidden-xs"></span></a>\n\
-                            <button onclick="deleteFinance(\'' + value.code + '\')" disabled class="deleteBtn btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs"></span></button></td>';
+                    r[++j] = '<td><button onclick="getFinanceDetail(\'' + value.code + '\')"  class="editBtn btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-eye"></i><span class="hidden-md hidden-sm hidden-xs"></span></a></td>';
+                    
+                     r[++j] = '<td><button onclick="deleteFinance(\'' + value.code + '\')"  class="deleteBtn btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs"></span></button></td>';
 
                     rowNode = datatable.row.add(r);
                 });
@@ -237,7 +238,7 @@ function getFinaceHistory(bene_code)
 }
 
 function deleteFinance(code) {
-
+console.log('display modal...');
     $('#code').val(code);
     $('#confirmModal').modal('show');
 }
@@ -496,28 +497,4 @@ $('#updatePayment').click(function () {
         }
     });
 
-});
-var info = {
-    type: "formPermmission",
-    formid: 6
-};
-$.ajax({
-    url: '../controllers/AccountController.php?_=' + new Date().getTime(),
-    type: "POST",
-    data: info,
-    dataType: 'json',
-    success: function (data) {
-        console.log(data.create_status);
-//create staatus
-        if (data.create_status == 'true') {
-            $('#creatediv').show();
-        }
-        if (data.edit_status == 'true') {
-            $('.editBtn').removeAttr('disabled');
-        }
-        if (data.delete_status == 'true') {
-            $('.deleteBtn').removeAttr('disabled');
-        }
-
-    }
 });

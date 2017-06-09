@@ -48,8 +48,8 @@ function getUserGroups()
                     var r = new Array();
                     // represent columns as array
                     r[++j] = '<td>' + value.name + '</td>';
-                    r[++j] = '<td><button onclick="editUserGroup(\'' + value.id + '\',\'' + value.name + '\')" disabled class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button>\n\
-                              <button onclick="deleteUserGroup(\'' + value.id + '\',\'' + value.name + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="editUserGroup(\'' + value.id + '\',\'' + value.name + '\')"  class="btn btn-outline-info btn-sm editBtn" type="button">Edit</button></td>';
+                       r[++j] = '<td><button onclick="deleteUserGroup(\'' + value.id + '\',\'' + value.name + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });

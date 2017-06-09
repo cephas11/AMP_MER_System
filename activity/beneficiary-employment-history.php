@@ -241,15 +241,15 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                                                     </select>
                                                                 </td>
-                                                                
-                                                                                                                   <td>
+
+                                                                <td>
                                                                     <select name="duration[]" id="duration" class="form-control duration" required >
                                                                         <option value="">Choose...</option>
 
                                                                     </select>
                                                                 </td>
 
-                                                              
+
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -258,13 +258,22 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                             </div>
                                         </div>
-                                        <div style="margin-top: 15px"></div>
-                                        <div class=" row col-xs-12 ">
-                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
+                                        <?php
+                                        $scopes = $_SESSION['permissions'];
+                                        if (in_array("ADD_EMPLOYMENT_DETAILS", $scopes)) {
+                                            ?> 
 
-                                                <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                            <div style="margin-top: 15px"></div>
+                                            <div class=" row col-xs-12 ">
+                                                <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
+
+                                                    <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <?php
+                                        }
+                                        ?>
+
                                     </form>
                                 </div>
 

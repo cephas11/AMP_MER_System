@@ -46,16 +46,23 @@ if ($_SESSION['login_valid'] != "YES") {
                     <div class="text m-b">
                         <h3 class="m-b-0">User Groups</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="col-md-10 ">
+                    <?php
+                    $scopes = $_SESSION['permissions'];
+                    if (in_array("ADD_USER_GROUP", $scopes)) {
+                        ?>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-md-10 ">
 
-                            </div>
-                            <div class="col-md-2 ">
-                                <button type="button" class="btn btn-primary" id="createUserGroupBtn" style="display: none" data-toggle="modal" data-target="#userGroupModal" data-whatever="@mdo"> New User Group</button>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <button type="button" class="btn btn-primary" id="createUserGroupBtn"  data-toggle="modal" data-target="#userGroupModal" data-whatever="@mdo"> New User Group</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
                     <div style="margin-bottom:5px;">
 
                     </div>
@@ -70,8 +77,20 @@ if ($_SESSION['login_valid'] != "YES") {
 
                                                     <th>Name</th>
 
-                                                    <th>Action </th>
+                                                    <?php
+                                                    if (in_array("EDIT_USER_GROUP", $scopes)) {
+                                                        ?>
 
+                                                        <th>Edit </th>
+                                                        <?php
+                                                    }
+                                                    if (in_array("DELETE_USER_GROUP", $scopes)) {
+                                                        ?>
+
+                                                        <th>Delete </th>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>

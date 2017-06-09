@@ -237,12 +237,19 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-                                        <div class="col-xs-12 " id="saveBtn" style="display: none">
+                                        <?php
+                                        $scopes = $_SESSION['permissions'];
+                                        if (in_array("ADD_ADOPTION_TRACKER", $scopes)) {
+                                            ?> 
+                                        <div class="col-xs-12 " id="saveBtn">
                                             <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
                                                 <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
                                             </div>
                                         </div>
+                                        <?php
+                                        }
+                                        ?>
 
 
                                     </form>
@@ -271,7 +278,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <th>Post-Harvest</th>
                                                     <th>Storage</th>
                                                     <th>Date Added</th>
-                                                    <th>Action</th>
+ <?php
+                                                    if (in_array("DELETE_ADOPTION_TRACKER_RECORD", $scopes)) {
+                                                        ?> 
+                                                        <th>Action</th>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>

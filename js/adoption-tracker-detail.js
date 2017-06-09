@@ -178,7 +178,7 @@ function getAdoption(bene_code)
                     r[++j] = '<td>' + value.storage + '</td>';
                     r[++j] = '<td>' + value.datecreated + '</td>';
 
-                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')" disabled class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
+                    r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
 
                     rowNode = datatable.row.add(r);
                 });

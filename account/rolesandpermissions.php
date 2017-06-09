@@ -99,20 +99,26 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <th>Id</th>
                                                     <th>Permission</th>
                                                     <th></th>
-                                                    
+
 
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
                                         </table>
 
+                                        <?php
+                                        $scopes = $_SESSION['permissions'];
+                                        if (in_array("ASSIGN_USER_PERMISSIONS", $scopes)) {
+                                            ?>
+                                            <div class="col-xs-12 ">
+                                                <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-                                        <div class="col-xs-12 ">
-                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
-
-                                                <button class="btn btn-primary  btn-block pull-right"  type="submit">Save</button>
+                                                    <button class="btn btn-primary  btn-block pull-right"  type="submit">Save</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
 
                                 </form>
