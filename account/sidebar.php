@@ -192,12 +192,24 @@ if (isset($_SESSION['meruserid'])) {
                                     <span class="sidenav-icon icon icon-files-o"></span>
                                     <span class="sidenav-label">Account</span>
                                 </a>
-                                <ul class="sidenav-subnav collapse">
-
-                                    <li><a href="user-groups">User Groups</a></li>
-                                    <li><a href="rolesandpermissions">Assign Roles And Permissions</a></li>
-                                    <li><a href="users">Users </a></li>
-
+                                 <ul class="sidenav-subnav collapse">
+                                    <?php
+                                    if (in_array("VIEW_USER_GROUPS", $scopes)) {
+                                        ?>
+                                        <li><a href="../account/user-groups">User Groups</a></li>
+                                        <?php
+                                    }
+                                    if (in_array("ASSIGN_USER_PERMISSIONS", $scopes)) {
+                                        ?>
+                                        <li><a href="../account/rolesandpermissions">Assign Roles And Permissions</a></li>
+                                        <?php
+                                    }
+                                    if (in_array("VIEW_USERS", $scopes)) {
+                                        ?>
+                                        <li><a href="../account/users">Users </a></li>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
                             </li>
                             <?php
@@ -211,15 +223,40 @@ if (isset($_SESSION['meruserid'])) {
                                     <span class="sidenav-label">Reports</span>
                                 </a>
                                 <ul class="sidenav-subnav collapse">
-
-                                    <li><a href="../reports/beneficiary-report">Beneficiary Report</a></li>
-                                    <li><a href="../reports/activity-report">Activity Report</a></li>
-                                    <li><a href="../reports/sales-report">Sales Report </a></li>
-                                    <li><a href="../reports/adoption-report">Adoption Report </a></li>
-                                    <li><a href="../reports/financial-report">Financial Services Report </a></li>
-                                    <li><a href="../reports/employment-report">Employment/Household Report </a></li>
-
+                                    <?php
+                                    if (in_array("VIEW_BENEFICIARY_REPORT", $scopes)) {
+                                        ?>
+                                        <li><a href="../reports/beneficiary-report">Beneficiary Report</a></li>
+                                        <?php
+                                    }
+                                    if (in_array("VIEW_ACTIVITY_REPORT", $scopes)) {
+                                        ?>
+                                        <li><a href="../reports/activity-report">Activity Report</a></li>
+                                        <?php
+                                    }
+                                    if (in_array("VIEW_SALES_REPORT ", $scopes)) {
+                                        ?>
+                                        <li><a href="../reports/sales-report">Sales Report </a></li>
+                                        <?php
+                                    }
+                                    if (in_array("VIEW_ADOPTION_REPORT", $scopes)) {
+                                        ?>
+                                        <li><a href="../reports/adoption-report">Adoption Report </a></li>
+                                        <?php
+                                    }
+                                    if (in_array("VIEW_FINANCIAL_REPORT", $scopes)) {
+                                        ?>
+                                        <li><a href="../reports/financial-report">Financial Services Report </a></li>
+                                        <?php
+                                    }
+                                    if (in_array("VIEW_EMPLOYMENT_REPORT", $scopes)) {
+                                        ?>
+                                        <li><a href="../reports/employment-report">Employment/Household Report </a></li>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
+
                             </li>
                             <?php
                         }
