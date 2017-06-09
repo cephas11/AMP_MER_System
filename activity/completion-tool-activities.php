@@ -44,22 +44,29 @@ if ($_SESSION['login_valid'] != "YES") {
             ?>
             <div class="layout-content">
                 <div class="layout-content-body">
-<h3>Activity Reporting Tool</h3>
+                    <h3>Activity Reporting Tool</h3>
 
 
                     <div class="row gutter-xs">
                         <div class="card">
                             <div class="card-header">
-                                <strong> Completion Tool Activities</strong>
-                                <div class="row" id="creatediv" style="display: none">
-                                    <div class="col-lg-12">
-                                        <div class="pull-right">
-                                            <a class="btn btn-primary "href="completion-tool" >New Activity</a>
+                                <strong> Completion Tool Activities</strong
+                                <?php
+                                $scopes = $_SESSION['permissions'];
+                                if (in_array("CREATE_NEW_ACTIVITY", $scopes)) {
+                                    ?>    
+                                    <div class="row" id="creatediv">
+                                        <div class="col-lg-12">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary "href="completion-tool" >New Activity</a>
+
+                                            </div>
 
                                         </div>
-
                                     </div>
-                                </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -75,13 +82,20 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <th>Activity Date</th>
                                                             <th>Type</th>
                                                             <th>Description</th>
-
                                                             <th>Region</th>
                                                             <th>District</th>
                                                             <th>Implementer</th>
                                                             <th>Total Participants</th>
-                                                            <th>Action</th>
 
+                                                            <th>Edit</th>
+                                                            <?php
+                                                            if (in_array("DELETE_ACTIVITY", $scopes)) {
+                                                                ?>
+
+                                                                <th>Delete </th>
+                                                                <?php
+                                                            }
+                                                            ?>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

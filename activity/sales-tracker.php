@@ -43,7 +43,7 @@ if ($_SESSION['login_valid'] != "YES") {
             <div class="layout-content">
                 <div class="layout-content-body">
 
-<h3>Sales Records</h3>
+                    <h3>Sales Records</h3>
 
                     <div class="row gutter-xs">
                         <div class="card">
@@ -84,7 +84,14 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <th>Date Created</th>
                                                             <th>Date Modified</th>
                                                             <th>Modified By</th>
-                                                            <th>Action</th>
+                                                            <?php
+                                                            if (in_array("VIEW_SALES_RECORD", $scopes)) {
+                                                                ?>
+
+                                                                <th>Action </th>
+                                                                <?php
+                                                            }
+                                                            ?>
 
                                                         </tr>
                                                     </thead>

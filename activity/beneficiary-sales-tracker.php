@@ -56,44 +56,50 @@ if ($_SESSION['login_valid'] != "YES") {
                                 <div class="col-xs-12">
                                     <form id="salesTrackerForm" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="type" value="setSalesTracker"/>
+                                        <?php
+                                        $scopes = $_SESSION['permissions'];
+                                        if (in_array("ADD_SALES_RECORD", $scopes)) {
+                                            ?>    
+                                            <div class="creatediv">
+                                                <div class="row">
+                                                    <div class="form-group col-lg-1"></div>
+                                                    <div class="form-group col-lg-9">
+                                                        <label  class="form-label">Fiscal Year</label>
+                                                        <div class="input-with-icon">
+                                                            <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
 
-                                        <div class="creatediv" style="display: none">
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label  class="form-label">Fiscal Year</label>
-                                                <div class="input-with-icon">
-                                                    <select  name="fiscalYear" id="fiscalYear" class="form-control select2" required>
+                                                                <option value="">Choose...</option>
 
-                                                        <option value="">Choose...</option>
+                                                                <option value="FY16">FY16</option>
+                                                                <option value="FY17">FY17</option>
+                                                                <option value="FY18">FY18</option>
+                                                                <option value="FY19">FY19</option>
+                                                                <option value="FY20">FY20</option>
 
-                                                        <option value="FY16">FY16</option>
-                                                        <option value="FY17">FY17</option>
-                                                        <option value="FY18">FY18</option>
-                                                        <option value="FY19">FY19</option>
-                                                        <option value="FY20">FY20</option>
+                                                            </select>                    </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-1"></div>
 
-                                                    </select>                    </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
-
-                                        </div>
-
-
-                                        <div class="row">
-                                            <div class="form-group col-lg-1"></div>
-                                            <div class="form-group col-lg-9">
-                                                <label for="name-1" class="control-label">Date </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="activityDate" id="activityDate" data-provide="datepicker" required>
-                                                    <span class="icon icon-calendar input-icon"></span>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-lg-1"></div>
 
-                                        </div>
-                                        
-</div>          
+
+                                                <div class="row">
+                                                    <div class="form-group col-lg-1"></div>
+                                                    <div class="form-group col-lg-9">
+                                                        <label for="name-1" class="control-label">Date </label>
+                                                        <div class="input-with-icon">
+                                                            <input class="form-control" type="text" name="activityDate" id="activityDate" data-provide="datepicker" required>
+                                                            <span class="icon icon-calendar input-icon"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-1"></div>
+
+                                                </div>
+
+                                            </div>          
+                                            <?php
+                                        }
+                                        ?>
                                         <div class="row">
                                             <div class="form-group col-lg-1"></div>
                                             <div class="form-group col-lg-9">
@@ -129,44 +135,50 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
-                                        <div class="creatediv" style="display: none">
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
-                                                <div class="form-group">
-                                                    <label  class="form-label">Commodity</label>
-                                                    <select name="commodity" id="commodity" class="form-control select2">
+                                        <?php
+                                        if (in_array("ADD_SALES_RECORD", $scopes)) {
+                                            ?> 
+                                            <div class="creatediv">
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
-                                                        <option value="">Choose...</option>
+                                                    <div class="form-group">
+                                                        <label  class="form-label">Commodity</label>
+                                                        <select name="commodity" id="commodity" class="form-control select2">
 
-                                                    </select>
-                                                    <span class="help-block"></span>
+                                                            <option value="">Choose...</option>
+
+                                                        </select>
+                                                        <span class="help-block"></span>
+                                                    </div>
+
+
+
                                                 </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                                                    <label for="name-1" class="control-label">Value Of Sales (USD) </label>
+                                                    <div class="input-with-icon">
+                                                        <input class="form-control" type="text" name="salesUSD" id="salesUSD" required >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
+                                                    <label for="name-1" class="control-label">Volume Of Sales (Metric Tonnes ) </label>
+                                                    <div class="input-with-icon">
+                                                        <input class="form-control" type="text" name="salesTonnes" id="salesTonnes" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 ">
+                                                    <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-
-                                            </div>
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12">
-                                                <label for="name-1" class="control-label">Value Of Sales (USD) </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="salesUSD" id="salesUSD" required >
+                                                        <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-lg-4 col-md-4 col-sm-12">
 
-                                                <label for="name-1" class="control-label">Volume Of Sales (Metric Tonnes ) </label>
-                                                <div class="input-with-icon">
-                                                    <input class="form-control" type="text" name="salesTonnes" id="salesTonnes" required>
-                                                </div>
-                                            </div>
-           <div class="col-xs-12 ">
-                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
-
-                                                <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
-                                            </div>
-                                        </div>
-                                        </div>
-
-                             
+                                            <?php
+                                        }
+                                        ?>
                                     </form>
                                 </div>
 
@@ -192,7 +204,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <th>Value Of Sales(USD)</th>
                                                     <th>Value Of Sales(Metric Tonnes)</th>
                                                     <th>Date Added</th>
-                                                    <th>Action</th>
+                                                    <?php
+                                                    if (in_array("DELETE_SALES_RECORD", $scopes)) {
+                                                        ?> 
+                                                        <th>Action</th>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>

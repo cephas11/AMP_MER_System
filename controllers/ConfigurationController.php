@@ -11,9 +11,9 @@ if (isset($_GET['type'])) {
             if (isset($_GET['region'])) {
 
                 $name = $_GET['region'];
-                 $shortcode = $_GET['shortcode'];
+                $shortcode = $_GET['shortcode'];
                 $new_region = new ConfigurationClass();
-                $new_region->setRegion($name,$shortcode);
+                $new_region->setRegion($name, $shortcode);
             }
         } else if ($type == 'retreiveRegion') {
             $getAllregions = new ConfigurationClass();
@@ -45,7 +45,7 @@ if (isset($_GET['type'])) {
                 $shortcode = $_GET['shortcode'];
 
                 $save_new = new ConfigurationClass();
-                $save_new->setCategory($category,$shortcode);
+                $save_new->setCategory($category, $shortcode);
             }
         } else if ($type == 'retreiveCategories') {
 
@@ -71,10 +71,11 @@ if (isset($_GET['type'])) {
             $getCategoryDescription = new ConfigurationClass();
             $getCategoryDescription->getCategoryDescriptions();
         } else if ($type == 'retreiveDistrictsBasedOnRegion') {
-           
-            $region_code = $_GET['region_code'];
+
+             $region_code = $_GET['region_code'];
             $getDistrictsBasedOnRegion = new ConfigurationClass();
             $getDistrictsBasedOnRegion->getDistrictsBasedOnRegion($region_code);
+            
         } else if ($type == 'retreiveDescriptionBasedOnCategory') {
             $category_code = $_GET['category_code'];
             $getDescriptionBasedOnCategory = new ConfigurationClass();
@@ -118,14 +119,14 @@ if (isset($_GET['type'])) {
             $name = $_GET['commodity'];
             $new_region = new ConfigurationClass();
             $new_region->setCommodity($name);
-        }else if ($type == 'retreiveCommodity') {
+        } else if ($type == 'retreiveCommodity') {
             $getAllregions = new ConfigurationClass();
             $getAllregions->getCommodities();
         } else if ($type == 'saveEmploymentType') {
             $name = $_GET['name'];
             $save = new ConfigurationClass();
             $save->setEmploymentType($name);
-        }else if ($type == 'retreiveEmploymentTypes') {
+        } else if ($type == 'retreiveEmploymentTypes') {
             $get = new ConfigurationClass();
             $get->getEmploymentTypes();
         }

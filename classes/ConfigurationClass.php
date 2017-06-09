@@ -403,9 +403,8 @@ class ConfigurationClass {
     public function getDistrictsBasedOnRegion($regionCode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $regcode = explode('-', $regionCode);
 
-        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='" . $regcode[1] . "'");
+        $query = mysqli_query($conn, "SELECT * FROM region_districts_view WHERE region_code='" . $regionCode . "'");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {

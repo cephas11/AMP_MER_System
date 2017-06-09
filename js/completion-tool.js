@@ -319,7 +319,7 @@ $.ajax({
     }
 });
 function getDistrictsBasedOnRegion(region_code) {
-
+console.log('region code: '+region_code);
     var infotype = {
         type: 'retreiveDistrictsBasedOnRegion',
         region_code: region_code
@@ -466,7 +466,7 @@ $('#completionTooLActivityForm').on('submit', function (e) {
 
 
                 $('input:submit').attr("disabled", false);
-                Command: toastr["error"](data.message, "Success");
+                Command: toastr["error"](data.message, "Error");
                 toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -542,8 +542,8 @@ function getActivitiesList()
 //                    r[++j] = '<td >' + value.community + '</td>';
                     r[++j] = '<td >' + value.implementer + '</td>';
                     r[++j] = '<td >' + value.total + '</td>';
-                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code=' + value.code + '" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs"></span></a>\n\
-                              <button onclick="deleteActivity(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs"></span></button></td>';
+                    r[++j] = '<td><a href="completion-tool-activity-detail?activity_code=' + value.code + '" class="btn btn-outline-info btn-sm col-sm-6" ><i class="fa fa-edit"></i><span class="hidden-md hidden-sm hidden-xs"></span></a></td>';
+                      r[++j] = '<td><button onclick="deleteActivity(\'' + value.code + '\')" class="btn btn-outline-danger btn-sm  col-sm-6" type="button"><i class="fa fa-trash-o"></i><span class="hidden-md hidden-sm hidden-xs"></span></button></td>';
                     rowNode = datatable.row.add(r);
                 });
                 rowNode.draw().node();

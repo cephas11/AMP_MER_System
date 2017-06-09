@@ -48,12 +48,22 @@ if ($_SESSION['login_valid'] != "YES") {
                         <div class="card">
                             <div class="card-header">
                                 <strong> Beneficiaries List</strong>
-                                <div class="row" id="creatediv" style="display: none">
+                                <div class="row" id="creatediv" >
                                     <div class="col-lg-12">
                                         <div class="pull-right">
-                                            <a class="btn btn-primary "href="beneficiary-form" >New Beneficiary</a>
-                                            <a  class="btn btn-primary" href="bulk-beneficiary-upload" >Bulk Upload</a>
-
+                                            <?php
+                                            $scopes = $_SESSION['permissions'];
+                                            if (in_array("ADD_BENEFICIARY", $scopes)) {
+                                                ?>
+                                                <a class="btn btn-primary "href="beneficiary-form" >New Beneficiary</a>
+                                                <?php
+                                            }
+                                            if (in_array("BULK_BENEFICIARY", $scopes)) {
+                                                ?>
+                                                <a  class="btn btn-primary" href="bulk-beneficiary-upload" >Bulk Upload</a>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
 
                                     </div>
@@ -83,8 +93,20 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <th>Community</th>
                                                             <th>Registered By</th>      
                                                             <th>Date Created</th>         
+                                                            <?php
+                                                            if (in_array("EDIT_BENEFICIARY", $scopes)) {
+                                                                ?>
 
-                                                            <th>Action</th>
+                                                                <th>Edit </th>
+                                                                <?php
+                                                            }
+                                                            if (in_array("DELETE_BENEFICIARY", $scopes)) {
+                                                                ?>
+
+                                                                <th>Delete </th>
+                                                                <?php
+                                                            }
+                                                            ?>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
