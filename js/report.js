@@ -514,3 +514,75 @@ var empdatatable = $('#employmntTbl').DataTable({
     }
 
 });
+
+
+//generate adoption report
+
+var adoptiondatatable = $('#adoptionTbl').DataTable({
+    responsive: true,
+    dom: 'Bfrtip',
+    buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+    ],
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    }
+
+});
+
+
+$.ajax({
+    url: '../controllers/ReportController.php?_=' + new Date().getTime(),
+    type: "GET",
+    data: {type: "generateAdoptionReport"},
+    success: function (data) {
+//acctivityTbl
+
+        console.log('response adoption:' + data);
+        adoptiondatatable.clear().draw();
+        var obj = jQuery.parseJSON(data);
+        console.log(obj[0].handling_people);
+        var females, males;
+
+        if (obj[1].gender == "Female") {
+            females = obj[1].total;
+        } else {
+            males = obj[1].total;
+        }
+
+        if (obj[2].gender == "Male") {
+            males = obj[2].total;
+        } else {
+            females = obj[2].total;
+        }
+        var rowNum = 0;
+        var j = -1;
+        var r = new Array();
+        r[++j] = '<td>' + males + '</td>';
+        r[++j] = '<td> ' + females + '</td>';
+        r[++j] = '<td>' + obj[0].harvesting_people + '</td>';
+        r[++j] = '<td>' + obj[0].handling_people + '</td>';
+        r[++j] = '<td>' + obj[0].storage_people + '</td>';
+        r[++j] = '<td >' + obj[0].harvesting_hectares + '</td>';
+        r[++j] = '<td>' + obj[0].handling_hectares + '</td>';
+        r[++j] = '<td>' + obj[0].storage_hectares + '</td>';
+
+        rowNum = rowNum + 1;
+
+
+        rowNode = adoptiondatatable.row.add(r);
+
+
+        rowNode.draw().node();
+
+
+
+
+    }
+});

@@ -52,7 +52,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                     <div class="panel-body">
 
                                         <div class="table-responsive" >
-                                            <table id="activityTbl" class="table table-bordered table-striped table-nowrap " cellspacing="0" width="100%">
+                                            <table id="adoptionTbl" class="table table-bordered table-striped table-nowrap " cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th colspan="5">Total number people applying

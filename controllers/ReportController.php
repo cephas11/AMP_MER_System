@@ -18,6 +18,9 @@ if (isset($_GET['type'])) {
         } else if ($type == 'generateSalesReport') {
             $get = new ReportClass();
             $get->getSalesReport();
+        } else if ($type == 'generateAdoptionReport') {
+            $get = new ReportClass();
+            $get->getAdoptionReport();
         } 
     } else {
         echo 'provide type';

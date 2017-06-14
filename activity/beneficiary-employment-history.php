@@ -195,17 +195,22 @@ if ($_SESSION['login_valid'] != "YES") {
                                             <div class="form-group col-lg-1"></div>
 
                                         </div>
+                                        <?php
+                                        $scopes = $_SESSION['permissions'];
+                                        if (in_array("ADD_EMPLOYMENT_DETAILS", $scopes)) {
+                                            ?> 
+                                            <div class="row" id="createBtn">
+                                                <div class="col-lg-12">
+                                                    <div class="pull-right">
+                                                        <button class="btn btn-primary"   onclick="addRow('employmentTbl')" >Add New Employee</button>
+                                                        <button  class="btn btn-danger"   onclick="deleteRow('employmentTbl')" >Delete Employee</button>
 
-                                        <div class="row" style="display: none" id="createBtn">
-                                            <div class="col-lg-12">
-                                                <div class="pull-right">
-                                                    <button class="btn btn-primary"   onclick="addRow('employmentTbl')" >Add New Employee</button>
-                                                    <button  class="btn btn-danger"   onclick="deleteRow('employmentTbl')" >Delete Employee</button>
+                                                    </div>
 
                                                 </div>
-
                                             </div>
-                                        </div>
+                                            <?php }
+                                        ?>
                                         <div class="row">
                                             <div class=" col-lg-12 ">
 

@@ -91,4 +91,26 @@ class ReportClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+    
+    public function getAdoptionReport() {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT * from adoption_report");
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $querypeople = mysqli_query($conn, "SELECT gender,COUNT(gender) AS  total FROM mer_system.beneficiaries WHERE code IN (SELECT DISTINCT  beneficiary_code FROM mer_system.adoption_tracker WHERE applied ='yes') GROUP BY gender");
+            while ($row = mysqli_fetch_array($querypeople, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
 }

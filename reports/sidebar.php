@@ -109,7 +109,7 @@ if (isset($_SESSION['meruserid'])) {
                         if (in_array("VIEW_BENEFICIARIES", $scopes)) {
                             ?>
                             <li class="sidenav-item" id="3"  >
-                                <a href="beneficiary/beneficiaries-list">
+                                <a href="../beneficiary/beneficiaries-list">
                                     <span class="sidenav-icon icon icon-user"></span>
                                     <span class="sidenav-label">Beneficiaries</span>
                                 </a>
