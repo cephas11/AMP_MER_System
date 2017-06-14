@@ -177,16 +177,40 @@ if ($_SESSION['login_valid'] != "YES") {
 
 
                                         <div class="form-group row" id="techniquesdiv" style="display: none">
+
+
+
+
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" name="harvesting_technology">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label">Harvesting techniques/technologies</span>
+                                            </label>
+
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" name="handling_technology">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label">Post-harvest handling techniques/technologies</span>
+                                            </label>
+
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" name="storage_technology">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label">Storage techniques/technologies</span>
+                                            </label>
+                                            <br><br>
+
                                             <label  class="form-label">
 
-                                                What techniques/technologies has beneficiary applied/adopted so far (please tick)?
+                                                What Other techniques/technologies has beneficiary applied/adopted so far (please tick)?
                                             </label>
                                             <select name="techniqus[]" id="techniques" multiple class="form-control select2" required>
 
                                                 <option value="">Choose...</option>
-                                                <option value="Harvesting techniques/technologies">Harvesting techniques/technologies</option>
+<!--                                                <option value="Harvesting techniques/technologies">Harvesting techniques/technologies</option>
                                                 <option value="Post-harvest handling techniques/technologies">Post-harvest handling techniques/technologies</option>
                                                 <option value="Storage techniques/technologies">Storage techniques/technologies</option>
+                                             -->
                                                 <option value="Improved farm management practice">Improved farm management practice</option>
                                                 <option value="Improved poultry feed">Improved poultry feed</option>
                                                 <option value="Feed testing techniques">Feed testing techniques</option>
@@ -241,13 +265,13 @@ if ($_SESSION['login_valid'] != "YES") {
                                         $scopes = $_SESSION['permissions'];
                                         if (in_array("ADD_ADOPTION_TRACKER", $scopes)) {
                                             ?> 
-                                        <div class="col-xs-12 " id="saveBtn">
-                                            <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
+                                            <div class="col-xs-12 " id="saveBtn">
+                                                <div class="col-sm-offset-3 col-sm-6 col-md-offset-6 col-md-6">
 
-                                                <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                                    <button class="btn btn-primary btn-block pull-right" type="submit">Save</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
 
@@ -277,8 +301,11 @@ if ($_SESSION['login_valid'] != "YES") {
                                                     <th>Harvesting</th>
                                                     <th>Post-Harvest</th>
                                                     <th>Storage</th>
+                                                     <th>Harvesting Technology</th>
+                                                    <th>Post-Harvest Technology</th>
+                                                    <th>Storage Technology</th>
                                                     <th>Date Added</th>
- <?php
+                                                    <?php
                                                     if (in_array("DELETE_ADOPTION_TRACKER_RECORD", $scopes)) {
                                                         ?> 
                                                         <th>Action</th>

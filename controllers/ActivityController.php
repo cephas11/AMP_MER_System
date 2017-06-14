@@ -108,15 +108,30 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             $storage = $_POST['storage'];
             @$techniques = $_POST['techniqus'];
             $reason = $_POST['reason'];
+            if (isset($_POST['handling_technology'])) {
+                $handling_technology = "yes";
+            } else {
+                $handling_technology = "no";
+            }
+            if (isset($_POST['harvesting_technology'])) {
+                $harvesting_technology = "yes";
+            } else {
+                $harvesting_technology = "no";
+            }
+            if (isset($_POST['storage_technology'])) {
+                $storage_technology = "yes";
+            } else {
+                $storage_technology = "no";
+            }
 
             $new = new ActivityClass();
-            $new->setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $techniques, $reason, $harvesting, $handling, $storage);
+            $new->setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $techniques, $reason, $harvesting, $handling, $storage,$harvesting_technology,$handling_technology,$storage_technology);
         } else if ($type == "getdoptionTracker") {
             $code = $_POST['code'];
             $retreiveList = new ActivityClass();
             $retreiveList->getAdoptionTracker($code);
         } else if ($type == "setBeneficiaryEmployees") {
-          //  print_r($_POST);
+            //  print_r($_POST);
             $new = new ActivityClass();
             $new->setBeneficiaryEmployees($_POST);
         } else if ($type == "getActivityCategories") {

@@ -128,6 +128,8 @@ function getDistricts()
 
 
 
+
+
 function deleteDistrict(code, title) {
     console.log(code + title);
     $('#districtcode').val(code);

@@ -176,6 +176,9 @@ function getAdoption(bene_code)
                     r[++j] = '<td>' + value.harvesting + '</td>';
                     r[++j] = '<td>' + value.handling + '</td>';
                     r[++j] = '<td>' + value.storage + '</td>';
+                    r[++j] = '<td>' + value.harvesting_technology + '</td>';
+                    r[++j] = '<td>' + value.handling_technology + '</td>';
+                    r[++j] = '<td>' + value.storage_technology + '</td>';
                     r[++j] = '<td>' + value.datecreated + '</td>';
 
                     r[++j] = '<td><button onclick="deleteSale(\'' + value.code + '\')"  class="btn btn-outline-danger btn-sm deleteBtn" type="button">Delete</button></td>';
