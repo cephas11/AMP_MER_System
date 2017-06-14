@@ -11,6 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
+require_once $path . '/classes/AuditClass.php';
 
 class ActivityClass {
 
@@ -24,6 +25,8 @@ class ActivityClass {
 
         $query = mysqli_query($conn, "SELECT * FROM beneficiaries_view WHERE region_code='" . $regcode . "' AND  category_code IN (" . $category . ") AND active=0 ");
         if (mysqli_num_rows($query) > 0) {
+
+
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
             }
@@ -130,6 +133,10 @@ class ActivityClass {
 
 
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Created " . $description . " Completion tool activity ");
+
             $activity_code = $code;
             foreach ($array as $value) { //loop over values
                 $this->setActivityParticipants($activity_code, $typeofactivity, $value);
@@ -151,6 +158,8 @@ class ActivityClass {
     public function setActivityParticipants($activity_code, $activity_type, $particpant_code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
+        $audit = new AuditClass();
+        $audit->setAuditLog("Added participant  " . $particpant_code . " to  " . $activity_code);
 
         $code = $this->generateuniqueCode(10);
         mysqli_query($conn, "INSERT INTO activity_participants(code,activity_code,activity_type,participant_code)"
@@ -325,8 +334,6 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    
-
     public function getBeneficiaryFinances($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -441,7 +448,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique, $reason, $harvesting, $handling, $storage,$harvesting_technology,$handling_technology,$storage_technology) {
+    public function setAdoptionTracker($beneficiary_code, $fiscalYear, $applied, $technique, $reason, $harvesting, $handling, $storage, $harvesting_technology, $handling_technology, $storage_technology) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
@@ -510,7 +517,7 @@ class ActivityClass {
 
 
         foreach ($employees as $data) {
-            
+
             $code = $this->generateuniqueCode(10);
             $query = mysqli_query($conn, "INSERT INTO beneficiary_employess(code,beneficiary_code,fiscal_year,additional_labour,name,gender,employment_date,employment_type,duration,createdby)"
                     . " VALUES "
@@ -601,7 +608,7 @@ class ActivityClass {
     public function getLoanHistory($loancode) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-      
+
         $query = mysqli_query($conn, "SELECT * FROM loan_history WHERE loan_code='" . $loancode . "'");
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -617,4 +624,22 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+     public function getBenefiiciaryName($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT * FROM loan_history WHERE loan_code='" . $loancode . "'");
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                $results[] = $row;
+            }
+            $feedback = json_encode($results);
+        } else {
+
+            $feedback = json_encode($this->response);
+        }
+
+        echo $feedback;
+        $connection->closeConnection($conn);
+    }
 }

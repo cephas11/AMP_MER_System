@@ -13,6 +13,7 @@
  */
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
+require_once $path . '/classes/AuditClass.php';
 
 class ReportClass {
 

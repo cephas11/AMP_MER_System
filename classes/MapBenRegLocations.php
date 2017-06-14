@@ -12,6 +12,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $path = $_SERVER['DOCUMENT_ROOT'] . "/AMP_MER_System";
 require_once $path . '/databaseConnectionClass.php';
+require_once $path . '/classes/AuditClass.php';
+
 header("Content-type: text/xml");
 
 // Start XML file, echo parent node

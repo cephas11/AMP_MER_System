@@ -34,7 +34,7 @@ class AccountClass {
         } else {
             $query = mysqli_query($conn, "INSERT INTO user_groups(name,createdBy) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
-                $audit->setAuditLog('Created ' . $name . ' user goup');
+                $audit->setAuditLog('Created ' . $name . ' user group');
                 $this->response['success'] = '1';
                 $this->response['message'] = 'User Group saved successfully';
             }
@@ -49,7 +49,7 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM user_groups WHERE active=0");
         $audit = new AuditClass();
-        $audit->setAuditLog("Retreive user groups");
+        $audit->setAuditLog("Retreived user groups");
 
         if (mysqli_num_rows($query) > 0) {
 
@@ -76,7 +76,7 @@ class AccountClass {
         $query = mysqli_query($conn, "UPDATE user_groups SET name =  '" . mysqli_real_escape_string($conn, $name) . "' WHERE id=$id");
         if ($query) {
             $audit = new AuditClass();
-            $audit->setAuditLog("Updated" . $name . " user group ");
+            $audit->setAuditLog("Updated" . $name . " user group information");
             $this->response['success'] = '1';
             $this->response['message'] = 'User Group updated successfully';
             echo json_encode($this->response);
@@ -115,9 +115,10 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
         $query = mysqli_query($conn, "UPDATE users SET deleted = 1 WHERE id=$id");
+        $audit = new AuditClass();
+        $audit->setAuditLog("Deleted user " . $name);
         if ($query) {
-            $audit = new AuditClass();
-            $audit->setAuditLog("Deleted user " . $name);
+
 
             $this->response['success'] = '1';
             $this->response['message'] = 'User  deleted successfully';
@@ -136,7 +137,7 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM permissions");
         $audit = new AuditClass();
-        $audit->setAuditLog("Retreive Forms ");
+        $audit->setAuditLog("Retreived permissions ");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -160,12 +161,12 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
 
         $createdBy = $_SESSION['meruserid'];
-
         $this->deleteUserPermission($usergroup);
 
-
+        $audit = new AuditClass();
         foreach ($data as $perm) { //foreach element in $arr
             $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,perm_keyword,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $perm) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
+            $audit->setAuditLog("Added" . $perm . " permission to " . $usergroup);
         }
 
         if ($query) {
@@ -219,12 +220,13 @@ class AccountClass {
             $this->response['success'] = '0';
             $this->response['message'] = 'User already exist';
         } else {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Created new user " . $name);
+
             $password = $this->generateuniqueCode();
             $password_hash = md5($password);
             $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password_hash) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
-                $audit = new AuditClass();
-                $audit->setAuditLog("Created new user " . $name);
 
                 $this->sendemail($username, $email, $password);
             } else {
@@ -264,11 +266,11 @@ class AccountClass {
         if (!$result) {
             $this->response['success'] = '0';
             $this->response['message'] = 'User created successfully but Email wasnt sent';
-            $this->response['userdetails'] = 'Username: ' . $username . '. Password: ' . $password;
+            $this->response['userdetails'] = 'Username: ' . $username;
         } else {
             $this->response['success'] = '1';
             $this->response['message'] = 'User created successfully.User Details has been sent to email';
-            $this->response['userdetails'] = 'Username: ' . $username . '. Password: ' . $password;
+            $this->response['userdetails'] = 'Username: ' . $username;
         }
         echo json_encode($this->response);
     }
@@ -289,7 +291,7 @@ class AccountClass {
         $query = mysqli_query($conn, "SELECT * FROM users_view WHERE deleted=0");
         if (mysqli_num_rows($query) > 0) {
             $audit = new AuditClass();
-            $audit->setAuditLog("Retreive users");
+            $audit->setAuditLog("Retreived all users");
 
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
@@ -405,8 +407,13 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
+
         $query = mysqli_query($conn, "UPDATE users SET name =  '" . mysqli_real_escape_string($conn, $name) . "' , username =  '" . mysqli_real_escape_string($conn, $username) . "' , email =  '" . mysqli_real_escape_string($conn, $email) . "' , phoneno =  '" . mysqli_real_escape_string($conn, $phoneno) . "' , usergroup =  '" . mysqli_real_escape_string($conn, $usergroup) . "'  WHERE id=$id");
         if ($query) {
+            $audit = new AuditClass();
+
+            $audit->setAuditLog("Updated " . $name . " information");
+
             $this->response['success'] = '1';
             $this->response['message'] = 'User Group updated successfully';
             echo json_encode($this->response);
@@ -432,6 +439,10 @@ class AccountClass {
         } else {
             $query = mysqli_query($conn, "INSERT INTO permissions(perm_keyword) VALUES ('" . mysqli_real_escape_string($conn, $name) . "')");
             if ($query) {
+                $audit = new AuditClass();
+
+                $audit->setAuditLog("Added " . $name . " permission");
+
                 $this->response['success'] = '1';
                 $this->response['message'] = 'New Permission saved successfully';
             }
@@ -456,13 +467,13 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $password_hash = md5($password);
 
-        $query = mysqli_query($conn, "UPDATE users SET password = '".$password_hash."' WHERE id=".$_SESSION['meruserid']."");
+        $query = mysqli_query($conn, "UPDATE users SET password = '" . $password_hash . "' WHERE id=" . $_SESSION['meruserid'] . "");
         if ($query) {
             $audit = new AuditClass();
-            $audit->setAuditLog("Changed password " );
+            $audit->setAuditLog("Changed password ");
 
             $this->response['success'] = '1';
-        //s    $this->response['query']= "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$_SESSION['meruserid']."";
+            //s    $this->response['query']= "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$_SESSION['meruserid']."";
             $this->response['message'] = 'Password  updated successfully';
             echo json_encode($this->response);
             //   $query->close();
