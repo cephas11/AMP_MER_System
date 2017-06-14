@@ -220,8 +220,8 @@ class AccountClass {
             $this->response['message'] = 'User already exist';
         } else {
             $password = $this->generateuniqueCode();
-            $password = md5($password);
-            $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
+            $password_hash = md5($password);
+            $query = mysqli_query($conn, "INSERT INTO users(name,username,password,email,phoneno,usergroup,createdby) VALUES ('" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $username) . "','" . mysqli_real_escape_string($conn, $password_hash) . "','" . mysqli_real_escape_string($conn, $email) . "','" . mysqli_real_escape_string($conn, $phoneno) . "','" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
             if ($query) {
                 $audit = new AuditClass();
                 $audit->setAuditLog("Created new user " . $name);
@@ -373,7 +373,7 @@ class AccountClass {
                 array_push($this->response['message'], $one);
             }
 
-            $this->response['data'] = mysqli_fetch_array($results,MYSQLI_ASSOC);
+            $this->response['data'] = mysqli_fetch_array($results, MYSQLI_ASSOC);
         }
 
         $feedback = json_encode($this->response);
@@ -449,6 +449,29 @@ class AccountClass {
 
         $connection->closeConnection($conn);
         return mysqli_num_rows($query);
+    }
+
+    public function updatePassword($password) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $password_hash = md5($password);
+
+        $query = mysqli_query($conn, "UPDATE users SET password = '".$password_hash."' WHERE id=".$_SESSION['meruserid']."");
+        if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Changed password " );
+
+            $this->response['success'] = '1';
+        //s    $this->response['query']= "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$_SESSION['meruserid']."";
+            $this->response['message'] = 'Password  updated successfully';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' . mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+//        $connection->closeConnection($conn);
     }
 
 }

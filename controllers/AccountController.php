@@ -57,8 +57,8 @@ if (isset($_REQUEST)) {
             $get->getFormPermissions($formid);
         } else if ($type == "retreiveUserGroupPermissions") {
             $id = $_POST['groupid'];
-          $get = new AccountClass();
-         $get->getGroupPermissions($id);
+            $get = new AccountClass();
+            $get->getGroupPermissions($id);
         } else if ($type == "retreiveUserInfo") {
             $id = $_POST['userid'];
             $get = new AccountClass();
@@ -70,15 +70,20 @@ if (isset($_REQUEST)) {
             $phoneno = $_POST['phoneno'];
             $userGroup = $_POST['userGroup'];
             $userid = $_POST['userid'];
-           // print_r($_POST);
+            // print_r($_POST);
             $save = new AccountClass();
-          $save->updateUserInfo($name, $username, $email, $phoneno, $userGroup,$userid);
-        }if ($type == "savePermission") {
-            
-           $permission = $_POST['permission'];
+            $save->updateUserInfo($name, $username, $email, $phoneno, $userGroup, $userid);
+        } else if ($type == "savePermission") {
+
+            $permission = $_POST['permission'];
             $save = new AccountClass();
             $save->setPermission($permission);
-        } 
+        } else if ($type == "changePassword") {
+
+           $password = $_POST['password_val'];
+            $save = new AccountClass();
+           $save->updatePassword($password);
+        }
     } else {
         echo 'provide type';
     }
