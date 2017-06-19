@@ -17,7 +17,7 @@ if (isset($_REQUEST['logout']) == 'logout') {
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Log In -USAD Portal</title>
+        <title>Forgot Password</title>
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
         <meta name="description" content="Mer System is a web protal to track farmers activities">
 
@@ -26,7 +26,7 @@ if (isset($_REQUEST['logout']) == 'logout') {
         <meta name="twitter:site" content="@naksoid">
         <meta name="twitter:creator" content="@naksoid">
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="../img/favicon.ico" sizes="32x32">
+        <link rel="icon" type="image/png" href="img/favicon.ico" sizes="32x32">
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="manifest.json">
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#27ae60">
@@ -37,6 +37,8 @@ if (isset($_REQUEST['logout']) == 'logout') {
         <link rel="stylesheet" href="css/login-3.min.css">
         <link rel="stylesheet" href="css/logincustom.css">
         <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/sweet-alert.min-v2.2.0.css">
+
     </head>
     <body>
 
@@ -59,41 +61,27 @@ if (isset($_REQUEST['logout']) == 'logout') {
             <li><span style="background-image: url('img/background5.jpg')"></span></li>
 
         </ul>
-        <h2 class="text-center" style="text-transform: uppercase;">
-            Amplifies Ghana Project Monitoring And Reporting platform
-        </h2>
+        
         <div class="login">
 
             <div class="login-body">
-                <a class="login-brand" href="#">
-                    <img class="img-responsive" src="img/logo2.png"  alt="USAD">
-<!--                    <img class="img-responsive" src="img/logo.png" height="30" width="70" alt="USAD">
-                    -->
-                </a>
-                <h3 class="login-heading">Sign in</h3>
+                             <h6 class="login-heading">Forgot your password?</h6>
+
                 <p class="holder text-center"></p>
                 <div class="login-form">
-                    <form id="loginForm" data-toggle="md-validator"  method="POST">
-                        <input class="md-form-control" type="hidden" name="type" value="login">
+                    <form id="forgotpasswprdForm" data-toggle="md-validator"  method="POST">
+                        <input class="md-form-control" type="hidden" name="type" value="forgotpassword">
                            
                         <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="text" name="username" spellcheck="false" autocomplete="off" data-msg-required="Please enter username." required>
-                            <label class="md-control-label">Username</label>
+                            <input class="md-form-control" type="email" name="email" spellcheck="false" autocomplete="off" data-msg-required="Please enter email" required>
+                            <label class="md-control-label">Email</label>
                         </div>
-                        <div class="md-form-group md-label-floating">
-                            <input class="md-form-control" type="password" name="password" minlength="6" data-msg-minlength="Password must be 6 characters or more." data-msg-required="Please enter your password." required>
-                            <label class="md-control-label">Password</label>
-                        </div>
+                        
                         <div class="md-form-group md-custom-controls">
-                            <label class="custom-control custom-control-primary custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" checked="checked">
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-label">Keep me signed in</span>
-                            </label>
-                            <span aria-hidden="true"> </span>
-                            <a href="forgot-password">Forgot password?</a>
+                            
+                            <a href="index.php">Sign In</a>
                         </div>
-                        <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                        <button class="btn btn-primary btn-block" type="submit">Reset</button>
                     </form>
                 </div>
             </div>
@@ -102,6 +90,8 @@ if (isset($_REQUEST['logout']) == 'logout') {
         <script src="js/vendor.min.js"></script>
         <script src="js/elephant.min.js"></script>
         <script src="js/login.js"></script>
+        <script src="js/sweet-alert.min.js"></script>
+
     </body>
 </html>
 <!-- Localized -->

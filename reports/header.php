@@ -55,7 +55,7 @@
                             <li><a href="#">Profile</a></li>
                             <li><a href="../password-reset">Change Password</a></li>
 
-                            <li><a href="index.php">Sign out</a></li>
+                            <li><a href="../index.php">Sign out</a></li>
                         </ul>
                     </li>
 

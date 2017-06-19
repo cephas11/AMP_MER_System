@@ -21,11 +21,15 @@ class AuditClass {
 
     //put your code here
 
-    public function setAuditLog($activity) {
+    public function setAuditLog($activity, $userid = null) {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $userid = $_SESSION['meruserid'];
+        if ($userid == null) {
+            $userid = $_SESSION['meruserid'];
+        } else {
+            $userid = $userid;
+        }
 
         mysqli_query($conn, "INSERT INTO audit_logs(user_id,activity)"
                 . " VALUES "

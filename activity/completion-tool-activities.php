@@ -87,7 +87,7 @@ if ($_SESSION['login_valid'] != "YES") {
                                                             <th>Implementer</th>
                                                             <th>Total Participants</th>
 
-                                                            <th>Edit</th>
+                                                            <th>View</th>
                                                             <?php
                                                             if (in_array("DELETE_ACTIVITY", $scopes)) {
                                                                 ?>

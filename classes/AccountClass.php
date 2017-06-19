@@ -485,4 +485,79 @@ class AccountClass {
 //        $connection->closeConnection($conn);
     }
 
+    public function forgotPassword($email) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = "SELECT * FROM users where email='" . $email . "'";
+        $result = mysqli_query($conn, $query);
+        $Results = mysqli_fetch_array($result);
+
+        if (count($Results) >= 1) {
+
+            $encrypt = $Results['id'];
+            $to = $email;
+            $subject = "Forget Password";
+            $from = 'Mer Application Portal';
+            $body = 'Hi ' . $Results['name'] . ', <br><br>Click here to reset your password localhost/AMP_MER_System/reset-password.php?encrypt=' .urlencode($encrypt)  . '&action=reset   <br/> <br/>--<br>Amplifies Ghana<br>';
+            $headers = "From: " . strip_tags($from) . "\r\n";
+            // $headers .= "Reply-To: " . strip_tags($from) . "\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+          $result =  mail($to, $subject, $body, $headers);
+//          if (!$result) {
+//              
+//          }else{
+//              
+//          }
+          
+            $this->response['success'] = '1';
+            $this->response['message'] = 'Your password reset link send to your e-mail address';
+            echo json_encode($this->response);
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'Email not found';
+            echo json_encode($this->response);
+        }
+    }
+
+    
+     public function getUserId($id) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $query = "SELECT * FROM users where id='" . $id . "'";
+        $result = mysqli_query($conn, $query);
+        $Results = mysqli_fetch_array($result);
+
+        if (count($Results) >= 1) {
+            return $Results['id'];
+        }else{
+            return 0;
+        }
+           
+    }
+    
+     public function resetPassword($password,$userid) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+        $password_hash = md5($password);
+
+        $query = mysqli_query($conn, "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$userid."");
+        if ($query) {
+//            $audit = new AuditClass();
+//            $audit->setAuditLog("Reset password ",$userid);
+
+            $this->response['success'] = '1';
+            //s    $this->response['query']= "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$_SESSION['meruserid']."";
+            $this->response['message'] = 'Password  changed successfully.Kindly login with new password.';
+            echo json_encode($this->response);
+            //   $query->close();
+        } else {
+            $this->response['success'] = '0';
+            $this->response['message'] = 'couldnt save' .$userid. mysqli_error($conn);
+            echo json_encode($this->response);
+        }
+//        $connection->closeConnection($conn);
+    }
+
 }

@@ -80,9 +80,20 @@ if (isset($_REQUEST)) {
             $save->setPermission($permission);
         } else if ($type == "changePassword") {
 
-           $password = $_POST['password_val'];
+            $password = $_POST['password_val'];
             $save = new AccountClass();
-           $save->updatePassword($password);
+            $save->updatePassword($password);
+        }else if ($type == "forgotpassword") {
+
+            $email = $_POST['email'];
+            $save = new AccountClass();
+            $save->forgotPassword($email);
+        }else if ($type == "resetpassword") {
+
+            $password = $_POST['password'];
+            $userid= $_POST['userid'];
+            $save = new AccountClass();
+           $save->resetPassword($password,$userid);
         }
     } else {
         echo 'provide type';
