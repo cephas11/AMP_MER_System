@@ -62,6 +62,8 @@ class BeneficiaryClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $contents = fopen($filecontents, "r");
         $createdBy = 'admin';
+        $audit = new AuditClass();
+
         //   print_r($contents) ;
 
         if ($contents !== FALSE) {
@@ -90,6 +92,8 @@ class BeneficiaryClass {
 //                        . ",'" . mysqli_real_escape_string($conn, $emapData[15]) . "','" . mysqli_real_escape_string($conn, $emapData[16]) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')";
 
                 $result = mysqli_query($conn, $sql);
+                $audit->setAuditLog("Bulk Beneficiary Upload:Beneficiary Name- " . $emapData[0]);
+
                 if (!$result) {
                     echo "<script type=\"text/javascript\">
 							alert(\"Invalid File:Please Upload CSV File.\");
@@ -140,6 +144,7 @@ class BeneficiaryClass {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
+        $audit = new AuditClass();
 
         $createdby = 'admin';
         $datecreated = date("Y-m-d");
@@ -152,10 +157,13 @@ class BeneficiaryClass {
                     . "'" . mysqli_real_escape_string($conn, $item['category']) . "','" . mysqli_real_escape_string($conn, $item['description']) . "','" . mysqli_real_escape_string($conn, $item['region']) . "','" . mysqli_real_escape_string($conn, $item['district']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $item['community']) . "','" . mysqli_real_escape_string($conn, $item['longitude']) . "','" . mysqli_real_escape_string($conn, $item['latitude']) . "','" . mysqli_real_escape_string($conn, $item['fiscalYear']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $item['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $item['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
+            $audit->setAuditLog("Added New Beneficiary " . $item['name']);
         }
 
 
         if ($query) {
+
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Data saved successfully';
             echo json_encode($this->response);
@@ -218,6 +226,10 @@ class BeneficiaryClass {
                 . "'" . mysqli_real_escape_string($conn, $info['dateRegistered']) . "','" . mysqli_real_escape_string($conn, $info['registeredBy']) . "','" . mysqli_real_escape_string($conn, $createdby) . "','" . $datecreated . "','" . time() . "')");
 
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added new beneficiary " . $info['beneficiaryName']);
+
             $new_id = mysqli_insert_id($conn);
             $id = str_pad("$new_id", 5, '0', STR_PAD_LEFT);
             $bene_code = $shortcode . $id;
@@ -246,7 +258,7 @@ class BeneficiaryClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
-        $createdby = 'admin';
+
         $datecreated = date("Y-m-d");
         $exists = $this->checkRegistrarExistence($registrarInfo['email']);
         if ($exists > 0) {
@@ -257,9 +269,13 @@ class BeneficiaryClass {
             $code = 'REG' . $this->generateuniqueCode(10);
             $query = mysqli_query($conn, "INSERT INTO registers(code,name,email,contactno,createdby)"
                     . " VALUES "
-                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $registrarInfo['name']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['email']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['contactno']) . "','" . $createdby . "')");
+                    . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $registrarInfo['name']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['email']) . "','" . mysqli_real_escape_string($conn, $registrarInfo['contactno']) . "','" . $_SESSION['meruserid'] . "')");
 
             if ($query) {
+
+                $audit = new AuditClass();
+                $audit->setAuditLog("Added new registrar " . $registrarInfo['name']);
+
                 $this->response['success'] = '1';
                 $this->response['message'] = 'Data saved successfully';
                 echo json_encode($this->response);
@@ -301,6 +317,12 @@ class BeneficiaryClass {
 
 
         if ($query) {
+            $name = $this->getParticipantsName($code);
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted Beneficiary " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Beneficiary Data deleted successfully';
             echo json_encode($this->response);
@@ -311,6 +333,18 @@ class BeneficiaryClass {
         }
 
         $connection->closeConnection($conn);
+    }
+
+    public function getParticipantsName($particpant_code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT name FROM beneficiaries  WHERE code='" . $particpant_code . "'");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+
+            return $row['name'];
+        }
     }
 
     private function generateuniqueCode($length = 10) {
@@ -353,6 +387,9 @@ class BeneficiaryClass {
                 . ",ownership_type='" . mysqli_real_escape_string($conn, $beninfo['ownership_type']) . "',establishment_years='" . mysqli_real_escape_string($conn, $beninfo['establishment_years']) . "',"
                 . "longitude='" . mysqli_real_escape_string($conn, $beninfo['longitude']) . "',latitude='" . mysqli_real_escape_string($conn, $beninfo['latitude']) . "',dateregistered='" . mysqli_real_escape_string($conn, $beninfo['dateRegistered']) . "',modon=NOW() WHERE code='" . mysqli_real_escape_string($conn, $beninfo['beneficiaryCode']) . "'");
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Updated " . $beninfo['beneficiaryName'] . " Beneficiary Information ");
+
             $this->response['success'] = '1';
             $this->response['message'] = $beninfo['beneficiaryName'] . ' information updated successfully';
             echo json_encode($this->response);

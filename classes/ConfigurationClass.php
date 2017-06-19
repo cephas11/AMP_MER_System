@@ -22,6 +22,9 @@ class ConfigurationClass {
         $code = 'REG' . $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO region(code,name,shortcode) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $shortcode) . "')");
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added new region - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Region saved successfully';
             echo json_encode($this->response);
@@ -60,6 +63,10 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE region SET active = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+            $name = $this->getName($code, 'region');
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  region - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Region deleted successfully';
             echo json_encode($this->response);
@@ -80,6 +87,10 @@ class ConfigurationClass {
         $code = 'DST' . $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO districts(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added  district - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'District saved successfully';
             echo json_encode($this->response);
@@ -115,6 +126,11 @@ class ConfigurationClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "UPDATE districts SET active = 1 WHERE code='" . $code . "'");
         if ($query) {
+
+            $name = $this->getName($code, 'districts');
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  district - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'District nbbn deleted successfully';
             echo json_encode($this->response);
@@ -150,12 +166,15 @@ class ConfigurationClass {
     public function setRegionDistricts($region, $districts) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-
-
+        $audit = new AuditClass();
+        $regname = $this->getName($region, 'region');
         if (sizeof($districts) > 0) {
             foreach ($districts as $district) {
+                $distname = $this->getName($district, 'districts');
                 $code = $this->generateuniqueCode(8);
                 $query = mysqli_query($conn, "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')");
+
+                $audit->setAuditLog("Assigned  district " . $distname . " to region " . $regname);
 
                 //  echo  "INSERT INTO region_districts(code,districts_code,region_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $district) . "','" . mysqli_real_escape_string($conn, $region) . "')";
             }
@@ -218,6 +237,10 @@ class ConfigurationClass {
         $code = $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO categories(code,name,shortcode) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','" . mysqli_real_escape_string($conn, $shortcode) . "')");
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added  Category - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Category saved successfully';
             echo json_encode($this->response);
@@ -254,6 +277,11 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE categories SET active = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+
+            $name = $this->getName($code, "categories");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  category - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Category deleted successfully';
             echo json_encode($this->response);
@@ -273,6 +301,10 @@ class ConfigurationClass {
         $code = $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO description(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added  description - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Description saved successfully';
             echo json_encode($this->response);
@@ -308,6 +340,12 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE description SET active = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+
+            $name = $this->getName($code, "description");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  descriiption - " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Description deleted successfully';
             echo json_encode($this->response);
@@ -343,11 +381,16 @@ class ConfigurationClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
+        $audit = new AuditClass();
+        $catname = $this->getName($category, 'categories');
 
         if (sizeof($descriptions) > 0) {
             foreach ($descriptions as $desc) {
+                $descname = $this->getName($desc, 'description');
                 $code = $this->generateuniqueCode(8);
                 $query = mysqli_query($conn, "INSERT INTO description_categories(code,description_code,category_code) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $desc) . "','" . mysqli_real_escape_string($conn, $category) . "')");
+
+                $audit->setAuditLog("Assigned  description " . $descname . " to category " . $catname);
             }
         }
 
@@ -468,6 +511,11 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE registers SET active=1  WHERE code='" . $code . "'");
 
         if ($query) {
+
+            $name = $this->getName($code, "registers");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  registers - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = ' Register deleted successfully';
             echo json_encode($this->response);
@@ -497,6 +545,11 @@ class ConfigurationClass {
         $code = $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO activity_types(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $type) . "')");
         if ($query) {
+
+            $name = $this->getName($code, "activity_types");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added new  activity_types - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Activity Type saved successfully';
             echo json_encode($this->response);
@@ -533,6 +586,13 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE activity_types SET status = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+
+
+            $name = $this->getName($code, "activity_types");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  activity_types - " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = ' Activity Type deleted successfully';
             echo json_encode($this->response);
@@ -720,8 +780,8 @@ class ConfigurationClass {
         }
         $connection->closeConnection($conn);
     }
-    
-        public function updateFunction($info) {
+
+    public function updateFunction($info) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
@@ -747,6 +807,10 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE registers SET name = '" . mysqli_real_escape_string($conn, $info['name']) . "',email = '" . mysqli_real_escape_string($conn, $info['email']) . "',contactno = '" . mysqli_real_escape_string($conn, $info['contactno']) . "' WHERE code='" . $info['code'] . "'");
 
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Updated  registrar information - " . $info['name']);
+
             $this->response['success'] = '1';
             $this->response['message'] = $info['name'] . ' Information Updated successfully';
             echo json_encode($this->response);
@@ -769,6 +833,10 @@ class ConfigurationClass {
 
         $query = mysqli_query($conn, "INSERT INTO commodites(code,name,createdby) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "','" . $_SESSION['meruserid'] . "')");
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added new commodity  - " . $name);
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Commodity saved successfully';
             echo json_encode($this->response);
@@ -807,6 +875,12 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE commodites SET active = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+
+            $name = $this->getName($code, "commodites");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  commodites - " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Commodity deleted successfully';
             $feedback = json_encode($this->response);
@@ -828,7 +902,13 @@ class ConfigurationClass {
 
         $code = $this->generateuniqueCode(8);
         $query = mysqli_query($conn, "INSERT INTO employment_types(code,name) VALUES ('" . trim($code) . "','" . mysqli_real_escape_string($conn, $name) . "')");
+
         if ($query) {
+
+            $audit = new AuditClass();
+            $audit->setAuditLog("Added new employment type  - " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Emplyment Type saved successfully';
             echo json_encode($this->response);
@@ -847,6 +927,12 @@ class ConfigurationClass {
         $query = mysqli_query($conn, "UPDATE employment_types SET status = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+
+            $name = $this->getName($code, "employment_types");
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted  employment type - " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Type deleted successfully';
             $feedback = json_encode($this->response);
@@ -877,6 +963,18 @@ class ConfigurationClass {
 
         echo $feedback;
         $connection->closeConnection($conn);
+    }
+
+    public function getName($id, $table) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT name FROM " . $table . "  WHERE code='" . $id . "'");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+
+            return $row['name'];
+        }
     }
 
 }

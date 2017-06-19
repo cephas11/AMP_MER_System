@@ -48,8 +48,6 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM user_groups WHERE active=0");
-        $audit = new AuditClass();
-        $audit->setAuditLog("Retreived user groups");
 
         if (mysqli_num_rows($query) > 0) {
 
@@ -72,11 +70,11 @@ class AccountClass {
 
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-
+        $prev_name = $this->getUserGroup($id);
         $query = mysqli_query($conn, "UPDATE user_groups SET name =  '" . mysqli_real_escape_string($conn, $name) . "' WHERE id=$id");
         if ($query) {
             $audit = new AuditClass();
-            $audit->setAuditLog("Updated" . $name . " user group information");
+            $audit->setAuditLog("Changed " . $prev_name . " user group to " . $name . " user group ");
             $this->response['success'] = '1';
             $this->response['message'] = 'User Group updated successfully';
             echo json_encode($this->response);
@@ -87,6 +85,18 @@ class AccountClass {
             echo json_encode($this->response);
         }
         $connection->closeConnection($conn);
+    }
+
+    public function getUserGroup($id) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT name FROM user_groups  WHERE id=$id");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+
+            return $row['name'];
+        }
     }
 
     public function deleteUserGroup($id, $name) {
@@ -115,9 +125,9 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         //  $query = mysqli_query($conn, "UPDATE region_districts SET active = 1 WHERE code='" . $code . "'");
         $query = mysqli_query($conn, "UPDATE users SET deleted = 1 WHERE id=$id");
-        $audit = new AuditClass();
-        $audit->setAuditLog("Deleted user " . $name);
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted user " . $name);
 
 
             $this->response['success'] = '1';
@@ -136,8 +146,6 @@ class AccountClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM permissions");
-        $audit = new AuditClass();
-        $audit->setAuditLog("Retreived permissions ");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -162,11 +170,11 @@ class AccountClass {
 
         $createdBy = $_SESSION['meruserid'];
         $this->deleteUserPermission($usergroup);
-
+        $usergroupname = $this->getUserGroup($usergroup);
         $audit = new AuditClass();
         foreach ($data as $perm) { //foreach element in $arr
             $query = mysqli_query($conn, "INSERT INTO permissions_and_roles(user_group_id,perm_keyword,createdby) VALUES ('" . mysqli_real_escape_string($conn, $usergroup) . "','" . mysqli_real_escape_string($conn, $perm) . "','" . mysqli_real_escape_string($conn, $createdBy) . "')");
-            $audit->setAuditLog("Added" . $perm . " permission to " . $usergroup);
+            $audit->setAuditLog("Added " . $perm . " permission to " . $usergroupname . " user group");
         }
 
         if ($query) {
@@ -215,10 +223,10 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $createdBy = $_SESSION['username'];
 
-        $results = $this->checkUserExistence($email);
+        $results = $this->checkUserExistence($email,$username);
         if ($results > 0) {
-            $this->response['success'] = '0';
-            $this->response['message'] = 'User already exist';
+            $this->response['success'] = '2';
+            $this->response['message'] = 'Email/Username already exist';
         } else {
             $audit = new AuditClass();
             $audit->setAuditLog("Created new user " . $name);
@@ -235,6 +243,7 @@ class AccountClass {
                 $this->response['userdetails'] = 'Error: ' . mysqli_error($conn);
             }
         }
+        echo json_encode($this->response);
 
         $connection->closeConnection($conn);
     }
@@ -264,13 +273,16 @@ class AccountClass {
 
         $result = mail($to, $subject, $message, $headers);
         if (!$result) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("System generated : " . Username . " credentials sent to " . $emmail);
+
             $this->response['success'] = '0';
             $this->response['message'] = 'User created successfully but Email wasnt sent';
-            $this->response['userdetails'] = 'Username: ' . $username;
+            $this->response['userdetails'] = 'Username: ' . $username . 'Password: ' . $password;
         } else {
             $this->response['success'] = '1';
             $this->response['message'] = 'User created successfully.User Details has been sent to email';
-            $this->response['userdetails'] = 'Username: ' . $username;
+            $this->response['userdetails'] = 'Username: ' . $username . 'Password: ' . $password;
         }
         echo json_encode($this->response);
     }
@@ -290,8 +302,6 @@ class AccountClass {
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = mysqli_query($conn, "SELECT * FROM users_view WHERE deleted=0");
         if (mysqli_num_rows($query) > 0) {
-            $audit = new AuditClass();
-            $audit->setAuditLog("Retreived all users");
 
             while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 $results[] = $row;
@@ -307,14 +317,12 @@ class AccountClass {
         $connection->closeConnection($conn);
     }
 
-    private function checkUserExistence($email) {
+    private function checkUserExistence($email,$username) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
-        $query = mysqli_query($conn, "SELECT * FROM users WHERE email='" . $email . "'");
-
-
-        $connection->closeConnection($conn);
+        $query = mysqli_query($conn, "SELECT * FROM users WHERE email='" . $email . "' OR username='".$username."'");
         return mysqli_num_rows($query);
+        $connection->closeConnection($conn);
     }
 
     public function getUserGroupPermissions() {
@@ -411,7 +419,6 @@ class AccountClass {
         $query = mysqli_query($conn, "UPDATE users SET name =  '" . mysqli_real_escape_string($conn, $name) . "' , username =  '" . mysqli_real_escape_string($conn, $username) . "' , email =  '" . mysqli_real_escape_string($conn, $email) . "' , phoneno =  '" . mysqli_real_escape_string($conn, $phoneno) . "' , usergroup =  '" . mysqli_real_escape_string($conn, $usergroup) . "'  WHERE id=$id");
         if ($query) {
             $audit = new AuditClass();
-
             $audit->setAuditLog("Updated " . $name . " information");
 
             $this->response['success'] = '1';
@@ -498,19 +505,19 @@ class AccountClass {
             $to = $email;
             $subject = "Forget Password";
             $from = 'Mer Application Portal';
-            $body = 'Hi ' . $Results['name'] . ', <br><br>Click here to reset your password localhost/AMP_MER_System/reset-password.php?encrypt=' .urlencode($encrypt)  . '&action=reset   <br/> <br/>--<br>Amplifies Ghana<br>';
+            $body = 'Hi ' . $Results['name'] . ', <br><br>Click here to reset your password localhost/AMP_MER_System/reset-password.php?encrypt=' . urlencode($encrypt) . '&action=reset   <br/> <br/>--<br>Amplifies Ghana<br>';
             $headers = "From: " . strip_tags($from) . "\r\n";
             // $headers .= "Reply-To: " . strip_tags($from) . "\r\n";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-          $result =  mail($to, $subject, $body, $headers);
+            $result = mail($to, $subject, $body, $headers);
 //          if (!$result) {
 //              
 //          }else{
 //              
 //          }
-          
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Your password reset link send to your e-mail address';
             echo json_encode($this->response);
@@ -521,8 +528,7 @@ class AccountClass {
         }
     }
 
-    
-     public function getUserId($id) {
+    public function getUserId($id) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $query = "SELECT * FROM users where id='" . $id . "'";
@@ -531,21 +537,20 @@ class AccountClass {
 
         if (count($Results) >= 1) {
             return $Results['id'];
-        }else{
+        } else {
             return 0;
         }
-           
     }
-    
-     public function resetPassword($password,$userid) {
+
+    public function resetPassword($password, $userid) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
         $password_hash = md5($password);
 
-        $query = mysqli_query($conn, "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$userid."");
+        $query = mysqli_query($conn, "UPDATE users SET password = '" . $password_hash . "' WHERE id=" . $userid . "");
         if ($query) {
-//            $audit = new AuditClass();
-//            $audit->setAuditLog("Reset password ",$userid);
+            $audit = new AuditClass();
+            $audit->setAuditLog("Reset password ",$userid);
 
             $this->response['success'] = '1';
             //s    $this->response['query']= "UPDATE users SET password = '" . $password_hash . "' WHERE id=".$_SESSION['meruserid']."";
@@ -554,7 +559,7 @@ class AccountClass {
             //   $query->close();
         } else {
             $this->response['success'] = '0';
-            $this->response['message'] = 'couldnt save' .$userid. mysqli_error($conn);
+            $this->response['message'] = 'couldnt save' . $userid . mysqli_error($conn);
             echo json_encode($this->response);
         }
 //        $connection->closeConnection($conn);

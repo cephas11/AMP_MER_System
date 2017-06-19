@@ -2,6 +2,8 @@
 
 require_once '../classes/AccountClass.php';
 require_once '../classes/LoginClass.php';
+require_once '../classes/AuditClass.php';
+
 $response = array();
 if (isset($_REQUEST)) {
 //echo "Check here";
@@ -94,6 +96,11 @@ if (isset($_REQUEST)) {
             $userid= $_POST['userid'];
             $save = new AccountClass();
            $save->resetPassword($password,$userid);
+        }else if ($type == "auditlogs") {
+
+           
+            $get = new AuditClass();
+           $get->auditlogs();
         }
     } else {
         echo 'provide type';

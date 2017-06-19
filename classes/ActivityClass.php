@@ -134,6 +134,7 @@ class ActivityClass {
 
         if ($query) {
 
+            $description = $this->getActivityDescription($description);
             $audit = new AuditClass();
             $audit->setAuditLog("Created " . $description . " Completion tool activity ");
 
@@ -155,11 +156,24 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
+    public function getActivityDescription($code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT name FROM activity_description  WHERE code='" . $code . "'");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+
+            return $row['name'];
+        }
+    }
+
     public function setActivityParticipants($activity_code, $activity_type, $particpant_code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
+        $name = $this->getParticipantsName($particpant_code);
         $audit = new AuditClass();
-        $audit->setAuditLog("Added participant  " . $particpant_code . " to  " . $activity_code);
+        $audit->setAuditLog("Added participant  " . $name . " to completion tool activity with code " . $activity_code);
 
         $code = $this->generateuniqueCode(10);
         mysqli_query($conn, "INSERT INTO activity_participants(code,activity_code,activity_type,participant_code)"
@@ -167,6 +181,18 @@ class ActivityClass {
                 . "('" . trim($code) . "','" . mysqli_real_escape_string($conn, $activity_code) . "','" . mysqli_real_escape_string($conn, $activity_type) . "','" . mysqli_real_escape_string($conn, $particpant_code) . "')");
 
         $connection->closeConnection($conn);
+    }
+
+    public function getParticipantsName($particpant_code) {
+        $connection = new databaseConnection(); //i created a new object
+        $conn = $connection->connectToDatabase(); // connected to the database
+
+        $query = mysqli_query($conn, "SELECT name FROM beneficiaries  WHERE code='" . $particpant_code . "'");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+
+            return $row['name'];
+        }
     }
 
     public function setActivityCategories($activity_code, $category_code) {
@@ -198,6 +224,10 @@ class ActivityClass {
 
 
         if ($query) {
+            $name = $this->getParticipantsName($beneficiary_code);
+            $audit = new AuditClass();
+            $audit->setAuditLog("Add new sales record to " . $name);
+
 
             $this->response['success'] = '1';
             $this->response['message'] = 'New Sales Tracker  Added';
@@ -322,6 +352,9 @@ class ActivityClass {
 
 
         if ($query) {
+            $name = $this->getParticipantsName($beneficiary_code);
+            $audit = new AuditClass();
+            $audit->setAuditLog("Add new " . $financialType . " financial record to " . $name);
 
             $this->response['success'] = '1';
             $this->response['message'] = ' Saved Sucessfully';
@@ -361,6 +394,9 @@ class ActivityClass {
         $query = mysqli_query($conn, "DELETE FROM sales_tracker  WHERE code='" . $code . "'");
 
         if ($query) {
+//            $audit = new AuditClass();
+//            $audit->setAuditLog("Deleted Sales record");
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Deleted successfully';
             echo json_encode($this->response);
@@ -380,6 +416,9 @@ class ActivityClass {
         $query = mysqli_query($conn, "DELETE FROM financial_services_tracker  WHERE code='" . $code . "'");
 
         if ($query) {
+//              $audit = new AuditClass();
+//            $audit->setAuditLog("Deleted Sales record");
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Deleted successfully';
             echo json_encode($this->response);
@@ -436,6 +475,9 @@ class ActivityClass {
         $query = mysqli_query($conn, "UPDATE completion_tool_activity SET status = 1 WHERE code='" . $code . "'");
 
         if ($query) {
+            $audit = new AuditClass();
+            $audit->setAuditLog("Deleted Completion tool activity record");
+
             $this->response['success'] = '1';
             $this->response['message'] = 'Deleted successfully';
             echo json_encode($this->response);
@@ -468,6 +510,10 @@ class ActivityClass {
         }
 
         if ($query) {
+            $name = $this->getParticipantsName($beneficiary_code);
+            $audit = new AuditClass();
+            $audit->setAuditLog("Add new adoption record to " . $name);
+
 
             $this->response['success'] = '1';
             $this->response['message'] = ' Saved Sucessfully';
@@ -525,6 +571,10 @@ class ActivityClass {
                     . "'" . mysqli_real_escape_string($conn, $data['name']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $data['gender']) . "','" . mysqli_real_escape_string($conn, $data['date']) . "',"
                     . "'" . mysqli_real_escape_string($conn, $data['type']) . "','" . mysqli_real_escape_string($conn, $data['duration']) . "','" . mysqli_real_escape_string($conn, $_SESSION['meruserid']) . "')");
+
+            $name = $this->getParticipantsName($bene_code);
+            $audit = new AuditClass();
+            $audit->setAuditLog("Add new employee with name " . $data['name'] . " to " . $name);
         }
 
         if ($query) {
@@ -594,6 +644,11 @@ class ActivityClass {
 
         if ($query) {
 
+            $name = $this->getParticipantsName($beneficiary_code);
+            $audit = new AuditClass();
+            $audit->setAuditLog("Add new payment with an amount of " . $amountpaid . " to " . $name);
+
+
             $this->response['success'] = '1';
             $this->response['message'] = ' Saved Sucessfully';
             echo json_encode($this->response);
@@ -624,7 +679,7 @@ class ActivityClass {
         $connection->closeConnection($conn);
     }
 
-     public function getBenefiiciaryName($code) {
+    public function getBenefiiciaryName($code) {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
@@ -642,4 +697,5 @@ class ActivityClass {
         echo $feedback;
         $connection->closeConnection($conn);
     }
+
 }

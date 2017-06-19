@@ -22,17 +22,19 @@ class LoginClass {
         $connection = new databaseConnection(); //i created a new object
         $conn = $connection->connectToDatabase(); // connected to the database
 
+        $audit = new AuditClass();
         $password = md5($password);
         $query = mysqli_query($conn, "SELECT * FROM users WHERE username = '" . trim($username) . "' AND password = '" . trim($password) . "'");
 
         if ($query) {
             if (mysqli_num_rows($query) > 0) {
+
                 $row = mysqli_fetch_assoc($query);
 
                 $userType = $row['usergroup'];
                 $userid = $row['id'];
                 $permissions = array();
-                
+
                 $permission = new AccountClass();
                 $results = $permission->getUserPermission($userType);
                 while ($one = mysqli_fetch_assoc($results)) {
@@ -46,7 +48,7 @@ class LoginClass {
                 $_SESSION['meruserid'] = $userid;
                 $_SESSION['login_valid'] = "YES";
                 $_SESSION['permissions'] = $permissions;
-
+                $audit->setAuditLog('User logged in ', $userid);
                 echo '0';
             } else {
                 echo '1';

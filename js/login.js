@@ -103,11 +103,11 @@ $('#resetPassworrdForm').on('submit', function (e) {
             url: 'controllers/AccountController.php?_=' + new Date().getTime(),
             type: "POST",
             data: formData,
-         //   dataType: "json",
+            //   dataType: "json",
             success: function (data) {
                 console.log(data);
                 var status = data.success;
-                
+
                 if (status == 0) {
                     $('.holder').html(data.message);
                 } else {
@@ -144,3 +144,60 @@ $('#resetPassworrdForm').on('submit', function (e) {
 
 
 });
+
+
+var auditdatatable = $('#auditTbl').DataTable({
+    responsive: true,
+    dom: 'Bfrtip',
+    buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+    ],
+    language: {
+        paginate:
+                {previous: "&laquo;", next: "&raquo;"},
+        search: "_INPUT_",
+        searchPlaceholder: "Search…"
+    }
+
+});
+
+
+$.ajax({
+    url: 'controllers/AccountController.php?_=' + new Date().getTime(),
+    type: "GET",
+    data: {type: "auditlogs"},
+    success: function (data) {
+//acctivityTbl
+
+        console.log('response :' + data);
+        auditdatatable.clear().draw();
+        var obj = jQuery.parseJSON(data);
+        if (obj.length == 0) {
+            console.log("NO DATA!");
+        } else {
+
+            var rowNum = 0;
+            $.each(obj, function (key, value) {
+                var j = -1;
+                var r = new Array();
+                r[++j] = '<td>' + value.username + '</td>';
+                r[++j] = '<td> ' + value.activity + '</td>';
+                r[++j] = '<td>' + value.dateacreated + '</td>';
+
+                rowNum = rowNum + 1;
+
+
+                rowNode = auditdatatable.row.add(r);
+            });
+
+            rowNode.draw().node();
+        }
+
+
+
+    }
+});
+
